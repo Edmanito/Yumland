@@ -1,0 +1,79 @@
+/* =========================================
+   1. RESET & BASES
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-image: url("img/fond1Acueil.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: black;
+    
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: white;
+}
+
+/* =========================================
+   2. MISE EN PAGE (Layout)
+   ========================================= */
+.overlay {
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
+.header-content {
+    display: flex;
+    align-items: center; 
+    padding: 20px; /* Un peu plus d'espace autour */
+}
+
+/* =========================================
+   3. LOGO AGRANDI & TEXTE
+   ========================================= */
+
+.logo-coin {
+    /* On augmente ici : minimum 100px, taille idéale 15vh, maximum 180px */
+    height: clamp(130px, 15vh, 180px); 
+    width: auto;
+    margin-right: 25px;
+    display: block;
+}
+
+.titres-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.nom-restaurant {
+    font-weight: bold;
+    /* La taille du texte s'adapte aussi pour rester proportionnelle */
+    font-size: clamp(1.5rem, 4vw, 2.5rem); 
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.sous-titre {
+    font-weight: normal;
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-top: 5px;
+}
+
+/* Sécurité pour les images */
+img {
+    max-width: 100%;
+    height: auto;
+}
