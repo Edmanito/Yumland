@@ -18,18 +18,20 @@
                 <a href="#experience" onclick="toggleMenu()">L'EXPÉRIENCE</a>
                 <a href="#menu" onclick="toggleMenu()">LE MENU</a>
                 <a href="#informations" onclick="toggleMenu()">INFORMATIONS</a>
-                <a href="profil.html">MON PROFIL</a>
             </div>
         </div>
 
         <div class="menu-footer">
-            <div class="footer-admin">
-                <a href="admin.html" class="admin-link">ADMINISTRATION</a>
-            </div>
-            <div class="footer-main-info">
-                <img src="img/instagram-icon.png" alt="Instagram" class="insta-logo">
-                <span class="separator">|</span>
-                <div class="lang-switcher-menu">FR / EN</div>
+            <div class="footer-main-container">
+                <div class="footer-admin-top">
+                    <a href="admin.html" class="admin-link">ADMINISTRATION</a>
+                </div>
+                
+                <div class="footer-main-info">
+                    <img src="img/instagram-icon.png" alt="Instagram" class="insta-logo">
+                    <span class="separator">|</span>
+                    <div class="lang-switcher-menu">FR / EN</div>
+                </div>
             </div>
         </div>
     </div>
@@ -77,6 +79,17 @@
                 <button class="btn-submit">SE CONNECTER</button>
                 <p class="switch-auth">Pas encore de compte ? <a href="inscription.html" class="auth-link">S'inscrire</a></p>
             </div>
+
+            <div id="register-form" class="auth-box" style="display: none;">
+                <h3>INSCRIPTION</h3>
+                <p class="auth-subtitle">Rejoignez l'expérience Shunei</p>
+                <input type="text" placeholder="Nom complet" class="input-auth">
+                <input type="email" placeholder="Email" class="input-auth">
+                <input type="password" placeholder="Mot de passe" class="input-auth">
+                <input type="text" placeholder="Code Interphone (Optionnel)" class="input-auth">
+                <button class="btn-submit">CRÉER MON COMPTE</button>
+                <p class="switch-auth">Déjà inscrit ? <span onclick="switchAuth()">Se connecter</span></p>
+            </div>
         </div>
     </div>
 
@@ -107,7 +120,9 @@
     <section id="chefs" class="scroll-section chefs-view">
         <div class="chefs-container">
             <div class="chef-card">
-                <div class="chef-img-wrapper"><img src="img/chef-1.jpeg" alt="Chef Kenji" class="chef-portrait"></div>
+                <div class="chef-img-wrapper">
+                    <img src="img/chef-1.jpeg" alt="Chef Kimura" class="chef-portrait">
+                </div>
                 <div class="chef-info">
                     <span class="chef-role">LE MAÎTRE DU FEU</span>
                     <h3>KENJI</h3>
@@ -118,7 +133,9 @@
                 <div class="line"></div><div class="kanji-split">絆</div><div class="line"></div>
             </div>
             <div class="chef-card">
-                <div class="chef-img-wrapper"><img src="img/chef-2.jpeg" alt="Cheffe Aiko" class="chef-portrait"></div>
+                <div class="chef-img-wrapper">
+                    <img src="img/chef-2.jpeg" alt="Cheffe Aiko" class="chef-portrait">
+                </div>
                 <div class="chef-info">
                     <span class="chef-role">L'ÂME CRÉATRICE</span>
                     <h3>AIKO</h3>
@@ -133,30 +150,23 @@
             <span class="section-subtitle">L'UNION DES CULTURES</span>
             <h2>L'Équilibre Absolu</h2>
             <div class="exp-story-centered">
-                <p>Au cœur de Sushi Shunei bat le récit d'une union singulière entre la discipline nippone et l'âme occidentale.</p>
+                <p>Au cœur de <strong>Sushi Shunei</strong> bat le récit d'une union singulière...</p>
+                <div class="exp-divider-gold"></div>
+                <p>Ensemble, ce couple a fusionné la discipline nippone et l'âme occidentale.</p>
             </div>
             <div class="exp-quote-large">"Le sushi est un pont entre nos deux mondes."</div>
         </div>
     </section>
 
-   <section id="menu" class="scroll-section menu-view-minimal">
-    <div class="menu-bg-overlay"></div>
-    
-    <a href="carte.html" class="menu-compact-box">
-        <span class="section-subtitle">DÉCOUVRIR</span>
-        <h2 class="menu-title-small">LA CARTE</h2>
-        <div class="line-gold"></div>
-        <p class="click-info">VOIR LES PLATS & RÉSERVER</p>
-    </a>
-</section>
-
-<section id="informations" class="scroll-section info-section">
+    <section id="menu" class="scroll-section menu-view-minimal">
+        <div class="menu-bg-overlay"></div>
+        <a href="carte.html" target="_blank" class="menu-compact-box">
+            <span class="section-subtitle">DÉCOUVRIR</span>
+            <h2 class="menu-title-small">LA CARTE</h2>
+            <div class="line-gold"></div>
+            <p class="click-info">OUVRIR DANS UN NOUVEL ONGLET</p>
+        </a>
     </section>
-
-
-
-
-
 
     <section id="informations" class="scroll-section info-view">
         <div class="info-wrapper">
@@ -174,7 +184,7 @@
                     </div>
                     <div class="detail-item">
                         <p class="label">RÉSERVATIONS</p>
-                        <p>01 42 55 71 11</p>
+                        <p><a href="tel:+33142557111" class="phone-link">01 42 55 71 11</a></p>
                     </div>
                 </div>
             </div>
@@ -186,18 +196,22 @@
     </section>
 
     <script>
+        // --- NAVIGATION & MENU ---
         function toggleMenu() {
             document.getElementById("side-menu").classList.toggle("open");
             document.body.classList.toggle("open-nav");
         }
-
         function toggleReservation() {
             document.getElementById("reservation-panel").classList.toggle("open");
         }
+        function openReservationFromMenu() {
+            toggleMenu();
+            setTimeout(toggleReservation, 500);
+        }
 
+        // --- GALERIE ---
         let currentImg = 1;
         const totalImg = 6;
-
         function changeImage(direction) {
             const restaurant = document.getElementById("restaurant");
             const photo = document.getElementById("main-photo");
@@ -210,7 +224,6 @@
             if (currentImg < 1) currentImg = totalImg;
             photo.src = `img/resto-${currentImg}.png`;
         }
-
         function openGallery() {
             const section = document.getElementById("restaurant");
             section.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -220,30 +233,38 @@
                 document.querySelector("header").style.opacity = "0";
             }, 600);
         }
-
         function closeGallery() {
             document.getElementById("restaurant").classList.remove("gallery-active");
             document.body.classList.remove("no-scroll");
             document.querySelector("header").style.opacity = "1";
         }
 
-        function openReservationFromMenu() {
-            toggleMenu();
-            setTimeout(toggleReservation, 500);
+        // --- AUTH ---
+        function switchAuth() {
+            const login = document.getElementById("login-form");
+            const register = document.getElementById("register-form");
+            login.style.display = (login.style.display === "none") ? "block" : "none";
+            register.style.display = (register.style.display === "none") ? "block" : "none";
         }
 
-        // --- GESTION SCROLL HEADER ---
-        window.onscroll = function() {
-            let brand = document.querySelector(".nav-branding");
-            if (brand) {
-                if (window.scrollY > 80) {
-                    brand.style.opacity = "0";
-                } else {
-                    brand.style.opacity = "1";
-                }
-            }
+        /**
+         * COMPONENT: CombatInput
+         * Handles system-wide input mapping and validation
+         */
+        const CombatInput = {
+            settings: { sensitivity: 1.5, deadzone: 0.1, holdDelay: 500 },
+            mapping: { UP: "ArrowUp", DOWN: "ArrowDown", LEFT: "ArrowLeft", RIGHT: "ArrowRight", ACTION: "Enter", CANCEL: "Escape" },
+            init() {
+                console.log("CombatInput System Active");
+                window.addEventListener("keydown", (e) => this.handlePress(e.key));
+            },
+            handlePress(key) {
+                const command = Object.keys(this.mapping).find(k => this.mapping[k] === key);
+                if (command) this.execute(command);
+            },
+            execute(cmd) { console.log(`Executing Command: ${cmd}`); }
         };
+        CombatInput.init();
     </script>
 </body>
 </html>
-
