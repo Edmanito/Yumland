@@ -1,373 +1,104 @@
 /* =========================================
    SECTION 1 : VARIABLES ET BASES
    ========================================= */
-/* =========================================
-   SECTION 1 : VARIABLES ET BASES
-   ========================================= */
 :root {
     --gold: #C5A059;
     --dark-bg: #0A0A0A;
     --navy: #001529; 
-    --ivory: #F4F1EA;
+    --burgundy: #4A0404;
     --white: #FFFFFF;
     --gray-border: rgba(197, 160, 89, 0.2);
-    --burgundy: #4A0404; /* Rouge pourpre */
 }
 
-/* ... (Garde ton code SECTION 1 à 3 identique) ... */
-
-/* =========================================
-   SECTION 4 : PANNEAU COULISSANT (BLEU)
-   ========================================= */
-.side-panel {
-    position: fixed;
-    top: 0;
-    left: -33.33vw;
-    width: 33.33vw;
-    height: 100vh;
-    background-color: var(--navy);
-    z-index: 2000;
-    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 220px 40px 60px 220px; 
-    box-shadow: 10px 0 30px rgba(0,0,0,0.5);
-    pointer-events: auto;
-}
-
-.side-panel.open { left: 0; }
-
-.menu-links {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    position: relative;
-    z-index: 4000; /* Toujours au-dessus pour le clic */
-}
-
-.menu-links a {
-    display: inline-block;
-    color: var(--white) !important;
-    text-decoration: none;
-    font-size: 1rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    transition: 0.3s ease-in-out;
-    cursor: pointer !important;
-}
-
-.menu-links a:hover { 
-    color: var(--gold) !important; 
-    transform: translateX(10px); 
-}
-
-/* ... (SECTION 5 à 7 identiques) ... */
-
-/* =========================================
-   SECTION 8 : PANNEAU RÉSERVATION (POURPRE)
-   ========================================= */
-.side-panel-right {
-    position: fixed;
-    top: 0;
-    right: -50vw;
-    width: 50vw;
-    height: 100vh;
-    background-color: var(--burgundy); 
-    z-index: 5000; /* Plus haut que tout le reste */
-    transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-    padding: 80px;
-    display: flex;
-    flex-direction: column;
-    border-left: 1px solid rgba(197, 160, 89, 0.3);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-}
-
-.side-panel-right.open { right: 0; }
-
-.close-reservation {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    font-size: 1.8rem;
-    color: var(--white);
-    cursor: pointer;
-}
-
-.auth-box h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    letter-spacing: 5px;
-    margin-bottom: 10px;
-    color: var(--white);
-}
-
-.auth-subtitle {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-    color: var(--gold);
-    font-weight: bold;
-}
-
-.input-auth {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 15px 0;
-    margin-bottom: 25px;
-    outline: none;
-}
-
-.input-auth:focus { border-bottom: 1px solid var(--gold); }
-
-.btn-submit {
-    width: 100%;
-    padding: 15px;
-    background: transparent;
-    border: 1px solid var(--white);
-    color: var(--white);
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: 0.4s;
-}
-
-.btn-submit:hover {
-    background: var(--white);
-    color: var(--burgundy);
-}
-
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
     background-color: var(--dark-bg);
-    color: var(--ivory);
+    color: var(--white);
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
 }
+html { scroll-behavior: smooth; }
 
 /* =========================================
-   SECTION 2 : HEADER ET LOGO
+   SECTION 2 : HEADER
    ========================================= */
 .main-header {
-    position: fixed;
-    top: 0; 
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px 40px;
-    z-index: 3000;
-    pointer-events: none; /* Indispensable pour cliquer à travers le vide */
+    position: fixed; top: 0; width: 100%;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 20px 40px; z-index: 3000; pointer-events: none;
 }
-
-.header-left, .header-right { 
-    display: flex; 
-    align-items: center; 
-    pointer-events: auto; 
-}
-
+.header-left, .header-right { display: flex; align-items: center; pointer-events: auto; }
 .logo-and-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex; flex-direction: column; align-items: center;
     border-right: 1px solid var(--gray-border);
-    padding: 15px 30px;
-    background: rgba(10, 10, 10, 0.1); 
-    backdrop-filter: blur(5px);
+    padding: 15px 30px; background: rgba(10, 10, 10, 0.1); backdrop-filter: blur(5px);
     transition: all 0.4s ease;
-    max-height: 160px; /* On limite la hauteur pour ne pas gêner les liens */
 }
-
-.open-nav .logo-and-menu {
-    border-right-color: transparent;
-    background: transparent;
-    backdrop-filter: none;
-}
-
-.open-nav .nav-branding, 
-.open-nav .btn-reservation {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.logo-kanji {
-    display: flex;
-    flex-direction: column;
-    font-size: 1.8rem;
-    color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 20px;
-}
-
-.brand-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    letter-spacing: 8px;
-    font-weight: 400;
-    margin-left: 25px;
-    transition: opacity 0.4s ease;
-}
+.logo-kanji { font-size: 1.8rem; color: var(--white); margin-bottom: 20px; display: flex; flex-direction: column; }
+.brand-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; letter-spacing: 8px; margin-left: 25px; }
 
 /* =========================================
-   SECTION 3 : ANIMATION MENU TRIGGER
+   SECTION 3 : MENU HAMBURGER
    ========================================= */
-.menu-trigger {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-}
-
-.hamburger-icon {
-    width: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.hamburger-icon span {
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: var(--white);
-    transition: all 0.3s ease-in-out;
-}
-
-.menu-text {
-    font-size: 0.6rem;
-    letter-spacing: 3px;
-    color: var(--white);
-    margin-top: 5px;
-}
-
-/* État Croix */
-.open-nav .hamburger-icon span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-}
-.open-nav .hamburger-icon span:nth-child(2) {
-    opacity: 0;
-}
-.open-nav .hamburger-icon span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-}
+.menu-trigger { cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+.hamburger-icon span { width: 25px; height: 1px; background: var(--white); margin-bottom: 6px; display: block; transition: 0.3s; }
+.menu-text { font-size: 0.6rem; letter-spacing: 3px; margin-top: 5px; }
 
 /* =========================================
-   SECTION 4 : PANNEAU COULISSANT (BLEU)
+   SECTION 4 : MENU LATÉRAL (BLEU)
    ========================================= */
 .side-panel {
-    position: fixed;
-    top: 0;
-    left: -33.33vw;
-    width: 33.33vw;
-    height: 100vh;
-    background-color: var(--navy);
-    z-index: 2000;
+    position: fixed; top: 0; left: -33.33vw; width: 33.33vw; height: 100vh;
+    background-color: var(--navy); z-index: 2000;
     transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 220px 40px 60px 220px; 
-    box-shadow: 10px 0 30px rgba(0,0,0,0.5);
-    pointer-events: auto;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 220px 40px 60px 220px; box-shadow: 10px 0 30px rgba(0,0,0,0.5); pointer-events: auto;
 }
-
 .side-panel.open { left: 0; }
-
-.menu-links {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    position: relative;
-    z-index: 4000; /* Toujours au-dessus pour le clic */
-}
-
+.menu-links { display: flex; flex-direction: column; gap: 30px; z-index: 4000; }
 .menu-links a {
-    display: inline-block;
-    color: var(--white) !important;
-    text-decoration: none;
-    font-size: 1rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    transition: 0.3s ease-in-out;
-    cursor: pointer !important;
+    color: var(--white); text-decoration: none; font-size: 1rem; letter-spacing: 4px;
+    text-transform: uppercase; transition: 0.3s;
 }
+.menu-links a:hover { color: var(--gold); transform: translateX(10px); }
 
-.menu-links a:hover { 
-    color: var(--gold) !important; 
-    transform: translateX(10px); 
-}
-
-
-/* =========================================
-   SECTION 5 : FOOTER DU MENU (NETTOYÉ)
-   ========================================= */
+/* FOOTER DU MENU (Alignement corrigé) */
 .menu-footer {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding: 30px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    bottom: 40px;
-    left: 0;
-    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.1); padding: 30px 40px;
+    position: absolute; bottom: 40px; left: 0; width: 100%;
+    display: flex; justify-content: center;
 }
-
-/* On garde cette version pour le centrage parfait */
-.footer-main-info {
-    display: flex;
-    align-items: center;
-    gap: 30px; 
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+.footer-main-container {
+    display: flex; flex-direction: column; align-items: center; gap: 15px;
 }
-
+.footer-main-info { display: flex; align-items: center; gap: 30px; }
 .admin-link {
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.3);
-    text-decoration: none;
-    transition: 0.3s;
+    font-size: 0.7rem; letter-spacing: 3px; color: var(--gold);
+    text-decoration: none; font-weight: bold; transition: 0.3s;
 }
-
-.admin-link:hover {
-    color: var(--gold);
-}
-
-.insta-logo { 
-    width: 22px; 
-    filter: invert(1); 
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.insta-logo:hover {
-    opacity: 0.7;
-}
-
-.lang-switcher-menu {
-    border-left: 1px solid rgba(255,255,255,0.2);
-    padding-left: 20px;
-    font-size: 0.8rem;
-    color: var(--white);
-    letter-spacing: 2px;
-}
-
-.footer-spacer {
-    width: 80px; 
-}
+.admin-link:hover { opacity: 0.7; }
+.insta-logo { width: 22px; filter: invert(1); }
+.lang-switcher-menu { border-left: 1px solid rgba(255,255,255,0.2); padding-left: 20px; font-size: 0.8rem; letter-spacing: 2px; }
 
 /* =========================================
-   SECTION 6 : ZONE HERO ET RECHERCHE
+   SECTION 5 : PANEL RÉSERVATION (POURPRE)
+   ========================================= */
+.side-panel-right {
+    position: fixed; top: 0; right: -50vw; width: 50vw; height: 100vh;
+    background-color: var(--burgundy); z-index: 5000;
+    transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    padding: 80px; display: flex; flex-direction: column;
+}
+.side-panel-right.open { right: 0; }
+.close-reservation { position: absolute; top: 40px; right: 40px; font-size: 1.8rem; cursor: pointer; }
+.auth-box h3 { font-family: 'Playfair Display'; font-size: 2.2rem; letter-spacing: 5px; }
+.btn-submit { width: 100%; padding: 15px; border: 1px solid var(--white); background: transparent; color: var(--white); cursor: pointer; transition: 0.4s; }
+.btn-submit:hover { background: var(--white); color: var(--burgundy); }
+.input-auth { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.3); color: white; padding: 15px 0; margin-bottom: 25px; outline: none; }
+
+/* =========================================
+   SECTION 6 : ZONE HERO ET RECHERCHE 
    ========================================= */
 .hero-section {
     position: relative;
@@ -377,215 +108,103 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: transparent; /* On s'assure que rien ne bloque la vue */
+    background: transparent;
     overflow: hidden;
 }
 
 .hero-bg-image {
     position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    /* Vérifie bien l'URL de l'image ci-dessous */
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
-                      url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070');
-    background-size: cover;
-    background-position: center;
-    z-index: -1; /* L'image doit être DERRIÈRE tout le contenu */
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Assure-toi que l'URL de ton image de fond est correcte ici */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070') center/cover no-repeat;
+    z-index: -1;
 }
 
 .hero-content {
     position: relative;
-    z-index: 10; /* Le texte doit être DEVANT l'image */
+    z-index: 10;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* C'est ici que le centrage horizontal se joue */
+    justify-content: center;
     text-align: center;
     width: 100%;
-    height: auto; /* On laisse le contenu respirer */
 }
 
 .hero-content h2 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1rem, 3vw, 2rem); 
+    font-size: clamp(2.5rem, 5vw, 4.5rem); /* Taille responsive mais imposante */
     font-style: italic;
-    margin-bottom: 50px;
-    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 40px; /* Espace pour laisser respirer la barre en dessous */
     color: var(--white);
+    text-shadow: 0 4px 15px rgba(0,0,0,0.6); /* Petite ombre pour détacher le texte du fond */
+}
+
+/* Conteneur de la barre pour sécuriser le centrage */
+.search-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .input-search {
     background: transparent;
     border: none;
-    border-bottom: 2px solid var(--white);
+    /* État initial : Ligne blanche fine et discrète */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7); 
     color: var(--white);
-    padding: 10px;
-    width: 320px;
+    padding: 15px 20px;
+    width: 300px; /* Largeur de départ */
     text-align: center;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', serif; /* Garde la police élégante pour le texte */
     font-size: 1.1rem;
-    transition: width 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Animation fluide */
 }
 
+/* Style du texte "fantôme" (placeholder) */
+.input-search::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* --- L'EFFET MAGIQUE AU CLIC --- */
 .input-search:focus { 
-    outline: none; 
-    border-bottom: 2px solid var(--gold); 
-    width: 420px; 
+    outline: none; /* Enlève le cadre bleu moche du navigateur */
+    border-bottom: 2px solid var(--gold); /* La ligne devient JAUNE/DORÉE et s'épaissit */
+    width: 480px; /* La barre s'élargit */
+    border-color: var(--gold); /* Sécurité couleur */
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5); /* Légère ombre portée */
 }
-
-/* =========================================
-   SECTION 7 : BOUTONS ET INTERACTIONS
-   ========================================= */
-.header-right { 
-    padding-top: 25px; 
-}
-
-.btn-reservation {
-    padding: 12px 35px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    transition: 0.4s;
-}
-
-.btn-reservation:hover { 
-    background: var(--gold); 
-    color: var(--dark-bg); 
-}
-
-
-
-/* =========================================
-   SECTION 8 : PANNEAU RÉSERVATION (POURPRE)
-   ========================================= */
-.side-panel-right {
-    position: fixed;
-    top: 0;
-    right: -50vw;
-    width: 50vw;
-    height: 100vh;
-    background-color: var(--burgundy); 
-    z-index: 5000; /* Plus haut que tout le reste */
-    transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-    padding: 80px;
-    display: flex;
-    flex-direction: column;
-    border-left: 1px solid rgba(197, 160, 89, 0.3);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-}
-
-.side-panel-right.open { right: 0; }
-
-.close-reservation {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    font-size: 1.8rem;
-    color: var(--white);
-    cursor: pointer;
-}
-
-.auth-box h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    letter-spacing: 5px;
-    margin-bottom: 10px;
-    color: var(--white);
-}
-
-.auth-subtitle {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-    color: var(--gold);
-    font-weight: bold;
-}
-
-.input-auth {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 15px 0;
-    margin-bottom: 25px;
-    outline: none;
-}
-
-.input-auth:focus { border-bottom: 1px solid var(--gold); }
-
-.btn-submit {
-    width: 100%;
-    padding: 15px;
-    background: transparent;
-    border: 1px solid var(--white);
-    color: var(--white);
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: 0.4s;
-}
-
-.btn-submit:hover {
-    background: var(--white);
-    color: var(--burgundy);
-}
-
-
-
-
-
-
-/* Activation du scroll fluide pour tout le site */
-html {
-    scroll-behavior: smooth;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 /* =========================================
-   SECTION 9 : RESTAURANT & GALERIE SYSTEM
+   SECTION 7 : GALERIE RESTAURANT
    ========================================= */
 .restaurant-view {
-    padding: 0 !important;
     position: relative;
     min-height: 100vh;
+    padding: 0 !important;
     overflow: hidden;
 }
 
 .restaurant-bg {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                url('img/restaurant-fond.png') center/cover no-repeat;
-    transition: filter 0.6s ease, transform 0.6s ease;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/restaurant-fond.png') center/cover;
+    transition: 0.6s ease;
     z-index: 1;
 }
 
-/* Filtre bleu immersion */
 .blue-overlay {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 30, 60, 0.65);
     z-index: 2;
     opacity: 0;
@@ -604,69 +223,74 @@ html {
 }
 
 .center-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display';
     font-size: 5rem;
     letter-spacing: 18px;
-    color: var(--white);
     margin: 0;
-    transition: 0.5s ease;
 }
 
-/* --- NAVIGATION KUNAI (SYSTÈME 360°) --- */
 .arrow-container {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     cursor: pointer;
     z-index: 100;
+    transform: translateY(-50%);
 }
 
-.arrow-container.left { left: 50px; }
-.arrow-container.right { right: 50px; }
+.arrow-container.left {
+    left: 50px;
+}
+
+.arrow-container.right {
+    right: 50px;
+}
 
 .arrow-icon {
     width: 100px;
-    transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: 0.7s;
 }
 
-/* État initial : Gauche normal, Droite en miroir */
-.arrow-container.left .arrow-icon { transform: rotate(0deg); }
-.arrow-container.right .arrow-icon { transform: scaleX(-1) rotate(0deg); }
-
-/* Animation GAUCHE : Zoom + Rotation 360° vers l'arrière */
-.arrow-container.left:hover .arrow-icon {
-    transform: scale(1.2) rotate(-360deg);
+.arrow-container.right .arrow-icon {
+    transform: scaleX(-1);
 }
 
-/* Animation DROITE : Zoom + Rotation 360° (garde le miroir scaleX) */
-.arrow-container.right:hover .arrow-icon {
-    transform: scale(1.2) scaleX(-1) rotate(360deg);
-}
-
-/* --- VISIONNEUSE GALERIE --- */
 .viewer-container {
     position: absolute;
     z-index: 50;
     display: none;
     max-width: 65vw;
     border: 1px solid var(--gold);
-    box-shadow: 0 0 50px rgba(0,0,0,0.9);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
 }
-.viewer-container img { width: 100%; display: block; }
 
-/* --- BLOC HISTOIRE (BAS À DROITE) --- */
+.viewer-container img {
+    width: 100%;
+    display: block;
+}
+
+.close-gallery-btn {
+    position: fixed;
+    top: 100px;
+    right: 40px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    z-index: 6000;
+    display: none;
+}
+
 .story-bottom-right {
     position: absolute;
-    bottom: 30px; 
-    right: 30px;  
-    max-width: 350px; 
+    bottom: 30px;
+    right: 30px;
+    max-width: 350px;
     z-index: 5;
 }
 
 .story-box {
-    padding: 20px 25px; 
+    padding: 20px 25px;
     border: 1px solid var(--gold);
-    background: rgba(0, 0, 0, 0.7); 
+    background: rgba(0, 0, 0, 0.7);
     text-align: right;
 }
 
@@ -679,53 +303,36 @@ html {
     font-weight: bold;
 }
 
-.story-box p {
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6; 
-    font-size: 0.9rem; 
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    margin: 0;
+/* ETATS ACTIFS GALERIE */
+.gallery-active .restaurant-bg {
+    filter: blur(15px) brightness(0.4);
+    transform: scale(1.05);
 }
 
-.story-box strong { color: var(--gold); font-weight: 400; }
-
-/* --- BOUTON FERMER --- */
-.close-gallery-btn {
-    position: fixed;
-    top: 100px; 
-    right: 40px;
-    font-size: 3rem;
-    color: white;
-    cursor: pointer;
-    z-index: 6000;
-    display: none;
+.gallery-active .blue-overlay {
+    opacity: 1;
 }
 
-/* --- LOGIQUE GALERIE --- */
-.gallery-active .restaurant-bg { filter: blur(15px) brightness(0.4); transform: scale(1.05); }
-.gallery-active .blue-overlay { opacity: 1; }
-.gallery-active .viewer-container, .gallery-active .close-gallery-btn { display: block; }
-.gallery-active .center-title, .gallery-active .story-bottom-right { opacity: 0; pointer-events: none; }
-.gallery-active .main-header { display: none !important; }
+.gallery-active .viewer-container,
+.gallery-active .close-gallery-btn {
+    display: block;
+}
 
-.no-scroll { overflow: hidden !important; }
+.gallery-active .center-title,
+.gallery-active .story-bottom-right {
+    opacity: 0;
+    pointer-events: none;
+}
 
-/* --- LOGIQUE D'ACTIVATION --- */
-.gallery-active .restaurant-bg { filter: blur(15px) brightness(0.4); transform: scale(1.05); }
-.gallery-active .blue-overlay { opacity: 1; }
-.gallery-active .viewer-container, .gallery-active .close-gallery-btn { display: block; }
-.gallery-active .center-title, .gallery-active .story-bottom-right { opacity: 0; pointer-events: none; }
-.gallery-active .main-header { display: none !important; }
-
-.no-scroll { overflow: hidden !important; }
-
+.no-scroll {
+    overflow: hidden !important;
+}
 
 /* =========================================
-   SECTION 10 : LES CHEFS (STYLE)
+   SECTION 8 : CHEFS & EXPERIENCE
    ========================================= */
 .chefs-view {
-    background-color: var(--dark-bg);
+    background: var(--dark-bg);
     padding: 120px 8vw;
     min-height: 100vh;
     display: flex;
@@ -735,68 +342,34 @@ html {
 .chefs-container {
     display: flex;
     justify-content: space-around;
-    align-items: center;
     width: 100%;
     gap: 40px;
 }
 
 .chef-card {
     flex: 1;
-    max-width: 450px;
     text-align: center;
-    transition: 0.5s ease;
+    max-width: 450px;
 }
 
 .chef-img-wrapper {
-    width: 100%;
     height: 600px;
     overflow: hidden;
     border: 1px solid var(--gray-border);
     margin-bottom: 30px;
-    background: #111;
 }
 
 .chef-portrait {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%) contrast(1.1);
-    transition: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: grayscale(100%);
+    transition: 0.8s;
 }
 
 .chef-card:hover .chef-portrait {
-    filter: grayscale(0%) contrast(1);
+    filter: grayscale(0%);
     transform: scale(1.03);
-}
-
-.chef-role {
-    font-size: 0.75rem;
-    letter-spacing: 5px;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 15px;
-}
-
-.chef-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    letter-spacing: 6px;
-    color: var(--white);
-    margin-bottom: 20px;
-}
-
-.chef-info p {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.8;
-    max-width: 350px;
-    margin: 0 auto;
-}
-
-.chefs-divider {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .chefs-divider .line {
@@ -811,14 +384,8 @@ html {
     margin: 20px 0;
 }
 
-
-
-
-/* =========================================
-   SECTION 11 : L'EXPÉRIENCE (DESIGN TEXTUEL)
-   ========================================= */
 .experience-view {
-    background-color: #0d0d0d;
+    background: #0d0d0d;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -827,29 +394,13 @@ html {
     text-align: center;
 }
 
-.experience-full-text {
-    max-width: 900px;
-    animation: fadeIn 1.5s ease;
-}
-
 .experience-full-text h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display';
     font-size: 4rem;
-    color: var(--white);
-    margin: 30px 0 50px 0;
+    margin: 30px 0 50px;
     letter-spacing: 5px;
-    text-transform: uppercase;
 }
 
-.exp-story-centered p {
-    font-size: 1.2rem;
-    line-height: 2;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 40px;
-    font-weight: 300;
-}
-
-/* Petit séparateur doré entre les paragraphes */
 .exp-divider-gold {
     width: 60px;
     height: 2px;
@@ -857,41 +408,22 @@ html {
     margin: 40px auto;
 }
 
-.exp-quote-large {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 2rem;
-    color: var(--gold);
-    margin-top: 60px;
-    opacity: 0.9;
-}
-
-/* Optionnel : Animation d'apparition */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-
-
 /* =========================================
-   SECTION 12 : MENU (FORMAT RÉDUIT)
+   SECTION 9 : MENU & INFO
    ========================================= */
 .menu-view-minimal {
-    position: relative;
-    height: 80vh; /* Réduit de 100vh à 80vh */
-    width: 100%;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('img/menu.png') center/cover no-repeat;
-    overflow: hidden;
+    background: url('img/menu.png') center/cover;
+    position: relative;
 }
 
-/* Voile sombre léger sur toute l'image */
 .menu-bg-overlay {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
@@ -899,19 +431,22 @@ html {
 .menu-compact-box {
     position: relative;
     z-index: 2;
-    text-decoration: none;
-    text-align: center;
     padding: 40px 60px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(10, 10, 10, 0.6);
     backdrop-filter: blur(10px);
-    transition: all 0.5s ease;
-    max-width: 400px; /* Largeur limitée */
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.menu-compact-box:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
 }
 
 .menu-title-small {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem; /* Réduit de 5rem à 2.5rem */
+    font-family: 'Playfair Display';
+    font-size: 2.5rem;
     color: var(--white);
     letter-spacing: 8px;
     margin: 15px 0;
@@ -922,51 +457,17 @@ html {
     height: 1px;
     background: var(--gold);
     margin: 0 auto 15px;
-    transition: width 0.4s ease;
+    transition: width 0.4s;
 }
 
-.click-info {
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    color: var(--gold);
-    opacity: 0.8;
-}
-
-/* Interaction au survol */
-.menu-compact-box:hover {
-    border-color: var(--gold);
-    background: rgba(10, 10, 10, 0.8);
-    transform: translateY(-5px);
-}
-
-.menu-compact-box:hover .line-gold {
-    width: 100px; /* La ligne s'allonge au survol */
-}
-
-
-
-
-
-/* =========================================
-   SECTION 13 : INFORMATIONS (STYLE FINAL)
-   ========================================= */
 .info-view {
-    background-color: var(--dark-bg);
+    background: var(--dark-bg);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 100px 5vw 40px 5vw;
+    padding: 100px 5vw 40px;
     text-align: center;
-}
-
-.info-block h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    letter-spacing: 12px;
-    color: var(--white);
-    margin: 20px 0 60px 0;
 }
 
 .contact-details {
@@ -974,113 +475,56 @@ html {
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     max-width: 1100px;
-    margin-bottom: 100px;
-}
-
-.detail-item {
-    padding: 20px;
+    margin: 0 auto 100px;
 }
 
 .detail-item .label {
     color: var(--gold);
     font-size: 0.75rem;
     letter-spacing: 4px;
-    margin-bottom: 20px;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.detail-item p {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.8;
-}
-
-.map-link {
-    color: var(--white);
-    font-size: 0.7rem;
-    text-decoration: underline;
-    letter-spacing: 1px;
-    display: inline-block;
-    margin-top: 10px;
-}
-
-/* Footer de bas de page */
 .site-footer {
-    width: 100%;
     margin-top: auto;
     opacity: 0.5;
-}
-
-.site-footer p {
     font-size: 0.65rem;
     letter-spacing: 3px;
-    margin-bottom: 20px;
 }
 
 .footer-bottom-line {
     width: 50px;
     height: 1px;
     background: var(--gold);
-    margin: 0 auto;
+    margin: 20px auto 0;
 }
 
-/* Responsive pour mobiles */
-@media (max-width: 768px) {
-    .contact-details {
-        grid-template-columns: 1fr;
-    }
-    .info-block h2 {
-        font-size: 2.5rem;
-    }
-}
-
-/* Style pour le lien téléphone */
-.phone-link {
-    color: var(--white);
-    font-size: 1.2rem;
-    text-decoration: none;
-    font-weight: bold;
-    letter-spacing: 2px;
-    transition: color 0.3s ease;
-}
-
-.phone-link:hover {
+/* =========================================
+   SECTION 10 : BOUTON RÉSERVER 
+   ========================================= */
+.btn-reservation {
+    display: inline-block;
+    padding: 15px 40px;
+    border: 1px solid var(--gold);
+    background: transparent;
     color: var(--gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    margin-top: 10px; 
 }
 
-.online-hint {
-    font-size: 0.8rem !important;
-    margin-top: 10px;
-    opacity: 0.6;
-    letter-spacing: 1px;
+.btn-reservation:hover {
+    background: var(--gold);
+    color: var(--dark-bg);
+    transform: translateY(-2px); 
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1089,10 +533,10 @@ html {
 
 
 /* =========================================
-   SECTION 14 : AUTHENTIFICATION & PROFIL
+    SECTION 11 : : AUTHENTIFICATION & PROFIL
    ========================================= */
 
-/* Mise en page plein écran pour l'inscription */
+
 .auth-full-page {
     display: flex;
     justify-content: center;
@@ -1103,7 +547,7 @@ html {
                 url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070') center/cover;
 }
 
-/* Grille pour les formulaires d'inscription */
+
 .grid-form {
     display: flex;
     flex-direction: column;
@@ -1117,7 +561,7 @@ html {
     gap: 20px;
 }
 
-/* Page Profil */
+
 .profil-container {
     max-width: 1000px;
     margin: 120px auto;
@@ -1165,7 +609,7 @@ html {
     letter-spacing: 1px;
 }
 
-/* Style pour l'icône de modification ✎ */
+
 .edit-icon {
     font-size: 1.2rem;
     color: var(--gold);
@@ -1177,3 +621,208 @@ html {
 .edit-icon:hover {
     opacity: 0.7;
 }
+
+
+
+
+/* =========================================
+   SECTION 12 : CARTE PRODUITS 
+   ========================================= */
+
+.menu-view-minimal {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('img/menu.png') center/cover no-repeat;
+    overflow: hidden;
+}
+
+.menu-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
+}
+
+.menu-compact-box {
+    position: relative;
+    z-index: 10;
+    text-decoration: none;
+    text-align: center;
+    padding: 70px 100px;
+    border: 1px solid rgba(197, 160, 89, 0.3); /* Bordure dorée très fine */
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(20px);
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-compact-box:hover {
+    border-color: var(--gold);
+    transform: scale(1.03);
+    box-shadow: 0 0 40px rgba(197, 160, 89, 0.1);
+}
+
+/* Texte "DÉCOUVRIR" en haut */
+.menu-compact-box .section-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    color: var(--gold);
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Titre "LA CARTE" central */
+.menu-title-small {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; /* Grand impact comme sur l'image */
+    color: var(--white);
+    letter-spacing: 12px;
+    margin: 15px 0;
+    text-transform: uppercase;
+}
+
+/* Ligne dorée centrale */
+.menu-compact-box .line-gold {
+    width: 50px;
+    height: 1px;
+    background: var(--gold);
+    margin: 10px auto 25px;
+}
+
+/* Texte "OUVRIR DANS UN NOUVEL ONGLET" en bas */
+.menu-compact-box .click-info {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 400;
+    opacity: 1;
+}
+
+/* --- PAGE CARTE (CARTE.HTML) --- */
+.page-menu-experience {
+    background-color: var(--dark-bg);
+}
+
+.menu-intro {
+    text-align: center;
+    padding: 140px 0 80px 0;
+}
+
+/* Barre de recherche "Ligne Épurée" */
+.menu-search-bar {
+    max-width: 450px;
+    margin: 30px auto;
+}
+
+.input-search {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--white) !important;
+    padding: 15px 0 !important;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.input-search:focus {
+    border-bottom: 1px solid var(--gold) !important;
+    letter-spacing: 1px;
+}
+
+/* Plats et Catégories */
+.menu-category {
+    max-width: 850px;
+    margin: 0 auto 100px auto;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.cat-number {
+    font-size: 0.75rem;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 6px 12px;
+    letter-spacing: 2px;
+}
+
+.cat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.dish-list {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.dish-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+    transition: 0.3s;
+}
+
+.dish-item:hover {
+    border-bottom: 1px solid rgba(197, 160, 89, 0.4);
+}
+
+.dish-meta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+
+.dish-meta p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.allergen {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(197, 160, 89, 0.6);
+    display: block;
+    margin-top: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+}
+
+.price {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--white);
+    font-size: 1.2rem;
+}
+
+
+
+
+
