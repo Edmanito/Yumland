@@ -264,45 +264,42 @@ body {
    ========================================= */
 .side-panel {
     position: fixed;
-    top: 0;
-    left: -33.33vw;
-    width: 33.33vw;
+    top: 0; 
+    left: -400px;
+    width: 400px;
     height: 100vh;
     background-color: var(--navy);
     z-index: 2000;
     transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 220px 40px 60px 220px; 
+    /* On augmente le padding-top de 150px à 280px pour tout descendre */
+    padding: 200px 50px 50px 50px; 
     box-shadow: 10px 0 30px rgba(0,0,0,0.5);
-    pointer-events: auto;
 }
-
-.side-panel.open { left: 0; }
 
 .menu-links {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    position: relative;
-    z-index: 4000; /* Toujours au-dessus pour le clic */
+    gap: 30px; /* On espace un peu plus les liens entre eux */
+    flex-grow: 1;
+    align-items: flex-end; 
+    text-align: right;     
+    /* margin-top: 50px; Optionnel : si tu veux descendre encore plus spécifiquement les liens */
 }
 
 .menu-links a {
-    display: inline-block;
     color: var(--white) !important;
     text-decoration: none;
     font-size: 1rem;
     letter-spacing: 4px;
     text-transform: uppercase;
-    transition: 0.3s ease-in-out;
-    cursor: pointer !important;
+    transition: 0.3s;
 }
 
 .menu-links a:hover { 
     color: var(--gold) !important; 
-    transform: translateX(10px); 
+    transform: translateX(-10px); /* Animation vers la gauche car on est à droite */
 }
 
 
@@ -311,74 +308,48 @@ body {
    ========================================= */
 .menu-footer {
     border-top: 1px solid rgba(255,255,255,0.1);
-    padding: 30px 40px;
+    padding-top: 20px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    bottom: 40px;
-    left: 0;
-    width: 100%;
+    flex-direction: column;
+    gap: 15px;
 }
 
-/* On garde cette version pour le centrage parfait */
 .footer-main-info {
     display: flex;
     align-items: center;
-    gap: 30px; 
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    gap: 15px;
 }
 
-.admin-link {
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.3);
-    text-decoration: none;
-    transition: 0.3s;
+.footer-admin {
+    margin-bottom: 5px;
 }
 
-.admin-link:hover {
-    color: var(--gold);
-}
 
 .insta-logo { 
-    width: 22px; 
+    width: 18px;    /* On le passe à 18px pour plus de finesse */
+    height: auto;
     filter: invert(1); 
+    opacity: 0.7;    /* On baisse un peu l'opacité pour le rendre plus discret */
     cursor: pointer;
     transition: 0.3s;
 }
 
 .insta-logo:hover {
-    opacity: 0.7;
+    opacity: 1;      /* Il s'éclaire quand on passe la souris dessus */
 }
-
-.lang-switcher-menu {
-    border-left: 1px solid rgba(255,255,255,0.2);
-    padding-left: 20px;
-    font-size: 0.8rem;
-    color: var(--white);
-    letter-spacing: 2px;
-}
-
-.footer-spacer {
-    width: 80px; 
-}
-
 /* =========================================
    SECTION 6 : ZONE HERO ET RECHERCHE
    ========================================= */
 .hero-section {
     position: relative;
-    height: 100vh;
+    height: 100vh; /* AJOUTE CECI : définit la hauteur de l'écran */
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: transparent; /* On s'assure que rien ne bloque la vue */
     overflow: hidden;
+    z-index: 1; /* Assure que la section est visible */
 }
 
 .hero-bg-image {
@@ -387,51 +358,11 @@ body {
     left: 0; 
     width: 100%; 
     height: 100%;
-    /* Vérifie bien l'URL de l'image ci-dessous */
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), 
                       url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070');
     background-size: cover;
     background-position: center;
-    z-index: -1; /* L'image doit être DERRIÈRE tout le contenu */
-}
-
-.hero-content {
-    position: relative;
-    z-index: 10; /* Le texte doit être DEVANT l'image */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    height: auto; /* On laisse le contenu respirer */
-}
-
-.hero-content h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1rem, 3vw, 2rem); 
-    font-style: italic;
-    margin-bottom: 50px;
-    letter-spacing: 2px;
-    color: var(--white);
-}
-
-.input-search {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid var(--white);
-    color: var(--white);
-    padding: 10px;
-    width: 320px;
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    transition: width 0.4s ease;
-}
-
-.input-search:focus { 
-    outline: none; 
-    border-bottom: 2px solid var(--gold); 
-    width: 420px; 
+    z-index: -1; /* Place l'image derrière le texte */
 }
 
 /* =========================================
@@ -875,76 +806,68 @@ html {
 
 
 /* =========================================
-   SECTION 12 : MENU (FORMAT RÉDUIT)
+   SECTION 12 : LA CARTE (FULL IMAGE + CENTER)
    ========================================= */
 .menu-view-minimal {
     position: relative;
-    height: 80vh; /* Réduit de 100vh à 80vh */
+    height: 100vh; /* Prend toute la hauteur de l'écran */
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex;             /* FLEXBOX ACTIVE */
+    justify-content: center;   /* CENTRE HORIZONTALEMENT */
+    align-items: center;       /* CENTRE VERTICALEMENT */
     background: url('img/menu.png') center/cover no-repeat;
     overflow: hidden;
 }
 
-/* Voile sombre léger sur toute l'image */
 .menu-bg-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5); /* Voile sombre pour la lisibilité */
     z-index: 1;
 }
 
 .menu-compact-box {
     position: relative;
-    z-index: 2;
+    z-index: 10;
     text-decoration: none;
     text-align: center;
-    padding: 40px 60px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(10, 10, 10, 0.6);
-    backdrop-filter: blur(10px);
-    transition: all 0.5s ease;
-    max-width: 400px; /* Largeur limitée */
+    padding: 60px 80px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(15px); /* Effet verre dépoli */
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-compact-box:hover {
+    border-color: var(--gold);
+    transform: scale(1.02);
 }
 
 .menu-title-small {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem; /* Réduit de 5rem à 2.5rem */
+    font-size: 3rem;
     color: var(--white);
-    letter-spacing: 8px;
-    margin: 15px 0;
+    letter-spacing: 10px;
+    margin: 20px 0;
+    text-transform: uppercase;
 }
 
 .line-gold {
-    width: 40px;
+    width: 60px;
     height: 1px;
     background: var(--gold);
-    margin: 0 auto 15px;
-    transition: width 0.4s ease;
+    margin-bottom: 20px;
 }
 
 .click-info {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     letter-spacing: 3px;
     color: var(--gold);
     opacity: 0.8;
 }
-
-/* Interaction au survol */
-.menu-compact-box:hover {
-    border-color: var(--gold);
-    background: rgba(10, 10, 10, 0.8);
-    transform: translateY(-5px);
-}
-
-.menu-compact-box:hover .line-gold {
-    width: 100px; /* La ligne s'allonge au survol */
-}
-
-
-
 
 
 /* =========================================
