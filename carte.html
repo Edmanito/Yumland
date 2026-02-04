@@ -3,99 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaiseki Shunei | La Carte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <title>La Carte | Kaiseki Shunei</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="page-menu-experience">
+<body class="page-menu">
 
-    <header class="main-header" style="justify-content: flex-end; pointer-events: auto;">
-        <div class="header-right" style="padding-top: 20px;">
-            <a href="index.html" class="btn-reservation">RETOUR ACCUEIL</a>
-        </div>
-    </header>
+    <a href="index.html" class="floating-back-btn">
+        <span class="arrow">←</span> <span class="text">ACCUEIL</span>
+    </a>
 
-    <main class="menu-container">
-
-        <section class="menu-intro">
-            <span class="section-subtitle">DÉGUSTATION</span>
-            <h2 class="menu-step-title">La Carte des Saveurs</h2>
-
-            <div class="menu-search-bar">
-                <input type="text" placeholder="Rechercher une saveur, un ingrédient..." class="input-search">
+    <div class="menu-scroll-container">
+        <header class="menu-hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-text">
+                <span class="pre-title">MAÎTRISE & TRADITION</span>
+                <h1 class="glitch-title">LA CARTE</h1>
+                <div class="scroll-indicator"><span></span></div>
             </div>
-        </section>
+        </header>
 
-        <section class="menu-category">
-            <div class="category-header">
-                <span class="cat-number">01</span>
-                <h3 class="cat-name">Entrées</h3>
-            </div>
-            <div class="dish-list">
-                <div class="dish-item">
-                    <div class="dish-meta">
-                        <h3>Gyoza Wagyu fumé</h3>
-                        <p>Bœuf Wagyu, ail noir, bouillon dashi léger. <span class="allergen">Gluten, Soja</span></p>
-                    </div>
-                    <span class="price">18€</span>
+        <main class="menu-wrapper">
+            <section class="dish-category">
+                <div class="category-header">
+                    <span class="cat-num">01</span>
+                    <h2>OTSUMAMI</h2>
+                    <p>L'éveil des sens</p>
                 </div>
-                <div class="dish-item">
-                    <div class="dish-meta">
-                        <h3>Tartare de Sériole</h3>
-                        <p>Yuzu kosho, radis daikon et huile de ciboulette. <span class="allergen">Poisson</span></p>
-                    </div>
-                    <span class="price">21€</span>
-                </div>
-            </div>
-        </section>
 
-        <section class="menu-category">
-            <div class="category-header">
-                <span class="cat-number">02</span>
-                <h3 class="cat-name">Plats</h3>
-            </div>
-            <div class="dish-list">
-                <div class="dish-item">
-                    <div class="dish-meta">
-                        <h3>Sushi Omakase</h3>
-                        <p>12 pièces d'exception selon l'arrivage du matin. <span class="allergen">Poisson, Crustacés</span></p>
+                <div class="items-container">
+                    <div class="dish-card">
+                        <div class="dish-info">
+                            <h3>Carpaccio de Hamachi</h3>
+                            <p>Sériole du Japon, perles de yuzu, piment serrano et huile de coriandre pressée à froid.</p>
+                        </div>
+                        <div class="dish-price">26</div>
                     </div>
-                    <span class="price">65€</span>
-                </div>
-                <div class="dish-item">
-                    <div class="dish-meta">
-                        <h3>Black Cod Miso</h3>
-                        <p>Célèbre cabillaud charbonnier mariné 72h. <span class="allergen">Poisson, Soja</span></p>
-                    </div>
-                    <span class="price">48€</span>
-                </div>
-            </div>
-        </section>
 
-        <section class="menu-category">
-            <div class="category-header">
-                <span class="cat-number">03</span>
-                <h3 class="cat-name">Desserts</h3>
-            </div>
-            <div class="dish-list">
-                <div class="dish-item">
-                    <div class="dish-meta">
-                        <h3>Mochi Glacé Artisanal</h3>
-                        <p>Yuzu, thé vert matcha ou sésame noir. <span class="allergen">Lactose, Sésame</span></p>
+                    <div class="dish-card">
+                        <div class="dish-info">
+                            <h3>Tempura de Shiso</h3>
+                            <p>Feuilles de shiso croustillantes, tartare de crevettes Obsiblue et sel de bambou.</p>
+                        </div>
+                        <div class="dish-price">22</div>
                     </div>
-                    <span class="price">12€</span>
                 </div>
-                <div class="dish-item">
-                    <div class="dish-meta">
-                        <h3>Forêt Noire Kyoto</h3>
-                        <p>Cerise amarena, mousse chocolat blanc et saké. <span class="allergen">Lactose, Œuf</span></p>
+            </section>
+
+            <section class="dish-category">
+                <div class="category-header">
+                    <span class="cat-num">02</span>
+                    <h2>SIGNATURES</h2>
+                    <p>L'âme du clan Shunei</p>
+                </div>
+
+                <div class="items-container">
+                    <div class="dish-card premium">
+                        <div class="dish-info">
+                            <h3>Wagyu Binchotan</h3>
+                            <p>Bœuf Kagoshima A5 grillé au charbon de chêne, réduction de soja vieilli et racines d'hiver.</p>
+                        </div>
+                        <div class="dish-price">85</div>
                     </div>
-                    <span class="price">15€</span>
                 </div>
-            </div>
-        </section>
-
-    </main>
-
+            </section>
+        </main>
+    </div>
 </body>
 </html>

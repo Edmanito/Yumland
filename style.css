@@ -38,6 +38,41 @@ html { scroll-behavior: smooth; }
 .logo-kanji { font-size: 1.8rem; color: var(--white); margin-bottom: 20px; display: flex; flex-direction: column; }
 .brand-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; letter-spacing: 8px; margin-left: 25px; }
 
+
+/*Partie icone profil-vide.png
+
+/* Alignement des éléments à droite du header */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Espace entre l'image profil et le bouton réserver */
+    padding-top: 25px;
+}
+
+.profile-trigger {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-trigger:hover {
+    transform: scale(1.1); /* Petit effet de zoom au survol */
+}
+
+.profile-icon-nav {
+    width: 35px; /* Taille de l'icône */
+    height: 35px;
+    object-fit: contain;
+    /* Invert(1) rend l'image blanche si ton fichier original est noir */
+    filter: invert(1); 
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.profile-icon-nav:hover {
+    opacity: 1;
+}
+
+
 /* =========================================
    SECTION 3 : MENU HAMBURGER
    ========================================= */
@@ -806,4 +841,378 @@ html { scroll-behavior: smooth; }
     font-weight: 700;
     color: var(--white);
     font-size: 1.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   ICÔNE PROFIL NAVIGATION
+   ========================================= */
+.header-right {
+    position: relative; /* Important pour le placement de l'icône */
+    display: flex;
+    align-items: center;
+    padding-top: 25px;
+    pointer-events: auto;
+}
+
+/* Le conteneur (Hitbox) */
+/* Le conteneur (Hitbox) */
+.profile-trigger {
+    position: absolute; 
+    /* Augmente encore pour décaler vers la gauche */
+    right: 140px; 
+    /* Valeur négative pour monter l'image au-dessus du bord du header si besoin */
+    top: -10px;   
+    cursor: pointer;
+    z-index: 3001;
+    width: 180px; 
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Le conteneur (Hitbox) */
+.profile-trigger {
+    position: absolute; 
+    /* Augmenté pour décaler vers la GAUCHE */
+    right: 165px; 
+    /* Ajusté pour monter mais moins que la version d'avant */
+    top: -20px;   
+    cursor: pointer;
+    z-index: 3001;
+    width: 180px; 
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* L'image géante */
+.profile-icon-nav {
+    width: 100%;
+    height: auto;
+    filter: invert(1);
+    opacity: 0.9;
+    transition: transform 0.3s ease, opacity 0.3s ease; 
+}
+
+/* Effet au survol stable */
+.profile-trigger:hover .profile-icon-nav {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+
+/* Le bouton réserver reste à sa place fixe à droite */
+.btn-reservation {
+    margin-left: auto; /* Force le bouton tout à droite */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- CONFIG PAGE MENU --- */
+.page-menu {
+    background: #050505;
+    color: #fff;
+    cursor: default;
+}
+
+/* Bouton Retour Stylisé */
+.floating-back-btn {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    z-index: 9999;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    transition: 0.4s;
+}
+
+.floating-back-btn:hover {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: #000;
+}
+
+/* Header de la Carte */
+.menu-hero {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('img/menu-bg-texture.jpg') center/cover; /* Optionnel */
+}
+
+.glitch-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    letter-spacing: 20px;
+    margin: 20px 0;
+    background: linear-gradient(to right, #fff, var(--gold), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Cartes des Plats */
+.dish-category {
+    max-width: 900px;
+    margin: 100px auto;
+    padding: 0 20px;
+}
+
+.category-header {
+    margin-bottom: 60px;
+}
+
+.cat-num {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 0.8rem;
+    border-left: 2px solid var(--gold);
+    padding-left: 10px;
+}
+
+.dish-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* L'EFFET MAGIQUE AU SURVOL */
+.dish-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--gray-border);
+    transform: translateX(15px);
+    box-shadow: -10px 0 0px var(--gold);
+}
+
+.dish-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.dish-card:hover h3 {
+    color: var(--gold);
+}
+
+.dish-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+}
+
+.dish-price::after {
+    content: '€';
+    font-size: 0.8rem;
+    margin-left: 3px;
+}
+
+/* Plat Signature - Effet Spécial */
+.dish-card.premium {
+    background: linear-gradient(90deg, rgba(197, 160, 89, 0.05), transparent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .glitch-title { font-size: 3rem; letter-spacing: 10px; }
+    .dish-card { flex-direction: column; text-align: center; gap: 20px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+    PAGE ADMIN - ISOLATION COMPLETE
+   ========================================= */
+
+/* On force le style uniquement quand le body a la classe .page-admin */
+body.page-admin {
+    background-color: #0d0d0d !important;
+    color: #e0e0e0 !important;
+    font-family: 'Lato', sans-serif !important;
+    margin: 0;
+    padding: 40px;
+}
+
+.page-admin h1, .page-admin h2, .page-admin h3, .page-admin .user-name {
+    font-family: 'Playfair Display', serif;
+}
+
+/* On isole le header admin */
+.page-admin .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid #8a7042;
+    padding-bottom: 25px;
+    margin-bottom: 40px;
+}
+
+/* Correction de la recherche pour qu'elle ne pousse pas ton index */
+.page-admin .search-container input, 
+.page-admin .search-container select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #444;
+    color: white;
+    padding: 10px;
+    font-family: 'Lato', sans-serif;
+}
+
+.page-admin .search-container input:focus {
+    outline: none;
+    border-bottom: 1px solid #bc9c64;
+    width: 300px; /* Largeur fixe pour l'admin */
+}
+
+/* Tableau Admin */
+.page-admin .table-wrapper {
+    background: #141414;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #222;
+}
+
+.page-admin .user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.page-admin .user-table th {
+    text-transform: uppercase;
+    color: #bc9c64;
+    padding: 20px;
+    text-align: left;
+    border-bottom: 2px solid #333;
+}
+
+.page-admin .user-table td {
+    padding: 20px;
+    border-bottom: 1px solid #222;
+}
+
+/* Badges et Statuts */
+.page-admin .badge {
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+.page-admin .badge.client { background: rgba(188, 156, 100, 0.2); color: #bc9c64; border: 1px solid #bc9c64; }
+.page-admin .badge.livreur { background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid #555; }
+
+.page-admin .status-dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.page-admin .status-dot.active { background-color: #4caf50; }
+.page-admin .status-dot.busy { background-color: #ff9800; }
+
+/* Actions */
+.page-admin .btn-kaiseki {
+    background: transparent;
+    border: 1px solid #444;
+    color: #e0e0e0;
+    padding: 8px 15px;
+    text-decoration: none;
+    font-size: 0.8rem;
 }
