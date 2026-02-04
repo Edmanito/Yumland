@@ -807,3 +807,267 @@ html { scroll-behavior: smooth; }
     color: var(--white);
     font-size: 1.2rem;
 }
+
+
+/* =========================================
+    SECTION 13 : PAGE ADMIN 
+   ========================================= */
+
+:root {
+    --bg-dark: #0d0d0d;
+    --bg-card: #141414;
+    --gold: #bc9c64;
+    --gold-dim: #8a7042;
+    --text-main: #e0e0e0;
+    --text-muted: #888;
+    --danger: #8b0000;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 40px;
+}
+
+h1, h2, h3, .user-name {
+    font-family: 'Playfair Display', serif;
+}
+
+/* --- HEADER --- */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--gold-dim);
+    padding-bottom: 25px;
+    margin-bottom: 40px;
+}
+
+.title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Nouveau bouton retour simple */
+.btn-retour-header {
+    text-decoration: none;
+    color: var(--gold);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid var(--gold-dim);
+    padding: 4px 12px;
+    width: fit-content;
+    transition: 0.3s;
+}
+
+.btn-retour-header:hover {
+    background: var(--gold);
+    color: black;
+    border-color: var(--gold);
+}
+
+.header-content h1 {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0;
+    font-size: 2rem;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* --- RECHERCHE --- */
+.search-container {
+    display: flex;
+    gap: 15px;
+}
+
+.search-container input, .search-container select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #444;
+    color: white;
+    padding: 10px;
+    font-family: 'Lato', sans-serif;
+    transition: 0.3s;
+}
+
+.search-container input:focus, .search-container select:focus {
+    outline: none;
+    border-bottom: 1px solid var(--gold);
+}
+
+.search-container select {
+    background-color: var(--bg-dark);
+    cursor: pointer;
+}
+
+/* --- TABLEAU --- */
+.table-wrapper {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #222;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-table th {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    padding: 20px;
+    text-align: left;
+    border-bottom: 2px solid #333;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.user-table td {
+    padding: 20px;
+    border-bottom: 1px solid #222;
+    vertical-align: middle;
+}
+
+.user-table tr:hover {
+    background-color: rgba(188, 156, 100, 0.03);
+}
+
+/* --- TEXTE & BADGES --- */
+.id-cell {
+    font-family: monospace;
+    color: var(--text-muted);
+}
+
+.user-name {
+    font-size: 1.1rem;
+    color: white;
+}
+
+.user-email {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.badge.client {
+    background: rgba(188, 156, 100, 0.2);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+}
+
+.badge.livreur {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid #555;
+}
+
+/* --- STATUT DOTS --- */
+.status-dot {
+    height: 8px;
+    width: 8px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+.status-dot.active { background-color: #4caf50; box-shadow: 0 0 5px #4caf50; }
+.status-dot.busy { background-color: #ff9800; }
+
+/* --- BOUTONS D'ACTION --- */
+.action-cell {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-kaiseki {
+    background: transparent;
+    border: 1px solid #444;
+    color: var(--text-main);
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-profil:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    box-shadow: 0 0 10px rgba(188, 156, 100, 0.1);
+}
+
+.btn-commandes {
+    border-color: transparent;
+    color: var(--text-muted);
+    font-style: italic;
+    text-transform: none;
+    font-family: 'Playfair Display', serif;
+}
+
+.btn-commandes:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+    opacity: 0.7;
+}
+
+.btn-icon:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+/* --- ETAT BLOQUÉ --- */
+.user-blocked {
+    background-color: rgba(139, 0, 0, 0.1) !important;
+}
+
+.user-blocked .user-name, 
+.user-blocked .user-email {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+
+
+
+
+
