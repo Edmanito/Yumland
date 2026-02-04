@@ -1,1 +1,10 @@
 ici on va mettre les idées 
+
+Finir les partie: 
+
+        -Profil
+        -Menu
+        -Livraison
+        -Administration
+        -Faire la partie envoie mail autentification
+    
