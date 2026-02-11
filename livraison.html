@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface Livreur | Kaiseki Shunei</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-delivery">
+
+    <header class="delivery-header" style="background: #111; padding: 20px; border-bottom: 2px solid var(--gold); display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="font-size: 1.2rem; letter-spacing: 2px;">COURSE EN COURS</h1>
+        <a href="index.html" style="color: #ff4444; text-decoration: none; font-size: 0.8rem; border: 1px solid #ff4444; padding: 5px 10px;">QUITTER</a>
+    </header>
+
+    <main style="padding: 20px;">
+        <div class="delivery-card" id="order-1" style="background: #1a1a1a; border-radius: 12px; padding: 20px; margin-bottom: 20px; border-left: 5px solid var(--gold);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                <span style="font-weight: bold; color: var(--gold);">#CMD-2026-01</span>
+                <span style="font-size: 0.7rem; background: #333; padding: 3px 8px; border-radius: 4px;">PRÊT</span>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h2 style="font-size: 1.4rem; margin-bottom: 5px;">Jean Marais</h2>
+                <p style="font-size: 1rem; color: #fff; font-weight: bold;">12 Rue de Rivoli, 75001 Paris</p>
+                <p style="font-style: italic; color: #bc9c64; font-size: 0.85rem; margin-top: 5px;">"Code : 1234. 4ème étage. Ascenseur en panne."</p>
+            </div>
+
+            <div style="background: #222; padding: 10px; border-radius: 5px; margin-bottom: 20px; font-size: 0.8rem;">
+                <p>1x Menu Omakase Prestige</p>
+                <p>1x Sake Dassai 23</p>
+                <p style="margin-top: 10px; font-weight: bold;">TOTAL : 185,00€ <span style="color: #4caf50;">(PAYÉ)</span></p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 10px;">
+                <a href="tel:0600000000" style="padding: 15px; background: #333; color: white; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold;">APPELER</a>
+                <button onclick="valider('order-1')" style="padding: 15px; background: #4caf50; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">MARQUER COMME LIVRÉ</button>
+            </div>
+        </div>
+
+        <div class="delivery-card" id="order-2" style="background: #1a1a1a; border-radius: 12px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #666;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                <span style="font-weight: bold; color: #888;">#CMD-2026-02</span>
+                <span style="font-size: 0.7rem; background: #333; padding: 3px 8px; border-radius: 4px;">EN CUISINE</span>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h2 style="font-size: 1.4rem; margin-bottom: 5px;">Aiko Tanaka</h2>
+                <p style="font-size: 1rem; color: #fff; font-weight: bold;">55 Avenue Montaigne, 75008 Paris</p>
+                <p style="font-style: italic; color: #bc9c64; font-size: 0.85rem; margin-top: 5px;">"Laisser à l'accueil de l'hôtel."</p>
+            </div>
+
+            <button disabled style="width: 100%; padding: 15px; background: #333; color: #666; border: none; border-radius: 8px; font-weight: bold;">EN ATTENTE DE PRÉPARATION</button>
+        </div>
+    </main>
+
+    <script>
+        function valider(id) {
+            if(confirm("Confirmer la livraison finale ?")) {
+                const card = document.getElementById(id);
+                card.style.opacity = "0.3";
+                card.style.pointerEvents = "none";
+                alert("Livraison enregistrée dans le système Shunei.");
+            }
+        }
+    </script>
+</body>
+</html>

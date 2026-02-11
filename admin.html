@@ -4,21 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaiseki Shunei | Administration</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
 </head>
-<body class="page-admin"> <header class="admin-header">
+<body class="page-admin">
+
+    <header class="admin-header">
         <div class="header-content">
             <div class="title-group">
-                <a href="index.html" class="btn-retour-header" style="text-decoration:none; color:#bc9c64; font-size:0.8rem; border:1px solid #8a7042; padding:5px 10px; margin-bottom:10px; display:inline-block;">← Retour au Menu</a>
+                <a href="index.html" class="btn-kaiseki" style="margin-bottom: 15px; display: inline-block;">← RETOUR ACCUEIL</a>
                 <h1>Gestion des Utilisateurs</h1>
             </div>
-            <p class="subtitle" style="color:#888; font-style:italic;">Administration du Restaurant</p>
+            
+            <div class="admin-stats-bar">
+                <div class="stat-card">
+                    <span class="stat-label">Clients</span>
+                    <span class="stat-value">124</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Livreurs</span>
+                    <span class="stat-value">8</span>
+                </div>
+            </div>
         </div>
-        
+
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Rechercher un client...">
-            <select id="roleFilter">
+            <input type="text" id="searchInput" placeholder="Rechercher un client..." onkeyup="filtrerTable()">
+            <select id="roleFilter" onchange="filtrerTable()">
                 <option value="all">Tous les rôles</option>
                 <option value="client">Clients</option>
                 <option value="livreur">Livreurs</option>
@@ -28,7 +40,7 @@
 
     <main class="admin-content">
         <div class="table-wrapper">
-            <table class="user-table">
+            <table class="user-table" id="userTable">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -48,8 +60,7 @@
                         <td><span class="status-dot active"></span> Actif</td>
                         <td style="display:flex; gap:10px; justify-content:center;">
                             <a href="profil.html" class="btn-kaiseki">Voir Profil</a>
-                            <button class="btn-kaiseki">Commandes</button>
-                            <button onclick="toggleBlock(this)" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">🚫</button>
+                            <button onclick="toggleBlock(this)" class="btn-action-icon">🚫</button>
                         </td>
                     </tr>
                 </tbody>
@@ -57,12 +68,33 @@
         </div>
     </main>
 
+
+    
+
     <script>
+        function filtrerTable() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const filter = document.getElementById("roleFilter").value;
+            const rows = document.querySelectorAll("#userTableBody tr");
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const role = row.getAttribute("data-role");
+                const searchMatch = text.includes(input);
+                const roleMatch = (filter === "all" || role === filter);
+                row.style.display = (searchMatch && roleMatch) ? "" : "none";
+            });
+        }
+
         function toggleBlock(btn) {
             const row = btn.closest('tr');
-            row.style.opacity = row.style.opacity === "0.5" ? "1" : "0.5";
-            row.style.textDecoration = row.style.textDecoration === "line-through" ? "none" : "line-through";
+            row.style.opacity = row.style.opacity === "0.3" ? "1" : "0.3";
+            row.style.filter = row.style.filter === "grayscale(1)" ? "none" : "grayscale(1)";
         }
     </script>
+
+
+
+
 </body>
 </html>

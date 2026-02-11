@@ -1,16 +1,21 @@
 /* =========================================
-   SECTION 1 : VARIABLES ET BASES
+   SECTION: VARIABLES ET BASES
    ========================================= */
 :root {
     --gold: #C5A059;
     --dark-bg: #0A0A0A;
-    --navy: #001529; 
+    --navy: #001529;
     --burgundy: #4A0404;
     --white: #FFFFFF;
     --gray-border: rgba(197, 160, 89, 0.2);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--dark-bg);
     color: var(--white);
@@ -18,47 +23,76 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
 }
-html { scroll-behavior: smooth; }
+
+html {
+    scroll-behavior: smooth;
+}
 
 /* =========================================
-   SECTION 2 : HEADER
+   SECTION: HEADER
    ========================================= */
 .main-header {
-    position: fixed; top: 0; width: 100%;
-    display: flex; justify-content: space-between; align-items: flex-start;
-    padding: 20px 40px; z-index: 3000; pointer-events: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 40px;
+    z-index: 3000;
+    pointer-events: none;
 }
-.header-left, .header-right { display: flex; align-items: center; pointer-events: auto; }
-.logo-and-menu {
-    display: flex; flex-direction: column; align-items: center;
-    border-right: 1px solid var(--gray-border);
-    padding: 15px 30px; background: rgba(10, 10, 10, 0.1); backdrop-filter: blur(5px);
-    transition: all 0.4s ease;
-}
-.logo-kanji { font-size: 1.8rem; color: var(--white); margin-bottom: 20px; display: flex; flex-direction: column; }
-.brand-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; letter-spacing: 8px; margin-left: 25px; }
 
-
-/*Partie icone profil-vide.png
-
-/* Alignement des éléments à droite du header */
+.header-left,
 .header-right {
     display: flex;
-    align-items: center; /* Centre verticalement les éléments sur une ligne fixe */
-    gap: 30px;
-    padding-top: 0; /* On retire le padding-top s'il y en avait un pour éviter les décalages */
-    height: 100px; /* On définit une hauteur fixe pour la zone de navigation droite */
+    align-items: center;
+    pointer-events: auto;
 }
 
-/* Le conteneur doit accepter une taille plus grande */
+.logo-and-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid var(--gray-border);
+    padding: 15px 30px;
+    background: rgba(10, 10, 10, 0.1);
+    backdrop-filter: blur(5px);
+    transition: all 0.4s ease;
+}
+
+.logo-kanji {
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    letter-spacing: 8px;
+    margin-left: 25px;
+}
+
+/* --- Navigation Droite & Profil --- */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-top: 0;
+    height: 100px;
+}
+
 .profile-trigger {
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;  /* Taille XXL */
+    width: 100px; /* Taille XXL */
     height: 100px;
-    position: relative; /* Pour que l'icône reste ancrée ici */
+    position: relative;
 }
 
 .profile-icon-nav {
@@ -69,95 +103,207 @@ html { scroll-behavior: smooth; }
     transition: transform 0.3s ease;
 }
 
-/* Le bouton de réservation ne bougera plus car il est aligné sur le centre du header-right */
 .btn-reservation {
-    /* Tes styles actuels restent identiques */
-    white-space: nowrap; /* Empêche le texte du bouton de revenir à la ligne */
+    white-space: nowrap;
 }
 
 .profile-trigger:hover {
-    transform: scale(1.1); /* Petit effet de zoom au survol */
+    transform: scale(1.1);
 }
-
-
 
 .profile-trigger:hover .profile-icon-nav {
-    transform: scale(1.15); /* Effet de pop plus prononcé */
+    transform: scale(1.15);
     opacity: 1;
-    /* Optionnel : lueur dorée pour rappeler ta charte Shunei */
     filter: invert(1) drop-shadow(0 0 8px var(--gold));
 }
-
-
-
-
 
 .profile-icon-nav:hover {
     opacity: 1;
 }
 
-
 /* =========================================
-   SECTION 3 : MENU HAMBURGER
+   SECTION: Header correction (à ne pas supprimer)
    ========================================= */
-.menu-trigger { cursor: pointer; display: flex; flex-direction: column; align-items: center; }
-.hamburger-icon span { width: 25px; height: 1px; background: var(--white); margin-bottom: 6px; display: block; transition: 0.3s; }
-.menu-text { font-size: 0.6rem; letter-spacing: 3px; margin-top: 5px; }
+.menu-trigger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hamburger-icon span {
+    width: 25px;
+    height: 1px;
+    background: var(--white);
+    margin-bottom: 6px;
+    display: block;
+    transition: 0.3s;
+}
+
+.menu-text {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    margin-top: 5px;
+}
 
 /* =========================================
-   SECTION 4 : MENU LATÉRAL (BLEU)
+   SECTION: MENU LATÉRAL (BLEU)
    ========================================= */
 .side-panel {
-    position: fixed; top: 0; left: -33.33vw; width: 33.33vw; height: 100vh;
-    background-color: var(--navy); z-index: 2000;
+    position: fixed;
+    top: 0;
+    left: -33.33vw;
+    width: 33.33vw;
+    height: 100vh;
+    background-color: var(--navy);
+    z-index: 2000;
     transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    display: flex; flex-direction: column; justify-content: space-between;
-    padding: 240px 40px 60px 220px; box-shadow: 10px 0 30px rgba(0,0,0,0.5); pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 240px 40px 60px 220px;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+    pointer-events: auto;
 }
-.side-panel.open { left: 0; }
-.menu-links { display: flex; flex-direction: column; gap: 30px; z-index: 4000; }
-.menu-links a {
-    color: var(--white); text-decoration: none; font-size: 1rem; letter-spacing: 4px;
-    text-transform: uppercase; transition: 0.3s;
-}
-.menu-links a:hover { color: var(--gold); transform: translateX(10px); }
 
-/* FOOTER DU MENU (Alignement corrigé) */
+.side-panel.open {
+    left: 0;
+}
+
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 4000;
+}
+
+.menu-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.menu-links a:hover {
+    color: var(--gold);
+    transform: translateX(10px);
+}
+
+/* --- Footer du Menu --- */
 .menu-footer {
-    border-top: 1px solid rgba(255,255,255,0.1); padding: 30px 40px;
-    position: absolute; bottom: 40px; left: 0; width: 100%;
-    display: flex; justify-content: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 30px 40px;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
+
 .footer-main-container {
-    display: flex; flex-direction: column; align-items: center; gap: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
-.footer-main-info { display: flex; align-items: center; gap: 30px; }
+
+.footer-main-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 .admin-link {
-    font-size: 0.7rem; letter-spacing: 3px; color: var(--gold);
-    text-decoration: none; font-weight: bold; transition: 0.3s;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
 }
-.admin-link:hover { opacity: 0.7; }
-.insta-logo { width: 22px; filter: invert(1); }
-.lang-switcher-menu { border-left: 1px solid rgba(255,255,255,0.2); padding-left: 20px; font-size: 0.8rem; letter-spacing: 2px; }
+
+.admin-link:hover {
+    opacity: 0.7;
+}
+
+.insta-logo {
+    width: 22px;
+    filter: invert(1);
+}
+
+.lang-switcher-menu {
+    border-left: 1px solid rgba(255,255,255,0.2);
+    padding-left: 20px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
 
 /* =========================================
-   SECTION 5 : PANEL RÉSERVATION (POURPRE)
+   SECTION: PANEL RÉSERVATION (POURPRE)
    ========================================= */
 .side-panel-right {
-    position: fixed; top: 0; right: -50vw; width: 50vw; height: 100vh;
-    background-color: var(--burgundy); z-index: 5000;
+    position: fixed;
+    top: 0;
+    right: -50vw;
+    width: 50vw;
+    height: 100vh;
+    background-color: var(--burgundy);
+    z-index: 5000;
     transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-    padding: 80px; display: flex; flex-direction: column;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
 }
-.side-panel-right.open { right: 0; }
-.close-reservation { position: absolute; top: 40px; right: 40px; font-size: 1.8rem; cursor: pointer; }
-.auth-box h3 { font-family: 'Playfair Display'; font-size: 2.2rem; letter-spacing: 5px; }
-.btn-submit { width: 100%; padding: 15px; border: 1px solid var(--white); background: transparent; color: var(--white); cursor: pointer; transition: 0.4s; }
-.btn-submit:hover { background: var(--white); color: var(--burgundy); }
-.input-auth { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.3); color: white; padding: 15px 0; margin-bottom: 25px; outline: none; }
+
+.side-panel-right.open {
+    right: 0;
+}
+
+.close-reservation {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.auth-box h3 {
+    font-family: 'Playfair Display';
+    font-size: 2.2rem;
+    letter-spacing: 5px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--white);
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.btn-submit:hover {
+    background: var(--white);
+    color: var(--burgundy);
+}
+
+.input-auth {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 15px 0;
+    margin-bottom: 25px;
+    outline: none;
+}
 
 /* =========================================
-   SECTION 6 : ZONE HERO ET RECHERCHE 
+   SECTION: ZONE HERO ET RECHERCHE
    ========================================= */
 .hero-section {
     position: relative;
@@ -173,9 +319,11 @@ html { scroll-behavior: smooth; }
 
 .hero-bg-image {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    /* Assure-toi que l'URL de ton image de fond est correcte ici */
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),
                 url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070') center/cover no-repeat;
     z-index: -1;
 }
@@ -185,23 +333,23 @@ html { scroll-behavior: smooth; }
     z-index: 10;
     display: flex;
     flex-direction: column;
-    align-items: center; /* C'est ici que le centrage horizontal se joue */
+    align-items: center;
     justify-content: center;
     text-align: center;
     width: 100%;
+    margin-top: 60px;
 }
 
 .hero-content h2 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem); /* Taille responsive mais imposante */
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-style: italic;
     font-weight: 700;
-    margin-bottom: 40px; /* Espace pour laisser respirer la barre en dessous */
+    margin-bottom: 40px;
     color: var(--white);
-    text-shadow: 0 4px 15px rgba(0,0,0,0.6); /* Petite ombre pour détacher le texte du fond */
+    text-shadow: 0 4px 15px rgba(0,0,0,0.6);
 }
 
-/* Conteneur de la barre pour sécuriser le centrage */
 .search-box {
     width: 100%;
     display: flex;
@@ -221,20 +369,17 @@ html { scroll-behavior: smooth; }
     transition: width 0.4s ease;
 }
 
-.input-search:focus { 
-    outline: none; 
-    border-bottom: 2px solid var(--gold); 
-    width: 420px; 
+.input-search:focus {
+    outline: none;
+    border-bottom: 2px solid var(--gold);
+    width: 420px;
 }
 
-/* Style du texte "fantôme" (placeholder) */
 .input-search::placeholder {
     color: rgba(255, 255, 255, 0.5);
     font-style: italic;
     font-weight: 400;
 }
-
-
 
 
 
@@ -253,13 +398,16 @@ html { scroll-behavior: smooth; }
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/restaurant-fond.png') center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                url('img/restaurant-fond.png') center/cover;
     transition: 0.6s ease;
     z-index: 1;
 }
 
 .blue-overlay {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 30, 60, 0.65);
@@ -286,6 +434,7 @@ html { scroll-behavior: smooth; }
     margin: 0;
 }
 
+/* --- Navigation Galerie (Flèches) --- */
 .arrow-container {
     position: absolute;
     top: 50%;
@@ -294,13 +443,8 @@ html { scroll-behavior: smooth; }
     transform: translateY(-50%);
 }
 
-.arrow-container.left {
-    left: 50px;
-}
-
-.arrow-container.right {
-    right: 50px;
-}
+.arrow-container.left { left: 50px; }
+.arrow-container.right { right: 50px; }
 
 .arrow-icon {
     width: 100px;
@@ -311,6 +455,7 @@ html { scroll-behavior: smooth; }
     transform: scaleX(-1);
 }
 
+/* --- Viewer & Contrôles --- */
 .viewer-container {
     position: absolute;
     z-index: 50;
@@ -336,6 +481,7 @@ html { scroll-behavior: smooth; }
     display: none;
 }
 
+/* --- Story Box (Bas Droite) --- */
 .story-bottom-right {
     position: absolute;
     bottom: 30px;
@@ -360,7 +506,7 @@ html { scroll-behavior: smooth; }
     font-weight: bold;
 }
 
-/* ETATS ACTIFS GALERIE */
+/* --- États Actifs Galerie --- */
 .gallery-active .restaurant-bg {
     filter: blur(15px) brightness(0.4);
     transform: scale(1.05);
@@ -386,7 +532,7 @@ html { scroll-behavior: smooth; }
 }
 
 /* =========================================
-   SECTION 8 : CHEFS & EXPERIENCE
+   SECTION 8 : CHEFS & EXPÉRIENCE
    ========================================= */
 .chefs-view {
     background: var(--dark-bg);
@@ -429,10 +575,12 @@ html { scroll-behavior: smooth; }
     transform: scale(1.03);
 }
 
+/* --- Séparateur Kanji --- */
 .chefs-divider .line {
     width: 1px;
     height: 150px;
     background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 0 auto;
 }
 
 .kanji-split {
@@ -441,6 +589,7 @@ html { scroll-behavior: smooth; }
     margin: 20px 0;
 }
 
+/* --- Vue Expérience --- */
 .experience-view {
     background: #0d0d0d;
     min-height: 100vh;
@@ -466,7 +615,7 @@ html { scroll-behavior: smooth; }
 }
 
 /* =========================================
-   SECTION 9 : MENU & INFO
+   SECTION 9 : MENU & INFORMATIONS
    ========================================= */
 .menu-view-minimal {
     height: 80vh;
@@ -479,6 +628,8 @@ html { scroll-behavior: smooth; }
 
 .menu-bg-overlay {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
@@ -517,6 +668,7 @@ html { scroll-behavior: smooth; }
     transition: width 0.4s;
 }
 
+/* --- Vue Infos de Contact --- */
 .info-view {
     background: var(--dark-bg);
     min-height: 100vh;
@@ -543,6 +695,7 @@ html { scroll-behavior: smooth; }
     margin-bottom: 20px;
 }
 
+/* --- Footer --- */
 .site-footer {
     margin-top: auto;
     opacity: 0.5;
@@ -557,8 +710,11 @@ html { scroll-behavior: smooth; }
     margin: 20px auto 0;
 }
 
+
+
+
 /* =========================================
-   SECTION 10 : BOUTON RÉSERVER 
+   SECTION: BOUTON RÉSERVER 
    ========================================= */
 .btn-reservation {
     display: inline-block;
@@ -583,17 +739,11 @@ html { scroll-behavior: smooth; }
     box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
 }
 
-
-
-
-
-
-
 /* =========================================
-    SECTION 11 : : AUTHENTIFICATION & PROFIL
+   SECTION: AUTHENTIFICATION & PROFIL
    ========================================= */
 
-
+/* --- Pleine page Auth --- */
 .auth-full-page {
     display: flex;
     justify-content: center;
@@ -604,7 +754,7 @@ html { scroll-behavior: smooth; }
                 url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070') center/cover;
 }
 
-
+/* --- Formulaire Grille --- */
 .grid-form {
     display: flex;
     flex-direction: column;
@@ -618,7 +768,7 @@ html { scroll-behavior: smooth; }
     gap: 20px;
 }
 
-
+/* --- Conteneur Profil --- */
 .profil-container {
     max-width: 1000px;
     margin: 120px auto;
@@ -644,6 +794,7 @@ html { scroll-behavior: smooth; }
     font-weight: bold;
 }
 
+/* --- Cartes d'information --- */
 .info-card {
     background: rgba(255, 255, 255, 0.03);
     padding: 30px;
@@ -666,7 +817,6 @@ html { scroll-behavior: smooth; }
     letter-spacing: 1px;
 }
 
-
 .edit-icon {
     font-size: 1.2rem;
     color: var(--gold);
@@ -679,200 +829,196 @@ html { scroll-behavior: smooth; }
     opacity: 0.7;
 }
 
-
-
-
 /* =========================================
-   SECTION 12 : CARTE PRODUITS 
+   SECTION : LA CARTE (STYLE AMÉLIORÉ)
    ========================================= */
+.page-menu {
+    background-color: #050505;
+    color: var(--white);
+}
 
-.menu-view-minimal {
-    position: relative;
-    height: 100vh;
-    width: 100%;
+/* --- Bouton Retour Flottant --- */
+.floating-back-btn {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    z-index: 9999;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    padding: 10px 20px;
+    border: 1px solid var(--gray-border);
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    transition: 0.4s;
+}
+
+.floating-back-btn:hover {
+    background: var(--gold);
+    color: black;
+    border-color: var(--gold);
+}
+
+/* --- Hero Menu --- */
+.menu-hero {
+    height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('img/menu.png') center/cover no-repeat;
-    overflow: hidden;
-}
-
-.menu-bg-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
-    z-index: 1;
-}
-
-.menu-compact-box {
     position: relative;
-    z-index: 10;
-    text-decoration: none;
+    background: url('https://images.unsplash.com/photo-1582450871972-ab5ca641643d?q=80&w=1974') center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, #050505);
+}
+
+.hero-text {
+    position: relative;
     text-align: center;
-    padding: 70px 100px;
-    border: 1px solid rgba(197, 160, 89, 0.3); /* Bordure dorée très fine */
-    background: rgba(10, 10, 10, 0.7);
-    backdrop-filter: blur(20px);
-    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.menu-compact-box:hover {
-    border-color: var(--gold);
-    transform: scale(1.03);
-    box-shadow: 0 0 40px rgba(197, 160, 89, 0.1);
+.glitch-title {
+    font-family: 'Playfair Display';
+    font-size: 7rem;
+    letter-spacing: 25px;
+    margin: 20px 0;
 }
 
-/* Texte "DÉCOUVRIR" en haut */
-.menu-compact-box .section-subtitle {
-    display: block;
-    font-size: 0.75rem;
-    letter-spacing: 5px;
-    color: var(--gold);
-    margin-bottom: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
+/* --- Structure du Menu --- */
+.menu-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 40px;
 }
 
-/* Titre "LA CARTE" central */
-.menu-title-small {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem; /* Grand impact comme sur l'image */
-    color: var(--white);
-    letter-spacing: 12px;
-    margin: 15px 0;
-    text-transform: uppercase;
-}
-
-/* Ligne dorée centrale */
-.menu-compact-box .line-gold {
-    width: 50px;
-    height: 1px;
-    background: var(--gold);
-    margin: 10px auto 25px;
-}
-
-/* Texte "OUVRIR DANS UN NOUVEL ONGLET" en bas */
-.menu-compact-box .click-info {
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    font-weight: 400;
-    opacity: 1;
-}
-
-/* --- PAGE CARTE (CARTE.HTML) --- */
-.page-menu-experience {
-    background-color: var(--dark-bg);
-}
-
-.menu-intro {
-    text-align: center;
-    padding: 140px 0 80px 0;
-}
-
-/* Barre de recherche "Ligne Épurée" */
-.menu-search-bar {
-    max-width: 450px;
-    margin: 30px auto;
-}
-
-
-
-.input-search:focus {
-    border-bottom: 1px solid var(--gold) !important;
-    letter-spacing: 1px;
-}
-
-/* Plats et Catégories */
-.menu-category {
-    max-width: 850px;
-    margin: 0 auto 100px auto;
+.dish-category {
+    margin-bottom: 120px;
 }
 
 .category-header {
+    margin-bottom: 60px;
+    text-align: left;
+}
+
+.cat-meta {
     display: flex;
     align-items: center;
-    gap: 25px;
-    margin-bottom: 50px;
+    gap: 20px;
+    margin-bottom: 15px;
 }
 
-.cat-number {
-    font-size: 0.75rem;
+.cat-num {
+    font-family: 'Montserrat';
     color: var(--gold);
-    border: 1px solid var(--gold);
-    padding: 6px 12px;
-    letter-spacing: 2px;
+    font-weight: 700;
 }
 
-.cat-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--white);
-    letter-spacing: 5px;
-    text-transform: uppercase;
+.cat-line {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
 }
 
-.dish-list {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+.category-header h2 {
+    font-family: 'Playfair Display';
+    font-size: 3rem;
+    letter-spacing: 10px;
 }
 
-.dish-item {
+.cat-desc {
+    color: #666;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* --- Cartes des Plats --- */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+}
+
+.dish-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 40px;
+    transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.dish-card:hover {
+    background: rgba(197, 160, 89, 0.05);
+    border-color: var(--gold);
+    transform: translateY(-10px);
+}
+
+.dish-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 15px;
-    transition: 0.3s;
+    align-items: baseline;
+    margin-bottom: 15px;
 }
 
-.dish-item:hover {
-    border-bottom: 1px solid rgba(197, 160, 89, 0.4);
-}
-
-.dish-meta h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+.dish-header h3 {
+    font-family: 'Playfair Display';
+    font-size: 1.6rem;
     color: var(--gold);
-    margin-bottom: 8px;
-}
-
-.dish-meta p {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.5);
-    font-style: italic;
-    margin-bottom: 5px;
-}
-
-.allergen {
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(197, 160, 89, 0.6);
-    display: block;
-    margin-top: 5px;
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
 }
 
 .price {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    color: var(--white);
-    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
+.dish-card p {
+    font-size: 0.9rem;
+    color: #aaa;
+    line-height: 1.8;
+}
+
+/* --- Tags et Badges --- */
+.dish-footer {
+    margin-top: 25px;
+}
+
+.tag {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    color: #888;
+}
+
+/* --- Style Premium (Wagyu) --- */
+.premium-card {
+    border: 1px solid var(--gold);
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.1), transparent);
+}
+
+.premium-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--gold);
+    color: black;
+    font-size: 0.6rem;
+    font-weight: bold;
+    padding: 5px 15px;
+    letter-spacing: 2px;
+}
 
 /* =========================================
     PAGE ADMIN - ISOLATION COMPLETE
    ========================================= */
 
-/* On force le style uniquement quand le body a la classe .page-admin */
 body.page-admin {
     background-color: #0d0d0d !important;
     color: #e0e0e0 !important;
@@ -885,7 +1031,7 @@ body.page-admin {
     font-family: 'Playfair Display', serif;
 }
 
-/* On isole le header admin */
+/* --- Header Administration --- */
 .page-admin .admin-header {
     display: flex;
     justify-content: space-between;
@@ -895,7 +1041,35 @@ body.page-admin {
     margin-bottom: 40px;
 }
 
-/* Correction de la recherche pour qu'elle ne pousse pas ton index */
+/* --- Stats Bar --- */
+.page-admin .admin-stats-bar {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.page-admin .stat-card {
+    background: #1a1a1a;
+    padding: 15px 25px;
+    border-left: 3px solid #bc9c64;
+    border-radius: 4px;
+}
+
+.page-admin .stat-label {
+    display: block;
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.page-admin .stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #bc9c64;
+}
+
+/* --- Barre de Recherche --- */
 .page-admin .search-container input, 
 .page-admin .search-container select {
     background: transparent;
@@ -909,10 +1083,10 @@ body.page-admin {
 .page-admin .search-container input:focus {
     outline: none;
     border-bottom: 1px solid #bc9c64;
-    width: 300px; /* Largeur fixe pour l'admin */
+    width: 300px;
 }
 
-/* Tableau Admin */
+/* --- Tableau Admin --- */
 .page-admin .table-wrapper {
     background: #141414;
     border-radius: 8px;
@@ -938,7 +1112,7 @@ body.page-admin {
     border-bottom: 1px solid #222;
 }
 
-/* Badges et Statuts */
+/* --- Badges et Statuts --- */
 .page-admin .badge {
     padding: 6px 12px;
     border-radius: 50px;
@@ -950,9 +1124,8 @@ body.page-admin {
 
 .page-admin .status-dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
 .page-admin .status-dot.active { background-color: #4caf50; }
-.page-admin .status-dot.busy { background-color: #ff9800; }
 
-/* Actions */
+/* --- Boutons --- */
 .page-admin .btn-kaiseki {
     background: transparent;
     border: 1px solid #444;
@@ -960,38 +1133,26 @@ body.page-admin {
     padding: 8px 15px;
     text-decoration: none;
     font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
+.page-admin .btn-kaiseki:hover {
+    border-color: #bc9c64;
+    color: #bc9c64;
+}
 
+.page-admin .btn-action-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
 
+/* =========================================
+   SECTION : PAGE PROFIL
+   ========================================= */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* --- PAGE PROFIL EMBELLIE --- */
 .page-profil {
     background: radial-gradient(circle at top right, #0d0d0d, #050505);
     min-height: 100vh;
@@ -1013,7 +1174,9 @@ body.page-admin {
     transition: 0.3s;
 }
 
-.back-link:hover { border-bottom-color: var(--gold); }
+.back-link:hover { 
+    border-bottom-color: var(--gold); 
+}
 
 .profil-container {
     max-width: 1100px;
@@ -1034,7 +1197,7 @@ body.page-admin {
     letter-spacing: 5px;
 }
 
-/* Carte Fidélité */
+/* --- Carte de Fidélité --- */
 .loyalty-card {
     background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
     padding: 25px;
@@ -1063,7 +1226,7 @@ body.page-admin {
     background: var(--gold);
 }
 
-/* Sections */
+/* --- Grille d'Informations --- */
 .profil-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -1076,7 +1239,10 @@ body.page-admin {
     border: 1px solid rgba(197, 160, 89, 0.1);
 }
 
-.info-group { margin-bottom: 25px; }
+.info-group { 
+    margin-bottom: 25px; 
+}
+
 .info-group label {
     display: block;
     font-size: 0.6rem;
@@ -1085,14 +1251,12 @@ body.page-admin {
     margin-bottom: 5px;
 }
 
-.info-group p { font-size: 1rem; color: #fff; }
-
-/* Table des commandes */
-.table-wrapper {
-    background: rgba(255,255,255,0.01);
-    border: 1px solid rgba(255,255,255,0.05);
+.info-group p { 
+    font-size: 1rem; 
+    color: #fff; 
 }
 
+/* --- Tableau de Commandes --- */
 .order-table {
     width: 100%;
     border-collapse: collapse;
@@ -1119,29 +1283,10 @@ body.page-admin {
     color: var(--gold);
 }
 
+/* =========================================
+   SECTION : ZONE AVIS ET ALERTES
+   ========================================= */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Zone Avis et Alerte */
 .review-zone {
     margin-top: 60px;
     padding: 40px;
@@ -1189,4 +1334,120 @@ body.page-admin {
     padding: 15px;
     font-family: 'Montserrat', sans-serif;
     outline: none;
+    transition: border 0.3s ease;
+}
+
+.input-review:focus {
+    border-color: var(--gold);
+}
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   PAGE LIVREUR (ERGONOMIE MOBILE)
+   ========================================= */
+.page-delivery {
+    background: #000;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+}
+
+.delivery-header {
+    background: #111;
+    padding: 20px;
+    border-bottom: 2px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delivery-header h1 { font-size: 1.2rem; letter-spacing: 2px; }
+
+.status-bar {
+    font-size: 0.7rem;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.pulse {
+    height: 8px; width: 8px;
+    background: #4caf50;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+.delivery-container { padding: 15px; }
+
+/* Carte Commande XXL */
+.delivery-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 5px solid var(--gold);
+    transition: 0.4s;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.order-id { font-weight: bold; color: var(--gold); }
+.order-time { font-size: 0.7rem; background: #333; padding: 3px 8px; border-radius: 4px; }
+
+.client-name { font-size: 1.5rem; margin-bottom: 5px; }
+.client-address { font-size: 1.1rem; color: #fff; font-weight: bold; margin-bottom: 10px; }
+.client-note { font-style: italic; color: #ffcc00; font-size: 0.9rem; margin-bottom: 15px; }
+
+.order-details {
+    background: #222;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+}
+
+/* Actions Tactiles */
+.delivery-actions {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+}
+
+.btn-tel, .btn-complete {
+    padding: 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-tel { background: #333; color: white; border: 1px solid #555; }
+.btn-complete { background: #4caf50; color: white; }
+
+.exit-btn {
+    font-size: 0.7rem;
+    color: #ff4444;
+    text-decoration: none;
+    border: 1px solid #ff4444;
+    padding: 5px 10px;
 }
