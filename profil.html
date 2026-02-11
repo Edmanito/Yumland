@@ -2,46 +2,85 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaiseki Shunei | Mon Profil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="page-profil">
+
+    <nav class="profil-nav">
+        <a href="index.html" class="back-link">← RETOUR AU RESTAURANT</a>
+        <div class="logo-kanji-small"><span>春</span><span>栄</span></div>
+    </nav>
+
     <div class="profil-container">
         <header class="profil-header">
-            <h1>MON COMPTE</h1>
-            <div class="loyalty-badge">Membre Or : 450 Points 🎖️</div>
+            <div class="header-main">
+                <h1>BIENVENUE, JEAN</h1>
+                <p class="member-since">Membre depuis Janvier 2026</p>
+            </div>
+            <div class="loyalty-card">
+                <span class="label">STATUT PRIVILÈGE</span>
+                <div class="loyalty-badge">MEMBRE OR</div>
+                <div class="points-count">450 <span>points</span></div>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+            </div>
         </header>
 
-        <section class="profil-section">
-            <h3>INFORMATIONS PERSONNELLES <span class="edit-icon">✎</span></h3>
-            <div class="info-card">
-                <p><strong>Nom :</strong> Jean Dupont</p>
-                <p><strong>Email :</strong> jean.dupont@email.com</p>
-                <p><strong>Adresse :</strong> 12 Rue du Sushi, 75000 Paris</p>
-            </div>
-        </section>
+        <main class="profil-grid">
+            <section class="profil-section info-section">
+                <div class="section-title">
+                    <h3>COORDONNÉES</h3>
+                    <span class="edit-icon" title="Modifier mes informations">✎</span>
+                </div>
+                <div class="info-card">
+                    <div class="info-group">
+                        <label>NOM COMPLET</label>
+                        <p>Jean Dupont</p>
+                    </div>
+                    <div class="info-group">
+                        <label>EMAIL</label>
+                        <p>jean.dupont@email.com</p>
+                    </div>
+                    <div class="info-group">
+                        <label>ADRESSE DE LIVRAISON</label>
+                        <p>12 Rue du Sushi, 75000 Paris</p>
+                        <p class="sub-info">Étage 4 • Code : 1234</p>
+                    </div>
+                </div>
+            </section>
 
-        <section class="profil-section">
-            <h3>HISTORIQUE DES COMMANDES</h3>
-            <table class="order-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Commande</th>
-                        <th>Statut</th>
-                        <th>Prix</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>12/01/2026</td>
-                        <td>Menu Kaiseki Omakase</td>
-                        <td>Livré</td>
-                        <td>180€</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <section class="profil-section orders-section">
+                <h3>DERNIÈRES COMMANDES</h3>
+                <div class="table-wrapper">
+                    <table class="order-table">
+                        <thead>
+                            <tr>
+                                <th>DATE</th>
+                                <th>MENU</th>
+                                <th>STATUT</th>
+                                <th>PRIX</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12/01/2026</td>
+                                <td class="dish-name">Omakase Saisonnier</td>
+                                <td><span class="status-pill deliverd">Livré</span></td>
+                                <td class="price">180€</td>
+                            </tr>
+                            <tr>
+                                <td>05/01/2026</td>
+                                <td class="dish-name">Plateau Shunei Signature</td>
+                                <td><span class="status-pill deliverd">Livré</span></td>
+                                <td class="price">95€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
     </div>
 </body>
 </html>

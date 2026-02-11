@@ -44,29 +44,53 @@ html { scroll-behavior: smooth; }
 /* Alignement des éléments à droite du header */
 .header-right {
     display: flex;
-    align-items: center;
-    gap: 30px; /* Espace entre l'image profil et le bouton réserver */
-    padding-top: 25px;
+    align-items: center; /* Centre verticalement les éléments sur une ligne fixe */
+    gap: 30px;
+    padding-top: 0; /* On retire le padding-top s'il y en avait un pour éviter les décalages */
+    height: 100px; /* On définit une hauteur fixe pour la zone de navigation droite */
 }
 
+/* Le conteneur doit accepter une taille plus grande */
 .profile-trigger {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;  /* Taille XXL */
+    height: 100px;
+    position: relative; /* Pour que l'icône reste ancrée ici */
+}
+
+.profile-icon-nav {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    filter: invert(1);
     transition: transform 0.3s ease;
+}
+
+/* Le bouton de réservation ne bougera plus car il est aligné sur le centre du header-right */
+.btn-reservation {
+    /* Tes styles actuels restent identiques */
+    white-space: nowrap; /* Empêche le texte du bouton de revenir à la ligne */
 }
 
 .profile-trigger:hover {
     transform: scale(1.1); /* Petit effet de zoom au survol */
 }
 
-.profile-icon-nav {
-    width: 35px; /* Taille de l'icône */
-    height: 35px;
-    object-fit: contain;
-    /* Invert(1) rend l'image blanche si ton fichier original est noir */
-    filter: invert(1); 
-    opacity: 0.8;
-    transition: opacity 0.3s;
+
+
+.profile-trigger:hover .profile-icon-nav {
+    transform: scale(1.15); /* Effet de pop plus prononcé */
+    opacity: 1;
+    /* Optionnel : lueur dorée pour rappeler ta charte Shunei */
+    filter: invert(1) drop-shadow(0 0 8px var(--gold));
 }
+
+
+
+
 
 .profile-icon-nav:hover {
     opacity: 1;
@@ -943,3 +967,226 @@ body.page-admin {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- PAGE PROFIL EMBELLIE --- */
+.page-profil {
+    background: radial-gradient(circle at top right, #0d0d0d, #050505);
+    min-height: 100vh;
+}
+
+.profil-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+}
+
+.back-link {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.back-link:hover { border-bottom-color: var(--gold); }
+
+.profil-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 100px;
+}
+
+.profil-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+}
+
+.profil-header h1 {
+    font-family: 'Playfair Display';
+    font-size: 3.5rem;
+    letter-spacing: 5px;
+}
+
+/* Carte Fidélité */
+.loyalty-card {
+    background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+    padding: 25px;
+    border: 1px solid var(--gold);
+    min-width: 250px;
+    text-align: right;
+}
+
+.loyalty-badge {
+    font-size: 1.5rem;
+    color: var(--gold);
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    margin-top: 15px;
+}
+
+.progress-fill {
+    width: 75%;
+    height: 100%;
+    background: var(--gold);
+}
+
+/* Sections */
+.profil-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+}
+
+.info-card {
+    background: rgba(255,255,255,0.02);
+    padding: 30px;
+    border: 1px solid rgba(197, 160, 89, 0.1);
+}
+
+.info-group { margin-bottom: 25px; }
+.info-group label {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.info-group p { font-size: 1rem; color: #fff; }
+
+/* Table des commandes */
+.table-wrapper {
+    background: rgba(255,255,255,0.01);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-table th {
+    text-align: left;
+    padding: 20px;
+    font-size: 0.7rem;
+    color: var(--gold);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.order-table td {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.status-pill {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    background: rgba(197, 160, 89, 0.1);
+    color: var(--gold);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Zone Avis et Alerte */
+.review-zone {
+    margin-top: 60px;
+    padding: 40px;
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.auth-alert-box {
+    background: linear-gradient(rgba(74, 4, 4, 0.95), rgba(40, 0, 0, 1));
+    border: 1px solid #ff0000;
+    padding: 60px 20px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
+}
+
+.btn-auth-red {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 15px 40px;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.btn-auth-red:hover {
+    background: white;
+    color: #4A0404;
+}
+
+.rating-stars {
+    font-size: 2rem;
+    color: var(--gold);
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.input-review {
+    width: 100%;
+    max-width: 600px;
+    height: 100px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--gray-border);
+    color: white;
+    padding: 15px;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+}
