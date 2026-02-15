@@ -198,9 +198,13 @@
     </section>
 
     <script>
-        let selectedRating = 0;
-        let warningCount = 0;
-        let currentImg = 1;
+    // =========================================
+// SECTION : GESTION DES ACCÈS (STAFF / LIVREUR)
+// =========================================
+function accesSecurise() {
+    const code = prompt("Veuillez entrer votre code d'accès (administration, livraison ou commande) :");
+    
+    if (code === null) return;
 
         // --- SESSION CLIENT AU CHARGEMENT ---
         window.onload = function() {
@@ -230,10 +234,19 @@
             }
         };
 
-        // --- NAVIGATION ---
-        function toggleMenu() { document.getElementById("side-menu").classList.toggle("open"); document.body.classList.toggle("open-nav"); }
-        function toggleReservation() { document.getElementById("reservation-panel").classList.toggle("open"); }
-        function openReservationFromMenu() { toggleMenu(); setTimeout(toggleReservation, 500); }
+    if (choix === "administration") {
+        window.location.href = "admin.html";
+    } 
+    else if (choix === "livraison") {
+        window.location.href = "livraison.html";
+    } 
+    else if (choix === "commande") { // <-- AJOUT DE CETTE LIGNE
+        window.location.href = "commande.html";
+    } 
+    else {
+        alert("PAR LE TONNERRE DE ZEUS, ACCÈS REFUSÉ !");
+    }
+}
 
         // --- INSCRIPTION PLEIN ÉCRAN ---
         function openFullRegister() {
