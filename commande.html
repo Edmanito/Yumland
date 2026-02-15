@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kaiseki Shunei | Dashboard Commandes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-commande-admin">
+
+    <div class="admin-topbar">
+        <a href="index.html" class="btn-retour">← RETOUR ACCUEIL</a>
+    </div>
+
+    <div class="commande-wrapper">
+        <div class="admin-header">
+            <h1>Gestion des Commandes</h1>
+            <p>10 Commandes en attente de traitement</p>
+        </div>
+
+        <div class="commande-dashboard">
+            
+            <div class="col-orders">
+                <div class="order-card">
+                    <div class="order-meta-left">
+                        <span class="order-id">#001</span>
+                        <span class="client-name">Jabar Abdul</span>
+                    </div>
+                    <div class="order-center">
+                        <h2 class="order-item">RAMEN ICHIRAKU <small>x2</small></h2>
+                        <span class="order-note">"Sans oignons"</span>
+                    </div>
+                    <div class="order-meta-right">
+                        <span class="order-time">19:30</span>
+                    </div>
+                    <div class="connector-line"><div class="connector-dot"></div></div>
+                </div>
+
+                <div class="order-card">
+                    <div class="order-meta-left"><span class="order-id">#002</span><span class="client-name">Client VIP</span></div>
+                    <div class="order-center"><h2 class="order-item">SUSHI SET A <small>x1</small></h2><span class="order-note">"Urgent"</span></div>
+                    <div class="order-meta-right"><span class="order-time">19:45</span></div>
+                    <div class="connector-line"><div class="connector-dot"></div></div>
+                </div>
+
+                <div class="order-card">
+                    <div class="order-meta-left"><span class="order-id">#003</span><span class="client-name">Table 4</span></div>
+                    <div class="order-center"><h2 class="order-item">BENTO KAISEKI <small>x3</small></h2><span class="order-note">"Sauce soja sucrée"</span></div>
+                    <div class="order-meta-right"><span class="order-time">20:00</span></div>
+                    <div class="connector-line"><div class="connector-dot"></div></div>
+                </div>
+
+                <div class="order-card"><div class="order-meta-left"><span class="order-id">#004</span><span class="client-name">Inconnu</span></div><div class="order-center"><h2 class="order-item">MISO SOUP <small>x5</small></h2></div><div class="order-meta-right"><span class="order-time">20:05</span></div><div class="connector-line"><div class="connector-dot"></div></div></div>
+                <div class="order-card"><div class="order-meta-left"><span class="order-id">#005</span><span class="client-name">S. Uzumaki</span></div><div class="order-center"><h2 class="order-item">RAMEN LARGE <small>x2</small></h2></div><div class="order-meta-right"><span class="order-time">20:10</span></div><div class="connector-line"><div class="connector-dot"></div></div></div>
+                <div class="order-card"><div class="order-meta-left"><span class="order-id">#006</span><span class="client-name">H. Hyuga</span></div><div class="order-center"><h2 class="order-item">SALADE CHOU <small>x1</small></h2></div><div class="order-meta-right"><span class="order-time">20:15</span></div><div class="connector-line"><div class="connector-dot"></div></div></div>
+                <div class="order-card"><div class="order-meta-left"><span class="order-id">#007</span><span class="client-name">K. Kakashi</span></div><div class="order-center"><h2 class="order-item">SASHIMI <small>x2</small></h2></div><div class="order-meta-right"><span class="order-time">20:20</span></div><div class="connector-line"><div class="connector-dot"></div></div></div>
+                <div class="order-card"><div class="order-meta-left"><span class="order-id">#008</span><span class="client-name">U. Sasuke</span></div><div class="order-center"><h2 class="order-item">ONIGIRI <small>x4</small></h2></div><div class="order-meta-right"><span class="order-time">20:25</span></div><div class="connector-line"><div class="connector-dot"></div></div></div>
+                <div class="order-card"><div class="order-meta-left"><span class="order-id">#009</span><span class="client-name">Table 12</span></div><div class="order-center"><h2 class="order-item">TEMPURA <small>x1</small></h2></div><div class="order-meta-right"><span class="order-time">20:30</span></div><div class="connector-line"><div class="connector-dot"></div></div></div>
+                <div class="order-card"><div class="order-meta-left"><span class="order-id">#010</span><span class="client-name">M. Guy</span></div><div class="order-center"><h2 class="order-item">BOL RIZ <small>x10</small></h2></div><div class="order-meta-right"><span class="order-time">20:45</span></div><div class="connector-line"><div class="connector-dot"></div></div></div>
+            </div>
+
+            <div class="col-status-pipeline">
+                <div class="pipeline-header">ÉTAT</div>
+                <div class="pipeline-cell"><span class="status-badge green"><span class="led"></span> LIVRÉ</span></div>
+                <div class="pipeline-cell"><span class="status-badge orange"><span class="led"></span> PRÉPARATION</span></div>
+                <div class="pipeline-cell"><span class="status-badge red"><span class="led"></span> ATTENTE</span></div>
+                <div class="pipeline-cell"><span class="status-badge red"><span class="led"></span> ATTENTE</span></div>
+                <div class="pipeline-cell"><span class="status-badge red"><span class="led"></span> ATTENTE</span></div>
+                <div class="pipeline-cell"><span class="status-badge red"><span class="led"></span> ATTENTE</span></div>
+                <div class="pipeline-cell"><span class="status-badge red"><span class="led"></span> ATTENTE</span></div>
+                <div class="pipeline-cell"><span class="status-badge red"><span class="led"></span> ATTENTE</span></div>
+                <div class="pipeline-cell"><span class="status-badge red"><span class="led"></span> ATTENTE</span></div>
+                <div class="pipeline-cell"><span class="status-badge red"><span class="led"></span> ATTENTE</span></div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
