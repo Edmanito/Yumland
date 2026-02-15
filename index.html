@@ -86,6 +86,7 @@
                 <div class="form-inner">
                     <span class="section-subtitle">BIENVENUE CHEZ SHUNEI</span>
                     <h3>CRÉER UN COMPTE</h3>
+                    <p class="form-intro">Rejoignez l'excellence Shunei pour vos réservations et livraisons.</p>
                     <form id="main-register-form" onsubmit="validerEtInscrire(event)">
                         <div class="input-row-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                             <input type="text" id="reg-fname" placeholder="Prénom" class="input-auth" required>
@@ -113,8 +114,14 @@
             <div class="close-gallery-btn" onclick="closeGallery()">✕</div>
             <h2 class="center-title">LE RESTAURANT</h2>
             <div class="arrow-container left" onclick="changeImage(-1)"><img src="img/retour.png" class="arrow-icon"></div>
-            <div id="viewer-container" class="viewer-container"><img src="img/resto-1.png" id="main-photo"></div>
+            <div id="viewer-container" class="viewer-container"><img src="img/resto-1.png" id="main-photo" alt="Galerie Shunei"></div>
             <div class="arrow-container right" onclick="changeImage(1)"><img src="img/retour.png" class="arrow-icon mirror"></div>
+            <div class="story-bottom-right">
+                <div class="story-box">
+                    <span class="section-subtitle">NOTRE HÉRITAGE</span>
+                    <p>"Sous l'ombre des cerisiers de Kyoto..."</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -136,6 +143,7 @@
         <div class="experience-full-text">
             <span class="section-subtitle">L'UNION DES CULTURES</span>
             <h2>L'Équilibre Absolu</h2>
+            <div class="exp-story-centered"><div class="exp-divider-gold"></div></div>
             <div class="exp-quote-large">"Le sushi est un pont entre nos deux mondes."</div>
         </div>
     </section>
@@ -156,18 +164,9 @@
                 <span class="section-subtitle">NOUS TROUVER</span>
                 <h2>CONTACT</h2>
                 <div class="contact-details">
-                    <div class="detail-item">
-                        <p class="label">ADRESSE</p>
-                        <p>3 Rue André del Sarte, 75018 Paris</p>
-                    </div>
-                    <div class="detail-item">
-                        <p class="label">HORAIRES</p>
-                        <p>Mardi — Samedi : 19:00 - 22:30</p>
-                    </div>
-                    <div class="detail-item">
-                        <p class="label">RÉSERVATIONS</p>
-                        <p><a href="tel:+33142557111" class="phone-link" style="color: inherit; text-decoration: none;">01 42 55 71 11</a></p>
-                    </div>
+                    <div class="detail-item"><p class="label">ADRESSE</p><p>3 Rue André del Sarte, 75018 Paris</p></div>
+                    <div class="detail-item"><p class="label">HORAIRES</p><p>Mardi — Samedi : 19:00 - 22:30</p></div>
+                    <div class="detail-item"><p class="label">RÉSERVATIONS</p><p>01 42 55 71 11</p></div>
                 </div>
             </div>
 
@@ -176,20 +175,14 @@
                     <p style="font-size: 1.2rem; margin-bottom: 20px; letter-spacing: 2px;">L'ACCÈS AUX AVIS EST RÉSERVÉ AUX MEMBRES</p>
                     <button class="btn-auth-red" onclick="toggleReservation()">SE CONNECTER / S'INSCRIRE</button>
                 </div>
-
                 <div id="review-form-active" style="display: none; text-align: center;">
                     <span class="section-subtitle">VOTRE EXPÉRIENCE</span>
                     <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 20px;">LAISSER UN AVIS</h2>
-                    
-                    <div class="rating-stars" style="font-size: 2.8rem; color: var(--gold); margin-bottom: 25px; cursor: pointer;">
-                        </div>
-                    
-                    <textarea placeholder="Partagez votre ressenti sur l'art de Shunei..." class="input-review" style="width: 100%; max-width: 600px; height: 120px; background: rgba(255,255,255,0.05); border: 1px solid var(--gold); color: white; padding: 20px; outline: none;"></textarea>
-                    <br>
-                    <button class="btn-reservation" onclick="publierAvis()" style="margin-top: 30px;">PUBLIER MON AVIS</button>
+                    <div class="rating-stars" style="font-size: 2.8rem; color: var(--gold); margin-bottom: 25px; cursor: pointer;"></div>
+                    <textarea placeholder="Partagez votre ressenti..." class="input-review"></textarea>
+                    <br><button class="btn-reservation" onclick="publierAvis()" style="margin-top: 30px;">PUBLIER MON AVIS</button>
                 </div>
             </div>
-
             <footer class="site-footer">
                 <p>© 2026 KAISEKI SHUNEI — TOUS DROITS RÉSERVÉS</p>
                 <div class="footer-bottom-line"></div>
@@ -198,108 +191,49 @@
     </section>
 
     <script>
-    // =========================================
-// SECTION : GESTION DES ACCÈS (STAFF / LIVREUR)
-// =========================================
-function accesSecurise() {
-    const code = prompt("Veuillez entrer votre code d'accès (administration, livraison ou commande) :");
-    
-    if (code === null) return;
+        let selectedRating = 0; let warningCount = 0; let currentImg = 1;
 
-        // --- SESSION CLIENT AU CHARGEMENT ---
+        // ACCÈS SÉCURISÉ
+        function accesSecurise() {
+            const code = prompt("Veuillez entrer votre code d'accès :");
+            if (code === null) return;
+            const choix = code.trim().toLowerCase();
+            if (choix === "administration") { window.location.href = "admin.html"; } 
+            else if (choix === "commande") { window.location.href = "commande.html"; } 
+            else if (choix === "livraison") { window.location.href = "livraison.html"; }
+            else { alert("PAR LE TONNERRE DE ZEUS, ACCÈS REFUSÉ !"); }
+        }
+
+        // INITIALISATION SESSION
         window.onload = function() {
             const savedName = localStorage.getItem('userName');
-            const brandTitle = document.querySelector('.brand-name');
-            const logoutBtn = document.getElementById('logout-btn');
-            const reviewForm = document.getElementById('review-form-active');
-            const reviewAlert = document.getElementById('review-auth-alert');
-            
-            if (savedName && brandTitle) {
-                brandTitle.style.position = "relative";
-                brandTitle.innerHTML = `
-                    <div style="position: absolute; top: -25px; left: 0; white-space: nowrap; line-height: 1.2;">
-                        <div style="font-size: 0.8rem; letter-spacing: 5px; opacity: 0.8; font-weight: 300;">BIENVENUE</div>
-                        <div style="color: var(--gold); font-size: 1.4rem; font-weight: 700; letter-spacing: 2px;">
-                            ${savedName.toUpperCase()}
-                        </div>
-                    </div>
-                    <span style="visibility: hidden;">KAISEKI SHUNEI</span> `;
-                
-                if (logoutBtn) logoutBtn.style.display = "block";
-                if (reviewAlert) reviewAlert.style.display = "none";
-                if (reviewForm) {
-                    reviewForm.style.display = "block";
-                    initStars();
-                }
+            if (savedName) {
+                const brandTitle = document.querySelector('.brand-name');
+                brandTitle.innerHTML = `<div style="position: absolute; top: -25px; left: 0; white-space: nowrap;"><div style="font-size: 0.8rem; letter-spacing: 5px; opacity: 0.8;">BIENVENUE</div><div style="color: var(--gold); font-size: 1.4rem; font-weight: 700;">${savedName.toUpperCase()}</div></div><span style="visibility: hidden;">KAISEKI SHUNEI</span>`;
+                document.getElementById('logout-btn').style.display = "block";
+                document.getElementById('review-auth-alert').style.display = "none";
+                document.getElementById('review-form-active').style.display = "block";
+                initStars();
             }
         };
 
-    if (choix === "administration") {
-        window.location.href = "admin.html";
-    } 
-    else if (choix === "livraison") {
-        window.location.href = "livraison.html";
-    } 
-    else if (choix === "commande") { // <-- AJOUT DE CETTE LIGNE
-        window.location.href = "commande.html";
-    } 
-    else {
-        alert("PAR LE TONNERRE DE ZEUS, ACCÈS REFUSÉ !");
-    }
-}
+        // NAVIGATION & MODALES
+        function toggleMenu() { document.getElementById("side-menu").classList.toggle("open"); document.body.classList.toggle("open-nav"); }
+        function toggleReservation() { document.getElementById("reservation-panel").classList.toggle("open"); }
+        function openReservationFromMenu() { toggleMenu(); setTimeout(toggleReservation, 500); }
+        function openFullRegister() { if(document.getElementById("reservation-panel").classList.contains("open")) toggleReservation(); const overlay = document.getElementById('full-register-overlay'); overlay.style.display = 'block'; setTimeout(() => overlay.classList.add('active'), 10); document.body.style.overflow = "hidden"; }
+        function closeFullRegister() { const overlay = document.getElementById('full-register-overlay'); overlay.classList.remove('active'); setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = "auto"; }, 500); }
 
-        // --- INSCRIPTION PLEIN ÉCRAN ---
-        function openFullRegister() {
-            if(document.getElementById("reservation-panel").classList.contains("open")) toggleReservation();
-            const overlay = document.getElementById('full-register-overlay');
-            overlay.style.display = 'block';
-            setTimeout(() => overlay.classList.add('active'), 10);
-            document.body.style.overflow = "hidden";
-        }
-        function closeFullRegister() {
-            const overlay = document.getElementById('full-register-overlay');
-            overlay.classList.remove('active');
-            setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = "auto"; }, 500);
-        }
-
-        // --- AUTHENTIFICATION ---
-        function simulerConnexion(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('input[type="email"]').value.toLowerCase();
-            localStorage.setItem('userName', email.split('@')[0]);
-            if (email.endsWith("@kaiseki")) window.location.href = "livraison.html";
-            else window.location.reload();
-        }
-
-        function validerEtInscrire(event) {
-            event.preventDefault();
-            const email = document.getElementById('reg-email').value.toLowerCase();
-            const phone = document.getElementById('reg-phone').value;
-            const fname = document.getElementById('reg-fname').value;
-            const pass = document.getElementById('reg-pass').value;
-
-            if (phone.replace(/\s/g, '').length < 10) return alert("Téléphone invalide.");
-            if (pass.length < 8) return alert("Mot de passe : 8 caractères minimum.");
-
-            localStorage.setItem('userName', fname);
-            alert("Bienvenue chez Shunei, " + fname.toUpperCase());
-            if (email.endsWith("@kaiseki")) window.location.href = "livraison.html";
-            else window.location.reload();
-        }
-
+        // AUTHENTIFICATION
+        function simulerConnexion(event) { event.preventDefault(); const email = event.target.querySelector('input[type="email"]').value.toLowerCase(); localStorage.setItem('userName', email.split('@')[0]); if (email.endsWith("@kaiseki")) window.location.href = "livraison.html"; else window.location.reload(); }
+        function validerEtInscrire(event) { event.preventDefault(); const email = document.getElementById('reg-email').value.toLowerCase(); const fname = document.getElementById('reg-fname').value; localStorage.setItem('userName', fname); if (email.endsWith("@kaiseki")) window.location.href = "livraison.html"; else window.location.reload(); }
         function deconnexion() { localStorage.removeItem('userName'); window.location.reload(); }
-        
-        function accesSecurise() {
-            const code = prompt("Code Administration :");
-            if (code && code.toLowerCase() === "administration") window.location.href = "admin.html";
-            else if (code) alert("PAR LE TONNERRE DE ZEUS, ACCÈS REFUSÉ !");
-        }
 
-        // --- SYSTEME D'AVIS (STARS & ZEUS) ---
+        // SYSTÈME D'AVIS
         function initStars() {
             const container = document.querySelector('.rating-stars');
             if(!container) return;
-            container.innerHTML = `<span data-v="1">☆</span><span data-v="2">☆</span><span data-v="3">☆</span><span data-v="4">☆</span><span data-v="5">☆</span>`;
+            container.innerHTML = `<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>`;
             const stars = container.querySelectorAll('span');
             stars.forEach((s, i) => {
                 s.onclick = () => { selectedRating = i + 1; updateStars(stars, selectedRating); };
@@ -307,51 +241,26 @@ function accesSecurise() {
                 s.onmouseout = () => updateStars(stars, selectedRating);
             });
         }
-        function updateStars(stars, count) {
-            stars.forEach((s, i) => {
-                s.innerHTML = i < count ? '★' : '☆';
-                s.style.color = i < count ? "var(--gold)" : "rgba(255,255,255,0.3)";
-            });
-        }
+        function updateStars(stars, count) { stars.forEach((s, i) => { s.innerHTML = i < count ? '★' : '☆'; s.style.color = i < count ? "var(--gold)" : "rgba(255,255,255,0.3)"; }); }
         function publierAvis() {
             if (selectedRating === 0) return alert("Veuillez noter l'expérience.");
             if (selectedRating <= 2) {
                 warningCount++;
-                if (warningCount === 1) alert("Attention mon petit, attention à ce que tu fais.");
-                else if (warningCount === 2) alert("Ceci sera ma première et dernière sommation...");
-                else {
-                    document.body.style.filter = "contrast(200%) brightness(50%) blur(5px)";
-                    setTimeout(() => {
-                        alert("PAR LE TONNERRE DE ZEUS, JE VAIS TE DÉSAGRÉGER !");
-                        document.body.innerHTML = `<div style="background:black; color:red; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:monospace; text-align:center;"><h1>SYSTEM_DESTROYED</h1><p>PC HORS SERVICE - REBOOT IMPOSSIBLE</p></div>`;
-                    }, 800);
-                }
+                if (warningCount === 1) alert("Attention mon petit...");
+                else if (warningCount === 2) alert("Dernière sommation...");
+                else { document.body.style.filter = "contrast(200%) brightness(50%) blur(5px)"; setTimeout(() => { alert("PAR LE TONNERRE DE ZEUS, JE VAIS TE DÉSAGRÉGER !"); document.body.innerHTML = `<div style="background:black; color:red; height:100vh; display:flex; justify-content:center; align-items:center;"><h1>SYSTEM_DESTROYED</h1></div>`; }, 800); }
             } else alert("Merci pour votre retour précieux.");
         }
 
-        // --- GALERIE PHOTO ---
+        // GALERIE
         function changeImage(direction) {
-            const resto = document.getElementById("restaurant");
-            const photo = document.getElementById("main-photo");
+            const resto = document.getElementById("restaurant"); const photo = document.getElementById("main-photo");
             if (!resto.classList.contains("gallery-active")) { openGallery(); return; }
-            currentImg += direction;
-            if (currentImg > 6) currentImg = 1;
-            if (currentImg < 1) currentImg = 6;
+            currentImg += direction; if (currentImg > 6) currentImg = 1; if (currentImg < 1) currentImg = 6;
             photo.src = `img/resto-${currentImg}.png`;
         }
-        function openGallery() {
-            const s = document.getElementById("restaurant"); s.scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => {
-                s.classList.add("gallery-active");
-                document.body.classList.add("no-scroll");
-                document.querySelector("header").style.opacity = "0";
-            }, 600);
-        }
-        function closeGallery() {
-            document.getElementById("restaurant").classList.remove("gallery-active");
-            document.body.classList.remove("no-scroll");
-            document.querySelector("header").style.opacity = "1";
-        }
+        function openGallery() { const s = document.getElementById("restaurant"); s.scrollIntoView({ behavior: 'smooth' }); setTimeout(() => { s.classList.add("gallery-active"); document.body.classList.add("no-scroll"); document.querySelector("header").style.opacity = "0"; }, 600); }
+        function closeGallery() { document.getElementById("restaurant").classList.remove("gallery-active"); document.body.classList.remove("no-scroll"); document.querySelector("header").style.opacity = "1"; }
     </script>
 </body>
 </html>
