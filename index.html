@@ -20,11 +20,11 @@
                 <a href="#informations" onclick="toggleMenu()">INFORMATIONS</a>
             </div>
         </div>
-
         <div class="menu-footer">
             <div class="footer-main-container">
                 <div class="footer-admin-top">
-                    <a href="javascript:void(0)" class="admin-link" onclick="accesSecurise()">ADMINISTRATION</a>                </div>
+                    <a href="javascript:void(0)" class="admin-link" onclick="accesSecurise()">ADMINISTRATION</a>
+                </div>
                 <div class="footer-main-info">
                     <img src="img/instagram-icon.png" alt="Instagram" class="insta-logo">
                     <span class="separator">|</span>
@@ -37,38 +37,21 @@
     <header class="main-header">
         <div class="header-left">
             <div class="logo-and-menu">
-                <div class="logo-kanji">
-                    <span>春</span><span>栄</span><span>製</span>
-                </div>
+                <div class="logo-kanji"><span>春</span><span>栄</span><span>製</span></div>
                 <div class="menu-trigger" onclick="toggleMenu()">
-                    <div class="hamburger-icon">
-                        <span></span><span></span><span></span>
-                    </div>
+                    <div class="hamburger-icon"><span></span><span></span><span></span></div>
                     <span class="menu-text">MENU</span>
                 </div>
             </div>
-            <div class="nav-branding">
-                <h1 class="brand-name">KAISEKI SHUNEI</h1>
-            </div>
+            <div class="nav-branding"><h1 class="brand-name">KAISEKI SHUNEI</h1></div>
         </div>
-
-
-
         <div class="header-right">
-            <div id="logout-btn" onclick="deconnexion()" style="display: none; cursor: pointer; color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; margin-right: 20px; border-bottom: 1px solid var(--gold);">
-                DÉCONNEXION
-            </div>
-
-            <div class="profile-trigger" onclick="toggleReservation()">
-                <img src="img/profil-vide.png" alt="Mon Profil" class="profile-icon-nav">
-            </div>
-            
-        <a href="javascript:void(0)" class="admin-link" onclick="accesSecurise()">ADMINISTRATION</a></div>
-
-
-
-
+            <div id="logout-btn" onclick="deconnexion()" style="display: none; cursor: pointer; color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; margin-right: 20px; border-bottom: 1px solid var(--gold);">DÉCONNEXION</div>
+            <div class="profile-trigger" onclick="toggleReservation()"><img src="img/profil-vide.png" alt="Profil" class="profile-icon-nav"></div>
+            <a href="javascript:void(0)" class="btn-reservation" onclick="toggleReservation()">COMMANDER</a>
+        </div>
     </header>
+
     <section class="hero-section">
         <div class="hero-bg-image"></div>
         <div class="hero-content">
@@ -82,33 +65,43 @@
     <div id="reservation-panel" class="side-panel-right">
         <div class="close-reservation" onclick="toggleReservation()">✕</div>
         <div class="auth-container">
-            
             <div id="login-form" class="auth-box">
                 <h3>CONNEXION</h3>
                 <p class="auth-subtitle">Accédez à votre espace Kaiseki</p>
-                
-                <form action="profil.html" method="GET">
+                <form onsubmit="simulerConnexion(event)">
                     <input type="email" placeholder="Email" class="input-auth" required>
                     <input type="password" placeholder="Mot de passe" class="input-auth" required>
-                    <button type="submit" class="btn-submit" onclick="simulerConnexion(event)">SE CONNECTER</button>
+                    <button type="submit" class="btn-submit">SE CONNECTER</button>
                 </form>
-                
-                <p class="switch-auth">Pas encore de compte ? <span onclick="switchAuth()" style="cursor:pointer; text-decoration:underline;">S'inscrire</span></p>
+                <p class="switch-auth">Pas encore de compte ? <span onclick="openFullRegister()" style="cursor:pointer; text-decoration:underline;">S'inscrire</span></p>
             </div>
+        </div>
+    </div>
 
-            <div id="register-form" class="auth-box" style="display: none;">
-                <h3>INSCRIPTION</h3>
-                <p class="auth-subtitle">Rejoignez l'expérience Shunei</p>
-                
-                <form action="profil.html" method="GET">
-                    <input type="text" placeholder="Nom complet" class="input-auth" required>
-                    <input type="email" placeholder="Email" class="input-auth" required>
-                    <input type="password" placeholder="Mot de passe" class="input-auth" required>
-                    <input type="text" placeholder="Code Interphone (Optionnel)" class="input-auth">
-                    <button type="submit" class="btn-submit" onclick="simulerConnexion(event)">CRÉER MON COMPTE</button>
-                </form>
-                
-                <p class="switch-auth">Déjà inscrit ? <span onclick="switchAuth()" style="cursor:pointer; text-decoration:underline;">Se connecter</span></p>
+    <div id="full-register-overlay" class="register-full-screen">
+        <div class="close-full-register" onclick="closeFullRegister()">✕</div>
+        <div class="register-content">
+            <div class="register-image-side"></div>
+            <div class="register-form-side">
+                <div class="form-inner">
+                    <span class="section-subtitle">BIENVENUE CHEZ SHUNEI</span>
+                    <h3>CRÉER UN COMPTE</h3>
+                    <form id="main-register-form" onsubmit="validerEtInscrire(event)">
+                        <div class="input-row-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <input type="text" id="reg-fname" placeholder="Prénom" class="input-auth" required>
+                            <input type="text" id="reg-lname" placeholder="Nom" class="input-auth" required>
+                        </div>
+                        <input type="email" id="reg-email" placeholder="Email" class="input-auth" required>
+                        <input type="tel" id="reg-phone" placeholder="Téléphone" class="input-auth" required>
+                        <input type="text" id="reg-address" placeholder="Adresse complète" class="input-auth" required>
+                        <div class="input-row-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <input type="text" id="reg-inter" placeholder="Interphone" class="input-auth">
+                            <input type="text" id="reg-floor" placeholder="Étage" class="input-auth">
+                        </div>
+                        <input type="password" id="reg-pass" placeholder="Mot de passe (8 car. min)" class="input-auth" required>
+                        <button type="submit" class="btn-reservation" style="width: 100%; margin-top: 20px;">CONFIRMER L'INSCRIPTION</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -119,48 +112,22 @@
         <div class="restaurant-content-wrapper">
             <div class="close-gallery-btn" onclick="closeGallery()">✕</div>
             <h2 class="center-title">LE RESTAURANT</h2>
-            <div class="arrow-container left" onclick="changeImage(-1)">
-                <img src="img/retour.png" alt="Précédent" class="arrow-icon">
-            </div>
-            <div id="viewer-container" class="viewer-container">
-                <img src="img/resto-1.png" id="main-photo" alt="Galerie Shunei">
-            </div>
-            <div class="arrow-container right" onclick="changeImage(1)">
-                <img src="img/retour.png" alt="Suivant" class="arrow-icon mirror">
-            </div>
-            <div class="story-bottom-right">
-                <div class="story-box">
-                    <span class="section-subtitle">NOTRE HÉRITAGE</span>
-                    <p>"Sous l'ombre des cerisiers de Kyoto, le clan <strong>Shunei</strong> forgeait jadis des lames légendaires..."</p>
-                </div>
-            </div>
+            <div class="arrow-container left" onclick="changeImage(-1)"><img src="img/retour.png" class="arrow-icon"></div>
+            <div id="viewer-container" class="viewer-container"><img src="img/resto-1.png" id="main-photo"></div>
+            <div class="arrow-container right" onclick="changeImage(1)"><img src="img/retour.png" class="arrow-icon mirror"></div>
         </div>
     </section>
 
     <section id="chefs" class="scroll-section chefs-view">
         <div class="chefs-container">
             <div class="chef-card">
-                <div class="chef-img-wrapper">
-                    <img src="img/chef-1.jpeg" alt="Chef Kimura" class="chef-portrait">
-                </div>
-                <div class="chef-info">
-                    <span class="chef-role">LE MAÎTRE DU FEU</span>
-                    <h3>KENJI</h3>
-                    <p>Gardien des traditions séculaires, il forge l'identité de Shunei.</p>
-                </div>
+                <div class="chef-img-wrapper"><img src="img/chef-1.jpeg" class="chef-portrait"></div>
+                <div class="chef-info"><span class="chef-role">MAÎTRE DU FEU</span><h3>KENJI</h3></div>
             </div>
-            <div class="chefs-divider">
-                <div class="line"></div><div class="kanji-split">絆</div><div class="line"></div>
-            </div>
+            <div class="chefs-divider"><div class="line"></div><div class="kanji-split">絆</div><div class="line"></div></div>
             <div class="chef-card">
-                <div class="chef-img-wrapper">
-                    <img src="img/chef-2.jpeg" alt="Cheffe Aiko" class="chef-portrait">
-                </div>
-                <div class="chef-info">
-                    <span class="chef-role">L'ÂME CRÉATRICE</span>
-                    <h3>AIKO</h3>
-                    <p>Architecte de l'élégance, elle insuffle la vie aux assiettes.</p>
-                </div>
+                <div class="chef-img-wrapper"><img src="img/chef-2.jpeg" class="chef-portrait"></div>
+                <div class="chef-info"><span class="chef-role">ÂME CRÉATRICE</span><h3>AIKO</h3></div>
             </div>
         </div>
     </section>
@@ -169,11 +136,6 @@
         <div class="experience-full-text">
             <span class="section-subtitle">L'UNION DES CULTURES</span>
             <h2>L'Équilibre Absolu</h2>
-            <div class="exp-story-centered">
-                <p>Au cœur de <strong>Sushi Shunei</strong> bat le récit d'une union singulière...</p>
-                <div class="exp-divider-gold"></div>
-                <p>Ensemble, ce couple a fusionné la discipline nippone et l'âme occidentale.</p>
-            </div>
             <div class="exp-quote-large">"Le sushi est un pont entre nos deux mondes."</div>
         </div>
     </section>
@@ -188,232 +150,195 @@
         </a>
     </section>
 
-   <section id="informations" class="scroll-section info-view">
-    <div class="info-wrapper">
-        <div class="info-block">
-            <span class="section-subtitle">NOUS TROUVER</span>
-            <h2>CONTACT</h2>
-            <div class="contact-details">
-                <div class="detail-item">
-                    <p class="label">ADRESSE</p>
-                    <p>3 Rue André del Sarte, 75018 Paris</p>
-                </div>
-                <div class="detail-item">
-                    <p class="label">HORAIRES</p>
-                    <p>Mardi — Samedi : 19:00 - 22:30</p>
-                </div>
-                <div class="detail-item">
-                    <p class="label">RÉSERVATIONS</p>
-                    <p><a href="tel:+33142557111" class="phone-link">01 42 55 71 11</a></p>
+    <section id="informations" class="scroll-section info-view">
+        <div class="info-wrapper">
+            <div class="info-block">
+                <span class="section-subtitle">NOUS TROUVER</span>
+                <h2>CONTACT</h2>
+                <div class="contact-details">
+                    <div class="detail-item">
+                        <p class="label">ADRESSE</p>
+                        <p>3 Rue André del Sarte, 75018 Paris</p>
+                    </div>
+                    <div class="detail-item">
+                        <p class="label">HORAIRES</p>
+                        <p>Mardi — Samedi : 19:00 - 22:30</p>
+                    </div>
+                    <div class="detail-item">
+                        <p class="label">RÉSERVATIONS</p>
+                        <p><a href="tel:+33142557111" class="phone-link" style="color: inherit; text-decoration: none;">01 42 55 71 11</a></p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div id="review-container" class="review-zone" style="margin-top: 50px;">
-            
-            <div id="review-auth-alert" class="auth-alert-box">
-                <p style="font-size: 1.2rem; margin-bottom: 20px;">L'ACCÈS AUX AVIS EST RÉSERVÉ AUX MEMBRES</p>
-                <button class="btn-auth-red" onclick="toggleReservation()">SE CONNECTER / S'INSCRIRE</button>
+            <div id="review-container" class="review-zone">
+                <div id="review-auth-alert" class="auth-alert-box">
+                    <p style="font-size: 1.2rem; margin-bottom: 20px; letter-spacing: 2px;">L'ACCÈS AUX AVIS EST RÉSERVÉ AUX MEMBRES</p>
+                    <button class="btn-auth-red" onclick="toggleReservation()">SE CONNECTER / S'INSCRIRE</button>
+                </div>
+
+                <div id="review-form-active" style="display: none; text-align: center;">
+                    <span class="section-subtitle">VOTRE EXPÉRIENCE</span>
+                    <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 20px;">LAISSER UN AVIS</h2>
+                    
+                    <div class="rating-stars" style="font-size: 2.8rem; color: var(--gold); margin-bottom: 25px; cursor: pointer;">
+                        </div>
+                    
+                    <textarea placeholder="Partagez votre ressenti sur l'art de Shunei..." class="input-review" style="width: 100%; max-width: 600px; height: 120px; background: rgba(255,255,255,0.05); border: 1px solid var(--gold); color: white; padding: 20px; outline: none;"></textarea>
+                    <br>
+                    <button class="btn-reservation" onclick="publierAvis()" style="margin-top: 30px;">PUBLIER MON AVIS</button>
+                </div>
             </div>
 
-            <div id="review-form-active" style="display: none; text-align: center;">
-    <span class="section-subtitle">VOTRE EXPÉRIENCE</span>
-    <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 20px;">LAISSER UN AVIS</h2>
-    
-    <div class="rating-stars" style="font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; cursor: pointer;"></div>
-    
-    <textarea placeholder="Partagez votre ressenti sur l'art de Shunei..." class="input-review" style="width: 100%; max-width: 600px; height: 120px; background: rgba(255,255,255,0.05); border: 1px solid var(--gold); color: white; padding: 20px; outline: none;"></textarea>
-    <br>
-    
-    <button class="btn-reservation" onclick="publierAvis()" style="margin-top: 25px;">PUBLIER MON AVIS</button>
-</div>
+            <footer class="site-footer">
+                <p>© 2026 KAISEKI SHUNEI — TOUS DROITS RÉSERVÉS</p>
+                <div class="footer-bottom-line"></div>
+            </footer>
         </div>
-
-        <footer class="site-footer">
-            <p>© 2026 KAISEKI SHUNEI — TOUS DROITS RÉSERVÉS</p>
-            <div class="footer-bottom-line"></div>
-        </footer>
-    </div>
-</section>
-
+    </section>
 
     <script>
-    // =========================================
-// SECTION : GESTION DES ACCÈS (STAFF / LIVREUR)
-// =========================================
-function accesSecurise() {
-    const code = prompt("Veuillez entrer votre code d'accès (administration ou livraison) :");
-    
-    if (code === null) return; // L'utilisateur a cliqué sur annuler
+        let selectedRating = 0;
+        let warningCount = 0;
+        let currentImg = 1;
 
-    const choix = code.trim().toLowerCase();
+        // --- SESSION CLIENT AU CHARGEMENT ---
+        window.onload = function() {
+            const savedName = localStorage.getItem('userName');
+            const brandTitle = document.querySelector('.brand-name');
+            const logoutBtn = document.getElementById('logout-btn');
+            const reviewForm = document.getElementById('review-form-active');
+            const reviewAlert = document.getElementById('review-auth-alert');
+            
+            if (savedName && brandTitle) {
+                brandTitle.style.position = "relative";
+                brandTitle.innerHTML = `
+                    <div style="position: absolute; top: -25px; left: 0; white-space: nowrap; line-height: 1.2;">
+                        <div style="font-size: 0.8rem; letter-spacing: 5px; opacity: 0.8; font-weight: 300;">BIENVENUE</div>
+                        <div style="color: var(--gold); font-size: 1.4rem; font-weight: 700; letter-spacing: 2px;">
+                            ${savedName.toUpperCase()}
+                        </div>
+                    </div>
+                    <span style="visibility: hidden;">KAISEKI SHUNEI</span> `;
+                
+                if (logoutBtn) logoutBtn.style.display = "block";
+                if (reviewAlert) reviewAlert.style.display = "none";
+                if (reviewForm) {
+                    reviewForm.style.display = "block";
+                    initStars();
+                }
+            }
+        };
 
-    if (choix === "administration") {
-        window.location.href = "admin.html";
-    } 
-    else if (choix === "livraison") {
-        window.location.href = "livraison.html";
-    } 
-    else {
-        alert("PAR LE TONNERRE DE ZEUS, ACCÈS REFUSÉ !");
-    }
-}
+        // --- NAVIGATION ---
+        function toggleMenu() { document.getElementById("side-menu").classList.toggle("open"); document.body.classList.toggle("open-nav"); }
+        function toggleReservation() { document.getElementById("reservation-panel").classList.toggle("open"); }
+        function openReservationFromMenu() { toggleMenu(); setTimeout(toggleReservation, 500); }
 
-// =========================================
-// SECTION : INITIALISATION & SESSION CLIENT
-// =========================================
-let selectedRating = 0;
-let warningCount = 0;
+        // --- INSCRIPTION PLEIN ÉCRAN ---
+        function openFullRegister() {
+            if(document.getElementById("reservation-panel").classList.contains("open")) toggleReservation();
+            const overlay = document.getElementById('full-register-overlay');
+            overlay.style.display = 'block';
+            setTimeout(() => overlay.classList.add('active'), 10);
+            document.body.style.overflow = "hidden";
+        }
+        function closeFullRegister() {
+            const overlay = document.getElementById('full-register-overlay');
+            overlay.classList.remove('active');
+            setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = "auto"; }, 500);
+        }
 
-window.onload = function() {
-    const savedName = localStorage.getItem('userName');
-    const brandTitle = document.querySelector('.brand-name');
-    const logoutBtn = document.getElementById('logout-btn');
-    const reviewForm = document.getElementById('review-form-active');
-    const reviewAlert = document.getElementById('review-auth-alert');
-    
-    if (savedName && brandTitle) {
-        brandTitle.style.position = "relative";
-        brandTitle.innerHTML = `
-            <div style="position: absolute; top: -25px; left: 0; white-space: nowrap; line-height: 1.2;">
-                <div style="font-size: 1.1rem; letter-spacing: 5px; opacity: 0.8; font-weight: 300;">BIENVENUE</div>
-                <div style="margin-left: 35px; color: var(--gold); font-size: 1.6rem; font-weight: 700; letter-spacing: 2px;">
-                    ${savedName.toUpperCase()}
-                </div>
-            </div>
-            <span style="visibility: hidden;">KAISEKI SHUNEI</span> `;
+        // --- AUTHENTIFICATION ---
+        function simulerConnexion(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value.toLowerCase();
+            localStorage.setItem('userName', email.split('@')[0]);
+            if (email.endsWith("@kaiseki")) window.location.href = "livraison.html";
+            else window.location.reload();
+        }
+
+        function validerEtInscrire(event) {
+            event.preventDefault();
+            const email = document.getElementById('reg-email').value.toLowerCase();
+            const phone = document.getElementById('reg-phone').value;
+            const fname = document.getElementById('reg-fname').value;
+            const pass = document.getElementById('reg-pass').value;
+
+            if (phone.replace(/\s/g, '').length < 10) return alert("Téléphone invalide.");
+            if (pass.length < 8) return alert("Mot de passe : 8 caractères minimum.");
+
+            localStorage.setItem('userName', fname);
+            alert("Bienvenue chez Shunei, " + fname.toUpperCase());
+            if (email.endsWith("@kaiseki")) window.location.href = "livraison.html";
+            else window.location.reload();
+        }
+
+        function deconnexion() { localStorage.removeItem('userName'); window.location.reload(); }
         
-        if (logoutBtn) logoutBtn.style.display = "block";
-        if (reviewAlert) reviewAlert.style.display = "none";
-        if (reviewForm) {
-            reviewForm.style.display = "block";
-            initStars();
+        function accesSecurise() {
+            const code = prompt("Code Administration :");
+            if (code && code.toLowerCase() === "administration") window.location.href = "admin.html";
+            else if (code) alert("PAR LE TONNERRE DE ZEUS, ACCÈS REFUSÉ !");
         }
-    } else {
-        if (reviewAlert) reviewAlert.style.display = "block";
-        if (reviewForm) reviewForm.style.display = "none";
-    }
-};
 
-// =========================================
-// SECTION : SYSTÈME D'AVIS (STARS & ZEUS)
-// =========================================
-function initStars() {
-    const starContainer = document.querySelector('.rating-stars');
-    if (!starContainer) return;
+        // --- SYSTEME D'AVIS (STARS & ZEUS) ---
+        function initStars() {
+            const container = document.querySelector('.rating-stars');
+            if(!container) return;
+            container.innerHTML = `<span data-v="1">☆</span><span data-v="2">☆</span><span data-v="3">☆</span><span data-v="4">☆</span><span data-v="5">☆</span>`;
+            const stars = container.querySelectorAll('span');
+            stars.forEach((s, i) => {
+                s.onclick = () => { selectedRating = i + 1; updateStars(stars, selectedRating); };
+                s.onmouseover = () => updateStars(stars, i + 1);
+                s.onmouseout = () => updateStars(stars, selectedRating);
+            });
+        }
+        function updateStars(stars, count) {
+            stars.forEach((s, i) => {
+                s.innerHTML = i < count ? '★' : '☆';
+                s.style.color = i < count ? "var(--gold)" : "rgba(255,255,255,0.3)";
+            });
+        }
+        function publierAvis() {
+            if (selectedRating === 0) return alert("Veuillez noter l'expérience.");
+            if (selectedRating <= 2) {
+                warningCount++;
+                if (warningCount === 1) alert("Attention mon petit, attention à ce que tu fais.");
+                else if (warningCount === 2) alert("Ceci sera ma première et dernière sommation...");
+                else {
+                    document.body.style.filter = "contrast(200%) brightness(50%) blur(5px)";
+                    setTimeout(() => {
+                        alert("PAR LE TONNERRE DE ZEUS, JE VAIS TE DÉSAGRÉGER !");
+                        document.body.innerHTML = `<div style="background:black; color:red; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:monospace; text-align:center;"><h1>SYSTEM_DESTROYED</h1><p>PC HORS SERVICE - REBOOT IMPOSSIBLE</p></div>`;
+                    }, 800);
+                }
+            } else alert("Merci pour votre retour précieux.");
+        }
 
-    starContainer.innerHTML = `
-        <span data-value="1">☆</span><span data-value="2">☆</span><span data-value="3">☆</span><span data-value="4">☆</span><span data-value="5">☆</span>
-    `;
-
-    const stars = starContainer.querySelectorAll('span');
-    stars.forEach((star, index) => {
-        star.style.cursor = "pointer";
-        star.addEventListener('mouseover', () => updateStarsUI(stars, index + 1));
-        star.addEventListener('mouseout', () => updateStarsUI(stars, selectedRating));
-        star.addEventListener('click', () => {
-            selectedRating = index + 1;
-            updateStarsUI(stars, selectedRating);
-        });
-    });
-}
-
-function updateStarsUI(stars, count) {
-    stars.forEach((s, i) => {
-        s.innerHTML = i < count ? '★' : '☆';
-        s.style.color = i < count ? "var(--gold)" : "white";
-    });
-}
-
-function publierAvis() {
-    if (selectedRating === 0) return alert("Veuillez d'abord choisir une note.");
-
-    if (selectedRating <= 2) {
-        warningCount++;
-        if (warningCount === 1) alert("Attention mon petit, attention à ce que tu fais.");
-        else if (warningCount === 2) alert("Ceci sera ma première et dernière sommation...");
-        else if (warningCount >= 3) {
-            document.body.style.filter = "contrast(200%) brightness(50%) blur(5px)";
+        // --- GALERIE PHOTO ---
+        function changeImage(direction) {
+            const resto = document.getElementById("restaurant");
+            const photo = document.getElementById("main-photo");
+            if (!resto.classList.contains("gallery-active")) { openGallery(); return; }
+            currentImg += direction;
+            if (currentImg > 6) currentImg = 1;
+            if (currentImg < 1) currentImg = 6;
+            photo.src = `img/resto-${currentImg}.png`;
+        }
+        function openGallery() {
+            const s = document.getElementById("restaurant"); s.scrollIntoView({ behavior: 'smooth' });
             setTimeout(() => {
-                alert("PAR LE TONNERRE DE ZEUS, JE VAIS TE DÉSAGRÉGER !");
-                document.body.innerHTML = `<div style="background:black; color:red; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; font-family:monospace; text-align:center;"><h1>SYSTEM_DESTROYED</h1><p>PC HORS SERVICE - REBOOT IMPOSSIBLE</p></div>`;
-            }, 800);
+                s.classList.add("gallery-active");
+                document.body.classList.add("no-scroll");
+                document.querySelector("header").style.opacity = "0";
+            }, 600);
         }
-    } else {
-        alert("Merci pour votre avis positif !");
-        warningCount = 0;
-    }
-}
-
-// =========================================
-// SECTION : NAVIGATION & UI
-// =========================================
-function toggleMenu() {
-    document.getElementById("side-menu").classList.toggle("open");
-    document.body.classList.toggle("open-nav");
-}
-
-function toggleReservation() {
-    document.getElementById("reservation-panel").classList.toggle("open");
-}
-
-function openReservationFromMenu() {
-    toggleMenu();
-    setTimeout(toggleReservation, 500);
-}
-
-function deconnexion() {
-    localStorage.removeItem('userName');
-    window.location.reload();
-}
-
-function simulerConnexion(event) {
-    const container = event.target.closest('.auth-box');
-    const inputs = container.querySelectorAll('input');
-    let nameValue = container.id === "register-form" ? inputs[0].value : inputs[0].value.split('@')[0];
-    if (nameValue) localStorage.setItem('userName', nameValue);
-}
-
-function switchAuth() {
-    const login = document.getElementById("login-form");
-    const reg = document.getElementById("register-form");
-    login.style.display = (login.style.display === "none") ? "block" : "none";
-    reg.style.display = (reg.style.display === "none") ? "block" : "none";
-}
-
-// =========================================
-// SECTION : GALERIE RESTAURANT
-// =========================================
-let currentImg = 1;
-function changeImage(direction) {
-    const resto = document.getElementById("restaurant");
-    const photo = document.getElementById("main-photo");
-    if (!resto.classList.contains("gallery-active")) { openGallery(); return; }
-    currentImg += direction;
-    if (currentImg > 6) currentImg = 1;
-    if (currentImg < 1) currentImg = 6;
-    photo.src = `img/resto-${currentImg}.png`;
-}
-
-function openGallery() {
-    const section = document.getElementById("restaurant");
-    section.scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => {
-        section.classList.add("gallery-active");
-        document.body.classList.add("no-scroll");
-        document.querySelector("header").style.opacity = "0";
-    }, 600);
-}
-
-function closeGallery() {
-    document.getElementById("restaurant").classList.remove("gallery-active");
-    document.body.classList.remove("no-scroll");
-    document.querySelector("header").style.opacity = "1";
-}
-</script>
-
-
-
-
+        function closeGallery() {
+            document.getElementById("restaurant").classList.remove("gallery-active");
+            document.body.classList.remove("no-scroll");
+            document.querySelector("header").style.opacity = "1";
+        }
+    </script>
 </body>
 </html>

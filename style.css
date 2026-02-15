@@ -614,8 +614,9 @@ html {
     margin: 40px auto;
 }
 
+
 /* =========================================
-   SECTION 9 : MENU & INFORMATIONS
+   SECTION 9 : MENU (Effet Cadre Étendu)
    ========================================= */
 .menu-view-minimal {
     height: 80vh;
@@ -624,90 +625,95 @@ html {
     align-items: center;
     background: url('img/menu.png') center/cover;
     position: relative;
+    overflow: hidden;
 }
 
 .menu-bg-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
     z-index: 1;
 }
 
 .menu-compact-box {
     position: relative;
     z-index: 2;
-    padding: 40px 60px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 60px 80px;
     background: rgba(10, 10, 10, 0.6);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     text-decoration: none;
-    transition: 0.5s;
+    text-align: center;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* L'EFFET CADRE QUI S'ÉTEND AU SURVOL */
+.menu-compact-box::before,
+.menu-compact-box::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 2px solid transparent;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.menu-compact-box::before { 
+    top: -1px; 
+    left: -1px; 
+}
+.menu-compact-box::after { 
+    bottom: -1px; 
+    right: -1px; 
+}
+
+.menu-compact-box:hover::before {
+    width: 100%;
+    height: 100%;
+    border-top-color: var(--gold);
+    border-left-color: var(--gold);
+}
+
+.menu-compact-box:hover::after {
+    width: 100%;
+    height: 100%;
+    border-bottom-color: var(--gold);
+    border-right-color: var(--gold);
 }
 
 .menu-compact-box:hover {
-    border-color: var(--gold);
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
 .menu-title-small {
     font-family: 'Playfair Display';
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--white);
-    letter-spacing: 8px;
-    margin: 15px 0;
+    letter-spacing: 12px;
+    margin: 20px 0;
+    text-transform: uppercase;
 }
 
 .line-gold {
-    width: 40px;
-    height: 1px;
-    background: var(--gold);
-    margin: 0 auto 15px;
-    transition: width 0.4s;
-}
-
-/* --- Vue Infos de Contact --- */
-.info-view {
-    background: var(--dark-bg);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 100px 5vw 40px;
-    text-align: center;
-}
-
-.contact-details {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    max-width: 1100px;
-    margin: 0 auto 100px;
-}
-
-.detail-item .label {
-    color: var(--gold);
-    font-size: 0.75rem;
-    letter-spacing: 4px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-/* --- Footer --- */
-.site-footer {
-    margin-top: auto;
-    opacity: 0.5;
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-}
-
-.footer-bottom-line {
     width: 50px;
     height: 1px;
     background: var(--gold);
-    margin: 20px auto 0;
+    margin: 0 auto 20px;
+    transition: width 0.5s ease;
+}
+
+.menu-compact-box:hover .line-gold {
+    width: 150px;
+}
+
+.click-info {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0.8;
 }
 
 
@@ -1014,6 +1020,57 @@ html {
     padding: 5px 15px;
     letter-spacing: 2px;
 }
+
+
+
+
+/* =========================================
+   BARRE DE RECHERCHE STYLE ACCUEIL (MENU)
+   ========================================= */
+.menu-search-hero {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* On réutilise tes propriétés exactes de l'accueil */
+.page-menu .input-search {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--white); /* Bordure blanche au début */
+    color: var(--white);
+    padding: 10px;
+    width: 320px; /* Taille initiale */
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.4s ease; /* Animation fluide */
+}
+
+/* L'effet d'élargissement et de changement de couleur au clic */
+.page-menu .input-search:focus {
+    outline: none;
+    border-bottom: 2px solid var(--gold); /* Devient dorée */
+    width: 420px; /* S'élargit */
+}
+
+.page-menu .input-search::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
+
+
 
 /* =========================================
     PAGE ADMIN - ISOLATION COMPLETE
@@ -1450,4 +1507,193 @@ body.page-admin {
     text-decoration: none;
     border: 1px solid #ff4444;
     padding: 5px 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   OVERLAY INSCRIPTION PLEIN ÉCRAN
+   ========================================= */
+.register-full-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #000;
+    z-index: 10000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.register-full-screen.active {
+    display: block;
+    opacity: 1;
+}
+
+.register-content {
+    display: flex;
+    height: 100vh;
+}
+
+.register-image-side {
+    flex: 1;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070') center/cover;
+    filter: grayscale(0.5) brightness(0.8);
+}
+
+.register-form-side {
+    flex: 1.2;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    border-left: 1px solid var(--gray-border);
+    overflow-y: auto;
+}
+
+.form-inner { max-width: 500px; width: 100%; }
+
+.form-intro {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.input-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.close-full-register {
+    position: absolute;
+    top: 40px; right: 40px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10001;
+    color: white;
+    transition: 0.3s;
+}
+
+.close-full-register:hover { color: var(--gold); transform: rotate(90deg); }
+
+/* --- Correction Header Visibilité --- */
+.main-header { transition: opacity 0.5s ease; }
+
+@media (max-width: 900px) {
+    .register-image-side { display: none; }
+    .register-form-side { flex: 1; padding: 20px; }
+}
+
+
+
+
+
+
+
+/* =========================================
+   SECTION INFORMATIONS & CONTACT
+   ========================================= */
+.info-view {
+    background: var(--dark-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 8vw 60px;
+    text-align: center;
+}
+
+.contact-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto 100px;
+}
+
+.detail-item .label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   ZONE AVIS ET ALERTES
+   ========================================= */
+.review-zone {
+    margin-top: 60px;
+    padding: 40px;
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.auth-alert-box {
+    background: linear-gradient(rgba(74, 4, 4, 0.95), rgba(40, 0, 0, 1));
+    border: 1px solid #ff0000;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.rating-stars {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin: 20px 0;
+}
+
+.input-review {
+    width: 100%;
+    max-width: 600px;
+    height: 120px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--gold);
+    color: white;
+    padding: 20px;
+    outline: none;
+}
+
+/* =========================================
+   FOOTER FINAL
+   ========================================= */
+.site-footer {
+    margin-top: auto;
+    padding-top: 40px;
+    opacity: 0.4;
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+}
+
+.footer-bottom-line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 25px auto 0;
 }

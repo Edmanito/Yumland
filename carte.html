@@ -19,11 +19,17 @@
             <div class="hero-text">
                 <span class="pre-title">MAÎTRISE & TRADITION</span>
                 <h1 class="glitch-title">LA CARTE</h1>
-                <div class="scroll-indicator"><span></span></div>
+                
+                <div class="menu-search-hero" style="margin-top: 30px; display: flex; justify-content: center;">
+                    <div class="search-box">
+                        <input type="text" id="menuSearch" placeholder="Rechercher une saveur..." class="input-search" onkeyup="filterMenu()">
+                    </div>
+                </div>
             </div>
         </header>
 
         <main class="menu-wrapper">
+            
             <section class="dish-category">
                 <div class="category-header">
                     <div class="cat-meta">
@@ -31,62 +37,131 @@
                         <div class="cat-line"></div>
                     </div>
                     <h2>OTSUMAMI</h2>
-                    <p class="cat-desc">L'éveil des sens par les petites bouchées</p>
+                    <p class="cat-desc">Entrées délicates pour éveiller le palais</p>
                 </div>
-
                 <div class="items-grid">
                     <div class="dish-card">
-                        <div class="dish-content">
-                            <div class="dish-header">
-                                <h3>Carpaccio de Hamachi</h3>
-                                <span class="price">26</span>
-                            </div>
-                            <p>Sériole du Japon, perles de yuzu, piment serrano et huile de coriandre pressée à froid.</p>
-                            <div class="dish-footer">
-                                <span class="tag">SANS GLUTEN</span>
-                            </div>
-                        </div>
+                        <div class="dish-header"><h3>Carpaccio de Hamachi</h3><span class="price">26</span></div>
+                        <p class="dish-desc">Sériole du Japon, perles de yuzu, piment serrano et huile de coriandre.</p>
+                        <span class="tag">SANS GLUTEN</span>
                     </div>
-
                     <div class="dish-card">
-                        <div class="dish-content">
-                            <div class="dish-header">
-                                <h3>Tempura de Shiso</h3>
-                                <span class="price">22</span>
-                            </div>
-                            <p>Feuilles de shiso croustillantes, tartare de crevettes Obsiblue et sel de bambou.</p>
-                            <div class="dish-footer">
-                                <span class="tag">SIGNATURE</span>
-                            </div>
-                        </div>
+                        <div class="dish-header"><h3>Tempura de Shiso</h3><span class="price">22</span></div>
+                        <p class="dish-desc">Feuilles de shiso, tartare de crevettes Obsiblue et sel de bambou.</p>
+                        <span class="tag">SIGNATURE</span>
+                    </div>
+                    <div class="dish-card">
+                        <div class="dish-header"><h3>Miso Shiru Premium</h3><span class="price">14</span></div>
+                        <p class="dish-desc">Bouillon dashi de 12h, tofu soyeux grillé et algues nori fraîches.</p>
                     </div>
                 </div>
             </section>
 
             <section class="dish-category">
                 <div class="category-header">
-                    <div class="cat-meta">
-                        <span class="cat-num">02</span>
-                        <div class="cat-line"></div>
-                    </div>
-                    <h2>SIGNATURES</h2>
-                    <p class="cat-desc">L'âme du clan Shunei</p>
+                    <div class="cat-meta"><span class="cat-num">02</span><div class="cat-line"></div></div>
+                    <h2>NIGIRI & SASHIMI</h2>
+                    <p class="cat-desc">La pureté du produit brut (par paire)</p>
                 </div>
+                <div class="items-grid">
+                    <div class="dish-card">
+                        <div class="dish-header"><h3>O-Toro</h3><span class="price">28</span></div>
+                        <p class="dish-desc">Thon rouge gras (ventrèche), riz vinaigré à la main et wasabi frais.</p>
+                    </div>
+                    <div class="dish-card">
+                        <div class="dish-header"><h3>Unagi Kabayaki</h3><span class="price">18</span></div>
+                        <p class="dish-desc">Anguille d'eau douce grillée au feu de bois, sauce soja sucrée réduite.</p>
+                    </div>
+                    <div class="dish-card">
+                        <div class="dish-header"><h3>Uni (Oursin)</h3><span class="price">32</span></div>
+                        <p class="dish-desc">Oursin sauvage de Galice, feuille d'or et sel noir d'Hawaï.</p>
+                        <span class="tag">PREMIUM</span>
+                    </div>
+                </div>
+            </section>
 
+            <section class="dish-category">
+                <div class="category-header">
+                    <div class="cat-meta"><span class="cat-num">03</span><div class="cat-line"></div></div>
+                    <h2>SIGNATURES</h2>
+                    <p class="cat-desc">L'art de la haute gastronomie japonaise</p>
+                </div>
                 <div class="items-grid">
                     <div class="dish-card premium-card">
                         <div class="premium-badge">A5 WAGYU</div>
-                        <div class="dish-content">
-                            <div class="dish-header">
-                                <h3>Wagyu Binchotan</h3>
-                                <span class="price">85</span>
-                            </div>
-                            <p>Bœuf Kagoshima A5 grillé au charbon de chêne, réduction de soja vieilli et racines d'hiver.</p>
-                        </div>
+                        <div class="dish-header"><h3>Wagyu Binchotan</h3><span class="price">85</span></div>
+                        <p class="dish-desc">Bœuf Kagoshima A5 fumé au charbon de chêne blanc japonais.</p>
+                    </div>
+                    <div class="dish-card">
+                        <div class="dish-header"><h3>Black Cod Saikyo</h3><span class="price">48</span></div>
+                        <p class="dish-desc">Cabillaud charbonnier mariné 72h au miso blanc et saké doux.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dish-category">
+                <div class="category-header">
+                    <div class="cat-meta"><span class="cat-num">04</span><div class="cat-line"></div></div>
+                    <h2>SWEETS</h2>
+                    <p class="cat-desc">Notes finales sucrées et équilibrées</p>
+                </div>
+                <div class="items-grid">
+                    <div class="dish-card">
+                        <div class="dish-header"><h3>Mochi Artisanal</h3><span class="price">12</span></div>
+                        <p class="dish-desc">Sélection de trois mochis : Matcha, Fleur de cerisier et Sésame noir.</p>
+                    </div>
+                    <div class="dish-card">
+                        <div class="dish-header"><h3>Perles du Japon</h3><span class="price">16</span></div>
+                        <p class="dish-desc">Tapioca au lait de coco, mangue fraîche et sorbet basilic-citron vert.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dish-category">
+                <div class="category-header">
+                    <div class="cat-meta"><span class="cat-num">05</span><div class="cat-line"></div></div>
+                    <h2>BEVERAGES</h2>
+                    <p class="cat-desc">Sélection de thés, sakés et nectars</p>
+                </div>
+                <div class="items-grid">
+                    <div class="dish-card">
+                        <div class="dish-header"><h3>Saké Dassai 23</h3><span class="price">24</span></div>
+                        <p class="dish-desc">Le sommet du saké Junmai Daiginjo. Notes florales et soyeuses (12cl).</p>
+                    </div>
+                    <div class="dish-card">
+                        <div class="dish-header"><h3>Thé Matcha de Kyoto</h3><span class="price">10</span></div>
+                        <p class="dish-desc">Thé de cérémonie préparé au fouet de bambou traditionnel.</p>
+                    </div>
+                    <div class="dish-card">
+                        <div class="dish-header"><h3>Nectar de Yuzu</h3><span class="price">9</span></div>
+                        <p class="dish-desc">Jus de yuzu pressé, eau de source gazéifiée et miel infusé.</p>
                     </div>
                 </div>
             </section>
         </main>
     </div>
+
+    <script>
+        function filterMenu() {
+            const input = document.getElementById('menuSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.dish-card');
+            const categories = document.querySelectorAll('.dish-category');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                const desc = card.querySelector('.dish-desc') ? card.querySelector('.dish-desc').innerText.toLowerCase() : "";
+                if (title.includes(input) || desc.includes(input)) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            categories.forEach(cat => {
+                const visibleCards = cat.querySelectorAll('.dish-card:not([style*="display: none"])');
+                cat.style.display = visibleCards.length === 0 && input !== "" ? "none" : "block";
+            });
+        }
+    </script>
 </body>
 </html>
