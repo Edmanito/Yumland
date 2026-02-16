@@ -1,0 +1,53 @@
+Rapport de projet MI1 A
+
+Phase 1
+
+Dès le lancement du projet, nous avons réparti les tâches de la manière suivante :
+A. Yanis : page de commande, page de profil et page d’administration
+Mansour : page d’accueil, page de notation, page de connexion et page de présentation
+G. Yanis : page d’inscription, page de livraison et rédaction du rapport du projet
+
+Lors de la première séance de TD, nous avions choisi un thème ninja intitulé « Lotus de Konoha ». Toutefois, avec le recul, nous n’avons pas conservé ce concept initial. Nous avons finalement opté pour un thème asiatique plus cohérent, en nous orientant vers un restaurant coréen.
+
+Semaine du 26/01
+
+Au cours de la première semmaine, nous étions partis sur le 1er choix de thème avant de changer sur le choix final.
+
+Semaine du 02/02 
+
+Au cours de la deuxième semaine, les pages suivantes ont été réalisées :
+accueil, inscription, connexion, profil, administration, commandes, notation.
+
+Les pages de livraison et de présentation ont été commencées, mais n’étaient pas encore finalisées.
+
+Semaine du 09/02 au 22/02
+Rapport de projet MI1 A
+
+Phase 1
+
+Dès le lancement du projet, nous avons réparti les tâches de la manière suivante :
+A. Yanis : page de commande, page de profil et page d’administration
+Mansour : page d’accueil, page de notation, page de connexion et page de présentation
+G. Yanis : page d’inscription, page de livraison et rédaction du rapport du projet
+
+Lors de la première séance de TD, nous avions choisi un thème ninja intitulé « Lotus de Konoha ». Toutefois, avec le recul, nous n’avons pas conservé ce concept initial. Nous avons finalement opté pour un thème asiatique plus cohérent, en nous orientant vers un restaurant coréen.
+
+Semaine du 26/01
+
+Au cours de la première semmaine, nous étions partis sur le 1er choix de thème avant de changer sur le choix final.
+
+Semaine du 02/02 
+
+Au cours de la deuxième semaine, les pages suivantes ont été réalisées :
+accueil, inscription, connexion, profil, administration, commandes, notation.
+
+Les pages de livraison et de présentation ont été commencées, mais n’étaient pas encore finalisées.
+
+Semaine du 09/02 au 22/02
+
+Durant la troisième et quatrième semaine, les pages de livraison et de présentation ont été finalisées. De plus, plusieurs corrections et améliorations ont été apportées à l’ensemble du projet afin d’en améliorer la cohérence et le fonctionnement.
+
+Nous n’avons pas rencontré de problèmes majeurs durant cette phase 1. Les problèmes mineurs rencontrés concernaient principalement l’insertion des images : celles-ci devaient être converties au format .png afin de respecter les dimensions prévues au sein du site.
+Durant la troisième et quatrième semaine, les pages de livraison et de présentation ont été finalisées. De plus, plusieurs corrections et améliorations ont été apportées à l’ensemble du projet afin d’en améliorer la cohérence et le fonctionnement.
+
+Nous n’avons pas rencontré de problèmes majeurs durant cette phase 1. Les problèmes mineurs rencontrés concernaient principalement l’insertion des images : celles-ci devaient être converties au format .png afin de respecter les dimensions prévues au sein du site.
