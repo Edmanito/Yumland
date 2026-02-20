@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kaiseki Shunei | Votre Avis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    **PS: J'avais la flemme de télécharger une image donc j'ai mis un lien d'image on changera plus tard**
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-notation">
+
+    <div class="admin-topbar">
+        <a href="index.html" class="btn-retour">← RETOUR ACCUEIL</a>
+    </div>
+
+    <div class="notation-container">
+        <div class="notation-card">
+            <div class="notation-header">
+                <h1>L'Expérience Kaiseki</h1>
+                <p>Votre satisfaction est le cœur de notre art culinaire.</p>
+            </div>
+
+            <form class="notation-form">
+                <div class="rating-box">
+                    <span>Notez votre expérience</span>
+                    <div class="stars">
+                        <input type="radio" name="star" id="star5" value="5"><label for="star5">★</label>
+                        <input type="radio" name="star" id="star4" value="4"><label for="star4">★</label>
+                        <input type="radio" name="star" id="star3" value="3"><label for="star3">★</label>
+                        <input type="radio" name="star" id="star2" value="2"><label for="star2">★</label>
+                        <input type="radio" name="star" id="star1" value="1"><label for="star1">★</label>
+                    </div>
+                </div>
+
+                <div class="comment-box">
+                    <label for="user-comment">Un mot sur la préparation ?</label>
+                    <textarea id="user-comment" placeholder="Partagez vos impressions avec notre Chef..." rows="5"></textarea>
+                </div>
+
+                <div class="form-footer">
+                    <button type="submit" class="btn-send">TRANSMETTRE MON AVIS</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
