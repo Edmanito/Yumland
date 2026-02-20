@@ -323,8 +323,9 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
+    /* On remplace le lien internet par ton image locale */
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),
-                url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070') center/cover no-repeat;
+                url('img/fondHeader.png') center/cover no-repeat;
     z-index: -1;
 }
 
@@ -388,20 +389,24 @@ html {
    SECTION 7 : GALERIE RESTAURANT
    ========================================= */
 .restaurant-view {
-    position: relative;
+    position: relative; /* Indispensable pour contenir l'image */
     min-height: 100vh;
+    width: 100%;
+    overflow: hidden; /* Empêche tout débordement */
     padding: 0 !important;
-    overflow: hidden;
+    z-index: 1; /* Assure que cette section reste à son niveau */
 }
 
 .restaurant-bg {
-    position: absolute;
+    position: absolute; /* L'image se place par rapport à .restaurant-view */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                url('img/restaurant-fond.png') center/cover;
+                url('img/restaurant-fond.png') center/cover no-repeat;
+    z-index: -1; /* Elle passe DERRIÈRE le contenu de la section */
     transition: 0.6s ease;
-    z-index: 1;
 }
 
 .blue-overlay {
@@ -532,8 +537,10 @@ html {
 }
 
 /* =========================================
-   SECTION 8 : CHEFS & EXPÉRIENCE
+   SECTION 8 : CHEFS & EXPÉRIENCE (COMPLÈTE)
    ========================================= */
+
+/* --- BLOC CHEFS --- */
 .chefs-view {
     background: var(--dark-bg);
     padding: 120px 8vw;
@@ -553,6 +560,7 @@ html {
     flex: 1;
     text-align: center;
     max-width: 450px;
+    cursor: pointer;
 }
 
 .chef-img-wrapper {
@@ -589,31 +597,204 @@ html {
     margin: 20px 0;
 }
 
-/* --- Vue Expérience --- */
+/* --- VUE EXPÉRIENCE (TIMELINE & IMAGE DE FOND) --- */
 .experience-view {
-    background: #0d0d0d;
+    position: relative;
+    width: 100%;
     min-height: 100vh;
+    padding: 150px 0;
+    /* On force l'affichage avec !important pour le test */
+    background: linear-gradient(rgba(8, 8, 8, 0.8), rgba(8, 8, 8, 0.9)), 
+                url('img/fondExperience.png') center/cover no-repeat fixed !important;
+    overflow: hidden;
+}
+
+.experience-view::before {
+    display: none; /* On le désactive pour l'instant pour être sûr de voir l'image */
+}
+
+.experience-content {
+    position: relative;
+    z-index: 5; /* On le met bien au-dessus */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title-gold {
+    font-family: 'Playfair Display';
+    font-size: 3.5rem;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 100px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+.timeline-container {
+    position: relative;
+    padding: 40px 0;
+}
+
+/* Ligne centrale dorée */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--gold), var(--gold), transparent);
+    opacity: 0.4;
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    width: 100%;
+    margin-bottom: 120px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 0 15vw;
-    text-align: center;
 }
 
-.experience-full-text h2 {
-    font-family: 'Playfair Display';
-    font-size: 4rem;
-    margin: 30px 0 50px;
-    letter-spacing: 5px;
-}
-
-.exp-divider-gold {
-    width: 60px;
-    height: 2px;
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 15px;
+    width: 12px;
+    height: 12px;
     background: var(--gold);
-    margin: 40px auto;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px var(--gold);
+    z-index: 2;
 }
 
+.timeline-date {
+    position: absolute;
+    left: 50%;
+    top: -35px;
+    transform: translateX(-50%);
+    font-family: 'Montserrat';
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.timeline-content {
+    width: 42%;
+    padding: 35px;
+    background: rgba(20, 20, 20, 0.4); /* Translucide */
+    backdrop-filter: blur(10px);      /* Glassmorphism */
+    border: 1px solid rgba(188, 156, 100, 0.15);
+    transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+}
+
+.timeline-content:hover {
+    background: rgba(188, 156, 100, 0.08);
+    border-color: var(--gold);
+    transform: translateY(-10px);
+}
+
+.kanji-bg {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 4rem;
+    color: rgba(188, 156, 100, 0.06);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Alternance gauche / droite */
+.timeline-item:nth-child(even) .timeline-content { margin-left: 58%; text-align: left; }
+.timeline-item:nth-child(odd) .timeline-content { margin-right: 58%; text-align: right; }
+
+.timeline-content h3 {
+    font-family: 'Playfair Display';
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.timeline-content p {
+    color: #bbb;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+.exp-quote-large {
+    font-family: 'Playfair Display';
+    font-style: italic;
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    margin-top: 100px;
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+/* --- OVERLAY HISTOIRE CHEFS --- */
+.chef-story-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.96);
+    z-index: 8000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(15px);
+}
+
+.story-paper {
+    background: #fdfaf0; /* Papier Washi */
+    color: #1a1a1a;
+    padding: 80px 60px;
+    max-width: 700px;
+    position: relative;
+    border: 1px solid #d4af37;
+    box-shadow: 0 0 80px rgba(0,0,0,0.9);
+}
+
+.ink-stamp {
+    position: absolute;
+    top: 30px; right: 30px;
+    border: 3px solid #4A0404;
+    color: #4A0404;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    opacity: 0.7;
+}
+
+.close-story {
+    position: absolute;
+    /* On la place à 20px du bord droit du papier */
+    top: -25px; 
+    right: -25px; 
+    
+    /* Style du bouton */
+    width: 45px;
+    height: 45px;
+    background: #4A0404; /* Rouge profond style sceau japonais */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 8001;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.close-story:hover {
+    transform: rotate(90deg); /* Effet de rotation au survol */
+    background: #bc9c64; /* Devient dorée au survol */
+    color: #000;
+}
 
 /* =========================================
    SECTION 9 : MENU (Effet Cadre Étendu)
@@ -836,11 +1017,12 @@ html {
 }
 
 /* =========================================
-   SECTION : LA CARTE (STYLE AMÉLIORÉ)
+    SECTION : LA CARTE (STYLE VISUEL & ZOOM)
    ========================================= */
 .page-menu {
     background-color: #050505;
     color: var(--white);
+    overflow-x: hidden;
 }
 
 /* --- Bouton Retour Flottant --- */
@@ -888,18 +1070,20 @@ html {
 .hero-text {
     position: relative;
     text-align: center;
+    width: 100%;
 }
 
 .glitch-title {
     font-family: 'Playfair Display';
-    font-size: 7rem;
+    font-size: clamp(3rem, 10vw, 7rem); /* Adaptatif sur mobile */
     letter-spacing: 25px;
     margin: 20px 0;
+    text-transform: uppercase;
 }
 
 /* --- Structure du Menu --- */
 .menu-wrapper {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 100px 40px;
 }
@@ -910,60 +1094,74 @@ html {
 
 .category-header {
     margin-bottom: 60px;
-    text-align: left;
-}
-
-.cat-meta {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 15px;
-}
-
-.cat-num {
-    font-family: 'Montserrat';
-    color: var(--gold);
-    font-weight: 700;
-}
-
-.cat-line {
-    width: 60px;
-    height: 1px;
-    background: var(--gold);
 }
 
 .category-header h2 {
     font-family: 'Playfair Display';
     font-size: 3rem;
     letter-spacing: 10px;
+    color: #fff;
 }
 
-.cat-desc {
-    color: #666;
-    font-style: italic;
-    margin-top: 5px;
-}
-
-/* --- Cartes des Plats --- */
+/* --- Grille des Plats (MODIFIÉE POUR LES IMAGES) --- */
 .items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    /* On réduit un peu la taille mini pour que les images ne soient pas trop géantes */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
     gap: 40px;
 }
 
 .dish-card {
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(255,255,255,0.05);
-    padding: 40px;
     transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
+
+/* Nouveau : Conteneur d'image */
+.dish-img-container {
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.dish-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.8s ease;
+}
+
+/* L'effet de survol avec le "+" */
+.play-zoom {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.3s;
+    font-size: 3rem;
+    color: var(--gold);
+    font-weight: 200;
+}
+
+.dish-card:hover .play-zoom { opacity: 1; }
+.dish-card:hover .dish-preview { transform: scale(1.1); }
 
 .dish-card:hover {
     background: rgba(197, 160, 89, 0.05);
     border-color: var(--gold);
     transform: translateY(-10px);
+}
+
+.dish-content {
+    padding: 30px;
 }
 
 .dish-header {
@@ -975,50 +1173,67 @@ html {
 
 .dish-header h3 {
     font-family: 'Playfair Display';
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: var(--gold);
 }
 
-.price {
-    font-weight: bold;
-    letter-spacing: 2px;
+/* --- MODALE DE ZOOM --- */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 10001;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(15px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.dish-card p {
-    font-size: 0.9rem;
-    color: #aaa;
-    line-height: 1.8;
+.modal-content {
+    max-width: 90%;
+    max-height: 80vh;
+    border: 1px solid var(--gold);
+    animation: modalZoom 0.4s ease;
 }
 
-/* --- Tags et Badges --- */
-.dish-footer {
+@keyframes modalZoom {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+#caption {
     margin-top: 25px;
+    color: var(--gold);
+    font-family: 'Playfair Display';
+    font-size: 1.8rem;
+    letter-spacing: 3px;
 }
 
-.tag {
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    border: 1px solid #333;
-    padding: 5px 10px;
-    color: #888;
+.close-zoom {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
 }
 
-/* --- Style Premium (Wagyu) --- */
+/* --- Style Premium --- */
 .premium-card {
     border: 1px solid var(--gold);
-    background: linear-gradient(135deg, rgba(197, 160, 89, 0.1), transparent);
 }
 
 .premium-badge {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0; right: 0;
     background: var(--gold);
     color: black;
     font-size: 0.6rem;
     font-weight: bold;
-    padding: 5px 15px;
-    letter-spacing: 2px;
+    padding: 8px 20px;
+    z-index: 10;
 }
 
 
@@ -1754,27 +1969,33 @@ body.page-admin {
 
 
 
-
 /* ========================================= 
-	PAGE NOTATION 
+     PAGE NOTATION (Optimisée)
 ========================================= */
 .page-notation {
-    background-color: #0a0a0a;
+    /* Intégration de ton image de fond avec overlay sombre */
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), 
+                url('img/fond.png') center/cover no-repeat fixed;
     color: #eaeaea;
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 0;
+    min-height: 100vh;
 }
 
-/* Réutilisation de ta Topbar */
 .page-notation .admin-topbar { padding: 30px 50px; }
+
 .page-notation .btn-retour {
-    color: #888; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px;
-    border: 1px solid rgba(255,255,255,0.1); padding: 10px 20px; transition: 0.3s;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 10px 20px;
+    transition: 0.3s;
 }
+
 .page-notation .btn-retour:hover { border-color: #bc9c64; color: #bc9c64; }
 
-/* Conteneur de la carte */
+/* Conteneur et Carte */
 .notation-container {
     display: flex;
     justify-content: center;
@@ -1784,112 +2005,199 @@ body.page-admin {
 }
 
 .notation-card {
-    background: #111;
+    background: rgba(17, 17, 17, 0.9); /* Transparence pour voir le fond */
+    backdrop-filter: blur(10px);      /* Effet de flou luxueux */
     border: 1px solid rgba(188, 156, 100, 0.2);
     width: 100%;
-    max-width: 600px;
+    max-width: 550px;
     padding: 50px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
     position: relative;
 }
 
+/* Liseré doré décoratif */
 .notation-card::before {
     content: "";
     position: absolute;
     top: 0; left: 0; width: 4px; height: 100%;
-    background: #bc9c64; /* Rappel du liseré doré des commandes */
+    background: #bc9c64;
 }
 
-/* Header */
-.notation-header { text-align: center; margin-bottom: 40px; }
+.notation-header { text-align: center; margin-bottom: 35px; }
 .notation-header h1 {
     font-family: 'Playfair Display', serif;
     color: #bc9c64;
     font-size: 2.2rem;
     margin-bottom: 10px;
 }
-.notation-header p { color: #666; font-style: italic; font-size: 0.9rem; }
+.notation-header p { color: #888; font-style: italic; font-size: 0.9rem; }
 
-/* ÉTOILES (Technique de Row-Reverse pour le Hover) */
-.rating-box { text-align: center; margin-bottom: 35px; }
+/* ÉTOILES (Optimisées) */
+.rating-box { text-align: center; margin-bottom: 30px; }
 .rating-box span { 
-    display: block; 
-    margin-bottom: 15px; 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    font-size: 0.75rem; 
-    color: #bc9c64;
+    display: block; margin-bottom: 15px; text-transform: uppercase; 
+    letter-spacing: 3px; font-size: 0.7rem; color: #bc9c64;
 }
 
-.stars {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    gap: 10px;
-}
-
+.stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 8px; }
 .stars input { display: none; }
 .stars label {
-    font-size: 2.5rem;
-    color: #222;
-    cursor: pointer;
-    transition: 0.2s;
+    font-size: 2.5rem; color: #2a2a2a; cursor: pointer; transition: 0.3s;
 }
 
-/* Effets de survol et sélection (Doré) */
-.stars label:hover,
-.stars label:hover ~ label,
+.stars label:hover, .stars label:hover ~ label,
 .stars input:checked ~ label {
     color: #bc9c64;
     text-shadow: 0 0 15px rgba(188, 156, 100, 0.4);
 }
 
-/* ZONE COMMENTAIRE */
-.comment-box { margin-bottom: 30px; }
-.comment-box label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 0.8rem;
-    color: #888;
-}
-
+/* ZONE COMMENTAIRE & BOUTON */
 .comment-box textarea {
     width: 100%;
-    background: #0d0d0d;
+    background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(188, 156, 100, 0.15);
-    border-radius: 4px;
-    color: #fff;
-    padding: 15px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
-    resize: none;
-    box-sizing: border-box;
-    transition: 0.3s;
+    color: #fff; padding: 15px; font-size: 0.9rem;
+    resize: none; transition: 0.3s; margin-bottom: 25px;
 }
 
-.comment-box textarea:focus {
-    outline: none;
-    border-color: #bc9c64;
-    background: #141414;
-}
+.comment-box textarea:focus { outline: none; border-color: #bc9c64; background: rgba(0, 0, 0, 0.5); }
 
-/* BOUTON ENVOI */
-.form-footer { text-align: center; }
 .btn-send {
     background: transparent;
     border: 1px solid #bc9c64;
     color: #bc9c64;
     padding: 15px 40px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    cursor: pointer;
-    transition: 0.4s;
+    font-weight: 700; font-size: 0.75rem; letter-spacing: 3px;
+    cursor: pointer; transition: 0.4s; width: 100%; /* Bouton plus large pour mobile */
 }
 
 .btn-send:hover {
-    background: #bc9c64;
-    color: #0a0a0a;
-    box-shadow: 0 0 20px rgba(188, 156, 100, 0.3);
+    background: #bc9c64; color: #0a0a0a;
+    box-shadow: 0 10px 20px rgba(188, 156, 100, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.experience-view {
+    padding: 120px 0;
+    background: #0d0d0d;
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 40px 0;
+}
+
+/* La ligne centrale */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+}
+
+.timeline-item {
+    margin-bottom: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.timeline-date {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark-bg);
+    color: var(--gold);
+    font-family: 'Playfair Display';
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px;
+    border: 1px solid var(--gold);
+    z-index: 10;
+}
+
+.timeline-content {
+    width: 40%;
+    padding: 20px;
+    text-align: right;
+}
+
+/* Inversion un sur deux */
+.timeline-item:nth-child(even) .timeline-content {
+    text-align: left;
+    margin-left: 55%;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: 55%;
+}
+
+.timeline-content h3 {
+    font-family: 'Playfair Display';
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.timeline-content p {
+    color: #aaa;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* Animation au survol */
+.timeline-item:hover .timeline-date {
+    background: var(--gold);
+    color: #000;
+    transition: 0.4s;
+}
+
+
+
+
+
+
+
+
+
+
+.btn-note {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.3); /* Très discret au début */
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn-note:hover {
+    color: var(--gold);
+    transform: scale(1.3);
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+}
+
+/* On s'assure que la cellule de prix est bien alignée */
+.order-table td.price {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Aligne le prix et l'étoile à droite */
 }

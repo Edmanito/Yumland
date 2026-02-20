@@ -51,6 +51,8 @@
                         <th style="text-align:center;">Actions Rapides</th>
                     </tr>
                 </thead>
+                
+
                 <tbody id="userTableBody">
                     <tr data-role="client">
                         <td style="color:#888;">#001</td>
@@ -63,7 +65,70 @@
                             <button onclick="toggleBlock(this)" class="btn-action-icon">🚫</button>
                         </td>
                     </tr>
+
+                    <tr data-role="livreur">
+                        <td style="color:#888;">#L08</td>
+                        <td><span class="user-name" style="font-weight:bold;">Takeshi Kovacs</span></td>
+                        <td style="color:#888;">t.kovacs@kaiseki.com</td>
+                        <td><span class="badge livreur">Livreur</span></td>
+                        <td><span class="status-dot active"></span> En service</td>
+                        <td style="display:flex; gap:10px; justify-content:center;">
+                            <button class="btn-kaiseki">Planning</button>
+                            <button onclick="toggleBlock(this)" class="btn-action-icon">🚫</button>
+                        </td>
+                    </tr>
+
+                    <tr data-role="client">
+                        <td style="color:#888;">#002</td>
+                        <td><span class="user-name" style="font-weight:bold;">Elena Rodriguez</span></td>
+                        <td style="color:#888;">e.rodriguez@email.com</td>
+                        <td><span class="badge client">Client</span></td>
+                        <td><span class="status-dot active"></span> Actif</td>
+                        <td style="display:flex; gap:10px; justify-content:center;">
+                            <a href="profil.html" class="btn-kaiseki">Voir Profil</a>
+                            <button onclick="toggleBlock(this)" class="btn-action-icon">🚫</button>
+                        </td>
+                    </tr>
+
+                    <tr data-role="client">
+                        <td style="color:#888;">#003</td>
+                        <td><span class="user-name" style="font-weight:bold;">Thomas Miller</span></td>
+                        <td style="color:#888;">t.miller@email.com</td>
+                        <td><span class="badge client">Client</span></td>
+                        <td><span class="status-dot inactive" style="background: #ff4d4d;"></span> Suspendu</td>
+                        <td style="display:flex; gap:10px; justify-content:center;">
+                            <a href="profil.html" class="btn-kaiseki">Voir Profil</a>
+                            <button onclick="toggleBlock(this)" class="btn-action-icon">🚫</button>
+                        </td>
+                    </tr>
+
+                    <tr data-role="livreur">
+                        <td style="color:#888;">#L12</td>
+                        <td><span class="user-name" style="font-weight:bold;">Sonia Belkacem</span></td>
+                        <td style="color:#888;">s.belkacem@kaiseki.com</td>
+                        <td><span class="badge livreur">Livreur</span></td>
+                        <td><span class="status-dot active"></span> En service</td>
+                        <td style="display:flex; gap:10px; justify-content:center;">
+                            <button class="btn-kaiseki">Planning</button>
+                            <button onclick="toggleBlock(this)" class="btn-action-icon">🚫</button>
+                        </td>
+                    </tr>
+
+                    <tr data-role="client">
+                        <td style="color:#888;">#004</td>
+                        <td><span class="user-name" style="font-weight:bold;">Yuki Tanaka</span></td>
+                        <td style="color:#888;">y.tanaka@email.com</td>
+                        <td><span class="badge client">Client</span></td>
+                        <td><span class="status-dot active"></span> Actif</td>
+                        <td style="display:flex; gap:10px; justify-content:center;">
+                            <a href="profil.html" class="btn-kaiseki">Voir Profil</a>
+                            <button onclick="toggleBlock(this)" class="btn-action-icon">🚫</button>
+                        </td>
+                    </tr>
                 </tbody>
+
+
+
             </table>
         </div>
     </main>

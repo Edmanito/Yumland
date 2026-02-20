@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaiseki Shunei | Accueil</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts..com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="page-accueil">
@@ -45,11 +45,22 @@
             </div>
             <div class="nav-branding"><h1 class="brand-name">KAISEKI SHUNEI</h1></div>
         </div>
-        <div class="header-right">
-            <div id="logout-btn" onclick="deconnexion()" style="display: none; cursor: pointer; color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; margin-right: 20px; border-bottom: 1px solid var(--gold);">DÉCONNEXION</div>
-            <div class="profile-trigger" onclick="toggleReservation()"><img src="img/profil-vide.png" alt="Profil" class="profile-icon-nav"></div>
-            <a href="javascript:void(0)" class="btn-reservation" onclick="toggleReservation()">COMMANDER</a>
+
+
+
+    <div class="header-right">
+        <div id="logout-btn" onclick="deconnexion()" style="display: none; cursor: pointer; color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; margin-right: 20px; border-bottom: 1px solid var(--gold);">
+            DÉCONNEXION
         </div>
+
+        <div class="profile-trigger" onclick="gererClicProfil()">
+            <img src="img/profil-vide.png" alt="Profil" class="profile-icon-nav">
+        </div>
+
+        <a href="javascript:void(0)" class="btn-reservation" onclick="toggleReservation()">COMMANDER</a>
+    </div>
+
+
     </header>
 
     <section class="hero-section">
@@ -123,30 +134,95 @@
                 </div>
             </div>
         </div>
-    </section>
-
+    
     <section id="chefs" class="scroll-section chefs-view">
-        <div class="chefs-container">
-            <div class="chef-card">
-                <div class="chef-img-wrapper"><img src="img/chef-1.jpeg" class="chef-portrait"></div>
-                <div class="chef-info"><span class="chef-role">MAÎTRE DU FEU</span><h3>KENJI</h3></div>
+    <div class="chefs-container">
+        <div class="chef-card" onclick="ouvrirHistoire('kenji')">
+            <div class="chef-img-wrapper">
+                <img src="img/chef-1.jpeg" class="chef-portrait" alt="Maître Kenji">
             </div>
-            <div class="chefs-divider"><div class="line"></div><div class="kanji-split">絆</div><div class="line"></div></div>
-            <div class="chef-card">
-                <div class="chef-img-wrapper"><img src="img/chef-2.jpeg" class="chef-portrait"></div>
-                <div class="chef-info"><span class="chef-role">ÂME CRÉATRICE</span><h3>AIKO</h3></div>
+            <div class="chef-info">
+                <span class="chef-role">MAÎTRE DU FEU</span>
+                <h3>KENJI</h3>
             </div>
         </div>
-    </section>
 
-    <section id="experience" class="scroll-section experience-view">
-        <div class="experience-full-text">
-            <span class="section-subtitle">L'UNION DES CULTURES</span>
-            <h2>L'Équilibre Absolu</h2>
-            <div class="exp-story-centered"><div class="exp-divider-gold"></div></div>
-            <div class="exp-quote-large">"Le sushi est un pont entre nos deux mondes."</div>
+        <div class="chefs-divider">
+            <div class="line"></div>
+            <div class="kanji-split">絆</div>
+            <div class="line"></div>
         </div>
-    </section>
+
+        <div class="chef-card" onclick="ouvrirHistoire('aiko')">
+            <div class="chef-img-wrapper">
+                <img src="img/chef-2.jpeg" class="chef-portrait" alt="Chef Aiko">
+            </div>
+            <div class="chef-info">
+                <span class="chef-role">ÂME CRÉATRICE</span>
+                <h3>AIKO</h3>
+            </div>
+        </div>
+    </div>
+
+    <div id="chef-overlay" class="chef-story-overlay">
+        <div class="story-paper">
+            <div class="close-story" onclick="fermerHistoire()">✕</div>
+            <div class="ink-stamp">春栄</div>
+            <div id="story-content">
+                </div>
+        </div>
+    </div>
+</section>
+
+<section id="experience" class="scroll-section experience-view">
+    <div class="experience-content">
+        <span class="section-subtitle">NOTRE ODYSSÉE</span>
+        <h2 class="section-title-gold">L'Équilibre Absolu</h2>
+        
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2012</div>
+                <div class="timeline-content">
+                    <span class="kanji-bg">出会い</span>
+                    <h3>La Rencontre</h3>
+                    <p>Kenji et Aiko croisent leurs chemins dans les cuisines d'un grand Ryokan à Kyoto. L'idée d'une fusion entre la force du feu et la délicatesse du trait naît.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2018</div>
+                <div class="timeline-content">
+                    <span class="kanji-bg">旅立ち</span>
+                    <h3>L'Ancrage Parisien</h3>
+                    <p>Ouverture de Shunei au cœur de Montmartre. Un pont est jeté entre la rigueur japonaise et le terroir français pour une expérience unique.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2024</div>
+                <div class="timeline-content">
+                    <span class="kanji-bg">栄光</span>
+                    <h3>La Consécration</h3>
+                    <p>Le restaurant devient une référence mondiale du Kaiseki moderne, récompensé pour son respect sacré du Shun (la saisonnalité).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exp-quote-wrapper">
+            <div class="quote-line"></div>
+            <p class="exp-quote-large">"Le sushi est un pont entre nos deux mondes."</p>
+            <div class="quote-line"></div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
 
     <section id="menu" class="scroll-section menu-view-minimal">
         <div class="menu-bg-overlay"></div>
@@ -170,97 +246,115 @@
                 </div>
             </div>
 
-            <div id="review-container" class="review-zone">
-                <div id="review-auth-alert" class="auth-alert-box">
-                    <p style="font-size: 1.2rem; margin-bottom: 20px; letter-spacing: 2px;">L'ACCÈS AUX AVIS EST RÉSERVÉ AUX MEMBRES</p>
-                    <button class="btn-auth-red" onclick="toggleReservation()">SE CONNECTER / S'INSCRIRE</button>
-                </div>
-                <div id="review-form-active" style="display: none; text-align: center;">
-                    <span class="section-subtitle">VOTRE EXPÉRIENCE</span>
-                    <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 20px;">LAISSER UN AVIS</h2>
-                    <div class="rating-stars" style="font-size: 2.8rem; color: var(--gold); margin-bottom: 25px; cursor: pointer;"></div>
-                    <textarea placeholder="Partagez votre ressenti..." class="input-review"></textarea>
-                    <br><button class="btn-reservation" onclick="publierAvis()" style="margin-top: 30px;">PUBLIER MON AVIS</button>
-                </div>
-            </div>
+            
             <footer class="site-footer">
                 <p>© 2026 KAISEKI SHUNEI — TOUS DROITS RÉSERVÉS</p>
                 <div class="footer-bottom-line"></div>
             </footer>
         </div>
+
     </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script>
-        let selectedRating = 0; let warningCount = 0; let currentImg = 1;
+    let currentImg = 1;
 
-        // ACCÈS SÉCURISÉ
-        function accesSecurise() {
-            const code = prompt("Veuillez entrer votre code d'accès :");
-            if (code === null) return;
-            const choix = code.trim().toLowerCase();
-            if (choix === "administration") { window.location.href = "admin.html"; } 
-            else if (choix === "commande") { window.location.href = "commande.html"; } 
-            else if (choix === "livraison") { window.location.href = "livraison.html"; }
-            else { alert("PAR LE TONNERRE DE ZEUS, ACCÈS REFUSÉ !"); }
+    // FONCTION DE GESTION DU PROFIL (NOUVEAU)
+    function gererClicProfil() {
+        const isConnected = localStorage.getItem('userName');
+        if (isConnected) {
+            window.location.href = "profil.html";
+        } else {
+            toggleReservation();
         }
+    }
 
-        // INITIALISATION SESSION
-        window.onload = function() {
-            const savedName = localStorage.getItem('userName');
-            if (savedName) {
-                const brandTitle = document.querySelector('.brand-name');
-                brandTitle.innerHTML = `<div style="position: absolute; top: -25px; left: 0; white-space: nowrap;"><div style="font-size: 0.8rem; letter-spacing: 5px; opacity: 0.8;">BIENVENUE</div><div style="color: var(--gold); font-size: 1.4rem; font-weight: 700;">${savedName.toUpperCase()}</div></div><span style="visibility: hidden;">KAISEKI SHUNEI</span>`;
-                document.getElementById('logout-btn').style.display = "block";
-                document.getElementById('review-auth-alert').style.display = "none";
-                document.getElementById('review-form-active').style.display = "block";
-                initStars();
-            }
-        };
+    // ACCÈS SÉCURISÉ
+    function accesSecurise() {
+        const code = prompt("Veuillez entrer votre code d'accès :");
+        if (code === null) return;
+        const choix = code.trim().toLowerCase();
+        if (choix === "administration") { window.location.href = "admin.html"; } 
+        else if (choix === "commande") { window.location.href = "commande.html"; } 
+        else if (choix === "livraison") { window.location.href = "livraison.html"; }
+        else { alert("ACCÈS REFUSÉ !"); }
+    }
 
-        // NAVIGATION & MODALES
-        function toggleMenu() { document.getElementById("side-menu").classList.toggle("open"); document.body.classList.toggle("open-nav"); }
-        function toggleReservation() { document.getElementById("reservation-panel").classList.toggle("open"); }
-        function openReservationFromMenu() { toggleMenu(); setTimeout(toggleReservation, 500); }
-        function openFullRegister() { if(document.getElementById("reservation-panel").classList.contains("open")) toggleReservation(); const overlay = document.getElementById('full-register-overlay'); overlay.style.display = 'block'; setTimeout(() => overlay.classList.add('active'), 10); document.body.style.overflow = "hidden"; }
-        function closeFullRegister() { const overlay = document.getElementById('full-register-overlay'); overlay.classList.remove('active'); setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = "auto"; }, 500); }
-
-        // AUTHENTIFICATION
-        function simulerConnexion(event) { event.preventDefault(); const email = event.target.querySelector('input[type="email"]').value.toLowerCase(); localStorage.setItem('userName', email.split('@')[0]); if (email.endsWith("@kaiseki")) window.location.href = "livraison.html"; else window.location.reload(); }
-        function validerEtInscrire(event) { event.preventDefault(); const email = document.getElementById('reg-email').value.toLowerCase(); const fname = document.getElementById('reg-fname').value; localStorage.setItem('userName', fname); if (email.endsWith("@kaiseki")) window.location.href = "livraison.html"; else window.location.reload(); }
-        function deconnexion() { localStorage.removeItem('userName'); window.location.reload(); }
-
-        // SYSTÈME D'AVIS
-        function initStars() {
-            const container = document.querySelector('.rating-stars');
-            if(!container) return;
-            container.innerHTML = `<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>`;
-            const stars = container.querySelectorAll('span');
-            stars.forEach((s, i) => {
-                s.onclick = () => { selectedRating = i + 1; updateStars(stars, selectedRating); };
-                s.onmouseover = () => updateStars(stars, i + 1);
-                s.onmouseout = () => updateStars(stars, selectedRating);
-            });
+    // INITIALISATION SESSION (NETTOYÉ)
+    window.onload = function() {
+        const savedName = localStorage.getItem('userName');
+        if (savedName) {
+            const brandTitle = document.querySelector('.brand-name');
+            brandTitle.innerHTML = `
+                <div style="display: flex; flex-direction: column; justify-content: center; margin-left: 5px;">
+                    <span style="font-family: 'Montserrat'; font-size: 0.6rem; letter-spacing: 5px; opacity: 0.6; margin-bottom: 2px;">
+                        BIENVENUE
+                    </span>
+                    <span style="color: var(--gold); font-family: 'Playfair Display'; font-size: 1.4rem; font-weight: 700; letter-spacing: 3px; padding-left: 20px; font-style: italic;">
+                        ${savedName.toUpperCase()}
+                    </span>
+                </div>
+            `;
+            document.getElementById('logout-btn').style.display = "block";
         }
-        function updateStars(stars, count) { stars.forEach((s, i) => { s.innerHTML = i < count ? '★' : '☆'; s.style.color = i < count ? "var(--gold)" : "rgba(255,255,255,0.3)"; }); }
-        function publierAvis() {
-            if (selectedRating === 0) return alert("Veuillez noter l'expérience.");
-            if (selectedRating <= 2) {
-                warningCount++;
-                if (warningCount === 1) alert("Attention mon petit...");
-                else if (warningCount === 2) alert("Dernière sommation...");
-                else { document.body.style.filter = "contrast(200%) brightness(50%) blur(5px)"; setTimeout(() => { alert("PAR LE TONNERRE DE ZEUS, JE VAIS TE DÉSAGRÉGER !"); document.body.innerHTML = `<div style="background:black; color:red; height:100vh; display:flex; justify-content:center; align-items:center;"><h1>SYSTEM_DESTROYED</h1></div>`; }, 800); }
-            } else alert("Merci pour votre retour précieux.");
-        }
+    };
 
-        // GALERIE
-        function changeImage(direction) {
-            const resto = document.getElementById("restaurant"); const photo = document.getElementById("main-photo");
-            if (!resto.classList.contains("gallery-active")) { openGallery(); return; }
-            currentImg += direction; if (currentImg > 6) currentImg = 1; if (currentImg < 1) currentImg = 6;
-            photo.src = `img/resto-${currentImg}.png`;
+    // NAVIGATION & MODALES
+    function toggleMenu() { document.getElementById("side-menu").classList.toggle("open"); document.body.classList.toggle("open-nav"); }
+    function toggleReservation() { document.getElementById("reservation-panel").classList.toggle("open"); }
+    function openReservationFromMenu() { toggleMenu(); setTimeout(toggleReservation, 500); }
+    function openFullRegister() { if(document.getElementById("reservation-panel").classList.contains("open")) toggleReservation(); const overlay = document.getElementById('full-register-overlay'); overlay.style.display = 'block'; setTimeout(() => overlay.classList.add('active'), 10); document.body.style.overflow = "hidden"; }
+    function closeFullRegister() { const overlay = document.getElementById('full-register-overlay'); overlay.classList.remove('active'); setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = "auto"; }, 500); }
+
+    // AUTHENTIFICATION
+    function simulerConnexion(event) { event.preventDefault(); const email = event.target.querySelector('input[type="email"]').value.toLowerCase(); localStorage.setItem('userName', email.split('@')[0]); window.location.reload(); }
+    function validerEtInscrire(event) { event.preventDefault(); const fname = document.getElementById('reg-fname').value; localStorage.setItem('userName', fname); window.location.reload(); }
+    function deconnexion() { localStorage.removeItem('userName'); window.location.reload(); }
+
+    // HISTOIRES CHEFS
+    const histoires = {
+        kenji: { 
+            titre: "Maître Kenji", 
+            texte: "Né sous les neiges éternelles d'Hokkaido, Kenji a appris très tôt que la cuisine est une discipline de l'esprit avant d'être celle des mains. Son parcours l'a mené des ports de pêche glacés du Nord aux cuisines impériales de Tokyo. Maître incontesté du feu et de la découpe, il traite chaque ingrédient avec la dévotion d'un forgeron de katana. Pour lui, la flamme ne sert pas à cuire, mais à révéler l'âme cachée des produits. À travers Shunei, il cherche à transmettre cette force brute, tempérée par une précision chirurgicale, où chaque geste est un hommage aux traditions ancestrales du Japon." 
+        },
+        aiko: { 
+            titre: "Chef Aiko", 
+            texte: "Originaire de Kyoto, le cœur culturel du Japon, Aiko a grandi au rythme des jardins de thé et des temples séculaires. Elle conçoit ses assiettes comme des haïkus comestibles, où le vide est aussi important que la matière. Formée à l'art de la calligraphie et de l'ikebana, elle apporte à Shunei une sensibilité rare : celle de l'esthétique du 'Shun' — la capture du moment parfait où un légume ou une fleur atteint son apogée. Sa cuisine est un trait d'union délicat entre la terre et l'assiette, une quête perpétuelle de l'harmonie chromatique et gustative qui transforme chaque repas en un voyage sensoriel inoubliable." 
         }
-        function openGallery() { const s = document.getElementById("restaurant"); s.scrollIntoView({ behavior: 'smooth' }); setTimeout(() => { s.classList.add("gallery-active"); document.body.classList.add("no-scroll"); document.querySelector("header").style.opacity = "0"; }, 600); }
-        function closeGallery() { document.getElementById("restaurant").classList.remove("gallery-active"); document.body.classList.remove("no-scroll"); document.querySelector("header").style.opacity = "1"; }
-    </script>
+    };
+
+    function ouvrirHistoire(chef) {
+        document.getElementById('story-content').innerHTML = `<h2>${histoires[chef].titre}</h2><p>${histoires[chef].texte}</p>`;
+        document.getElementById('chef-overlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function fermerHistoire() {
+        document.getElementById('chef-overlay').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // GALERIE RESTAURANT
+    function changeImage(direction) {
+        const photo = document.getElementById("main-photo");
+        currentImg += direction; if (currentImg > 6) currentImg = 1; if (currentImg < 1) currentImg = 6;
+        photo.src = `img/resto-${currentImg}.png`;
+    }
+    function openGallery() { const s = document.getElementById("restaurant"); s.scrollIntoView({ behavior: 'smooth' }); setTimeout(() => { s.classList.add("gallery-active"); document.body.classList.add("no-scroll"); document.querySelector("header").style.opacity = "0"; }, 600); }
+    function closeGallery() { document.getElementById("restaurant").classList.remove("gallery-active"); document.body.classList.remove("no-scroll"); document.querySelector("header").style.opacity = "1"; }
+</script>>
 </body>
 </html>
