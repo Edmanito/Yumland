@@ -1751,3 +1751,145 @@ body.page-admin {
     background: var(--gold);
     margin: 25px auto 0;
 }
+
+
+
+
+/* ========================================= 
+	PAGE NOTATION 
+========================================= */
+.page-notation {
+    background-color: #0a0a0a;
+    color: #eaeaea;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Réutilisation de ta Topbar */
+.page-notation .admin-topbar { padding: 30px 50px; }
+.page-notation .btn-retour {
+    color: #888; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px;
+    border: 1px solid rgba(255,255,255,0.1); padding: 10px 20px; transition: 0.3s;
+}
+.page-notation .btn-retour:hover { border-color: #bc9c64; color: #bc9c64; }
+
+/* Conteneur de la carte */
+.notation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.notation-card {
+    background: #111;
+    border: 1px solid rgba(188, 156, 100, 0.2);
+    width: 100%;
+    max-width: 600px;
+    padding: 50px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.notation-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: #bc9c64; /* Rappel du liseré doré des commandes */
+}
+
+/* Header */
+.notation-header { text-align: center; margin-bottom: 40px; }
+.notation-header h1 {
+    font-family: 'Playfair Display', serif;
+    color: #bc9c64;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+.notation-header p { color: #666; font-style: italic; font-size: 0.9rem; }
+
+/* ÉTOILES (Technique de Row-Reverse pour le Hover) */
+.rating-box { text-align: center; margin-bottom: 35px; }
+.rating-box span { 
+    display: block; 
+    margin-bottom: 15px; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-size: 0.75rem; 
+    color: #bc9c64;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 10px;
+}
+
+.stars input { display: none; }
+.stars label {
+    font-size: 2.5rem;
+    color: #222;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Effets de survol et sélection (Doré) */
+.stars label:hover,
+.stars label:hover ~ label,
+.stars input:checked ~ label {
+    color: #bc9c64;
+    text-shadow: 0 0 15px rgba(188, 156, 100, 0.4);
+}
+
+/* ZONE COMMENTAIRE */
+.comment-box { margin-bottom: 30px; }
+.comment-box label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.comment-box textarea {
+    width: 100%;
+    background: #0d0d0d;
+    border: 1px solid rgba(188, 156, 100, 0.15);
+    border-radius: 4px;
+    color: #fff;
+    padding: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    resize: none;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.comment-box textarea:focus {
+    outline: none;
+    border-color: #bc9c64;
+    background: #141414;
+}
+
+/* BOUTON ENVOI */
+.form-footer { text-align: center; }
+.btn-send {
+    background: transparent;
+    border: 1px solid #bc9c64;
+    color: #bc9c64;
+    padding: 15px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.btn-send:hover {
+    background: #bc9c64;
+    color: #0a0a0a;
+    box-shadow: 0 0 20px rgba(188, 156, 100, 0.3);
+}
