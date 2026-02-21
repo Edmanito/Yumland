@@ -76,7 +76,7 @@ html {
     margin-left: 25px;
 }
 
-/* --- Navigation Droite & Profil --- */
+/* --- Navigation droite et profil --- */
 .header-right {
     display: flex;
     align-items: center;
@@ -90,7 +90,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px; /* Taille XXL */
+    width: 100px; /* taille xxl */
     height: 100px;
     position: relative;
 }
@@ -121,9 +121,9 @@ html {
     opacity: 1;
 }
 
-/* =========================================
-   SECTION: Header correction (à ne pas supprimer)
-   ========================================= */
+/* =============================
+   SECTION: Header correction
+   ============================= */
 .menu-trigger {
     cursor: pointer;
     display: flex;
@@ -389,23 +389,23 @@ html {
    SECTION 7 : GALERIE RESTAURANT
    ========================================= */
 .restaurant-view {
-    position: relative; /* Indispensable pour contenir l'image */
+    position: relative; 
     min-height: 100vh;
     width: 100%;
-    overflow: hidden; /* Empêche tout débordement */
+    overflow: hidden; 
     padding: 0 !important;
-    z-index: 1; /* Assure que cette section reste à son niveau */
+    z-index: 1; 
 }
 
 .restaurant-bg {
-    position: absolute; /* L'image se place par rapport à .restaurant-view */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                 url('img/restaurant-fond.png') center/cover no-repeat;
-    z-index: -1; /* Elle passe DERRIÈRE le contenu de la section */
+    z-index: -1; 
     transition: 0.6s ease;
 }
 
@@ -439,7 +439,7 @@ html {
     margin: 0;
 }
 
-/* --- Navigation Galerie (Flèches) --- */
+/* --- Navigation Galerie --- */
 .arrow-container {
     position: absolute;
     top: 50%;
@@ -460,7 +460,7 @@ html {
     transform: scaleX(-1);
 }
 
-/* --- Viewer & Contrôles --- */
+/* --- Viewer Contrôles --- */
 .viewer-container {
     position: absolute;
     z-index: 50;
@@ -537,7 +537,7 @@ html {
 }
 
 /* =========================================
-   SECTION 8 : CHEFS & EXPÉRIENCE (COMPLÈTE)
+   SECTION 8 : CHEFS et EXPÉRIENCE (COMPLÈTE)
    ========================================= */
 
 /* --- BLOC CHEFS --- */
@@ -597,7 +597,7 @@ html {
     margin: 20px 0;
 }
 
-/* --- VUE EXPÉRIENCE (TIMELINE & IMAGE DE FOND) --- */
+/* --- VUE EXPÉRIENCE (TIMELINE et IMAGE DE FOND) --- */
 .experience-view {
     position: relative;
     width: 100%;
@@ -927,7 +927,7 @@ html {
 }
 
 /* =========================================
-   SECTION: AUTHENTIFICATION & PROFIL
+   SECTION: AUTHENTIFICATION et PROFIL
    ========================================= */
 
 /* --- Pleine page Auth --- */
@@ -938,7 +938,7 @@ html {
     min-height: 100vh;
     padding: 40px;
     background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070') center/cover;
+                url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80etw=2070') center/cover;
 }
 
 /* --- Formulaire Grille --- */
@@ -1017,7 +1017,7 @@ html {
 }
 
 /* =========================================
-    SECTION : LA CARTE (STYLE VISUEL & ZOOM)
+    SECTION : LA CARTE (STYLE VISUEL et ZOOM)
    ========================================= */
 .page-menu {
     background-color: #050505;
@@ -1058,7 +1058,7 @@ html {
     justify-content: center;
     align-items: center;
     position: relative;
-    background: url('https://images.unsplash.com/photo-1582450871972-ab5ca641643d?q=80&w=1974') center/cover;
+    background: url('https://images.unsplash.com/photo-1582450871972-ab5ca641643d?q=80etw=1974') center/cover;
 }
 
 .hero-overlay {
@@ -1614,14 +1614,6 @@ body.page-admin {
 }
 
 
-
-
-
-
-
-
-
-
 /* --- GLOBAL ADMIN STYLE --- */
 .page-commande-admin {
     background-color: #0a0a0a;
@@ -1644,7 +1636,7 @@ body.page-admin {
 }
 .page-commande-admin .admin-header p { color: #666; font-style: italic; margin-bottom: 50px; }
 
-/* --- STRUCTURE DASHBOARD (LE SECRET DE L'ALIGNEMENT) --- */
+/* --- STRUCTURE DASHBOARD --- */
 .page-commande-admin .commande-dashboard { 
     display: flex; 
     align-items: flex-start; 
@@ -1668,7 +1660,7 @@ body.page-admin {
     padding-top: 80px; 
 }
 
-/* --- STYLE DES CARTES (GAUCHE) --- */
+/* --- STYLE DES CARTES  --- */
 .page-commande-admin .order-card {
     background: #111;
     border: 1px solid rgba(188, 156, 100, 0.2);
@@ -1736,7 +1728,7 @@ body.page-admin {
     background: #bc9c64; border-radius: 50%; box-shadow: 0 0 8px #bc9c64; 
 }
 
-/* --- BADGES & LEDS --- */
+/* --- BADGES et LEDS --- */
 .page-commande-admin .status-badge { display: flex; align-items: center; gap: 12px; font-size: 0.75rem; letter-spacing: 2px; font-weight: 700; }
 .page-commande-admin .led { width: 8px; height: 8px; border-radius: 50%; }
 .page-commande-admin .green .led { background: #4caf50; box-shadow: 0 0 10px #4caf50; }
@@ -1781,27 +1773,6 @@ body.page-admin {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* =========================================
    OVERLAY INSCRIPTION PLEIN ÉCRAN
    ========================================= */
@@ -1829,7 +1800,7 @@ body.page-admin {
 .register-image-side {
     flex: 1;
     background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)), 
-                url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=2070') center/cover;
+                url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80etw=2070') center/cover;
     filter: grayscale(0.5) brightness(0.8);
 }
 
@@ -1886,7 +1857,7 @@ body.page-admin {
 
 
 /* =========================================
-   SECTION INFORMATIONS & CONTACT
+   SECTION INFORMATIONS et CONTACT
    ========================================= */
 .info-view {
     background: var(--dark-bg);
@@ -2051,7 +2022,7 @@ body.page-admin {
     text-shadow: 0 0 15px rgba(188, 156, 100, 0.4);
 }
 
-/* ZONE COMMENTAIRE & BOUTON */
+/* ZONE COMMENTAIRE et BOUTON */
 .comment-box textarea {
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
@@ -2169,12 +2140,6 @@ body.page-admin {
     color: #000;
     transition: 0.4s;
 }
-
-
-
-
-
-
 
 
 

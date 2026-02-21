@@ -272,7 +272,7 @@
     <script>
     let currentImg = 1;
 
-    // FONCTION DE GESTION DU PROFIL (NOUVEAU)
+    //GESTION DU PROFIL 
     function gererClicProfil() {
         const isConnected = localStorage.getItem('userName');
         if (isConnected) {
@@ -293,7 +293,7 @@
         else { alert("ACCÈS REFUSÉ !"); }
     }
 
-    // INITIALISATION SESSION (NETTOYÉ)
+
     window.onload = function() {
         const savedName = localStorage.getItem('userName');
         if (savedName) {
