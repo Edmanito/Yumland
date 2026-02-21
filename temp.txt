@@ -7,5 +7,5 @@ Finir les partie:
         -Livraison
         -Administration
         -Faire la partie envoie mail autentification
-        - Accueil
+        
     
