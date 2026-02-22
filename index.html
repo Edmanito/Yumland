@@ -121,12 +121,25 @@
     <section id="restaurant" class="scroll-section restaurant-view">
         <div class="restaurant-bg"></div>
         <div class="blue-overlay"></div> 
+        
+        
         <div class="restaurant-content-wrapper">
             <div class="close-gallery-btn" onclick="closeGallery()">✕</div>
-            <h2 class="center-title">LE RESTAURANT</h2>
-            <div class="arrow-container left" onclick="changeImage(-1)"><img src="img/retour.png" class="arrow-icon"></div>
-            <div id="viewer-container" class="viewer-container"><img src="img/resto-1.png" id="main-photo" alt="Galerie Shunei"></div>
-            <div class="arrow-container right" onclick="changeImage(1)"><img src="img/retour.png" class="arrow-icon mirror"></div>
+            
+            <h2 class="center-title" onclick="openGallery()" style="cursor:pointer">LE RESTAURANT</h2>
+            
+            <div class="arrow-container left" onclick="changeImage(-1)">
+                <img src="img/retour.png" class="arrow-icon" style="cursor:pointer">
+            </div>
+            
+            <div id="viewer-container" class="viewer-container">
+                <img src="img/resto-1.png" id="main-photo" alt="Galerie Shunei">
+            </div>
+            
+            <div class="arrow-container right" onclick="changeImage(1)">
+                <img src="img/retour.png" class="arrow-icon mirror" style="cursor:pointer">
+            </div>
+
             <div class="story-bottom-right">
                 <div class="story-box">
                     <span class="section-subtitle">NOTRE HÉRITAGE</span>
@@ -134,7 +147,7 @@
                 </div>
             </div>
         </div>
-    
+            
     <section id="chefs" class="scroll-section chefs-view">
     <div class="chefs-container">
         <div class="chef-card" onclick="ouvrirHistoire('kenji')">
@@ -259,20 +272,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-    <script>
+<script>
+   
     let currentImg = 1;
 
-    //GESTION DU PROFIL 
+    
+    
     function gererClicProfil() {
         const isConnected = localStorage.getItem('userName');
         if (isConnected) {
@@ -282,17 +287,24 @@
         }
     }
 
-    // ACCÈS SÉCURISÉ
-    function accesSecurise() {
-        const code = prompt("Veuillez entrer votre code d'accès :");
-        if (code === null) return;
-        const choix = code.trim().toLowerCase();
-        if (choix === "administration") { window.location.href = "admin.html"; } 
-        else if (choix === "commande") { window.location.href = "commande.html"; } 
-        else if (choix === "livraison") { window.location.href = "livraison.html"; }
-        else { alert("ACCÈS REFUSÉ !"); }
+    function simulerConnexion(event) { 
+        event.preventDefault(); 
+        const email = event.target.querySelector('input[type="email"]').value.toLowerCase(); 
+        localStorage.setItem('userName', email.split('@')[0]); 
+        window.location.reload(); 
     }
 
+    function validerEtInscrire(event) { 
+        event.preventDefault(); 
+        const fname = document.getElementById('reg-fname').value; 
+        localStorage.setItem('userName', fname); 
+        window.location.reload(); 
+    }
+
+    function deconnexion() { 
+        localStorage.removeItem('userName'); 
+        window.location.reload(); 
+    }
 
     window.onload = function() {
         const savedName = localStorage.getItem('userName');
@@ -312,27 +324,87 @@
         }
     };
 
-    //NAVIGATION
-    function toggleMenu() { document.getElementById("side-menu").classList.toggle("open"); document.body.classList.toggle("open-nav"); }
-    function toggleReservation() { document.getElementById("reservation-panel").classList.toggle("open"); }
-    function openReservationFromMenu() { toggleMenu(); setTimeout(toggleReservation, 500); }
-    function openFullRegister() { if(document.getElementById("reservation-panel").classList.contains("open")) toggleReservation(); const overlay = document.getElementById('full-register-overlay'); overlay.style.display = 'block'; setTimeout(() => overlay.classList.add('active'), 10); document.body.style.overflow = "hidden"; }
-    function closeFullRegister() { const overlay = document.getElementById('full-register-overlay'); overlay.classList.remove('active'); setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = "auto"; }, 500); }
+    
+    
+    function toggleMenu() { 
+        document.getElementById("side-menu").classList.toggle("open"); 
+        document.body.classList.toggle("open-nav"); 
+    }
 
-    //AUTHENTIFICATION
-    function simulerConnexion(event) { event.preventDefault(); const email = event.target.querySelector('input[type="email"]').value.toLowerCase(); localStorage.setItem('userName', email.split('@')[0]); window.location.reload(); }
-    function validerEtInscrire(event) { event.preventDefault(); const fname = document.getElementById('reg-fname').value; localStorage.setItem('userName', fname); window.location.reload(); }
-    function deconnexion() { localStorage.removeItem('userName'); window.location.reload(); }
+    function toggleReservation() { 
+        document.getElementById("reservation-panel").classList.toggle("open"); 
+    }
 
-    //HISTOIRES CHEFS
+    function openReservationFromMenu() { 
+        toggleMenu(); 
+        setTimeout(toggleReservation, 500); 
+    }
+
+    function openFullRegister() { 
+        if(document.getElementById("reservation-panel").classList.contains("open")) toggleReservation(); 
+        const overlay = document.getElementById('full-register-overlay'); 
+        overlay.style.display = 'block'; 
+        setTimeout(() => overlay.classList.add('active'), 10); 
+        document.body.style.overflow = "hidden"; 
+    }
+
+    function closeFullRegister() { 
+        const overlay = document.getElementById('full-register-overlay'); 
+        overlay.classList.remove('active'); 
+        setTimeout(() => { 
+            overlay.style.display = 'none'; 
+            document.body.style.overflow = "auto"; 
+        }, 500); 
+    }
+
+    function accesSecurise() {
+        const code = prompt("Veuillez entrer votre code d'accès :");
+        if (code === null) return;
+        const choix = code.trim().toLowerCase();
+        if (choix === "administration") { window.location.href = "admin.html"; } 
+        else if (choix === "commande") { window.location.href = "commande.html"; } 
+        else if (choix === "livraison") { window.location.href = "livraison.html"; }
+        else { alert("ACCÈS REFUSÉ !"); }
+    }
+
+    
+    
+    function changeImage(direction) {
+        const photo = document.getElementById("main-photo");
+        currentImg += direction; 
+        
+        if (currentImg > 6) currentImg = 1; 
+        if (currentImg < 1) currentImg = 6;
+        
+        photo.src = `img/resto-${currentImg}.png`;
+        console.log("Image actuelle chargée : resto-" + currentImg);
+    }
+
+    function openGallery() { 
+        const s = document.getElementById("restaurant"); 
+        s.scrollIntoView({ behavior: 'smooth' }); 
+        setTimeout(() => { 
+            s.classList.add("gallery-active"); 
+            document.body.classList.add("no-scroll"); 
+            document.querySelector("header").style.opacity = "0"; 
+        }, 600); 
+    }
+
+    function closeGallery() { 
+        document.getElementById("restaurant").classList.remove("gallery-active"); 
+        document.body.classList.remove("no-scroll"); 
+        document.querySelector("header").style.opacity = "1"; 
+    }
+
+
     const histoires = {
         kenji: { 
             titre: "Maître Kenji", 
-            texte: "Né sous les neiges éternelles d'Hokkaido, Kenji a appris très tôt que la cuisine est une discipline de l'esprit avant d'être celle des mains. Son parcours l'a mené des ports de pêche glacés du Nord aux cuisines impériales de Tokyo. Maître incontesté du feu et de la découpe, il traite chaque ingrédient avec la dévotion d'un forgeron de katana. Pour lui, la flamme ne sert pas à cuire, mais à révéler l'âme cachée des produits. À travers Shunei, il cherche à transmettre cette force brute, tempérée par une précision chirurgicale, où chaque geste est un hommage aux traditions ancestrales du Japon." 
+            texte: "Né sous les neiges éternelles d'Hokkaido, Kenji a appris très tôt que la cuisine est une discipline de l'esprit avant d'être celle des mains. Son parcours l'a mené des ports de pêche glacés du Nord aux cuisines impériales de Tokyo. Maître incontesté du feu et de la découpe, il traite chaque ingrédient avec la dévotion d'un forgeron de katana." 
         },
         aiko: { 
             titre: "Chef Aiko", 
-            texte: "Originaire de Kyoto, le cœur culturel du Japon, Aiko a grandi au rythme des jardins de thé et des temples séculaires. Elle conçoit ses assiettes comme des haïkus comestibles, où le vide est aussi important que la matière. Formée à l'art de la calligraphie et de l'ikebana, elle apporte à Shunei une sensibilité rare : celle de l'esthétique du 'Shun' — la capture du moment parfait où un légume ou une fleur atteint son apogée. Sa cuisine est un trait d'union délicat entre la terre et l'assiette, une quête perpétuelle de l'harmonie chromatique et gustative qui transforme chaque repas en un voyage sensoriel inoubliable." 
+            texte: "Originaire de Kyoto, le cœur culturel du Japon, Aiko a grandi au rythme des jardins de thé et des temples séculaires. Elle conçoit ses assiettes comme des haïkus comestibles, où le vide est aussi important que la matière. Formée à l'art de la calligraphie et de l'ikebana, elle apporte à Shunei une sensibilité rare." 
         }
     };
 
@@ -346,15 +418,19 @@
         document.getElementById('chef-overlay').style.display = 'none';
         document.body.style.overflow = 'auto';
     }
-
-    //GALERIE RESTAURANT
-    function changeImage(direction) {
-        const photo = document.getElementById("main-photo");
-        currentImg += direction; if (currentImg > 6) currentImg = 1; if (currentImg < 1) currentImg = 6;
-        photo.src = `img/resto-${currentImg}.png`;
-    }
-    function openGallery() { const s = document.getElementById("restaurant"); s.scrollIntoView({ behavior: 'smooth' }); setTimeout(() => { s.classList.add("gallery-active"); document.body.classList.add("no-scroll"); document.querySelector("header").style.opacity = "0"; }, 600); }
-    function closeGallery() { document.getElementById("restaurant").classList.remove("gallery-active"); document.body.classList.remove("no-scroll"); document.querySelector("header").style.opacity = "1"; }
 </script>
+
+
+
+
+
+
+
+
+
+   
+   
+
+
 </body>
 </html>

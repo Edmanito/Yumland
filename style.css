@@ -443,33 +443,40 @@ html {
 .arrow-container {
     position: absolute;
     top: 50%;
-    cursor: pointer;
-    z-index: 100;
     transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 7000; /* Priorité maximale pour le clic */
+    padding: 20px;
 }
 
-.arrow-container.left { left: 50px; }
-.arrow-container.right { right: 50px; }
+.arrow-container.left { left: 30px; }
+.arrow-container.right { right: 30px; }
 
 .arrow-icon {
-    width: 100px;
-    transition: 0.7s;
+    width: 80px;
+    transition: 0.3s;
 }
 
+/* On retourne l'image de la flèche droite */
 .arrow-container.right .arrow-icon {
     transform: scaleX(-1);
+}
+
+/* Effet au survol pour les deux */
+.arrow-container:hover .arrow-icon {
+    filter: drop-shadow(0 0 10px var(--gold));
 }
 
 /* --- Viewer Contrôles --- */
 .viewer-container {
     position: absolute;
-    z-index: 50;
+    z-index: 5000; /* Entre l'overlay (2) et les flèches (7000) */
     display: none;
     max-width: 65vw;
     border: 1px solid var(--gold);
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+    pointer-events: none; /* L'image elle-même ne doit pas bloquer les clics des flèches autour */
 }
-
 .viewer-container img {
     width: 100%;
     display: block;
