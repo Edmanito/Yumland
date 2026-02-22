@@ -312,19 +312,19 @@
         }
     };
 
-    // NAVIGATION & MODALES
+    //NAVIGATION
     function toggleMenu() { document.getElementById("side-menu").classList.toggle("open"); document.body.classList.toggle("open-nav"); }
     function toggleReservation() { document.getElementById("reservation-panel").classList.toggle("open"); }
     function openReservationFromMenu() { toggleMenu(); setTimeout(toggleReservation, 500); }
     function openFullRegister() { if(document.getElementById("reservation-panel").classList.contains("open")) toggleReservation(); const overlay = document.getElementById('full-register-overlay'); overlay.style.display = 'block'; setTimeout(() => overlay.classList.add('active'), 10); document.body.style.overflow = "hidden"; }
     function closeFullRegister() { const overlay = document.getElementById('full-register-overlay'); overlay.classList.remove('active'); setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = "auto"; }, 500); }
 
-    // AUTHENTIFICATION
+    //AUTHENTIFICATION
     function simulerConnexion(event) { event.preventDefault(); const email = event.target.querySelector('input[type="email"]').value.toLowerCase(); localStorage.setItem('userName', email.split('@')[0]); window.location.reload(); }
     function validerEtInscrire(event) { event.preventDefault(); const fname = document.getElementById('reg-fname').value; localStorage.setItem('userName', fname); window.location.reload(); }
     function deconnexion() { localStorage.removeItem('userName'); window.location.reload(); }
 
-    // HISTOIRES CHEFS
+    //HISTOIRES CHEFS
     const histoires = {
         kenji: { 
             titre: "Maître Kenji", 
@@ -347,7 +347,7 @@
         document.body.style.overflow = 'auto';
     }
 
-    // GALERIE RESTAURANT
+    //GALERIE RESTAURANT
     function changeImage(direction) {
         const photo = document.getElementById("main-photo");
         currentImg += direction; if (currentImg > 6) currentImg = 1; if (currentImg < 1) currentImg = 6;
@@ -355,6 +355,6 @@
     }
     function openGallery() { const s = document.getElementById("restaurant"); s.scrollIntoView({ behavior: 'smooth' }); setTimeout(() => { s.classList.add("gallery-active"); document.body.classList.add("no-scroll"); document.querySelector("header").style.opacity = "0"; }, 600); }
     function closeGallery() { document.getElementById("restaurant").classList.remove("gallery-active"); document.body.classList.remove("no-scroll"); document.querySelector("header").style.opacity = "1"; }
-</script>>
+</script>
 </body>
 </html>
