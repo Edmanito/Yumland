@@ -8,5 +8,10 @@ Finir les partie:
         -Administration
         -Faire la partie envoie mail autentification
 
-        
-    
+
+
+
+1 fichier pour header
+1 fichier pour footer
+1 fichier pour commun
+1 fichier pour chaque page 
