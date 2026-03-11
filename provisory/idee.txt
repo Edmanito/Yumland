@@ -9,4 +9,12 @@ Finir les partie:
         -Faire la partie envoie mail autentification
 
 
-    
+Il faut rajouter--------------------------
+
+1 fichier pour header
+1 fichier pour footer
+1 fichier pour commun
+1 fichier pour chaque page 
+
+un lien pour la map dans la page livraison 
+plus de boutons dans la page commande 
