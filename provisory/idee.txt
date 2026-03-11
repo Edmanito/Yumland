@@ -1,20 +1,36 @@
-ici on va mettre les idées 
-
-Finir les partie: 
-
-        -Profil
-        -Menu
-        -Livraison
-        -Administration
-        -Faire la partie envoie mail autentification
-
-
-Il faut rajouter--------------------------
-
 1 fichier pour header
 1 fichier pour footer
 1 fichier pour commun
 1 fichier pour chaque page 
 
-un lien pour la map dans la page livraison 
-plus de boutons dans la page commande 
+
+
+Bouton google maps
+Carte qui doit s'ouvrir 
+Action commande (bouton filtrer/....)
+Commande avec plusieurs articles 
+Page de notation: faire un rappel sur ce qu'on commande quand on note (mail)
+
+Plusieurs fichiers CSS (recommandé !!!)
+Fixe les dimensions
+
+Phase 1: 42/52
+
+
+----
+Phase 2:
+Organiser et stocker les données : 2 façons 
+Fichier data json (conseillé)
+Ou 
+Sql
+Utilisateur 1 rôle 
+Payement via cybank
+
+Soutenance :.
+Faire une action comme créer un utilisateur (précis) et passer une commande...
+Question à chacun sur un bout de code
+
+
+
+Nom fichier en minuscule:
+Si plusieurs fichiers du même nom, mettre en maj le 2e mot , ex: img_Menu
