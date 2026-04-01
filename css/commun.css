@@ -1,0 +1,37 @@
+:root {
+    --gold: #C5A059;
+    --dark-bg: #0A0A0A;
+    --navy: #001529;
+    --burgundy: #4A0404;
+    --white: #FFFFFF;
+    --gray-border: rgba(197, 160, 89, 0.2);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.gold-text { color: var(--gold); font-weight: bold; }
+
+.section-subtitle {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 10px;
+    font-weight: bold;
+}

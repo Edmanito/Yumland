@@ -1,0 +1,49 @@
+/* =========================================
+   KAISEKI SHUNEI — FOOTER.CSS
+   Section informations, contact et footer
+   ========================================= */
+
+/* ── SECTION INFORMATIONS & CONTACT ── */
+.info-view {
+    background: var(--dark-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 8vw 60px;
+    text-align: center;
+}
+
+.contact-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto 100px;
+}
+
+.detail-item .label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+/* ── FOOTER FINAL ── */
+.site-footer {
+    margin-top: auto;
+    padding-top: 40px;
+    opacity: 0.4;
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+}
+
+.footer-bottom-line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 25px auto 0;
+}

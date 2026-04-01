@@ -1,0 +1,179 @@
+.page-profil{
+    min-height:100vh;
+}
+
+.page-profil{
+    min-height:100vh;
+    background-color:black;
+    color:white;
+}
+
+/* navigation profil */
+
+.profil-nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:30px 60px;
+}
+
+.back-link{
+    font-size:14px;
+    letter-spacing:2px;
+}
+
+.logo-kanji-small span{
+    font-size:24px;
+}
+
+/* container */
+
+.profil-container{
+    width:85%;
+    margin:auto;
+}
+
+/* header profil */
+
+.profil-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:60px;
+}
+
+.header-main h1{
+    font-size:42px;
+}
+
+.member-since{
+    margin-top:10px;
+    opacity:0.7;
+}
+
+/* carte fidélité */
+
+.loyalty-card{
+    border:1px solid;
+    padding:20px;
+    width:220px;
+}
+
+.loyalty-badge{
+    font-weight:bold;
+}
+
+.points-count{
+    font-size:26px;
+    margin-top:10px;
+}
+
+.points-count span{
+    font-size:14px;
+}
+
+.progress-bar{
+    height:6px;
+    margin-top:10px;
+    background:rgba(255,255,255,0.2);
+}
+
+.progress-fill{
+    width:60%;
+    height:100%;
+}
+
+/* grille profil */
+
+.profil-grid{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    gap:40px;
+}
+
+/* sections */
+
+.profil-section{
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.edit-icon{
+    cursor:pointer;
+}
+
+/* infos utilisateur */
+
+.info-group{
+    margin-bottom:20px;
+}
+
+.info-group label{
+    display:block;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:5px;
+}
+
+.info-group p{
+    font-size:18px;
+}
+
+.sub-info{
+    font-size:14px;
+    opacity:0.7;
+}
+
+/* tableau commandes */
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+.order-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.order-table th,
+.order-table td{
+    padding:15px;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    text-align:left;
+}
+
+.dish-name{
+    font-weight:600;
+}
+
+.price{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+/* statut */
+
+.status-pill{
+    padding:4px 10px;
+    border-radius:10px;
+    font-size:12px;
+}
+
+.deliverd{
+    background:green;
+}
+
+/* bouton note */
+
+.btn-note{
+    text-decoration:none;
+    font-size:18px;
+}

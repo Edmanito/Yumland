@@ -1,0 +1,265 @@
+/* =========================================
+   KAISEKI SHUNEI — HEADER.CSS
+   Header fixe, menu latéral bleu,
+   panel réservation pourpre
+   ========================================= */
+
+/* ── HEADER FIXE ── */
+.main-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 40px;
+    z-index: 3000;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    pointer-events: auto;
+}
+
+.logo-and-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid var(--gray-border);
+    padding: 15px 30px;
+    background: rgba(10, 10, 10, 0.1);
+    backdrop-filter: blur(5px);
+    transition: all 0.4s ease;
+}
+
+.logo-kanji {
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    letter-spacing: 8px;
+    margin-left: 25px;
+}
+
+/* ── NAVIGATION DROITE ── */
+.header-right {
+    gap: 30px;
+    height: 100px;
+}
+
+.profile-trigger {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.profile-trigger:hover {
+    transform: scale(1.1);
+}
+
+.profile-icon-nav {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.profile-trigger:hover .profile-icon-nav {
+    transform: scale(1.15);
+    filter: invert(1) drop-shadow(0 0 8px var(--gold));
+}
+
+.btn-reservation {
+    white-space: nowrap;
+}
+
+/* ── HAMBURGER ── */
+.menu-trigger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hamburger-icon span {
+    width: 25px;
+    height: 1px;
+    background: var(--white);
+    margin-bottom: 6px;
+    display: block;
+    transition: 0.3s;
+}
+
+.menu-text {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    margin-top: 5px;
+}
+
+/* ── MENU LATÉRAL BLEU ── */
+.side-panel {
+    position: fixed;
+    top: 0;
+    left: -33.33vw;
+    width: 33.33vw;
+    height: 100vh;
+    background-color: var(--navy);
+    z-index: 2000;
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 240px 40px 60px 220px;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+}
+
+.side-panel.open {
+    left: 0;
+}
+
+.menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 4000;
+}
+
+.menu-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.menu-links a:hover {
+    color: var(--gold);
+    transform: translateX(10px);
+}
+
+/* ── FOOTER DU MENU ── */
+.menu-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px 40px;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-main-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.admin-link {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.admin-link:hover {
+    opacity: 0.7;
+}
+
+.insta-logo {
+    width: 22px;
+    filter: invert(1);
+}
+
+.lang-switcher-menu {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 20px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+/* ── PANEL RÉSERVATION POURPRE ── */
+.side-panel-right {
+    position: fixed;
+    top: 0;
+    right: -50vw;
+    width: 50vw;
+    height: 100vh;
+    background-color: var(--burgundy);
+    z-index: 5000;
+    transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-panel-right.open {
+    right: 0;
+}
+
+.close-reservation {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.auth-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    letter-spacing: 5px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--white);
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.btn-submit:hover {
+    background: var(--white);
+    color: var(--burgundy);
+}
+
+.input-auth {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 15px 0;
+    margin-bottom: 25px;
+    outline: none;
+}

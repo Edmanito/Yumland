@@ -1,0 +1,232 @@
+:root {
+    --gold: #bc9c64;
+    --gold-dark: #8a7042;
+    --gold-gradient: linear-gradient(135deg, #bc9c64 0%, #8a7042 100%);
+    --bg-black: #050505;
+    --surface: #121212;
+    --surface-light: #1e1e1e;
+    --white: #ffffff;
+    --green: #2ecc71;
+    --red: #ff4757;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent; /* Supprime le flash bleu au clic sur mobile */
+}
+
+body.page-delivery {
+    background-color: var(--bg-black);
+    color: var(--white);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.6;
+}
+
+/* --- Navigation --- */
+.delivery-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(18, 18, 18, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(188, 156, 100, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.status-indicator h1 {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    
+    /* 1. Définition du dégradé (sécurité si non présent dans :root) */
+    background: linear-gradient(135deg, #bc9c64 0%, #8a7042 100%);
+    
+    /* 2. On coupe le background pour qu'il épouse la forme des lettres */
+    -webkit-background-clip: text; /* Pour Chrome/Safari/Edge */
+    background-clip: text;         /* Propriété standard pour Firefox */
+    
+    /* 3. On rend la couleur de base du texte transparente pour voir le dégradé */
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Sécurité standard */
+    
+    /* Optionnel : Empêche le dégradé de se répéter si le texte est long */
+    background-repeat: no-repeat;
+}
+
+.btn-exit {
+    color: var(--red);
+    text-decoration: none;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    font-weight: 800;
+    border: 1px solid var(--red);
+    padding: 8px 16px;
+    border-radius: 50px;
+    transition: var(--transition);
+}
+
+.btn-exit:hover {
+    background: var(--red);
+    color: white;
+}
+
+/* --- Container --- */
+.delivery-container { 
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Cartes de Livraison --- */
+.delivery-card {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: var(--transition);
+}
+
+/* Effet de lueur sur la bordure gauche */
+.delivery-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: var(--gold-gradient);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.order-number {
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.4);
+}
+
+.status-pill {
+    background: rgba(188, 156, 100, 0.15);
+    color: var(--gold);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    border: 1px solid rgba(188, 156, 100, 0.3);
+}
+
+/* --- Client Info --- */
+.client-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    margin-bottom: 5px;
+}
+
+.client-address {
+    color: #aaa;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.delivery-instructions {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px dashed rgba(188, 156, 100, 0.4);
+}
+
+.delivery-instructions p {
+    color: var(--gold);
+    font-weight: 500;
+}
+
+/* --- Détails Commande --- */
+.order-details {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 18px;
+}
+
+.items p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #eee;
+}
+
+.payment-status {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- Actions (Cibles larges pour les doigts) --- */
+.action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px; /* Plus grand pour le confort */
+    background: var(--surface-light);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.btn-main {
+    grid-column: span 2;
+    height: 70px;
+    background: var(--gold-gradient);
+    color: #000;
+    border: none;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    box-shadow: 0 10px 20px rgba(188, 156, 100, 0.2);
+}
+
+.btn-main:active {
+    transform: scale(0.95);
+    filter: brightness(0.8);
+}
+
+/* Animations de chargement (Pulse) */
+.pulse {
+    width: 10px; height: 10px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 0 rgba(46, 204, 113, 0.4);
+    animation: pulse-ring 1.5s infinite;
+}
+
+@keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+}

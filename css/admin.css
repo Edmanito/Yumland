@@ -1,0 +1,129 @@
+:root {
+    --bg: #050505;
+    --surface: #111111;
+    --surface-light: #1a1a1a;
+    --gold: #bc9c64;
+    --gold-glow: rgba(188, 156, 100, 0.15);
+    --text: #ffffff;
+    --text-dim: #999;
+    --danger: #ff4d4d;
+    --success: #00ff88;
+    --border: rgba(255, 255, 255, 0.08);
+}
+
+body.page-admin {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* --- Header & Stats --- */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+}
+
+h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 0; }
+.btn-back { color: var(--gold); text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; }
+
+.admin-stats-bar { display: flex; gap: 15px; }
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 15px 30px;
+    border-radius: 12px;
+    text-align: center;
+}
+.stat-value { color: var(--gold); font-size: 1.5rem; font-weight: 700; display: block; }
+.stat-label { color: var(--text-dim); font-size: 0.7rem; text-transform: uppercase; }
+
+/* --- Inputs --- */
+.controls-section { margin-bottom: 30px; }
+.search-wrapper { display: flex; gap: 10px; }
+
+input, select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 14px;
+    border-radius: 10px;
+    flex-grow: 1;
+    transition: 0.3s;
+}
+input:focus { border-color: var(--gold); outline: none; background: var(--surface-light); }
+
+/* --- Table --- */
+.table-wrapper {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.user-table { width: 100%; border-collapse: collapse; }
+.user-table th {
+    text-align: left;
+    padding: 20px;
+    color: var(--gold);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+}
+
+.user-table td { padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+
+/* --- User Info & Avatar --- */
+.user-info { display: flex; align-items: center; gap: 12px; }
+.avatar {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: linear-gradient(135deg, #1a1a1a, #000);
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; color: var(--gold); font-size: 0.8rem;
+}
+
+.user-name { font-weight: 600; display: block; }
+.user-id { color: var(--text-dim); font-size: 0.7rem; }
+
+/* --- Badges & Status --- */
+.badge { padding: 4px 10px; border-radius: 6px; font-size: 0.65rem; font-weight: 800; }
+.badge.client { background: var(--gold-glow); color: var(--gold); }
+.badge.livreur { background: rgba(255,255,255,0.05); color: #fff; }
+
+.dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+.active .dot { background: var(--success); box-shadow: 0 0 10px var(--success); }
+.online .dot { background: #00d4ff; box-shadow: 0 0 10px #00d4ff; }
+
+/* --- Actions --- */
+.btn-group { display: flex; gap: 8px; justify-content: flex-end; }
+.btn-icon {
+    background: var(--surface-light); border: 1px solid var(--border);
+    color: white; width: 35px; height: 35px; border-radius: 8px;
+    cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+}
+.btn-icon:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .hide-mobile { display: none; }
+    .admin-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .admin-stats-bar { width: 100%; }
+    .stat-card { flex: 1; }
+    h1 { font-size: 2rem; }
+    .search-wrapper { flex-direction: column; }
+}
+
+/* État bloqué */
+.user-row.blocked { opacity: 0.3; filter: grayscale(1); pointer-events: none; }
