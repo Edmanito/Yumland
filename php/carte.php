@@ -9,6 +9,14 @@ $plats = $dataPlats['plats'] ?? [];
 $dataMenus = lireJSON(JSON_MENUS);
 $menus = $dataMenus['menus'] ?? [];
 
+// Calcul du nombre d'articles dans le panier (nouvelle structure de session)
+$panierCount = 0;
+if(isset($_SESSION['panier'])) {
+    foreach($_SESSION['panier'] as $item) { 
+        $panierCount += $item['qte']; 
+    }
+}
+
 // Définition des catégories
 $categories = [
     'entree'  => ['titre' => 'Otsumami', 'desc' => 'Entrées délicates', 'num' => '01'],
@@ -26,18 +34,17 @@ $categories = [
     <title>La Carte | <?= SITE_NOM ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@200;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/carte.css">
-    <style>
-        .btn-add-cart { 
-            display: block; width: 100%; margin-top: 15px; padding: 10px;
-            background: transparent; border: 1px solid #bc9c64; color: #bc9c64;
-            font-size: 0.7rem; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
-            text-decoration: none; text-align: center;
-        }
-        .btn-add-cart:hover { background: #bc9c64; color: #000; }
-        .menu-section { border: 1px solid #bc9c64; padding: 30px; margin-bottom: 50px; background: rgba(188, 156, 100, 0.05); }
-    </style>
 </head>
 <body class="page-menu">
+
+    <div class="header-actions">
+        <a href="panier.php" class="btn-cart-nav">
+            PANIER 
+            <?php if($panierCount > 0): ?>
+                <span class="cart-badge"><?= $panierCount ?></span>
+            <?php endif; ?>
+        </a>
+    </div>
 
     <a href="../index.php" class="floating-back-btn">
         <span class="arrow">←</span> <span class="text">ACCUEIL</span>
@@ -71,7 +78,7 @@ $categories = [
                             <span class="price"><?= $m['prix'] ?>€</span>
                         </div>
                         <p class="dish-desc"><?= htmlspecialchars($m['description']) ?></p>
-                        <a href="../actions/ajouter_panier.php?id=<?= $m['id'] ?>" class="btn-add-cart">AJOUTER AU PANIER</a>
+                        <a href="ajouter_panier.php?id=<?= $m['id'] ?>" class="btn-add-cart">AJOUTER AU PANIER</a>
                     </div>
                 </article>
                 <?php endforeach; ?>
@@ -95,10 +102,7 @@ $categories = [
                 <?php foreach($platsFiltres as $p): ?>
                 <article class="dish-card" data-title="<?= htmlspecialchars($p['nom']) ?>">
                     <div class="dish-img-container">
-                        <?php 
-                            // CORRECTION : On utilise 'image' et on ajoute ../ devant car le JSON contient déjà 'img/menu/...'
-                            $src = !empty($p['image']) ? "../" . $p['image'] : "../img/menu/default.png"; 
-                        ?>
+                        <?php $src = !empty($p['image']) ? "../" . $p['image'] : "../img/menu/default.png"; ?>
                         <img src="<?= $src ?>" alt="<?= htmlspecialchars($p['nom']) ?>">
                         <div class="zoom-overlay"><span>VOIR PLUS</span></div>
                     </div>
@@ -108,7 +112,7 @@ $categories = [
                             <span class="price"><?= $p['prix'] ?>€</span>
                         </div>
                         <p class="dish-desc"><?= htmlspecialchars($p['description']) ?></p>
-                        <a href="../actions/ajouter_panier.php?id=<?= $p['id'] ?>" class="btn-add-cart">AJOUTER AU PANIER</a>
+                        <a href="ajouter_panier.php?id=<?= $p['id'] ?>" class="btn-add-cart">AJOUTER AU PANIER</a>
                     </div>
                 </article>
                 <?php endforeach; ?>

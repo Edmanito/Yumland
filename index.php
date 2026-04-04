@@ -2,6 +2,11 @@
 require_once 'includes/config.php';
 require_once 'includes/fonctions.php';
 
+// On démarre la session pour vérifier si l'utilisateur est logué
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $erreurs = [
     'champs_vides'            => 'Veuillez remplir tous les champs.',
     'identifiants_incorrects' => 'Email ou mot de passe incorrect.',
@@ -21,7 +26,7 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/index.css">
     <style>
-        .auth-error { background: rgba(255,70,70,0.1); border: 1px solid rgba(255,70,70,0.3); color: #ff6b6b; padding: 12px 16px; margin-bottom: 20px; font-size: 0.85rem; }
+        .auth-error { background: rgba(255,70,70,0.1); border: 1px solid rgba(255,70,70,0.3); color: #ff6b6b; padding: 12px 16px; margin-bottom: 20px; font-size: 0.85rem; text-align: center; }
         .auth-subtitle { color: #888; font-size: 0.85rem; margin-bottom: 20px; display: block; }
         .switch-auth { margin-top: 15px; font-size: 0.8rem; color: #666; }
     </style>
@@ -80,14 +85,13 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
 
         <div class="header-right">
             <?php if (estConnecte()): ?>
-                <a href="actions/logout.php" style="display:block;cursor:pointer;color:var(--gold);font-size:0.7rem;letter-spacing:2px;margin-right:20px;border-bottom:1px solid var(--gold);text-decoration:none;">
-                    DÉCONNEXION
-                </a>
+                <div class="profile-trigger" onclick="window.location.href='php/profil.php'">
+                    <img src="img/profil-vide.png" alt="Profil" class="profile-icon-nav">
+                </div>
+                <a href="php/carte.php" class="btn-reservation">COMMANDER</a>
+            <?php else: ?>
+                <a href="javascript:void(0)" id="auth-btn" class="btn-reservation" onclick="toggleReservation()">CONNEXION</a>
             <?php endif; ?>
-            <div class="profile-trigger" onclick="gererClicProfil()">
-                <img src="img/profil-vide.png" alt="Profil" class="profile-icon-nav">
-            </div>
-            <a href="javascript:void(0)" class="btn-reservation" onclick="toggleReservation()">COMMANDER</a>
         </div>
     </header>
 
@@ -112,9 +116,9 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
                     <div class="auth-error"><?= htmlspecialchars($erreur) ?></div>
                 <?php endif; ?>
 
-                <form action="actions/login.php" method="POST">
-                    <input type="email" name="login" placeholder="Email" class="input-auth" required>
-                    <input type="password" name="mdp" placeholder="Mot de passe" class="input-auth" required>
+                <form action="php/connexion.php" method="POST">
+                    <input type="email" name="email" placeholder="Email" class="input-auth" required>
+                    <input type="password" name="password" placeholder="Mot de passe" class="input-auth" required>
                     <button type="submit" class="btn-submit">SE CONNECTER</button>
                 </form>
                 <p class="switch-auth">
@@ -274,6 +278,5 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
             else { alert("ACCÈS REFUSÉ !"); }
         }
     </script>
-
 </body>
 </html>

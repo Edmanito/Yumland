@@ -3,7 +3,7 @@
         {
             "id": "U001",
             "login": "jean.dupont@email.com",
-            "mot_de_passe": "$2y$10$dt1aaX2JlKvU43s5dfOgj.VOCCdXbioO6Nfol9hj7hoVrHVM81lWu",
+            "mot_de_passe": "caca",
             "role": "client",
             "statut": "actif",
             "premium": false,
@@ -12,7 +12,7 @@
                 "nom": "Dupont",
                 "prenom": "Jean",
                 "telephone": "0612345678",
-                "adresse": "12 Rue du Sushi, 75000 Paris",
+                "adresse": "12 Rue du Sushi, 75001 Paris",
                 "etage": "4",
                 "interphone": "1234"
             },
@@ -126,9 +126,34 @@
             }
         },
         {
+            "id": "U006",
+            "login": "marie.leblanc@email.com",
+            "mot_de_passe": "$2y$10$dt1aaX2JlKvU43s5dfOgj.VOCCdXbioO6Nfol9hj7hoVrHVM81lWu",
+            "role": "client",
+            "statut": "actif",
+            "premium": true,
+            "remise": 15,
+            "infos": {
+                "nom": "Leblanc",
+                "prenom": "Marie",
+                "telephone": "0667891234",
+                "adresse": "14 Rue de la Paix, 75002 Paris",
+                "etage": "5",
+                "interphone": "4242"
+            },
+            "fidelite": {
+                "points": 990,
+                "badge": "PLATINUM"
+            },
+            "dates": {
+                "inscription": "2025-12-01",
+                "derniere_connexion": "2026-04-01"
+            }
+        },
+        {
             "id": "A001",
             "login": "admin@kaiseki.com",
-            "mot_de_passe": "$2y$10$CiFCa\/Vb4DbbhEJlinJDAu\/FOwUya1vuF.y4WqW\/1\/N.Ga2o5ARSy",
+            "mot_de_passe": "admin1234",
             "role": "admin",
             "statut": "actif",
             "premium": false,
@@ -147,7 +172,7 @@
             },
             "dates": {
                 "inscription": "2025-01-01",
-                "derniere_connexion": "2026-03-20"
+                "derniere_connexion": "2026-04-04"
             }
         },
         {
@@ -184,8 +209,8 @@
             "premium": false,
             "remise": 0,
             "infos": {
-                "nom": "Kenji",
-                "prenom": "Maitre",
+                "nom": "Tanaka",
+                "prenom": "Kenji",
                 "telephone": "0100000003",
                 "adresse": "3 Rue André del Sarte, 75018 Paris",
                 "etage": "",
@@ -226,78 +251,28 @@
             }
         },
         {
-            "id": "U22941F",
-            "login": "mansourwajih2@gmail.com",
-            "mot_de_passe": "$2y$10$5BYvTWOdAYh\/oP6ADg8iZOT8MdD0N3rkNDensUdg\/85WzXaqzpK4i",
-            "role": "client",
-            "statut": "actif",
-            "premium": false,
-            "remise": 0,
-            "infos": {
-                "nom": "Wajih",
-                "prenom": "Mansour",
-                "telephone": "0600000000",
-                "adresse": "6 rue Robert Marchand",
-                "etage": "2",
-                "interphone": "2220"
-            },
-            "fidelite": {
-                "points": 0,
-                "badge": "BRONZE"
-            },
-            "dates": {
-                "inscription": "2026-03-23",
-                "derniere_connexion": "2026-03-23"
-            }
-        },
-        {
-            "id": "U9783EA",
-            "login": "yanis@gmail.com",
-            "mot_de_passe": "$2y$10$ZJmkNgwFowOdvuJU6nGhPe0N85AzpK0aR32s.p2HweAs6gU7YRPBK",
-            "role": "client",
-            "statut": "actif",
-            "premium": false,
-            "remise": 0,
-            "infos": {
-                "nom": "zepeli",
-                "prenom": "yanis",
-                "telephone": "0707070707",
-                "adresse": "zepeliland",
-                "etage": "4",
-                "interphone": "1234"
-            },
-            "fidelite": {
-                "points": 0,
-                "badge": "BRONZE"
-            },
-            "dates": {
-                "inscription": "2026-03-25",
-                "derniere_connexion": "2026-03-25"
-            }
-        },
-        {
-            "id": "UB9D623",
-            "login": "mansourwajih6@gmail.com",
+            "id": "L002",
+            "login": "a.martin@kaiseki.com",
             "mot_de_passe": "caca",
-            "role": "client",
+            "role": "livreur",
             "statut": "actif",
             "premium": false,
             "remise": 0,
             "infos": {
-                "nom": "Wajih",
-                "prenom": "Mansour",
-                "telephone": "0745155843",
-                "adresse": "45 rue de l&#039;amiral mouchez",
-                "etage": "4",
-                "interphone": "7277"
+                "nom": "Martin",
+                "prenom": "Alexis",
+                "telephone": "0689012345",
+                "adresse": "5 Rue des Abbesses, 75018 Paris",
+                "etage": "",
+                "interphone": ""
             },
             "fidelite": {
                 "points": 0,
-                "badge": "BRONZE"
+                "badge": ""
             },
             "dates": {
-                "inscription": "2026-04-04",
-                "derniere_connexion": "2026-04-04"
+                "inscription": "2025-09-01",
+                "derniere_connexion": "2026-04-01"
             }
         }
     ]

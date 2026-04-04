@@ -11,7 +11,7 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px 40px;
-    z-index: 5000; /* au dessus de tout */
+    z-index: 5000;
     pointer-events: none;
     transition: opacity 0.5s ease;
 }
@@ -29,7 +29,7 @@
     align-items: center;
     border-right: 1px solid var(--gray-border);
     padding: 15px 30px;
-    background: rgba(10, 10, 10, 0.8); /* plus opaque pour lisibilité */
+    background: rgba(10, 10, 10, 0.8);
     backdrop-filter: blur(5px);
     transition: all 0.4s ease;
     z-index: 5001;
@@ -50,39 +50,53 @@
     margin-left: 25px;
 }
 
-/* ── NAVIGATION DROITE ── */
-.header-right {
-    gap: 30px;
-    height: 100px;
-}
-
+/* LE CONTENEUR (La zone de clic) */
 .profile-trigger {
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 100px;
+    width: 80px;  
+    height: 80px; 
+    margin-top: 10px; 
     position: relative;
+    background: transparent;
     transition: transform 0.3s ease;
+    z-index: 10;
 }
 
-.profile-trigger:hover { transform: scale(1.1); }
-
+/* L'IMAGE */
 .profile-icon-nav {
-    width: 100%;
-    height: 100%;
+    width: 180px;  
+    height: 180px;
     object-fit: contain;
     filter: invert(1);
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: all 0.3s ease;
 }
 
+/* ALIGNEMENT GLOBAL DANS LE HEADER */
+.header-right {
+    gap: 20px; 
+    display: flex;
+    align-items: center;
+}
+
+/* EFFET AU SURVOL */
 .profile-trigger:hover .profile-icon-nav {
-    transform: scale(1.15);
-    filter: invert(1) drop-shadow(0 0 8px var(--gold));
+    transform: scale(1.05);
+    filter: invert(1) drop-shadow(0 0 12px var(--gold));
 }
 
-.btn-reservation { white-space: nowrap; }
+.profile-trigger:hover {
+    transform: scale(1.1);
+}
+
+/* BOUTON RÉSERVATION / CONNEXION */
+.btn-reservation { 
+    white-space: nowrap; 
+    text-decoration: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
 /* ── HAMBURGER ── */
 .menu-trigger {
@@ -107,7 +121,7 @@
     margin-top: 5px;
 }
 
-/* ── OVERLAY SOMBRE (quand menu ouvert) ── */
+/* ── OVERLAY SOMBRE ── */
 body::after {
     content: '';
     position: fixed;
@@ -127,23 +141,25 @@ body.open-nav::after {
     pointer-events: auto;
 }
 
-/* ── MENU LATÉRAL BLEU ── */
+/* ── MENU LATÉRAL BLEU (MODIFIÉ : CENTRAGE & ESPACEMENT) ── */
 .side-panel {
     position: fixed;
     top: 0;
-    left: -100vw;
-    width: 33.33vw;
+    left: -100%; 
+    width: 450px; 
+    max-width: 90vw; 
     height: 100vh;
     background-color: var(--navy);
     z-index: 4000;
-    transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: left 0.6s cubic-bezier(0.77, 0, 0.175, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 140px 40px 60px 60px;
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+    align-items: center; /* CENTRE TOUT HORIZONTALEMENT */
+    padding: 180px 40px 60px 40px; /* AUGMENTÉ POUR DESCENDRE LES LIENS */
+    box-shadow: 15px 0 50px rgba(0, 0, 0, 0.5);
     pointer-events: auto;
-    overflow: hidden;
+    text-align: center; /* CENTRE LE TEXTE */
 }
 
 .side-panel.open {
@@ -153,74 +169,85 @@ body.open-nav::after {
 .menu-links {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    align-items: center; /* CENTRE LES LIENS */
+    gap: 35px; 
+    width: 100%;
 }
 
 .menu-links a {
     color: var(--white);
     text-decoration: none;
-    font-size: 1rem;
-    letter-spacing: 4px;
+    font-size: 1.1rem;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    transition: 0.3s;
+    transition: 0.4s;
     white-space: nowrap;
+    width: fit-content;
 }
 
 .menu-links a:hover {
     color: var(--gold);
-    transform: translateX(10px);
+    transform: scale(1.05); /* Effet zoom léger au lieu du décalage */
 }
 
-/* ── FOOTER DU MENU ── */
+/* ── FOOTER DU MENU (REORDONNÉ ET CENTRÉ) ── */
 .menu-footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px 0;
+    padding-top: 40px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center; /* CENTRE LE FOOTER */
+    gap: 30px;
 }
 
 .footer-main-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.footer-main-info {
-    display: flex;
-    align-items: center;
-    gap: 30px;
+    align-items: center; /* CENTRE L'ADMIN ET LE RESTE */
+    gap: 25px;
 }
 
 .admin-link {
-    font-size: 0.7rem;
-    letter-spacing: 3px;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
     color: var(--gold);
     text-decoration: none;
     font-weight: bold;
+    text-transform: uppercase;
     transition: 0.3s;
 }
 
-.admin-link:hover { opacity: 0.7; }
+.admin-link:hover { opacity: 0.7; letter-spacing: 5px; }
+
+/* Conteneur horizontal pour Insta et Langues */
+.footer-bottom-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
 .insta-logo {
     width: 22px;
     filter: invert(1);
+    transition: 0.3s;
 }
+
+.insta-logo:hover { transform: scale(1.2); }
 
 .lang-switcher-menu {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     padding-left: 20px;
     font-size: 0.8rem;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /* ── PANEL RÉSERVATION POURPRE ── */
 .side-panel-right {
     position: fixed;
     top: 0;
-    right: -100vw;
+    right: -100%;
     width: 50vw;
     height: 100vh;
     background-color: var(--burgundy);
@@ -229,7 +256,6 @@ body.open-nav::after {
     padding: 80px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 
 .side-panel-right.open {
@@ -242,57 +268,43 @@ body.open-nav::after {
     right: 40px;
     font-size: 1.8rem;
     cursor: pointer;
-}
-
-.auth-box h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    letter-spacing: 5px;
-}
-
-.btn-submit {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid var(--white);
-    background: transparent;
     color: var(--white);
-    cursor: pointer;
-    transition: 0.4s;
+    z-index: 4600;
+    transition: transform 0.3s ease;
 }
 
-.btn-submit:hover {
-    background: var(--white);
-    color: var(--burgundy);
-}
-
-.input-auth {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    padding: 15px 0;
-    margin-bottom: 25px;
-    outline: none;
-}
+/* ... Reste des styles inchangé ... */
+.close-reservation:hover { transform: rotate(90deg); color: var(--gold); }
+.auth-box h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; letter-spacing: 5px; }
+.btn-submit { width: 100%; padding: 15px; border: 1px solid var(--white); background: transparent; color: var(--white); cursor: pointer; transition: 0.4s; }
+.btn-submit:hover { background: var(--white); color: var(--burgundy); }
+.input-auth { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 15px 0; margin-bottom: 25px; outline: none; }
 
 /* =========================================
    RESPONSIVE MOBILE
    ========================================= */
 
 @media (max-width: 768px) {
-
     .main-header { padding: 10px 15px; }
-
     .logo-and-menu { padding: 8px 12px; }
-
     .logo-kanji { font-size: 1.2rem; margin-bottom: 8px; }
-
     .brand-name { font-size: 0.9rem; letter-spacing: 3px; margin-left: 8px; }
-
-    .header-right { gap: 8px; height: 60px; }
-
+    
+    .side-panel {
+        padding: 140px 20px 40px 20px; /* Ajusté pour mobile */
+        max-width: 100vw; /* Prend toute la largeur si besoin sur petit mobile */
+    }
+    
+    .menu-links { gap: 20px; }
+    .menu-links a { font-size: 0.9rem; letter-spacing: 3px; }
+    
+    .header-right { gap: 10px; height: 60px; }
     .profile-trigger { width: 45px; height: 45px; }
+    
+    .profile-icon-nav {
+        width: 100px; 
+        height: 100px;
+    }
 
     .btn-reservation {
         font-size: 0.65rem;
@@ -300,15 +312,5 @@ body.open-nav::after {
         letter-spacing: 1px;
     }
 
-    .side-panel {
-        width: 100vw;
-        padding: 120px 30px 80px 30px;
-    }
-
-    .side-panel-right {
-        width: 100vw;
-        padding: 70px 25px 40px 25px;
-    }
-
-    .auth-box h3 { font-size: 1.6rem; letter-spacing: 3px; }
+    .side-panel-right { width: 100vw; padding: 40px; }
 }

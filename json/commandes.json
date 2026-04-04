@@ -9,14 +9,31 @@
             "etage": "4",
             "interphone": "1234",
             "articles": [
-                { "type": "menu", "id": "M001", "quantite": 1, "prix_unitaire": 120 }
+                {
+                    "type": "menu",
+                    "id": "M001",
+                    "quantite": 1,
+                    "prix_unitaire": 120
+                }
             ],
             "prix_total": 120,
             "remise_appliquee": 0,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-01-12T20:30:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-01-12T20:30:00"
+            },
             "id_livreur": "L001",
-            "note_client": { "note_livraison": 5, "note_produits": 5, "commentaire": "Exceptionnel !" },
-            "dates": { "commande": "2026-01-12T19:00:00", "preparation": "2026-01-12T19:15:00", "livraison": "2026-01-12T20:25:00" }
+            "note_client": {
+                "note_livraison": 5,
+                "note_produits": 5,
+                "commentaire": "Exceptionnel !"
+            },
+            "dates": {
+                "commande": "2026-01-12T19:00:00",
+                "preparation": "2026-01-12T19:15:00",
+                "livraison": "2026-01-12T20:25:00"
+            }
         },
         {
             "id": "CMD002",
@@ -27,15 +44,33 @@
             "etage": "4",
             "interphone": "1234",
             "articles": [
-                { "type": "plat", "id": "P010", "quantite": 1, "prix_unitaire": 42 },
-                { "type": "boisson", "id": "P014", "quantite": 2, "prix_unitaire": 10 }
+                {
+                    "type": "plat",
+                    "id": "P010",
+                    "quantite": 1,
+                    "prix_unitaire": 42
+                },
+                {
+                    "type": "boisson",
+                    "id": "P014",
+                    "quantite": 2,
+                    "prix_unitaire": 10
+                }
             ],
             "prix_total": 62,
             "remise_appliquee": 0,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-01-05T20:00:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-01-05T20:00:00"
+            },
             "id_livreur": "L001",
             "note_client": null,
-            "dates": { "commande": "2026-01-05T19:00:00", "preparation": "2026-01-05T19:20:00", "livraison": "2026-01-05T20:10:00" }
+            "dates": {
+                "commande": "2026-01-05T19:00:00",
+                "preparation": "2026-01-05T19:20:00",
+                "livraison": "2026-01-05T20:10:00"
+            }
         },
         {
             "id": "CMD003",
@@ -46,14 +81,27 @@
             "etage": "",
             "interphone": "",
             "articles": [
-                { "type": "menu", "id": "M003", "quantite": 1, "prix_unitaire": 180 }
+                {
+                    "type": "menu",
+                    "id": "M003",
+                    "quantite": 1,
+                    "prix_unitaire": 180
+                }
             ],
             "prix_total": 162,
             "remise_appliquee": 10,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-03-20T20:00:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-03-20T20:00:00"
+            },
             "id_livreur": null,
             "note_client": null,
-            "dates": { "commande": "2026-03-20T19:45:00", "preparation": "2026-03-20T20:00:00", "livraison": null }
+            "dates": {
+                "commande": "2026-03-20T19:45:00",
+                "preparation": "2026-03-20T20:00:00",
+                "livraison": null
+            }
         },
         {
             "id": "CMD004",
@@ -64,15 +112,33 @@
             "etage": "3",
             "interphone": "9999",
             "articles": [
-                { "type": "plat", "id": "P007", "quantite": 1, "prix_unitaire": 85 },
-                { "type": "boisson", "id": "P013", "quantite": 1, "prix_unitaire": 24 }
+                {
+                    "type": "plat",
+                    "id": "P007",
+                    "quantite": 1,
+                    "prix_unitaire": 85
+                },
+                {
+                    "type": "boisson",
+                    "id": "P013",
+                    "quantite": 1,
+                    "prix_unitaire": 24
+                }
             ],
             "prix_total": 109,
             "remise_appliquee": 5,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-03-23T19:30:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-03-23T19:30:00"
+            },
             "id_livreur": null,
             "note_client": null,
-            "dates": { "commande": "2026-03-23T19:30:00", "preparation": null, "livraison": null }
+            "dates": {
+                "commande": "2026-03-23T19:30:00",
+                "preparation": null,
+                "livraison": null
+            }
         },
         {
             "id": "CMD005",
@@ -83,14 +149,126 @@
             "etage": "RDC",
             "interphone": "",
             "articles": [
-                { "type": "plat", "id": "P009", "quantite": 2, "prix_unitaire": 19 }
+                {
+                    "type": "plat",
+                    "id": "P009",
+                    "quantite": 2,
+                    "prix_unitaire": 19
+                }
             ],
             "prix_total": 38,
             "remise_appliquee": 0,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-03-23T20:00:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-03-23T20:00:00"
+            },
             "id_livreur": "L001",
             "note_client": null,
-            "dates": { "commande": "2026-03-23T19:50:00", "preparation": "2026-03-23T20:05:00", "livraison": null }
+            "dates": {
+                "commande": "2026-03-23T19:50:00",
+                "preparation": "2026-03-23T20:05:00",
+                "livraison": null
+            }
+        },
+        {
+            "id": "CMD006",
+            "id_client": "U001",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "",
+            "etage": "",
+            "interphone": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "P002",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                }
+            ],
+            "prix_total": 22,
+            "remise_appliquee": 0,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-04T16:05:33"
+            },
+            "id_livreur": null,
+            "note_client": null,
+            "dates": {
+                "commande": "2026-04-04T16:05:33",
+                "preparation": null,
+                "livraison": null
+            }
+        },
+        {
+            "id": "CMD007",
+            "id_client": "U001",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "",
+            "etage": "",
+            "interphone": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "P001",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                }
+            ],
+            "prix_total": 26,
+            "remise_appliquee": 0,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-04T16:05:55"
+            },
+            "id_livreur": null,
+            "note_client": null,
+            "dates": {
+                "commande": "2026-04-04T16:05:55",
+                "preparation": null,
+                "livraison": null
+            }
+        },
+        {
+            "id": "CMD008",
+            "id_client": "U001",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "",
+            "etage": "",
+            "interphone": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "P002",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                },
+                {
+                    "type": "plat",
+                    "id": "P006",
+                    "quantite": 2,
+                    "prix_unitaire": 0
+                }
+            ],
+            "prix_total": 86,
+            "remise_appliquee": 0,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-04T16:11:20"
+            },
+            "id_livreur": null,
+            "note_client": null,
+            "dates": {
+                "commande": "2026-04-04T16:11:20",
+                "preparation": null,
+                "livraison": null
+            }
         }
     ]
 }
