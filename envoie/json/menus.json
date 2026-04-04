@@ -1,0 +1,40 @@
+{
+    "menus": [
+        {
+            "id": "M001",
+            "nom": "Menu Omakase Prestige",
+            "description": "L'expérience complète signée par le Chef Kenji. Laissez-vous guider à travers 5 créations d'exception.",
+            "prix_total": 120,
+            "personnes_min": 1,
+            "plats": ["P003", "P004", "P007", "P011", "P013"],
+            "allergenes": ["poisson", "soja"],
+            "creneaux": ["soir"],
+            "disponible": true,
+            "image": "img/menu/wagyu.png"
+        },
+        {
+            "id": "M002",
+            "nom": "Menu Déjeuner Shunei",
+            "description": "Un voyage express au cœur de la cuisine japonaise. Idéal pour une pause déjeuner raffinée.",
+            "prix_total": 45,
+            "personnes_min": 1,
+            "plats": ["P003", "P009", "P014"],
+            "allergenes": ["soja", "gluten"],
+            "creneaux": ["midi"],
+            "disponible": true,
+            "image": "img/menu/miso.png"
+        },
+        {
+            "id": "M003",
+            "nom": "Menu Duo Kaiseki",
+            "description": "Partagez l'art culinaire à deux. Une symphonie de saveurs pensée pour deux convives.",
+            "prix_total": 180,
+            "personnes_min": 2,
+            "plats": ["P001", "P002", "P006", "P008", "P012", "P013"],
+            "allergenes": ["poisson", "crustaces", "mollusques", "soja", "alcool"],
+            "creneaux": ["soir"],
+            "disponible": true,
+            "image": "img/menu/hamachi.png"
+        }
+    ]
+}

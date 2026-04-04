@@ -1,169 +1,160 @@
 {
-    "plats": [
-        {
-            "id": "P001",
-            "nom": "Carpaccio de Hamachi",
-            "categorie": "entree",
-            "description": "Sériole du Japon, perles de yuzu, piment serrano frais.",
-            "prix": 26,
-            "image": "img/menu/hamachi.png",
-            "allergenes": ["poisson"],
-            "tags": ["sans gluten"],
-            "disponible": true
-        },
-        {
-            "id": "P002",
-            "nom": "Tempura de Shiso",
-            "categorie": "entree",
-            "description": "Feuilles de shiso, tartare de crevettes Obsiblue.",
-            "prix": 22,
-            "image": "img/menu/shiso.png",
-            "allergenes": ["crustaces", "gluten"],
-            "tags": ["signature"],
-            "disponible": true
-        },
-        {
-            "id": "P003",
-            "nom": "Miso Shiru Premium",
-            "categorie": "entree",
-            "description": "Bouillon dashi de 12h, tofu soyeux grillé et algues nori.",
-            "prix": 14,
-            "image": "img/menu/miso.png",
-            "allergenes": ["soja"],
-            "tags": [],
-            "disponible": true
-        },
-        {
-            "id": "P004",
-            "nom": "O-Toro",
-            "categorie": "plat",
-            "description": "Thon rouge gras (ventrèche) et wasabi frais.",
-            "prix": 28,
-            "image": "img/menu/otoro.png",
-            "allergenes": ["poisson"],
-            "tags": [],
-            "disponible": true
-        },
-        {
-            "id": "P005",
-            "nom": "Unagi Kabayaki",
-            "categorie": "plat",
-            "description": "Anguille grillée au feu de bois, sauce soja réduite.",
-            "prix": 18,
-            "image": "img/menu/unagi.png",
-            "allergenes": ["poisson", "soja"],
-            "tags": [],
-            "disponible": true
-        },
-        {
-            "id": "P006",
-            "nom": "Uni (Oursin)",
-            "categorie": "plat",
-            "description": "Oursin sauvage de Galice, feuille d'or.",
-            "prix": 32,
-            "image": "img/menu/uni.png",
-            "allergenes": ["mollusques"],
-            "tags": ["premium"],
-            "disponible": true
-        },
-        {
-            "id": "P007",
-            "nom": "Wagyu Binchotan",
-            "categorie": "plat",
-            "description": "Bœuf Kagoshima A5 fumé au charbon de chêne blanc.",
-            "prix": 85,
-            "image": "img/menu/wagyu.png",
-            "allergenes": [],
-            "tags": ["signature", "premium"],
-            "disponible": true
-        },
-        {
-            "id": "P008",
-            "nom": "Black Cod Saikyo",
-            "categorie": "plat",
-            "description": "Cabillaud mariné 72h au miso blanc.",
-            "prix": 48,
-            "image": "img/menu/cod.png",
-            "allergenes": ["poisson", "soja"],
-            "tags": [],
-            "disponible": true
-        },
-        {
-            "id": "P009",
-            "nom": "Ramen Ichiraku",
-            "categorie": "plat",
-            "description": "Bouillon tonkotsu 12h, porc chashu, oeuf mollet et bambou.",
-            "prix": 19,
-            "image": "img/menu/miso.png",
-            "allergenes": ["gluten"],
-            "tags": [],
-            "disponible": true
-        },
-        {
-            "id": "P010",
-            "nom": "Bento Kaiseki",
-            "categorie": "plat",
-            "description": "Sélection du chef : 6 pièces nigiri, miso, salade et dessert.",
-            "prix": 42,
-            "image": "img/menu/otoro.png",
-            "allergenes": ["poisson", "soja", "gluten"],
-            "tags": ["signature"],
-            "disponible": true
-        },
-        {
-            "id": "P011",
-            "nom": "Mochi Artisanal",
-            "categorie": "dessert",
-            "description": "Sélection : Matcha, Cerisier et Sésame noir.",
-            "prix": 12,
-            "image": "img/menu/mochi.png",
-            "allergenes": ["gluten"],
-            "tags": [],
-            "disponible": true
-        },
-        {
-            "id": "P012",
-            "nom": "Perles du Japon",
-            "categorie": "dessert",
-            "description": "Tapioca coco, mangue fraîche et sorbet basilic.",
-            "prix": 16,
-            "image": "img/menu/perles.png",
-            "allergenes": [],
-            "tags": [],
-            "disponible": true
-        },
-        {
-            "id": "P013",
-            "nom": "Saké Dassai 23",
-            "categorie": "boisson",
-            "description": "Le sommet du saké Junmai Daiginjo (12cl).",
-            "prix": 24,
-            "image": "img/menu/sake.png",
-            "allergenes": ["alcool"],
-            "tags": ["premium"],
-            "disponible": true
-        },
-        {
-            "id": "P014",
-            "nom": "Thé Matcha de Kyoto",
-            "categorie": "boisson",
-            "description": "Thé de cérémonie au fouet de bambou.",
-            "prix": 10,
-            "image": "img/menu/matcha.png",
-            "allergenes": [],
-            "tags": [],
-            "disponible": true
-        },
-        {
-            "id": "P015",
-            "nom": "Nectar de Yuzu",
-            "categorie": "boisson",
-            "description": "Jus de yuzu pressé et miel infusé.",
-            "prix": 9,
-            "image": "img/menu/yuzu.png",
-            "allergenes": [],
-            "tags": [],
-            "disponible": true
-        }
-    ]
+  "plats": [
+    {
+      "id": "P001",
+      "nom": "Carpaccio de Hamachi",
+      "categorie": "entree",
+      "description": "Sériole du Japon, perles de yuzu, piment serrano frais.",
+      "prix": 26,
+      "image": "img/menu/hamachi.png",
+      "allergenes": ["poisson"],
+      "infos_nutritionnelles": { "calories": 180, "proteines": 22, "glucides": 4, "lipides": 9 },
+      "tags": ["sans gluten"],
+      "disponible": true
+    },
+    {
+      "id": "P002",
+      "nom": "Tempura de Shiso",
+      "categorie": "entree",
+      "description": "Feuilles de shiso en tempura légère, tartare de crevettes Obsiblue.",
+      "prix": 22,
+      "image": "img/menu/shiso.png",
+      "allergenes": ["crustaces", "gluten"],
+      "infos_nutritionnelles": { "calories": 210, "proteines": 14, "glucides": 18, "lipides": 10 },
+      "tags": ["signature"],
+      "disponible": true
+    },
+    {
+      "id": "P003",
+      "nom": "Miso Shiru Premium",
+      "categorie": "entree",
+      "description": "Bouillon dashi de 12h, tofu soyeux grillé et algues nori.",
+      "prix": 14,
+      "image": "img/menu/miso.png",
+      "allergenes": ["soja"],
+      "infos_nutritionnelles": { "calories": 95, "proteines": 6, "glucides": 8, "lipides": 4 },
+      "tags": [],
+      "disponible": true
+    },
+    {
+      "id": "P004",
+      "nom": "O-Toro",
+      "categorie": "plat",
+      "description": "Thon rouge gras (ventrèche), wasabi frais râpé à la minute.",
+      "prix": 28,
+      "image": "img/menu/otoro.png",
+      "allergenes": ["poisson"],
+      "infos_nutritionnelles": { "calories": 310, "proteines": 28, "glucides": 0, "lipides": 22 },
+      "tags": [],
+      "disponible": true
+    },
+    {
+      "id": "P005",
+      "nom": "Unagi Kabayaki",
+      "categorie": "plat",
+      "description": "Anguille grillée au feu de bois, laquée à la sauce soja réduite.",
+      "prix": 18,
+      "image": "img/menu/unagi.png",
+      "allergenes": ["poisson", "soja"],
+      "infos_nutritionnelles": { "calories": 260, "proteines": 20, "glucides": 12, "lipides": 14 },
+      "tags": [],
+      "disponible": true
+    },
+    {
+      "id": "P006",
+      "nom": "Uni (Oursin)",
+      "categorie": "plat",
+      "description": "Oursin sauvage de Galice servi sur feuille d'or, iode et douceur.",
+      "prix": 32,
+      "image": "img/menu/uni.png",
+      "allergenes": ["mollusques"],
+      "infos_nutritionnelles": { "calories": 140, "proteines": 13, "glucides": 3, "lipides": 8 },
+      "tags": ["premium"],
+      "disponible": true
+    },
+    {
+      "id": "P007",
+      "nom": "Wagyu Binchotan",
+      "categorie": "plat",
+      "description": "Bœuf Wagyu Kagoshima A5 fumé au charbon de chêne blanc, sauce ponzu.",
+      "prix": 85,
+      "image": "img/menu/wagyu.png",
+      "allergenes": [],
+      "infos_nutritionnelles": { "calories": 520, "proteines": 38, "glucides": 2, "lipides": 40 },
+      "tags": ["signature", "premium"],
+      "disponible": true
+    },
+    {
+      "id": "P008",
+      "nom": "Black Cod Saikyo",
+      "categorie": "plat",
+      "description": "Cabillaud noir mariné 72h au miso blanc de Kyoto, grillé à la flamme.",
+      "prix": 48,
+      "image": "img/menu/cod.png",
+      "allergenes": ["poisson", "soja"],
+      "infos_nutritionnelles": { "calories": 380, "proteines": 30, "glucides": 10, "lipides": 22 },
+      "tags": [],
+      "disponible": true
+    },
+    {
+      "id": "P009",
+      "nom": "Ramen Ichiraku",
+      "categorie": "plat",
+      "description": "Bouillon tonkotsu mijoté 12h, porc chashu fondant, œuf mollet et bambou menma.",
+      "prix": 19,
+      "image": "img/menu/ramen.png",
+      "allergenes": ["gluten"],
+      "infos_nutritionnelles": { "calories": 620, "proteines": 32, "glucides": 68, "lipides": 24 },
+      "tags": [],
+      "disponible": true
+    },
+    {
+      "id": "P010",
+      "nom": "Bento Kaiseki",
+      "categorie": "plat",
+      "description": "Sélection du chef : 6 pièces nigiri, soupe miso, salade wakame et dessert mochi.",
+      "prix": 42,
+      "image": "img/menu/bento.png",
+      "allergenes": ["poisson", "soja", "gluten"],
+      "infos_nutritionnelles": { "calories": 480, "proteines": 28, "glucides": 52, "lipides": 16 },
+      "tags": ["signature"],
+      "disponible": true
+    },
+    {
+      "id": "P011",
+      "nom": "Mochi Artisanal",
+      "categorie": "dessert",
+      "description": "Trio de mochis : Matcha, Fleur de cerisier et Sésame noir.",
+      "prix": 12,
+      "image": "img/menu/mochi.png",
+      "allergenes": ["gluten"],
+      "infos_nutritionnelles": { "calories": 220, "proteines": 3, "glucides": 48, "lipides": 2 },
+      "tags": [],
+      "disponible": true
+    },
+    {
+      "id": "P012",
+      "nom": "Perles du Japon",
+      "categorie": "dessert",
+      "description": "Tapioca au lait de coco, mangue fraîche et sorbet basilic.",
+      "prix": 16,
+      "image": "img/menu/perles.png",
+      "allergenes": [],
+      "infos_nutritionnelles": { "calories": 280, "proteines": 2, "glucides": 58, "lipides": 6 },
+      "tags": [],
+      "disponible": true
+    },
+    {
+      "id": "P013",
+      "nom": "Saké Dassai 23",
+      "categorie": "boisson",
+      "description": "Saké Junmai Daiginjo d'exception, poli à 23%. Notes florales et fruitées.",
+      "prix": 120,
+      "image": "img/menu/dassai.png",
+      "allergenes": [],
+      "infos_nutritionnelles": { "calories": 110, "proteines": 0, "glucides": 4, "lipides": 0 },
+      "tags": ["premium"],
+      "disponible": true
+    }
+  ]
 }

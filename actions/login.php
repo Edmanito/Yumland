@@ -1,8 +1,4 @@
 <?php
-// =========================================
-// KAISEKI SHUNEI — ACTIONS/LOGIN.PHP
-// =========================================
-
 require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 
@@ -26,7 +22,15 @@ if (!$user) {
     exit;
 }
 
-if (!verifierMotDePasse($mdp, $user['mot_de_passe'])) {
+// Vérifie hash bcrypt OU mot de passe en clair (comptes de test)
+$mdpOk = false;
+if (str_starts_with($user['mot_de_passe'], '$2y$')) {
+    $mdpOk = password_verify($mdp, $user['mot_de_passe']);
+} else {
+    $mdpOk = ($mdp === $user['mot_de_passe']);
+}
+
+if (!$mdpOk) {
     header('Location: ../index.php?erreur=identifiants_incorrects');
     exit;
 }
