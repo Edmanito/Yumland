@@ -12,7 +12,21 @@ function toggleMenu() {
 }
 
 function toggleReservation() {
-    document.getElementById("reservation-panel").classList.toggle("open");
+    const panel = document.getElementById("reservation-panel");
+    const authBtn = document.getElementById("auth-btn");
+    
+    panel.classList.toggle("open");
+
+    // Si le bouton "CONNEXION" existe (utilisateur déconnecté)
+    if (authBtn) {
+        if (panel.classList.contains("open")) {
+            // Le panneau s'ouvre : on cache le bouton
+            authBtn.style.display = "none";
+        } else {
+            // Le panneau se ferme : on réaffiche le bouton
+            authBtn.style.display = "block";
+        }
+    }
 }
 
 function openReservationFromMenu() {

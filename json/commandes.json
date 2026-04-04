@@ -5,37 +5,72 @@
             "id_client": "U001",
             "type": "livraison",
             "statut": "livree",
-            "adresse_livraison": "12 Rue du Sushi, 75001 Paris",
+            "adresse_livraison": "12 Rue du Sushi, 75000 Paris",
             "etage": "4",
             "interphone": "1234",
             "articles": [
-                { "type": "menu", "id": "M001", "nom": "Menu Omakase Prestige", "quantite": 1, "prix_unitaire": 120 }
+                {
+                    "type": "menu",
+                    "id": "M001",
+                    "quantite": 1,
+                    "prix_unitaire": 120
+                }
             ],
             "prix_total": 120,
             "remise_appliquee": 0,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-01-12T20:30:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-01-12T20:30:00"
+            },
             "id_livreur": "L001",
-            "note_client": { "note_livraison": 5, "note_produits": 5, "commentaire": "Exceptionnel, une expérience unique !" },
-            "dates": { "commande": "2026-01-12T19:00:00", "preparation": "2026-01-12T19:15:00", "livraison": "2026-01-12T20:25:00" }
+            "note_client": {
+                "note_livraison": 5,
+                "note_produits": 5,
+                "commentaire": "Exceptionnel !"
+            },
+            "dates": {
+                "commande": "2026-01-12T19:00:00",
+                "preparation": "2026-01-12T19:15:00",
+                "livraison": "2026-01-12T20:25:00"
+            }
         },
         {
             "id": "CMD002",
             "id_client": "U001",
             "type": "livraison",
             "statut": "livree",
-            "adresse_livraison": "12 Rue du Sushi, 75001 Paris",
+            "adresse_livraison": "12 Rue du Sushi, 75000 Paris",
             "etage": "4",
             "interphone": "1234",
             "articles": [
-                { "type": "plat", "id": "P010", "nom": "Bento Kaiseki", "quantite": 1, "prix_unitaire": 42 },
-                { "type": "boisson", "id": "P014", "nom": "Thé Matcha de Kyoto", "quantite": 2, "prix_unitaire": 10 }
+                {
+                    "type": "plat",
+                    "id": "P010",
+                    "quantite": 1,
+                    "prix_unitaire": 42
+                },
+                {
+                    "type": "boisson",
+                    "id": "P014",
+                    "quantite": 2,
+                    "prix_unitaire": 10
+                }
             ],
             "prix_total": 62,
             "remise_appliquee": 0,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-01-05T20:00:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-01-05T20:00:00"
+            },
             "id_livreur": "L001",
-            "note_client": { "note_livraison": 4, "note_produits": 5, "commentaire": "Très bon, livraison rapide." },
-            "dates": { "commande": "2026-01-05T19:00:00", "preparation": "2026-01-05T19:20:00", "livraison": "2026-01-05T20:10:00" }
+            "note_client": null,
+            "dates": {
+                "commande": "2026-01-05T19:00:00",
+                "preparation": "2026-01-05T19:20:00",
+                "livraison": "2026-01-05T20:10:00"
+            }
         },
         {
             "id": "CMD003",
@@ -46,89 +81,194 @@
             "etage": "",
             "interphone": "",
             "articles": [
-                { "type": "menu", "id": "M003", "nom": "Menu Duo Kaiseki", "quantite": 1, "prix_unitaire": 180 }
+                {
+                    "type": "menu",
+                    "id": "M003",
+                    "quantite": 1,
+                    "prix_unitaire": 180
+                }
             ],
             "prix_total": 162,
             "remise_appliquee": 10,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-03-20T20:00:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-03-20T20:00:00"
+            },
             "id_livreur": null,
             "note_client": null,
-            "dates": { "commande": "2026-03-20T19:45:00", "preparation": "2026-03-20T20:00:00", "livraison": null }
+            "dates": {
+                "commande": "2026-03-20T19:45:00",
+                "preparation": "2026-03-20T20:00:00",
+                "livraison": null
+            }
         },
         {
             "id": "CMD004",
             "id_client": "U004",
             "type": "livraison",
             "statut": "en_attente",
-            "adresse_livraison": "3 Rue André del Sarte, 75018 Paris",
+            "adresse_livraison": "3 Rue AndrÃ© del Sarte, 75018 Paris",
             "etage": "3",
             "interphone": "9999",
             "articles": [
-                { "type": "plat", "id": "P007", "nom": "Wagyu Binchotan", "quantite": 1, "prix_unitaire": 85 },
-                { "type": "boisson", "id": "P013", "nom": "Saké Dassai 23", "quantite": 1, "prix_unitaire": 24 }
+                {
+                    "type": "plat",
+                    "id": "P007",
+                    "quantite": 1,
+                    "prix_unitaire": 85
+                },
+                {
+                    "type": "boisson",
+                    "id": "P013",
+                    "quantite": 1,
+                    "prix_unitaire": 24
+                }
             ],
-            "prix_total": 103,
+            "prix_total": 109,
             "remise_appliquee": 5,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-03-23T19:30:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-03-23T19:30:00"
+            },
             "id_livreur": null,
             "note_client": null,
-            "dates": { "commande": "2026-03-23T19:30:00", "preparation": null, "livraison": null }
+            "dates": {
+                "commande": "2026-03-23T19:30:00",
+                "preparation": null,
+                "livraison": null
+            }
         },
         {
             "id": "CMD005",
             "id_client": "U005",
-            "type": "livraison",
+            "type": "emporter",
             "statut": "en_livraison",
             "adresse_livraison": "22 Boulevard Haussmann, 75009 Paris",
             "etage": "RDC",
             "interphone": "",
             "articles": [
-                { "type": "plat", "id": "P009", "nom": "Ramen Ichiraku", "quantite": 2, "prix_unitaire": 19 }
+                {
+                    "type": "plat",
+                    "id": "P009",
+                    "quantite": 2,
+                    "prix_unitaire": 19
+                }
             ],
             "prix_total": 38,
             "remise_appliquee": 0,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-03-23T20:00:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-03-23T20:00:00"
+            },
             "id_livreur": "L001",
             "note_client": null,
-            "dates": { "commande": "2026-03-23T19:50:00", "preparation": "2026-03-23T20:05:00", "livraison": null }
+            "dates": {
+                "commande": "2026-03-23T19:50:00",
+                "preparation": "2026-03-23T20:05:00",
+                "livraison": null
+            }
         },
         {
             "id": "CMD006",
-            "id_client": "U006",
+            "id_client": "U001",
             "type": "livraison",
-            "statut": "pret",
-            "adresse_livraison": "14 Rue de la Paix, 75002 Paris",
-            "etage": "5",
-            "interphone": "4242",
-            "articles": [
-                { "type": "menu", "id": "M002", "nom": "Menu Déjeuner Shunei", "quantite": 2, "prix_unitaire": 45 },
-                { "type": "boisson", "id": "P015", "nom": "Nectar de Yuzu", "quantite": 2, "prix_unitaire": 9 }
-            ],
-            "prix_total": 72,
-            "remise_appliquee": 15,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-04-01T12:10:00" },
-            "id_livreur": null,
-            "note_client": null,
-            "dates": { "commande": "2026-04-01T12:00:00", "preparation": "2026-04-01T12:10:00", "livraison": null }
-        },
-        {
-            "id": "CMD007",
-            "id_client": "U003",
-            "type": "emporter",
-            "statut": "livree",
+            "statut": "en_attente",
             "adresse_livraison": "",
             "etage": "",
             "interphone": "",
             "articles": [
-                { "type": "plat", "id": "P004", "nom": "O-Toro", "quantite": 1, "prix_unitaire": 28 },
-                { "type": "dessert", "id": "P011", "nom": "Mochi Artisanal", "quantite": 1, "prix_unitaire": 12 }
+                {
+                    "type": "plat",
+                    "id": "P002",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                }
             ],
-            "prix_total": 40,
+            "prix_total": 22,
             "remise_appliquee": 0,
-            "paiement": { "statut": "paye", "methode": "cybank", "date_transaction": "2026-02-15T13:00:00" },
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-04T16:05:33"
+            },
             "id_livreur": null,
-            "note_client": { "note_livraison": 3, "note_produits": 4, "commentaire": "" },
-            "dates": { "commande": "2026-02-15T12:30:00", "preparation": "2026-02-15T12:45:00", "livraison": "2026-02-15T13:10:00" }
+            "note_client": null,
+            "dates": {
+                "commande": "2026-04-04T16:05:33",
+                "preparation": null,
+                "livraison": null
+            }
+        },
+        {
+            "id": "CMD007",
+            "id_client": "U001",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "",
+            "etage": "",
+            "interphone": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "P001",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                }
+            ],
+            "prix_total": 26,
+            "remise_appliquee": 0,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-04T16:05:55"
+            },
+            "id_livreur": null,
+            "note_client": null,
+            "dates": {
+                "commande": "2026-04-04T16:05:55",
+                "preparation": null,
+                "livraison": null
+            }
+        },
+        {
+            "id": "CMD008",
+            "id_client": "U001",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "",
+            "etage": "",
+            "interphone": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "P002",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                },
+                {
+                    "type": "plat",
+                    "id": "P006",
+                    "quantite": 2,
+                    "prix_unitaire": 0
+                }
+            ],
+            "prix_total": 86,
+            "remise_appliquee": 0,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-04T16:11:20"
+            },
+            "id_livreur": null,
+            "note_client": null,
+            "dates": {
+                "commande": "2026-04-04T16:11:20",
+                "preparation": null,
+                "livraison": null
+            }
         }
     ]
 }

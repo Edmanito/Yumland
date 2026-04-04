@@ -3,7 +3,7 @@
         {
             "id": "U001",
             "login": "jean.dupont@email.com",
-            "mot_de_passe": "$2y$10$dt1aaX2JlKvU43s5dfOgj.VOCCdXbioO6Nfol9hj7hoVrHVM81lWu",
+            "mot_de_passe": "caca",
             "role": "client",
             "statut": "actif",
             "premium": false,
@@ -253,7 +253,7 @@
         {
             "id": "L002",
             "login": "a.martin@kaiseki.com",
-            "mot_de_passe": "$2y$10$dt1aaX2JlKvU43s5dfOgj.VOCCdXbioO6Nfol9hj7hoVrHVM81lWu",
+            "mot_de_passe": "caca",
             "role": "livreur",
             "statut": "actif",
             "premium": false,
