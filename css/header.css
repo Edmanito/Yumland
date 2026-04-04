@@ -1,7 +1,5 @@
 /* =========================================
    KAISEKI SHUNEI — HEADER.CSS
-   Header fixe, menu latéral bleu,
-   panel réservation pourpre
    ========================================= */
 
 /* ── HEADER FIXE ── */
@@ -13,7 +11,7 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px 40px;
-    z-index: 3000;
+    z-index: 5000; /* au dessus de tout */
     pointer-events: none;
     transition: opacity 0.5s ease;
 }
@@ -31,9 +29,10 @@
     align-items: center;
     border-right: 1px solid var(--gray-border);
     padding: 15px 30px;
-    background: rgba(10, 10, 10, 0.1);
+    background: rgba(10, 10, 10, 0.8); /* plus opaque pour lisibilité */
     backdrop-filter: blur(5px);
     transition: all 0.4s ease;
+    z-index: 5001;
 }
 
 .logo-kanji {
@@ -68,9 +67,7 @@
     transition: transform 0.3s ease;
 }
 
-.profile-trigger:hover {
-    transform: scale(1.1);
-}
+.profile-trigger:hover { transform: scale(1.1); }
 
 .profile-icon-nav {
     width: 100%;
@@ -85,9 +82,7 @@
     filter: invert(1) drop-shadow(0 0 8px var(--gold));
 }
 
-.btn-reservation {
-    white-space: nowrap;
-}
+.btn-reservation { white-space: nowrap; }
 
 /* ── HAMBURGER ── */
 .menu-trigger {
@@ -112,22 +107,43 @@
     margin-top: 5px;
 }
 
+/* ── OVERLAY SOMBRE (quand menu ouvert) ── */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 3999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+body.open-nav::after {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 /* ── MENU LATÉRAL BLEU ── */
 .side-panel {
     position: fixed;
     top: 0;
-    left: -33.33vw;
+    left: -100vw;
     width: 33.33vw;
     height: 100vh;
     background-color: var(--navy);
-    z-index: 2000;
-    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 4000;
+    transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 240px 40px 60px 220px;
+    padding: 140px 40px 60px 60px;
     box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
     pointer-events: auto;
+    overflow: hidden;
 }
 
 .side-panel.open {
@@ -138,7 +154,6 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    z-index: 4000;
 }
 
 .menu-links a {
@@ -148,6 +163,7 @@
     letter-spacing: 4px;
     text-transform: uppercase;
     transition: 0.3s;
+    white-space: nowrap;
 }
 
 .menu-links a:hover {
@@ -158,10 +174,7 @@
 /* ── FOOTER DU MENU ── */
 .menu-footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 30px 40px;
-    position: absolute;
-    bottom: 40px;
-    left: 0;
+    padding: 20px 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -189,9 +202,7 @@
     transition: 0.3s;
 }
 
-.admin-link:hover {
-    opacity: 0.7;
-}
+.admin-link:hover { opacity: 0.7; }
 
 .insta-logo {
     width: 22px;
@@ -209,15 +220,16 @@
 .side-panel-right {
     position: fixed;
     top: 0;
-    right: -50vw;
+    right: -100vw;
     width: 50vw;
     height: 100vh;
     background-color: var(--burgundy);
-    z-index: 5000;
-    transition: all 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 4500;
+    transition: right 0.6s cubic-bezier(0.77, 0, 0.175, 1);
     padding: 80px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .side-panel-right.open {
@@ -262,4 +274,41 @@
     padding: 15px 0;
     margin-bottom: 25px;
     outline: none;
+}
+
+/* =========================================
+   RESPONSIVE MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .main-header { padding: 10px 15px; }
+
+    .logo-and-menu { padding: 8px 12px; }
+
+    .logo-kanji { font-size: 1.2rem; margin-bottom: 8px; }
+
+    .brand-name { font-size: 0.9rem; letter-spacing: 3px; margin-left: 8px; }
+
+    .header-right { gap: 8px; height: 60px; }
+
+    .profile-trigger { width: 45px; height: 45px; }
+
+    .btn-reservation {
+        font-size: 0.65rem;
+        padding: 8px 12px;
+        letter-spacing: 1px;
+    }
+
+    .side-panel {
+        width: 100vw;
+        padding: 120px 30px 80px 30px;
+    }
+
+    .side-panel-right {
+        width: 100vw;
+        padding: 70px 25px 40px 25px;
+    }
+
+    .auth-box h3 { font-size: 1.6rem; letter-spacing: 3px; }
 }
