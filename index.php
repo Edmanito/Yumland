@@ -36,7 +36,11 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
     <div id="side-menu" class="side-panel">
         <div class="menu-content-wrapper">
             <div class="menu-links">
-                <a href="javascript:void(0)" onclick="openReservationFromMenu()">RÉSERVER</a>
+                <?php if (estConnecte()): ?>
+                    <a href="php/carte.php">RÉSERVER</a>
+                <?php else: ?>
+                    <a href="javascript:void(0)" onclick="openReservationFromMenu()">RÉSERVER</a>
+                <?php endif; ?>
                 <a href="#restaurant" onclick="toggleMenu()">LE RESTAURANT</a>
                 <a href="#chefs" onclick="toggleMenu()">LES CHEFS</a>
                 <a href="#experience" onclick="toggleMenu()">L'EXPÉRIENCE</a>
