@@ -2,7 +2,7 @@
 require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 
-//requireRole('admin');
+requireRole('admin');
 
 $data = lireJSON(JSON_USERS);
 $utilisateurs = $data['utilisateurs'] ?? [];

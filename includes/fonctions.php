@@ -3,6 +3,9 @@
 // KAISEKI SHUNEI — FONCTIONS.PHP
 // =========================================
 
+/**
+ * Lit un fichier JSON et retourne son contenu sous forme de tableau
+ */
 function lireJSON($fichier) {
     if (!file_exists($fichier)) return [];
     $contenu = file_get_contents($fichier);
@@ -11,11 +14,21 @@ function lireJSON($fichier) {
     return $data ?? [];
 }
 
+/**
+ * Écrit des données dans un fichier JSON (Alias de sauvegarderJSON pour compatibilité)
+ */
 function ecrireJSON($fichier, $data) {
     return file_put_contents(
         $fichier,
         json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
     );
+}
+
+/**
+ * Sauvegarde des données dans un fichier JSON (Utilisée dans retour_paiement.php)
+ */
+function sauvegarderJSON($fichier, $data) {
+    return ecrireJSON($fichier, $data);
 }
 
 function genererID($prefixe = 'U') {
@@ -52,18 +65,24 @@ function ajouterUtilisateur($nouvelUser) {
     return ecrireJSON(JSON_USERS, $data);
 }
 
+// --- SYSTÈME DE CONNEXION ET RÔLES ---
+
 function estConnecte() {
     return isset($_SESSION['user']);
 }
 
+/**
+ * Vérifie si l'utilisateur a un rôle précis. 
+ * L'admin a accès à tout par défaut.
+ */
 function aLeRole($role) {
     if (!estConnecte()) return false;
-    return $_SESSION['user']['role'] === $role;
+    $userRole = $_SESSION['user']['role'];
+    return ($userRole === $role || $userRole === 'admin');
 }
 
 function requireConnexion() {
     if (!estConnecte()) {
-        // Déterminer le bon chemin selon où on est
         $profondeur = substr_count($_SERVER['PHP_SELF'], '/');
         $redirect = $profondeur > 2 ? '../index.php' : 'index.php';
         header('Location: ' . $redirect);
@@ -71,17 +90,14 @@ function requireConnexion() {
     }
 }
 
+/**
+ * Restreint l'accès à un rôle spécifique
+ */
 function requireRole($role) {
-    if (!estConnecte()) {
+    if (!estConnecte() || !aLeRole($role)) {
         $profondeur = substr_count($_SERVER['PHP_SELF'], '/');
         $redirect = $profondeur > 2 ? '../index.php' : 'index.php';
-        header('Location: ' . $redirect);
-        exit;
-    }
-    if (!aLeRole($role)) {
-        $profondeur = substr_count($_SERVER['PHP_SELF'], '/');
-        $redirect = $profondeur > 2 ? '../index.php' : 'index.php';
-        header('Location: ' . $redirect);
+        header('Location: ' . $redirect . '?erreur=acces_refuse');
         exit;
     }
 }

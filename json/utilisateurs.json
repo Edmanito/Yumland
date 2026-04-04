@@ -28,7 +28,7 @@
         {
             "id": "U002",
             "login": "elena.rodriguez@email.com",
-            "mot_de_passe": "$2y$10$3CTprQ3VVWKxHWSV8dLStO4N9\/VnpObetuQ6PBL3QU1t57qI5Qo9S",
+            "mot_de_passe": "popo",
             "role": "client",
             "statut": "actif",
             "premium": true,
@@ -203,7 +203,7 @@
         {
             "id": "R001",
             "login": "kenji@kaiseki.com",
-            "mot_de_passe": "$2y$10$IcoegIC0zv4wlfw3beg52uJLFgS2EHH04DgfMbFS7ytBj5p0crULS",
+            "mot_de_passe": "caca",
             "role": "restaurateur",
             "statut": "actif",
             "premium": false,

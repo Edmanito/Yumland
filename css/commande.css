@@ -189,9 +189,9 @@ body.page-commande-admin {
     border-radius: 50%;
 }
 
-.col-header.waiting .col-dot  { background: var(--waiting); box-shadow: 0 0 8px var(--waiting); }
-.col-header.cooking .col-dot  { background: var(--cooking); box-shadow: 0 0 8px var(--cooking); }
-.col-header.ready .col-dot    { background: var(--ready);   box-shadow: 0 0 8px var(--ready); }
+.col-header.waiting .col-dot   { background: var(--waiting); box-shadow: 0 0 8px var(--waiting); }
+.col-header.cooking .col-dot   { background: var(--cooking); box-shadow: 0 0 8px var(--cooking); }
+.col-header.ready .col-dot     { background: var(--ready);   box-shadow: 0 0 8px var(--ready); }
 .col-header.delivering .col-dot { background: var(--delivering); box-shadow: 0 0 8px var(--delivering); }
 
 .col-count {
@@ -235,16 +235,18 @@ body.page-commande-admin {
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
 
-.order-card.urgent {
-    border-color: rgba(239, 68, 68, 0.4);
-    background: rgba(239, 68, 68, 0.04);
-}
-
-/* Top ligne: ID + heure */
+/* Bloc temps et planification différée */
 .card-top {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Aligné en haut pour accommoder la date prévue */
     gap: 8px;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-left: auto;
 }
 
 .order-id {
@@ -257,52 +259,18 @@ body.page-commande-admin {
 .order-time {
     font-size: 0.7rem;
     color: var(--text-dim);
-    margin-left: auto;
 }
 
-.urgent-tag {
-    font-size: 0.6rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: var(--urgent);
-    background: rgba(239,68,68,0.1);
-    border: 1px solid rgba(239,68,68,0.3);
-    padding: 2px 7px;
-    border-radius: 4px;
+.plan-time {
+    display: block;
+    font-size: 0.65rem;
+    color: #ffcc00;
+    font-weight: 700;
+    margin-top: 2px;
+    text-transform: uppercase;
 }
 
-/* Client info */
-.card-client {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.client-avatar {
-    width: 30px; height: 30px;
-    border-radius: 8px;
-    background: var(--surface);
-    border: 1px solid var(--border-gold);
-    color: var(--gold);
-    font-size: 0.6rem;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.client-avatar.vip {
-    background: var(--gold-dim);
-    color: var(--gold);
-}
-
-.client-name {
-    font-size: 0.85rem;
-    font-weight: 600;
-    flex: 1;
-}
-
+/* Badges Type de Service (Livraison vs Sur place) */
 .order-type {
     font-size: 0.6rem;
     font-weight: 700;
@@ -312,9 +280,9 @@ body.page-commande-admin {
     text-transform: uppercase;
 }
 
-.order-type.livraison  { background: rgba(168,85,247,0.12); color: #c084fc; }
-.order-type.sur-place  { background: rgba(59,130,246,0.12); color: #60a5fa; }
-.order-type.emporter   { background: rgba(212,175,55,0.12);  color: var(--gold); }
+.order-type.livraison  { background: rgba(168,85,247,0.12); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+.order-type.sur_place  { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+.order-type.emporter   { background: rgba(212,175,55,0.12);  color: var(--gold); border: 1px solid var(--border-gold); }
 
 /* Items */
 .card-items {
@@ -344,30 +312,62 @@ body.page-commande-admin {
     color: var(--text);
 }
 
-.item-note {
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    font-style: italic;
-    margin-top: 2px;
+/* Footer de carte : Total + Statut Paiement */
+.card-footer-info {
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.total-line {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 0.85rem;
+}
+
+.payment-tag {
+    font-size: 0.6rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payment-tag.paye {
+    background: rgba(34, 197, 94, 0.15);
+    color: #2ecc71;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.payment-tag.en_attente {
+    background: rgba(241, 196, 15, 0.15);
+    color: #f1c40f;
+    border: 1px solid rgba(241, 196, 15, 0.3);
+}
+
+/* Infos Livreur */
 .livreur-info {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-size: 0.72rem;
-    color: #a855f7;
-    margin-top: 4px;
-    padding-top: 6px;
-    border-top: 1px solid var(--border);
+    color: #eee;
+    background: rgba(255,255,255,0.03);
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin-top: 5px;
 }
 
 /* Actions */
-.card-actions { margin-top: 2px; }
+.card-actions { margin-top: 5px; }
 
 .btn-action {
     width: 100%;
-    padding: 9px;
+    padding: 10px;
     border: none;
     border-radius: 7px;
     font-size: 0.72rem;
@@ -383,27 +383,17 @@ body.page-commande-admin {
     color: var(--gold);
     border: 1px solid var(--border-gold);
 }
-.btn-action.primary:hover {
-    background: rgba(212,175,55,0.2);
-}
+.btn-action.primary:hover { background: rgba(212,175,55,0.2); }
 
 .btn-action.success {
     background: rgba(34,197,94,0.1);
     color: #22c55e;
     border: 1px solid rgba(34,197,94,0.25);
 }
-.btn-action.success:hover {
-    background: rgba(34,197,94,0.2);
-}
+.btn-action.success:hover { background: rgba(34,197,94,0.2); }
 
-.btn-action.gold {
-    background: var(--gold);
-    color: #000;
-}
-.btn-action.gold:hover {
-    background: #c9a227;
-    transform: translateY(-1px);
-}
+.btn-action.gold { background: var(--gold); color: #000; }
+.btn-action.gold:hover { background: #c9a227; transform: translateY(-1px); }
 
 .btn-action.muted {
     background: transparent;

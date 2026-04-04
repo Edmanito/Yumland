@@ -2,13 +2,7 @@
 require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 
-// ── SÉCURITÉ : ACCÈS RÉSERVÉ AUX LIVREURS ──
-// Si pas connecté ou si le rôle n'est pas livreur -> Redirection accueil
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'livreur') {
-    header('Location: ../index.php?erreur=acces_interdit');
-    exit;
-}
-
+requireRole('livreur');
 $livreur = $_SESSION['user'];
 
 // ── RÉCUPÉRATION DES MISSIONS ──
@@ -57,8 +51,11 @@ $mesLivraisons = array_values(array_filter(
                 }
             }
 
-            // Gestion de l'adresse (priorité à l'adresse de commande, sinon celle du profil client)
-            $adresse = $cmd['adresse_livraison'] ?? ($client['infos']['adresse'] ?? 'Adresse non renseignée');
+            // --- CORRECTION : Sécurité si les champs du JSON sont vides ---
+            $adresse = !empty($cmd['adresse_livraison']) ? $cmd['adresse_livraison'] : ($client['infos']['adresse'] ?? 'Adresse non renseignée');
+            $etage = !empty($cmd['etage']) ? $cmd['etage'] : ($client['infos']['etage'] ?? '');
+            $interphone = !empty($cmd['interphone']) ? $cmd['interphone'] : ($client['infos']['interphone'] ?? '');
+            
             // Formatage propre pour Google Maps
             $adresseEncode = urlencode($adresse);
         ?>
@@ -74,11 +71,11 @@ $mesLivraisons = array_values(array_filter(
                 </h2>
                 <address class="client-address"><?= htmlspecialchars($adresse) ?></address>
                 
-                <?php if (!empty($cmd['etage']) || !empty($cmd['interphone'])): ?>
+                <?php if (!empty($etage) || !empty($interphone)): ?>
                 <div class="delivery-instructions">
                     <p>
-                        <?= !empty($cmd['etage']) ? 'Étage : <strong>' . htmlspecialchars($cmd['etage']) . '</strong>. ' : '' ?>
-                        <?= !empty($cmd['interphone']) ? 'Interphone : <strong>' . htmlspecialchars($cmd['interphone']) . '</strong>' : '' ?>
+                        <?= !empty($etage) ? 'Étage : <strong>' . htmlspecialchars($etage) . '</strong>. ' : '' ?>
+                        <?= !empty($interphone) ? 'Interphone : <strong>' . htmlspecialchars($interphone) . '</strong>' : '' ?>
                     </p>
                 </div>
                 <?php endif; ?>
