@@ -2,6 +2,20 @@
 require_once 'includes/config.php';
 require_once 'includes/fonctions.php';
 
+// Redirection automatique si déjà connecté
+if (estConnecte()) {
+    switch ($_SESSION['user']['role']) {
+        case 'admin':
+            header('Location: php/admin.php'); exit;
+        case 'restaurateur':
+            header('Location: php/commande.php'); exit;
+        case 'livreur':
+            header('Location: php/livraison.php'); exit;
+        default:
+            header('Location: php/profil.php'); exit;
+    }
+}
+
 $erreurs = [
     'champs_vides'            => 'Veuillez remplir tous les champs.',
     'identifiants_incorrects' => 'Email ou mot de passe incorrect.',
@@ -42,7 +56,15 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         <div class="menu-footer">
             <div class="footer-main-container">
                 <div class="footer-admin-top">
-                    <a href="javascript:void(0)" class="admin-link" onclick="accesSecurise()">ADMINISTRATION</a>
+                    <?php if (estConnecte()): ?>
+                        <?php if (aLeRole('admin')): ?>
+                            <a href="php/admin.php" class="admin-link">ADMINISTRATION</a>
+                        <?php elseif (aLeRole('restaurateur')): ?>
+                            <a href="php/commande.php" class="admin-link">CUISINE</a>
+                        <?php elseif (aLeRole('livreur')): ?>
+                            <a href="php/livraison.php" class="admin-link">MES LIVRAISONS</a>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
                 <div class="footer-main-info">
                     <img src="img/instagram-icon.png" alt="Instagram" class="insta-logo">
@@ -63,27 +85,11 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
                 </div>
             </div>
             <div class="nav-branding">
-                <h1 class="brand-name">
-                <?php if (estConnecte()): ?>
-                    <div style="display:flex;flex-direction:column;justify-content:center;margin-left:5px;">
-                        <span style="font-family:'Montserrat';font-size:0.6rem;letter-spacing:5px;opacity:0.6;margin-bottom:2px;">BIENVENUE</span>
-                        <span style="color:var(--gold);font-family:'Playfair Display';font-size:1.4rem;font-weight:700;letter-spacing:3px;padding-left:20px;font-style:italic;">
-                            <?= strtoupper(htmlspecialchars($_SESSION['user']['infos']['prenom'])) ?>
-                        </span>
-                    </div>
-                <?php else: ?>
-                    KAISEKI SHUNEI
-                <?php endif; ?>
-                </h1>
+                <h1 class="brand-name">KAISEKI SHUNEI</h1>
             </div>
         </div>
 
         <div class="header-right">
-            <?php if (estConnecte()): ?>
-                <a href="actions/logout.php" style="display:block;cursor:pointer;color:var(--gold);font-size:0.7rem;letter-spacing:2px;margin-right:20px;border-bottom:1px solid var(--gold);text-decoration:none;">
-                    DÉCONNEXION
-                </a>
-            <?php endif; ?>
             <div class="profile-trigger" onclick="gererClicProfil()">
                 <img src="img/profil-vide.png" alt="Profil" class="profile-icon-nav">
             </div>
@@ -256,22 +262,7 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
     <script src="js/index.js"></script>
     <script>
         function gererClicProfil() {
-            <?php if (estConnecte()): ?>
-                window.location.href = 'php/profil.php';
-            <?php else: ?>
-                toggleReservation();
-            <?php endif; ?>
-        }
-        function accesSecurise() {
-            const code = prompt("Veuillez entrer votre code d'accès :");
-            if (code === null) return;
-            const choix = code.trim().toLowerCase();           
-            if (choix === "administration")  { 
-                window.location.href = "php/admin.php"; 
-            }
-            else if (choix === "commande")   { window.location.href = "php/commande.php"; }
-            else if (choix === "livraison")  { window.location.href = "php/livraison.php"; }
-            else { alert("ACCÈS REFUSÉ !"); }
+            toggleReservation();
         }
     </script>
 
