@@ -346,13 +346,28 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
 
         // ── ACCÈS SÉCURISÉ ──
         function accesSecurise() {
+            // 1. On récupère le rôle de l'utilisateur via PHP (injecté en JS)
+            const estClient = <?php echo (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'client') ? 'true' : 'false'; ?>;
+            const estConnecte = <?php echo estConnecte() ? 'true' : 'false'; ?>;
+
+            // 2. Si c'est un client connecté, on bloque direct avec un message élégant
+            if (estConnecte && estClient) {
+                alert("Accès Restreint : Vous n'avez pas les autorisations nécessaires pour accéder à l'administration.");
+                return; // On arrête la fonction ici
+            }
+
+            // 3. Si c'est un admin ou quelqu'un de non-connecté, on demande le code
             const code = prompt("Veuillez entrer votre code d'accès :");
             if (code === null) return;
+
             const choix = code.trim().toLowerCase();
-            if (choix === "administration")       { window.location.href = "php/admin.php"; }
-            else if (choix === "commande")        { window.location.href = "php/commande.php"; }
+
+            if (choix === "administration")      { window.location.href = "php/admin.php"; }
+            else if (choix === "commande")         { window.location.href = "php/commande.php"; }
             else if (choix === "livraison")       { window.location.href = "php/livraison.php"; }
-            else { alert("ACCÈS REFUSÉ !"); }
+            else { 
+                alert("ACCÈS REFUSÉ ! Code incorrect."); 
+            }
         }
 
         // ── LANGUE ──

@@ -99,7 +99,7 @@ $categories = [
                 <article class="menu-card">
                     <div class="menu-card-top">
                         <h3><?= htmlspecialchars($m['nom']) ?></h3>
-                        <span class="price"><?= $m['prix'] ?>€</span>
+                        <span class="price"><?= $m['prix_total'] ?>€</span>
                     </div>
                     <p><?= htmlspecialchars($m['description']) ?></p>
                     <a href="ajouter_panier.php?id=<?= $m['id'] ?>" class="btn-menu">RÉSERVER CE MENU</a>

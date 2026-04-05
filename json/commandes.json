@@ -2,49 +2,6 @@
     "commandes": [
         {
             "id": "CMD001",
-            "id_client": "UAB57FB",
-            "type": "livraison",
-            "statut": "livree",
-            "adresse_livraison": "",
-            "articles": [
-                {
-                    "type": "plat",
-                    "id": "p05",
-                    "nom": "Tempura de Langoustine",
-                    "quantite": 1,
-                    "prix_unitaire": 38
-                },
-                {
-                    "type": "plat",
-                    "id": "p21",
-                    "nom": "Tiramisu au Sésame Noir",
-                    "quantite": 1,
-                    "prix_unitaire": 24
-                },
-                {
-                    "type": "plat",
-                    "id": "p30",
-                    "nom": "Highball Japonais Suntory",
-                    "quantite": 1,
-                    "prix_unitaire": 18
-                }
-            ],
-            "prix_total": 80,
-            "paiement": {
-                "statut": "paye",
-                "methode": "cybank",
-                "date_transaction": "2026-04-05T18:53:45"
-            },
-            "dates": {
-                "commande": "2026-04-05T18:53:45",
-                "preparation": "2026-04-05T18:54:12",
-                "expedition": "2026-04-05T18:54:17",
-                "livraison": "2026-04-05T18:55:21"
-            },
-            "id_livreur": "L002"
-        },
-        {
-            "id": "CMD002",
             "id_client": "U403263",
             "type": "livraison",
             "statut": "livree",
@@ -52,32 +9,73 @@
             "articles": [
                 {
                     "type": "plat",
-                    "id": "p01",
-                    "nom": "Edamame à la Truffe Noire",
+                    "id": "p26",
+                    "nom": "Whisky Yamazaki 12 ans",
+                    "quantite": 3,
+                    "prix_unitaire": 38
+                }
+            ],
+            "prix_total": 114,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-05T22:52:33"
+            },
+            "dates": {
+                "commande": "2026-04-05T22:52:33",
+                "planification": null,
+                "preparation": "2026-04-05T21:07:47",
+                "expedition": "2026-04-05T21:07:52",
+                "livraison": "2026-04-05T21:08:06"
+            },
+            "id_livreur": "L002"
+        },
+        {
+            "id": "CMD002",
+            "id_client": "U403263",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "M002",
+                    "nom": "Menu Déjeuner Shunei",
+                    "quantite": 1,
+                    "prix_unitaire": 45
+                },
+                {
+                    "type": "plat",
+                    "id": "p03",
+                    "nom": "Tataki de Wagyu A5",
+                    "quantite": 1,
+                    "prix_unitaire": 48
+                },
+                {
+                    "type": "plat",
+                    "id": "p24",
+                    "nom": "Glace Hojicha & Caramel",
                     "quantite": 1,
                     "prix_unitaire": 18
                 },
                 {
                     "type": "plat",
-                    "id": "p06",
-                    "nom": "Soupe Miso Dashi Blanc",
+                    "id": "p28",
+                    "nom": "Eau Minérale Japonaise",
                     "quantite": 1,
-                    "prix_unitaire": 16
+                    "prix_unitaire": 8
                 }
             ],
-            "prix_total": 34,
+            "prix_total": 119,
             "paiement": {
                 "statut": "paye",
                 "methode": "cybank",
-                "date_transaction": "2026-04-05T19:31:20"
+                "date_transaction": "2026-04-05T22:55:41"
             },
             "dates": {
-                "commande": "2026-04-05T19:31:20",
-                "preparation": "2026-04-05T19:32:11",
-                "expedition": "2026-04-05T19:32:19",
-                "livraison": "2026-04-05T19:32:42"
-            },
-            "id_livreur": "L002"
+                "commande": "2026-04-05T22:55:41",
+                "planification": null
+            }
         },
         {
             "id": "CMD003",
@@ -88,20 +86,28 @@
             "articles": [
                 {
                     "type": "plat",
-                    "id": "p04",
-                    "nom": "Chawanmushi au Caviar",
+                    "id": "p12",
+                    "nom": "Plateau Kaiseki Signature",
                     "quantite": 1,
-                    "prix_unitaire": 56
+                    "prix_unitaire": 145
+                },
+                {
+                    "type": "plat",
+                    "id": "M003",
+                    "nom": "Menu Duo Kaiseki",
+                    "quantite": 1,
+                    "prix_unitaire": 180
                 }
             ],
-            "prix_total": 56,
+            "prix_total": 325,
             "paiement": {
                 "statut": "paye",
                 "methode": "cybank",
-                "date_transaction": "2026-04-05T19:31:40"
+                "date_transaction": "2026-04-05T23:06:10"
             },
             "dates": {
-                "commande": "2026-04-05T19:31:40"
+                "commande": "2026-04-05T23:06:10",
+                "planification": null
             }
         }
     ]

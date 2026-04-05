@@ -51,7 +51,7 @@ h1 {
     margin: 0 auto;
 }
 
-/* --- Tableau & Contenu --- */
+/* ── TABLEAU ── */
 .panier-table {
     width: 100%;
     border-collapse: collapse;
@@ -77,27 +77,24 @@ h1 {
     vertical-align: middle;
 }
 
-/* Alignement spécifique pour les prix et totaux */
-.text-right { 
-    text-align: right; 
-}
+.text-right { text-align: right; }
 
-/* --- Style du Produit & Personnalisation --- */
+/* ── PRODUIT ── */
 .prod-info {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.prod-name { 
-    font-family: 'Playfair Display', serif; 
-    font-size: 1.3rem; 
+.prod-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
     color: #fff;
 }
 
 .prod-custom {
     font-size: 10px;
-    color: #ff4d4d; /* Rouge discret pour signaler un retrait */
+    color: #ff4d4d;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 600;
@@ -116,12 +113,9 @@ h1 {
     text-transform: uppercase;
 }
 
-.btn-edit-custom:hover {
-    background: var(--gold);
-    color: #000;
-}
+.btn-edit-custom:hover { background: var(--gold); color: #000; }
 
-/* --- Quantité & Contrôles --- */
+/* ── QUANTITÉ ── */
 .qte-picker {
     display: flex;
     align-items: center;
@@ -153,7 +147,7 @@ h1 {
 
 .btn-delete:hover { opacity: 1; }
 
-/* --- Footer du Panier --- */
+/* ── FOOTER PANIER ── */
 .panier-footer {
     margin-top: 40px;
     display: flex;
@@ -179,9 +173,9 @@ h1 {
     text-transform: uppercase;
 }
 
-.btn-gold:hover { 
-    transform: translateY(-3px); 
-    box-shadow: 0 10px 20px rgba(188, 156, 100, 0.2); 
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(188, 156, 100, 0.2);
 }
 
 .btn-outline {
@@ -197,7 +191,7 @@ h1 {
 
 .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-/* --- États vides --- */
+/* ── PANIER VIDE ── */
 .panier-vide {
     text-align: center;
     padding: 80px 0;
@@ -209,8 +203,231 @@ h1 {
     margin-bottom: 30px;
 }
 
+/* ── PAGE NON CONNECTÉ ── */
+.panier-auth {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-box-panier {
+    text-align: center;
+    max-width: 480px;
+    width: 100%;
+    padding: 60px 40px;
+    border: 1px solid var(--border);
+    background: var(--dark-surface);
+    animation: fadeUp 0.6s ease;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.auth-box-panier .kanji {
+    font-size: 3rem;
+    color: rgba(188, 156, 100, 0.12);
+    font-family: serif;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.auth-box-panier h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.auth-box-panier > p {
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    letter-spacing: 0.5px;
+}
+
+.auth-btns {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-auth-connexion {
+    padding: 14px 32px;
+    background: var(--gold);
+    color: #000;
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    transition: opacity 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-auth-connexion:hover { opacity: 0.85; }
+
+.btn-auth-inscription {
+    padding: 14px 32px;
+    background: transparent;
+    border: 1px solid rgba(188, 156, 100, 0.35);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-auth-inscription:hover {
+    border-color: var(--gold);
+    background: rgba(188, 156, 100, 0.08);
+}
+
+.auth-note {
+    margin-top: 24px;
+    font-size: 0.65rem;
+    color: #444;
+    letter-spacing: 1px;
+}
+
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
     .panier-footer { flex-direction: column; align-items: center; gap: 40px; text-align: center; }
     .action-buttons { width: 100%; flex-direction: column; }
-    .panier-table th:nth-child(2), .panier-table td:nth-child(2) { display: none; } /* Cache le prix unitaire sur mobile */
+    .panier-table th:nth-child(2),
+    .panier-table td:nth-child(2) { display: none; }
+    .auth-box-panier { padding: 40px 24px; }
+    .auth-btns { flex-direction: column; }
+    .btn-auth-connexion,
+    .btn-auth-inscription { text-align: center; }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ── PLANIFICATION ── */
+.planification-box {
+    margin-top: 50px;
+    border: 1px solid var(--border);
+    background: var(--dark-surface);
+    padding: 40px;
+}
+
+.plan-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.plan-icon { font-size: 1.8rem; }
+
+.plan-titre {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.plan-sous {
+    font-size: 0.72rem;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+.plan-body {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    gap: 30px;
+    align-items: end;
+}
+
+.plan-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.plan-group label {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.plan-toggle {
+    display: flex;
+    border: 1px solid var(--border);
+}
+
+.plan-btn {
+    padding: 10px 18px;
+    background: transparent;
+    border: none;
+    color: #555;
+    font-size: 9px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.plan-btn.active {
+    background: var(--gold);
+    color: #000;
+    font-weight: 700;
+}
+
+.plan-group input[type="date"],
+.plan-group select {
+    background: #000;
+    border: 1px solid var(--border);
+    color: #fff;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+.plan-group input[type="date"]:focus,
+.plan-group select:focus { border-color: var(--gold); }
+
+.plan-group select option { background: #111; }
+
+.plan-confirm {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 10px;
+}
+
+#plan-resume {
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .plan-body { grid-template-columns: 1fr; }
+    .plan-confirm { flex-direction: column; gap: 16px; }
 }

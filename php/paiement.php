@@ -15,7 +15,8 @@ if (isset($_SESSION['panier'])) {
         $quantite = $item['qte'];
         foreach ($catalogue as $p) {
             if ($p['id'] == $id_recherche) {
-                $total = $total + ($p['prix'] * $quantite);
+                $prix = $p['prix'] ?? $p['prix_total'] ?? 0;
+                $total = $total + ($prix * $quantite);
             }
         }
     }
