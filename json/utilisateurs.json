@@ -274,6 +274,31 @@
                 "inscription": "2025-09-01",
                 "derniere_connexion": "2026-04-01"
             }
+        },
+        {
+            "id": "U403263",
+            "login": "mansourwajih2@gmail.com",
+            "mot_de_passe": "$2y$10$wHbpVDZJXUq0WYIVFy0CrufYNs8W2vaHFwfOzgF0byHP6DYdMz6E2",
+            "role": "client",
+            "statut": "actif",
+            "premium": false,
+            "remise": 0,
+            "infos": {
+                "nom": "Wajih",
+                "prenom": "Mansour",
+                "telephone": "07 45 15 58 43",
+                "adresse": "",
+                "etage": "2",
+                "interphone": "A1234"
+            },
+            "fidelite": {
+                "points": 0,
+                "badge": "BRONZE"
+            },
+            "dates": {
+                "inscription": "2026-04-05",
+                "derniere_connexion": "2026-04-05"
+            }
         }
     ]
 }

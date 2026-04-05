@@ -4,61 +4,7 @@
 
 let currentImg = 1;
 
-/* ── NAVIGATION & PANELS ── */
-
-function toggleMenu() {
-    document.getElementById("side-menu").classList.toggle("open");
-    document.body.classList.toggle("open-nav");
-}
-
-function toggleReservation() {
-    const panel = document.getElementById("reservation-panel");
-    const authBtn = document.getElementById("auth-btn");
-    
-    panel.classList.toggle("open");
-
-    // Si le bouton "CONNEXION" existe (utilisateur déconnecté)
-    if (authBtn) {
-        if (panel.classList.contains("open")) {
-            // Le panneau s'ouvre : on cache le bouton
-            authBtn.style.display = "none";
-        } else {
-            // Le panneau se ferme : on réaffiche le bouton
-            authBtn.style.display = "block";
-        }
-    }
-}
-
-function openReservationFromMenu() {
-    toggleMenu();
-    setTimeout(toggleReservation, 500);
-}
-
-function openFullRegister() {
-    if (document.getElementById("reservation-panel").classList.contains("open")) {
-        toggleReservation();
-    }
-    const overlay = document.getElementById('full-register-overlay');
-    if (overlay) {
-        overlay.style.display = 'block';
-        setTimeout(() => overlay.classList.add('active'), 10);
-        document.body.style.overflow = "hidden";
-    }
-}
-
-function closeFullRegister() {
-    const overlay = document.getElementById('full-register-overlay');
-    if (overlay) {
-        overlay.classList.remove('active');
-        setTimeout(() => {
-            overlay.style.display = 'none';
-            document.body.style.overflow = "auto";
-        }, 500);
-    }
-}
-
 /* ── GALERIE RESTAURANT ── */
-
 function changeImage(direction) {
     const photo = document.getElementById("main-photo");
     currentImg += direction;
@@ -84,7 +30,6 @@ function closeGallery() {
 }
 
 /* ── HISTOIRES CHEFS ── */
-
 const histoires = {
     kenji: {
         titre: "Maître Kenji",

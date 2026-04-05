@@ -4,8 +4,27 @@ require_once '../includes/fonctions.php';
 
 requireConnexion();
 
-$user = $_SESSION['user'];
+// --- LOGIQUE DE SÉLECTION DE L'UTILISATEUR ---
+$currentUser = $_SESSION['user'];
+$userIdToDisplay = $_GET['id'] ?? null;
 
+// Par défaut, on affiche l'utilisateur connecté
+$user = $currentUser;
+
+// Si un ID est passé et que l'utilisateur est admin, on cherche cet utilisateur dans le JSON
+if ($userIdToDisplay && ($currentUser['role'] === 'admin')) {
+    $dataUsers = lireJSON(JSON_USERS);
+    $utilisateurs = $dataUsers['utilisateurs'] ?? [];
+    
+    foreach ($utilisateurs as $u) {
+        if ($u['id'] === $userIdToDisplay) {
+            $user = $u;
+            break;
+        }
+    }
+}
+
+// Récupération des commandes de l'utilisateur affiché
 $dataCommandes = lireJSON(JSON_COMMANDES);
 $mesCommandes = array_filter(
     $dataCommandes['commandes'] ?? [],
@@ -36,7 +55,7 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Profil | Kaiseki Shunei</title>
+    <title><?= ($user['id'] === $currentUser['id']) ? 'Mon Profil' : 'Profil de ' . htmlspecialchars($user['infos']['nom']) ?> | Kaiseki Shunei</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/profil.css">
     <style>
@@ -50,12 +69,15 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
         .status-pill.ready { background: #1a3a1a; color: #22c55e; }
         .status-pill.delivering { background: #2a1a3a; color: #a855f7; }
         .progress-fill { background: #bc9c64; border-radius: 3px; }
+        .admin-view-tag { background: #bc9c64; color: black; padding: 2px 8px; font-size: 0.7rem; border-radius: 10px; margin-left: 10px; vertical-align: middle; }
     </style>
 </head>
 <body class="page-profil">
 
     <nav class="profil-nav">
-        <a href="../index.php" class="back-link">← RETOUR AU RESTAURANT</a>
+        <a href="<?= ($user['id'] !== $currentUser['id']) ? 'admin.php' : '../index.php' ?>" class="back-link">
+            ← <?= ($user['id'] !== $currentUser['id']) ? 'RETOUR À L\'ADMIN' : 'RETOUR AU RESTAURANT' ?>
+        </a>
         <div class="logo-kanji-small"><span>春</span><span>栄</span></div>
         <a href="../actions/logout.php" class="btn-logout">DÉCONNEXION</a>
     </nav>
@@ -63,8 +85,12 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
     <div class="profil-container">
         <header class="profil-header">
             <div class="header-main">
-                <h1>BIENVENUE, <?= strtoupper(htmlspecialchars($user['infos']['prenom'])) ?></h1>
-                <p class="member-since">Membre depuis <?= date('d/m/Y', strtotime($user['dates']['inscription'])) ?></p>
+                <h1>
+                    <?= ($user['id'] === $currentUser['id']) ? 'BIENVENUE, ' : 'PROFIL DE ' ?>
+                    <?= strtoupper(htmlspecialchars($user['infos']['prenom'])) ?>
+                    <?php if($user['id'] !== $currentUser['id']): ?> <span class="admin-view-tag">ADMIN VIEW</span> <?php endif; ?>
+                </h1>
+                <p class="member-since">Membre depuis <?= date('d/m/Y', strtotime($user['dates']['inscription'] ?? 'today')) ?></p>
             </div>
             <div class="loyalty-card">
                 <span class="label">STATUT PRIVILÈGE</span>
@@ -93,19 +119,19 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
                     </div>
                     <div class="info-group">
                         <label>TÉLÉPHONE</label>
-                        <p><?= htmlspecialchars($user['infos']['telephone'] ?: 'Non renseigné') ?></p>
+                        <p><?= htmlspecialchars($user['infos']['telephone'] ?? 'Non renseigné') ?></p>
                     </div>
                     <div class="info-group">
                         <label>ADRESSE DE LIVRAISON</label>
-                        <p><?= htmlspecialchars($user['infos']['adresse'] ?: 'Non renseignée') ?></p>
-                        <?php if ($user['infos']['etage'] || $user['infos']['interphone']): ?>
+                        <p><?= htmlspecialchars($user['infos']['adresse'] ?? 'Non renseignée') ?></p>
+                        <?php if (isset($user['infos']['etage']) || isset($user['infos']['interphone'])): ?>
                             <p class="sub-info">
-                                <?= $user['infos']['etage'] ? 'Étage ' . htmlspecialchars($user['infos']['etage']) : '' ?>
-                                <?= $user['infos']['interphone'] ? ' • Code : ' . htmlspecialchars($user['infos']['interphone']) : '' ?>
+                                <?= !empty($user['infos']['etage']) ? 'Étage ' . htmlspecialchars($user['infos']['etage']) : '' ?>
+                                <?= !empty($user['infos']['interphone']) ? ' • Code : ' . htmlspecialchars($user['infos']['interphone']) : '' ?>
                             </p>
                         <?php endif; ?>
                     </div>
-                    <?php if ($user['remise'] > 0): ?>
+                    <?php if (($user['remise'] ?? 0) > 0): ?>
                     <div class="info-group">
                         <label>REMISE FIDÉLITÉ</label>
                         <p class="remise"><?= $user['remise'] ?>% sur toutes vos commandes</p>
@@ -115,10 +141,10 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
             </section>
 
             <section class="profil-section orders-section">
-                <h3>MES COMMANDES</h3>
+                <h3><?= ($user['id'] === $currentUser['id']) ? 'MES COMMANDES' : 'HISTORIQUE DU CLIENT' ?></h3>
                 <div class="table-wrapper">
                     <?php if (empty($mesCommandes)): ?>
-                        <p class="no-orders">Aucune commande pour le moment.</p>
+                        <p class="no-orders">Aucune commande enregistrée.</p>
                     <?php else: ?>
                     <table class="order-table">
                         <thead>
@@ -141,7 +167,7 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
                                 </td>
                                 <td class="price">
                                     <?= $cmd['prix_total'] ?>€
-                                    <?php if ($cmd['statut'] === 'livree' && !$cmd['note_client']): ?>
+                                    <?php if ($user['id'] === $currentUser['id'] && $cmd['statut'] === 'livree' && empty($cmd['note_client'])): ?>
                                         <a href="notation.php?cmd=<?= $cmd['id'] ?>" class="btn-note" title="Noter">★</a>
                                     <?php endif; ?>
                                 </td>
