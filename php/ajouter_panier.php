@@ -6,7 +6,7 @@ $id = $_GET['id'] ?? null;
 if ($id) {
     if (!isset($_SESSION['panier'])) { $_SESSION['panier'] = []; }
 
-    // On crée une clé unique "produit_defaut"
+    // On crée une clé unique produit_defaut
     $cle_ligne = $id . "_default";
 
     if (isset($_SESSION['panier'][$cle_ligne])) {
@@ -15,7 +15,7 @@ if ($id) {
         $_SESSION['panier'][$cle_ligne] = [
             'id' => $id,
             'qte' => 1,
-            'retraits' => [] // Pourra être modifié plus tard via le bouton "Personnaliser"
+            'retraits' => [] // Pourra etre modifié plus tard via le bouton Personnalisé
         ];
     }
 }

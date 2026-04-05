@@ -21,32 +21,27 @@ if (isset($_SESSION['panier'])) {
     }
 }
 
-// 2. Paramètres CYBank (Citations PDF )
-$vendeur = "MI-1_A"; // Remplace par ton groupe si besoin 
+// 2. Paramètres CYBank 
+$vendeur = "MI-1_A"; 
 $transaction = "T" . time() . rand(100, 999); 
 $montant = number_format($total, 2, '.', ''); 
 
-// URL de retour absolue (Ajuste le port si nécessaire)
-$url_retour = "http://localhost:7070/php/retour_paiement.php";
+
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+$host = $_SERVER['HTTP_HOST']; // Récupère le domaine 
+
+$url_retour = $protocol . "://" . $host . "/php/retour_paiement.php";
+
 
 // 3. Calcul de la sécurité (Control)
 $key = getAPIKey($vendeur);
 $sep = "#";
 
-// Construction manuelle pour éviter toute erreur de token
-$chaine = $key;
-$chaine .= $sep;
-$chaine .= $transaction;
-$chaine .= $sep;
-$chaine .= $montant;
-$chaine .= $sep;
-$chaine .= $vendeur;
-$chaine .= $sep;
-$chaine .= $url_retour;
-$chaine .= $sep;
-
+$chaine = $key . $sep . $transaction . $sep . $montant . $sep . $vendeur . $sep . $url_retour . $sep;
 $control = md5($chaine);
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,3 +62,4 @@ $control = md5($chaine);
 
 </body>
 </html>
+

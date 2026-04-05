@@ -18,7 +18,7 @@ $vendeur      = isset($_GET['vendeur'])     ? $_GET['vendeur']     : "";
 $statut       = isset($_GET['status'])      ? $_GET['status']      : "";
 $control_recu = isset($_GET['control'])     ? $_GET['control']     : "";
 
-// 2. Vérification de sécurité (Version nettoyée sans caractères spéciaux)
+// 2. Vérification de sécurité 
 $api_key = getAPIKey($vendeur);
 $hash_string = $api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $statut . "#";
 $control_calcule = md5($hash_string);
