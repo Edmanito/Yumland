@@ -83,7 +83,7 @@
             "id": "CMD003",
             "id_client": "U403263",
             "type": "livraison",
-            "statut": "en_attente",
+            "statut": "en_livraison",
             "adresse_livraison": "",
             "articles": [
                 {
@@ -101,7 +101,45 @@
                 "date_transaction": "2026-04-05T19:31:40"
             },
             "dates": {
-                "commande": "2026-04-05T19:31:40"
+                "commande": "2026-04-05T19:31:40",
+                "preparation": "2026-04-05T20:04:42",
+                "expedition": "2026-04-05T20:04:45"
+            },
+            "id_livreur": "L002"
+        },
+        {
+            "id": "CMD004",
+            "id_client": "U001",
+            "type": "livraison",
+            "statut": "livree",
+            "adresse_livraison": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "p04",
+                    "nom": "Chawanmushi au Caviar",
+                    "quantite": 1,
+                    "prix_unitaire": 56
+                }
+            ],
+            "prix_total": 56,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-05T20:04:08"
+            },
+            "dates": {
+                "commande": "2026-04-05T20:04:08",
+                "preparation": "2026-04-05T20:04:35",
+                "expedition": "2026-04-05T20:04:40",
+                "livraison": "2026-04-05T20:05:11"
+            },
+            "id_livreur": "L002",
+            "note_client": {
+                "produits": 5,
+                "livraison": 4,
+                "commentaire": "carré",
+                "date_note": "2026-04-05 20:05:47"
             }
         }
     ]
