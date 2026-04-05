@@ -7,3 +7,4 @@ function getAPIKey($vendeur)
 	return "zzzz";
 }
 ?>
+

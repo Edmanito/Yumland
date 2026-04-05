@@ -53,7 +53,7 @@
         {
             "id": "U003",
             "login": "thomas.miller@email.com",
-            "mot_de_passe": "$2y$10$8\/BORiiOJZk65XvQXSLeYOiAy5UhhjW5QzwdvmCbXzgHbI2gb4LsC",
+            "mot_de_passe": "toto",
             "role": "client",
             "statut": "suspendu",
             "premium": false,
@@ -78,7 +78,7 @@
         {
             "id": "U004",
             "login": "yuki.tanaka@email.com",
-            "mot_de_passe": "$2y$10$F.AnkoZNOIwTPI724WResOQ.G.VXt0.\/CvUFJG.h..VN8XcDBxk9W",
+            "mot_de_passe": "yuyu",
             "role": "client",
             "statut": "actif",
             "premium": false,
@@ -103,7 +103,7 @@
         {
             "id": "U005",
             "login": "jabar.abdul@email.com",
-            "mot_de_passe": "$2y$10$IbJGvHqJq.\/G.QN40w86TOF3rWPmChGEVvclUAC4A.wQM6h14eLVS",
+            "mot_de_passe": "jaja",
             "role": "client",
             "statut": "actif",
             "premium": false,
@@ -128,7 +128,7 @@
         {
             "id": "U006",
             "login": "marie.leblanc@email.com",
-            "mot_de_passe": "$2y$10$dt1aaX2JlKvU43s5dfOgj.VOCCdXbioO6Nfol9hj7hoVrHVM81lWu",
+            "mot_de_passe": "mamamiya",
             "role": "client",
             "statut": "actif",
             "premium": true,
@@ -178,7 +178,7 @@
         {
             "id": "A002",
             "login": "superadmin@kaiseki.com",
-            "mot_de_passe": "$2y$10$yN9Ci4\/BSdWb\/aIukFaZ\/O4FQCSLD.4LiHGqGLyWrUrCDlLcdobdO",
+            "mot_de_passe": "roro",
             "role": "admin",
             "statut": "actif",
             "premium": false,
@@ -228,7 +228,7 @@
         {
             "id": "L001",
             "login": "t.kovacs@kaiseki.com",
-            "mot_de_passe": "$2y$10$xKVl0T6QfRm4GdCdDxwb9errqBTAlDV0ynaHYeNmm9YLzMfPfIBnS",
+            "mot_de_passe": "koko",
             "role": "livreur",
             "statut": "actif",
             "premium": false,
