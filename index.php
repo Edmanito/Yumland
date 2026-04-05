@@ -284,3 +284,4 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
     </script>
 </body>
 </html>
+//
