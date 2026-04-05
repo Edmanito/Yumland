@@ -246,7 +246,7 @@
             "id": "CMD009",
             "id_client": "U001",
             "type": "livraison",
-            "statut": "en_attente",
+            "statut": "pret",
             "adresse_livraison": "",
             "etage": "",
             "interphone": "",
@@ -269,7 +269,7 @@
             "note_client": null,
             "dates": {
                 "commande": "2026-04-04T17:06:26",
-                "preparation": null,
+                "preparation": "2026-04-05T17:42:50",
                 "livraison": null
             }
         },
@@ -397,7 +397,7 @@
             "id": "CMD013",
             "id_client": "U002",
             "type": "livraison",
-            "statut": "en_preparation",
+            "statut": "pret",
             "adresse_livraison": "",
             "etage": "",
             "interphone": "",
@@ -432,7 +432,7 @@
             "note_client": null,
             "dates": {
                 "commande": "2026-04-04T18:38:53",
-                "preparation": "2026-04-04T22:12:37",
+                "preparation": "2026-04-05T17:42:54",
                 "livraison": null
             }
         },
@@ -483,7 +483,7 @@
             "id": "CMD014",
             "id_client": "U002",
             "type": "livraison",
-            "statut": "en_attente",
+            "statut": "pret",
             "adresse_livraison": "",
             "etage": "",
             "interphone": "",
@@ -512,7 +512,7 @@
             "note_client": null,
             "dates": {
                 "commande": "2026-04-05T10:10:38",
-                "preparation": null,
+                "preparation": "2026-04-05T17:42:57",
                 "livraison": null
             }
         },
@@ -549,6 +549,111 @@
             "note_client": null,
             "dates": {
                 "commande": "2026-04-05T10:11:43",
+                "preparation": null,
+                "livraison": null
+            }
+        },
+        {
+            "id": "CMD016",
+            "id_client": "U999",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "",
+            "etage": "",
+            "interphone": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "P005",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                },
+                {
+                    "type": "plat",
+                    "id": "P007",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                },
+                {
+                    "type": "plat",
+                    "id": "P009",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                }
+            ],
+            "prix_total": 122,
+            "remise_appliquee": 0,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-05T16:27:24"
+            },
+            "id_livreur": null,
+            "note_client": null,
+            "dates": {
+                "commande": "2026-04-05T16:27:24",
+                "preparation": null,
+                "livraison": null
+            }
+        },
+        {
+            "id": "CMD017",
+            "id_client": "U999",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "",
+            "etage": "",
+            "interphone": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "P001",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                }
+            ],
+            "prix_total": 26,
+            "remise_appliquee": 0,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-05T17:40:02"
+            },
+            "id_livreur": null,
+            "note_client": null,
+            "dates": {
+                "commande": "2026-04-05T17:40:02",
+                "preparation": null,
+                "livraison": null
+            }
+        },
+        {
+            "id": "CMD018",
+            "id_client": "U999",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "",
+            "etage": "",
+            "interphone": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "P004",
+                    "quantite": 1,
+                    "prix_unitaire": 0
+                }
+            ],
+            "prix_total": 28,
+            "remise_appliquee": 0,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-05T17:41:44"
+            },
+            "id_livreur": null,
+            "note_client": null,
+            "dates": {
+                "commande": "2026-04-05T17:41:44",
                 "preparation": null,
                 "livraison": null
             }

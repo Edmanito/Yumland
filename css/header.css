@@ -279,7 +279,7 @@ body.open-nav::after {
 /* ── BOUTON LANGUE (GLOBE) ── */
 .lang-wrapper {
     position: relative;
-    display: inline-block;
+    z-index: 10001;
 }
 
 .lang-btn {
@@ -434,4 +434,31 @@ body.open-nav::after {
         width: 100vw;
         padding: 70px 25px 40px 25px;
     }
+}
+
+
+
+
+
+
+/* --- ÉTAT QUAND LE PANEL EST OUVERT --- */
+
+/* On cache le bouton de réservation (Connexion) */
+body.reservation-open .btn-reservation {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+}
+
+/* On cache aussi l'icône de profil pour libérer l'espace visuel */
+body.reservation-open .profile-trigger {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: all 0.4s ease;
+}
+
+/* On s'assure que la croix du panel est bien visible au-dessus de tout */
+.close-reservation {
+    z-index: 5100; /* Plus haut que le header qui est à 5000 */
 }

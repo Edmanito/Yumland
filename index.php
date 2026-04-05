@@ -25,10 +25,26 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/index.css">
     <style>
-        .auth-error { background: rgba(255,70,70,0.1); border: 1px solid rgba(255,70,70,0.3); color: #ff6b6b; padding: 12px 16px; margin-bottom: 20px; font-size: 0.85rem; text-align: center; }
-        .auth-subtitle { color: #888; font-size: 0.85rem; margin-bottom: 20px; display: block; }
-        .switch-auth { margin-top: 15px; font-size: 0.8rem; color: #666; }
-    </style>
+    .auth-error { background: rgba(255,70,70,0.1); border: 1px solid rgba(255,70,70,0.3); color: #ff6b6b; padding: 12px 16px; margin-bottom: 20px; font-size: 0.85rem; text-align: center; }
+    .auth-subtitle { color: #888; font-size: 0.85rem; margin-bottom: 20px; display: block; }
+    .switch-auth { margin-top: 15px; font-size: 0.8rem; color: #666; }
+
+    /* --- DISPARITION FORCEE --- */
+    /* On utilise 'display: none' pour être certain qu'il disparaisse totalement du champ de vision */
+    body.reservation-open #btn-connexion-main, 
+    body.reservation-open .profile-trigger {
+        display: none !important; 
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    /* On s'assure que la croix du panel est cliquable */
+    .close-reservation {
+        z-index: 9999 !important;
+        cursor: pointer !important;
+        position: absolute !important;
+    }
+</style>
 </head>
 <body class="page-accueil">
 
@@ -51,7 +67,7 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
 
         <div class="menu-footer">
             <div class="menu-footer-separator"></div>
-            <a href="javascript:void(0)" class="admin-link" onclick="accesSecurise(); toggleMenu();">ADMINISTRATION</a>
+            <a href="javascript:void(0)" class="admin-link" onclick="accesSecurise()">ADMINISTRATION</a>
             <div class="menu-footer-line"></div>
 
             <!-- RÉSEAUX SOCIAUX -->
@@ -70,7 +86,7 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
                 </a>
             </div>
 
-            <!-- BOUTON LANGUE — 15 langues -->
+            <!-- BOUTON LANGUE -->
             <div class="lang-wrapper">
                 <button class="lang-btn" onclick="toggleLang(event)">
                     <span style="font-size:1.1rem;">🌐</span>
@@ -134,8 +150,7 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
                 <div class="profile-trigger" onclick="toggleReservation()">
                     <img src="img/profil-vide.png" alt="Profil" class="profile-icon-nav">
                 </div>
-                <a href="javascript:void(0)" class="btn-reservation" onclick="toggleReservation()">CONNEXION</a>
-            <?php endif; ?>
+<a href="javascript:void(0)" class="btn-reservation" id="btn-connexion-main" onclick="toggleReservation()">CONNEXION</a>            <?php endif; ?>
         </div>
     </header>
 
@@ -157,11 +172,9 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
             <div class="auth-box">
                 <h3>CONNEXION</h3>
                 <span class="auth-subtitle">Accédez à votre espace Kaiseki</span>
-
                 <?php if ($erreur): ?>
                     <div class="auth-error"><?= htmlspecialchars($erreur) ?></div>
                 <?php endif; ?>
-
                 <form action="php/connexion.php" method="POST">
                     <input type="email" name="email" placeholder="Email" class="input-auth" required>
                     <input type="password" name="password" placeholder="Mot de passe" class="input-auth" required>
@@ -309,17 +322,21 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
     </section>
 
     <!-- ── SCRIPTS ── -->
-    <script src="js/index.js"></script>
+    <!-- langue.js EN PREMIER pour que applyLang soit disponible -->
     <script src="js/langue.js"></script>
+    <script src="js/index.js"></script>
     <script>
         // ── MENU ──
         function toggleMenu() {
-            document.getElementById("side-menu").classList.toggle("open");
+            const menu = document.getElementById("side-menu");
+            menu.classList.toggle("open");
             document.body.classList.toggle("open-nav");
         }
 
         function toggleReservation() {
-            document.getElementById("reservation-panel").classList.toggle("open");
+            const panel = document.getElementById("reservation-panel");
+            panel.classList.toggle("open");
+            document.body.classList.toggle("reservation-open");
         }
 
         function openReservationFromMenu() {
@@ -327,84 +344,62 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
             setTimeout(toggleReservation, 500);
         }
 
-        // ── PROFIL ──
-        function gererClicProfil() {
-            <?php if (estConnecte()): ?>
-                window.location.href = 'php/profil.php';
-            <?php else: ?>
-                toggleReservation();
-            <?php endif; ?>
-        }
-
         // ── ACCÈS SÉCURISÉ ──
         function accesSecurise() {
             const code = prompt("Veuillez entrer votre code d'accès :");
             if (code === null) return;
             const choix = code.trim().toLowerCase();
-            if (choix === "administration")  { window.location.href = "php/admin.php"; }
-            else if (choix === "commande")   { window.location.href = "php/commande.php"; }
-            else if (choix === "livraison")  { window.location.href = "php/livraison.php"; }
+            if (choix === "administration")       { window.location.href = "php/admin.php"; }
+            else if (choix === "commande")        { window.location.href = "php/commande.php"; }
+            else if (choix === "livraison")       { window.location.href = "php/livraison.php"; }
             else { alert("ACCÈS REFUSÉ !"); }
         }
 
-        // ── GALERIE ──
-        let currentImg = 1;
-        function changeImage(direction) {
-            const photo = document.getElementById("main-photo");
-            currentImg += direction;
-            if (currentImg > 6) currentImg = 1;
-            if (currentImg < 1) currentImg = 6;
-            photo.src = `img/resto-${currentImg}.png`;
-        }
-
-        function openGallery() {
-            document.getElementById("restaurant").classList.add("gallery-active");
-            document.body.classList.add("no-scroll");
-        }
-
-        function closeGallery() {
-            document.getElementById("restaurant").classList.remove("gallery-active");
-            document.body.classList.remove("no-scroll");
-        }
-
-        // ── CHEFS ──
-        const histoires = {
-            kenji: { titre: "Maître Kenji", texte: "Né sous les neiges éternelles d'Hokkaido, Kenji a appris très tôt que la cuisine est une discipline de l'esprit avant d'être celle des mains. Son parcours l'a mené des ports de pêche glacés du Nord aux cuisines impériales de Tokyo." },
-            aiko:  { titre: "Chef Aiko",    texte: "Originaire de Kyoto, le cœur culturel du Japon, Aiko a grandi au rythme des jardins de thé et des temples séculaires. Elle conçoit ses assiettes comme des haïkus comestibles, où le vide est aussi important que la matière." }
-        };
-
-        function ouvrirHistoire(chef) {
-            document.getElementById('story-content').innerHTML = `<h2>${histoires[chef].titre}</h2><p>${histoires[chef].texte}</p>`;
-            document.getElementById('chef-overlay').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function fermerHistoire() {
-            document.getElementById('chef-overlay').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-       // ── LANGUE ──
+        // ── LANGUE ──
         function toggleLang(e) {
-            e.stopPropagation();
-            e.preventDefault();
+            if (e) { e.stopPropagation(); e.preventDefault(); }
             const dd = document.getElementById('lang-dropdown');
-            dd.classList.toggle('open');
+            if (!dd) return;
+            if (dd.style.display === 'flex') {
+                dd.style.display = 'none';
+            } else {
+                dd.style.cssText = `
+                    display: flex !important;
+                    flex-direction: column;
+                    position: absolute;
+                    bottom: 38px;
+                    left: 0;
+                    background: #0d1f3c;
+                    border: 1px solid rgba(197,160,89,0.4);
+                    min-width: 170px;
+                    z-index: 99999;
+                    box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+                `;
+            }
         }
 
         function setLang(code, e) {
             if (e) { e.preventDefault(); e.stopPropagation(); }
-            applyLang(code);
-            document.getElementById('lang-dropdown').classList.remove('open');
+            document.getElementById('lang-dropdown').style.display = 'none';
+            document.getElementById('lang-current').textContent = code;
+            if (typeof applyLang === 'function') applyLang(code);
         }
 
         document.addEventListener('click', function(e) {
             const wrapper = document.querySelector('.lang-wrapper');
-            if (wrapper && !wrapper.contains(e.target)) {
-                const dd = document.getElementById('lang-dropdown');
-                if (dd) dd.classList.remove('open');
+            const dd = document.getElementById('lang-dropdown');
+            if (dd && wrapper && !wrapper.contains(e.target)) {
+                dd.style.display = 'none';
             }
         });
+
+        // ── INIT LANGUE ──
+        (function() {
+            const saved = localStorage.getItem('kaiseki_lang') || 'FR';
+            const el = document.getElementById('lang-current');
+            if (el) el.textContent = saved;
+            if (saved !== 'FR' && typeof applyLang === 'function') applyLang(saved);
+        })();
     </script>
 </body>
 </html>
