@@ -274,6 +274,31 @@
                 "inscription": "2025-09-01",
                 "derniere_connexion": "2026-04-01"
             }
+        },
+        {
+            "id": "UAB57FB",
+            "login": "mansourwajih2@gmail.com",
+            "mot_de_passe": "$2y$10$g9cgXuzlDxl2OV1EUympwOzb92QsJ2ETBC21OwnNGCh5cFxDNyggu",
+            "role": "client",
+            "statut": "actif",
+            "premium": false,
+            "remise": 0,
+            "infos": {
+                "nom": "wajih",
+                "prenom": "mansour",
+                "telephone": "0745155843",
+                "adresse": "45 rue de l&#039;amiral mouchez",
+                "etage": "2",
+                "interphone": "2230"
+            },
+            "fidelite": {
+                "points": 0,
+                "badge": "BRONZE"
+            },
+            "dates": {
+                "inscription": "2026-04-05",
+                "derniere_connexion": "2026-04-05"
+            }
         }
     ]
 }
