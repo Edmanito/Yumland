@@ -81,7 +81,7 @@
             "id": "CMD003",
             "id_client": "U403263",
             "type": "livraison",
-            "statut": "en_attente",
+            "statut": "en_livraison",
             "adresse_livraison": "",
             "articles": [
                 {

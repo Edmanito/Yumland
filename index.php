@@ -345,6 +345,7 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         }
 
         // ── ACCÈS SÉCURISÉ ──
+        // ── ACCÈS SÉCURISÉ AMÉLIORÉ ──
         function accesSecurise() {
             // 1. On récupère le rôle de l'utilisateur via PHP (injecté en JS)
             const estClient = <?php echo (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'client') ? 'true' : 'false'; ?>;
