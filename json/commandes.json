@@ -28,7 +28,13 @@
                 "expedition": "2026-04-05T21:07:52",
                 "livraison": "2026-04-05T21:08:06"
             },
-            "id_livreur": "L002"
+            "id_livreur": "L002",
+            "note_client": {
+                "produits": 4,
+                "livraison": 4,
+                "commentaire": "ve",
+                "date_note": "2026-04-05 21:11:39"
+            }
         },
         {
             "id": "CMD002",
