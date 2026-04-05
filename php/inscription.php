@@ -22,94 +22,131 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription | Kaiseki Shunei</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/commun.css">
     <link rel="stylesheet" href="../css/inscription.css">
-    <style>
-        .page-inscription { background: #080808; color: white; min-height: 100vh; display: flex; }
-        .inscription-wrapper { display: flex; width: 100%; min-height: 100vh; }
-        .inscription-image { flex: 1; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('../img/fondHeader.png') center/cover; }
-        .inscription-form-side { flex: 1.2; background: #0a0a0a; display: flex; align-items: center; justify-content: center; padding: 60px; overflow-y: auto; border-left: 1px solid rgba(197,160,89,0.2); }
-        .form-inner { max-width: 500px; width: 100%; }
-        .btn-back { color: #bc9c64; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; display: block; margin-bottom: 30px; }
-        .pre-title { display: block; font-size: 0.65rem; letter-spacing: 4px; color: #bc9c64; margin-bottom: 10px; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 8px; }
-        .form-intro { color: #888; font-size: 0.85rem; margin-bottom: 30px; }
-        .alert-error { background: rgba(255,70,70,0.1); border: 1px solid rgba(255,70,70,0.3); color: #ff6b6b; padding: 12px 16px; margin-bottom: 20px; font-size: 0.85rem; border-radius: 4px; }
-        .input-row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .input-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
-        .input-group label { font-size: 0.65rem; letter-spacing: 2px; color: #bc9c64; text-transform: uppercase; }
-        .hint { color: #666; text-transform: none; letter-spacing: 0; }
-        .input-group input { background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.15); color: white; padding: 12px 0; outline: none; font-family: inherit; font-size: 0.9rem; transition: border-color 0.3s; }
-        .input-group input:focus { border-bottom-color: #bc9c64; }
-        .btn-submit { width: 100%; padding: 16px; background: transparent; border: 1px solid #bc9c64; color: #bc9c64; font-size: 0.8rem; font-weight: 700; letter-spacing: 3px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-        .btn-submit:hover { background: #bc9c64; color: #000; }
-        .switch-link { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666; }
-        .switch-link a { color: #bc9c64; text-decoration: none; }
-        @media(max-width: 768px) { .inscription-image { display: none; } .inscription-form-side { padding: 30px 20px; } }
-    </style>
 </head>
 <body class="page-inscription">
+
     <div class="inscription-wrapper">
-        <div class="inscription-image"></div>
+
+        <!-- ── IMAGE GAUCHE ── -->
+        <div class="inscription-image">
+            <div class="image-brand-overlay">
+                <h2>Kaiseki <em>Shunei</em></h2>
+                <p>L'ART DE LA PERFECTION JAPONAISE</p>
+            </div>
+        </div>
+
+        <!-- ── FORMULAIRE DROITE ── -->
         <div class="inscription-form-side">
             <div class="form-inner">
-                <a href="../index.php" class="btn-back">← Retour à l'accueil</a>
+
+                <a href="../index.php" class="btn-back">← RETOUR À L'ACCUEIL</a>
+
                 <span class="pre-title">BIENVENUE CHEZ SHUNEI</span>
                 <h1>Créer un compte</h1>
-                <p class="form-intro">Rejoignez l'excellence Shunei pour vos réservations et livraisons.</p>
+                <p class="form-intro">Rejoignez l'excellence Shunei pour vos réservations et commandes.</p>
 
                 <?php if ($erreur): ?>
-                    <div class="alert-error"><?= $erreur ?></div>
+                    <div class="alert-error"><?= htmlspecialchars($erreur) ?></div>
                 <?php endif; ?>
 
-                <form action="../actions/register.php" method="POST">
-                    <div class="input-row-grid">
-                        <div class="input-group">
-                            <label>Prénom *</label>
-                            <input type="text" name="prenom" placeholder="Jean" required>
+                <form action="../actions/register.php" method="POST" novalidate>
+
+                    <!-- IDENTITÉ -->
+                    <div class="form-section">
+                        <div class="section-label">Identité</div>
+                        <div class="grid-2">
+                            <div class="input-group">
+                                <label>Prénom <span class="required">*</span></label>
+                                <input type="text" name="prenom" placeholder="Jean" required autocomplete="given-name">
+                            </div>
+                            <div class="input-group">
+                                <label>Nom <span class="required">*</span></label>
+                                <input type="text" name="nom" placeholder="Dupont" required autocomplete="family-name">
+                            </div>
                         </div>
                         <div class="input-group">
-                            <label>Nom *</label>
-                            <input type="text" name="nom" placeholder="Dupont" required>
+                            <label>Téléphone <span class="required">*</span></label>
+                            <input type="tel" name="telephone" placeholder="06 12 34 56 78" required autocomplete="tel">
                         </div>
                     </div>
-                    <div class="input-group">
-                        <label>Email *</label>
-                        <input type="email" name="login" placeholder="jean.dupont@email.com" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Téléphone *</label>
-                        <input type="tel" name="telephone" placeholder="06 12 34 56 78" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Adresse complète *</label>
-                        <input type="text" name="adresse" placeholder="12 Rue du Sushi, 75000 Paris" required>
-                    </div>
-                    <div class="input-row-grid">
+
+                    <!-- CONNEXION -->
+                    <div class="form-section">
+                        <div class="section-label">Connexion</div>
                         <div class="input-group">
-                            <label>Étage</label>
-                            <input type="text" name="etage" placeholder="4">
+                            <label>Adresse email <span class="required">*</span></label>
+                            <input type="email" name="login" placeholder="jean.dupont@email.com" required autocomplete="email">
                         </div>
                         <div class="input-group">
-                            <label>Interphone</label>
-                            <input type="text" name="interphone" placeholder="1234">
+                            <label>Mot de passe <span class="required">*</span></label>
+                            <input type="password" name="mdp" placeholder="••••••••" required minlength="8" autocomplete="new-password">
+                            <div class="password-strength">
+                                <div class="password-strength-bar"></div>
+                            </div>
+                            <span class="strength-text"></span>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <label>Mot de passe * <span class="hint">(8 car. min.)</span></label>
-                        <input type="password" name="mdp" placeholder="••••••••" required minlength="8">
+
+                    <!-- ADRESSE -->
+                    <div class="form-section">
+                        <div class="section-label">Adresse de livraison</div>
+                        <div class="input-group">
+                            <label>Rue <span class="required">*</span></label>
+                            <input type="text" name="adresse_rue" placeholder="45 Rue de l'Amiral Mouchez" required autocomplete="street-address">
+                        </div>
+                        <div class="grid-3">
+                            <div class="input-group">
+                                <label>Ville <span class="required">*</span></label>
+                                <input type="text" name="adresse_ville" placeholder="Paris" required autocomplete="address-level2">
+                            </div>
+                            <div class="input-group">
+                                <label>Code postal <span class="required">*</span></label>
+                                <input type="text" name="adresse_cp" placeholder="75013" required maxlength="5" autocomplete="postal-code">
+                            </div>
+                            <div class="input-group">
+                                <label>Arrondissement</label>
+                                <select name="arrondissement">
+                                    <option value="">—</option>
+                                    <?php for ($i = 1; $i <= 20; $i++): ?>
+                                        <option value="<?= $i ?>">
+                                            <?= $i ?><?= $i === 1 ? 'er' : 'e' ?>
+                                        </option>
+                                    <?php endfor; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid-2">
+                            <div class="input-group">
+                                <label>Étage</label>
+                                <input type="text" name="etage" placeholder="4e étage">
+                            </div>
+                            <div class="input-group">
+                                <label>Interphone / Digicode</label>
+                                <input type="text" name="interphone" placeholder="A1234">
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn-submit">CRÉER MON COMPTE</button>
+
+                    <!-- SUBMIT -->
+                    <div class="btn-submit-wrap">
+                        <button type="submit" class="btn-submit">
+                            <span>CRÉER MON COMPTE</span>
+                        </button>
+                    </div>
+
                 </form>
 
                 <p class="switch-link">Déjà un compte ? <a href="../index.php">Se connecter</a></p>
+
             </div>
         </div>
+
     </div>
+
+    <script src="../js/inscription.js"></script>
+
 </body>
-    <script src="js/inscription.js"></script>
-
-
-
 </html>

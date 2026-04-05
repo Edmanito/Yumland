@@ -1,17 +1,401 @@
-.register-full-screen {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #000; z-index: 10000; display: none; opacity: 0;
+/* =========================================
+   KAISEKI SHUNEI — INSCRIPTION.CSS
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --gold:      #bc9c64;
+    --gold-dim:  rgba(188, 156, 100, 0.12);
+    --gold-line: rgba(188, 156, 100, 0.3);
+    --dark:      #080808;
+    --surface:   #0d0d0d;
+    --error:     rgba(255, 70, 70, 0.08);
+    --error-border: rgba(255, 70, 70, 0.35);
 }
 
-.register-full-screen.active { display: block; opacity: 1; }
+body.page-inscription {
+    background: var(--dark);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
-.register-image-side {
+/* ── LAYOUT ── */
+.inscription-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ── IMAGE GAUCHE ── */
+.inscription-image {
     flex: 1;
-    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6)), 
-                url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80') center/cover;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-40px);
+    animation: slideInLeft 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.1s forwards;
 }
 
-.register-form-side {
-    flex: 1.2; background: #0a0a0a; display: flex; align-items: center;
-    justify-content: center; padding: 60px; border-left: 1px solid var(--gray-border);
+@keyframes slideInLeft {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.inscription-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to right, transparent 55%, var(--dark) 100%),
+        linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.55)),
+        url('../img/fondHeader.png') center/cover no-repeat;
+    z-index: 0;
+}
+
+.image-brand-overlay {
+    position: absolute;
+    bottom: 60px;
+    left: 60px;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+}
+
+.image-brand-overlay h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.1;
+}
+
+.image-brand-overlay h2 em {
+    font-style: normal;
+    color: var(--gold);
+}
+
+.image-brand-overlay p {
+    font-size: 0.6rem;
+    letter-spacing: 5px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 10px;
+}
+
+/* ── FORMULAIRE DROITE ── */
+.inscription-form-side {
+    flex: 1.2;
+    background: var(--surface);
+    border-left: 1px solid var(--gold-line);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 60px;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateX(40px);
+    animation: slideInRight 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
+}
+
+@keyframes slideInRight {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.form-inner {
+    max-width: 520px;
+    width: 100%;
+    padding: 20px 0;
+}
+
+/* ── HEADER DU FORM ── */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    transition: gap 0.3s ease;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.4s forwards;
+}
+.btn-back:hover { gap: 16px; }
+
+.pre-title {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 5px;
+    color: var(--gold);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.5s forwards;
+}
+
+.form-inner h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.6s forwards;
+}
+
+.form-intro {
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 36px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.7s forwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── ERREUR ── */
+.alert-error {
+    background: var(--error);
+    border: 1px solid var(--error-border);
+    color: #ff6b6b;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    animation: fadeUp 0.4s ease 0.8s forwards;
+}
+
+/* ── SECTIONS ── */
+.form-section {
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+}
+
+.form-section:nth-child(1) { animation-delay: 0.8s; }
+.form-section:nth-child(2) { animation-delay: 0.95s; }
+.form-section:nth-child(3) { animation-delay: 1.1s; }
+.form-section:nth-child(4) { animation-delay: 1.25s; }
+
+.section-label {
+    font-size: 0.58rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gold-line);
+}
+
+/* ── GRILLES ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; }
+
+/* ── CHAMPS ── */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+    position: relative;
+}
+.input-group:last-child { margin-bottom: 0; }
+
+.input-group label {
+    font-size: 0.58rem;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.input-group:focus-within label {
+    color: var(--gold);
+}
+
+.required { color: var(--gold); margin-left: 2px; }
+
+.input-group input,
+.input-group select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 12px 0;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 0.88rem;
+    transition: border-color 0.3s ease;
+    width: 100%;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-bottom-color: var(--gold);
+}
+
+.input-group input::placeholder {
+    color: rgba(255,255,255,0.18);
+}
+
+.input-group input.error {
+    border-bottom-color: #ff4444;
+}
+
+/* Soulignement doré animé */
+.input-group::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+.input-group:focus-within::after { width: 100%; }
+
+.input-group select {
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23bc9c64'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    padding-right: 20px;
+}
+
+.input-group select option { background: #1a1a1a; color: white; }
+
+.input-hint {
+    font-size: 0.58rem;
+    color: #555;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 2px;
+}
+
+/* Message d'erreur inline */
+.field-error {
+    font-size: 0.6rem;
+    color: #ff6b6b;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+    display: none;
+}
+.field-error.visible { display: block; }
+
+/* ── BOUTON SUBMIT ── */
+.btn-submit-wrap {
+    margin-top: 36px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 1.4s forwards;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 18px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: color 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submit::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--gold);
+    transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 0;
+}
+
+.btn-submit:hover::before { left: 0; }
+.btn-submit:hover { color: var(--dark); }
+.btn-submit span { position: relative; z-index: 1; }
+
+/* État loading */
+.btn-submit.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn-submit.loading span::after {
+    content: '...';
+    animation: dots 1s infinite;
+}
+
+@keyframes dots {
+    0%   { content: '.'; }
+    33%  { content: '..'; }
+    66%  { content: '...'; }
+}
+
+/* ── LIEN CONNEXION ── */
+.switch-link {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 0.72rem;
+    color: #555;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 1.5s forwards;
+}
+
+.switch-link a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+.switch-link a:hover { opacity: 0.7; }
+
+/* Indicateur de force du mot de passe */
+.password-strength {
+    margin-top: 8px;
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.4s ease, background 0.4s ease;
+    border-radius: 2px;
+}
+
+.strength-text {
+    font-size: 0.58rem;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    color: #555;
+    transition: color 0.3s;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+    .inscription-image { display: none; }
+    .inscription-form-side { border-left: none; padding: 40px 28px; }
+}
+
+@media (max-width: 580px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .form-inner h1 { font-size: 1.8rem; }
 }

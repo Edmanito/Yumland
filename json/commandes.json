@@ -42,6 +42,67 @@
                 "livraison": "2026-04-05T18:55:21"
             },
             "id_livreur": "L002"
+        },
+        {
+            "id": "CMD002",
+            "id_client": "U403263",
+            "type": "livraison",
+            "statut": "livree",
+            "adresse_livraison": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "p01",
+                    "nom": "Edamame à la Truffe Noire",
+                    "quantite": 1,
+                    "prix_unitaire": 18
+                },
+                {
+                    "type": "plat",
+                    "id": "p06",
+                    "nom": "Soupe Miso Dashi Blanc",
+                    "quantite": 1,
+                    "prix_unitaire": 16
+                }
+            ],
+            "prix_total": 34,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-05T19:31:20"
+            },
+            "dates": {
+                "commande": "2026-04-05T19:31:20",
+                "preparation": "2026-04-05T19:32:11",
+                "expedition": "2026-04-05T19:32:19",
+                "livraison": "2026-04-05T19:32:42"
+            },
+            "id_livreur": "L002"
+        },
+        {
+            "id": "CMD003",
+            "id_client": "U403263",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "p04",
+                    "nom": "Chawanmushi au Caviar",
+                    "quantite": 1,
+                    "prix_unitaire": 56
+                }
+            ],
+            "prix_total": 56,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-04-05T19:31:40"
+            },
+            "dates": {
+                "commande": "2026-04-05T19:31:40"
+            }
         }
     ]
 }
