@@ -22,7 +22,6 @@ if (!$user) {
     exit;
 }
 
-// Vérifie hash bcrypt OU mot de passe en clair (comptes de test)
 $mdpOk = false;
 if (str_starts_with($user['mot_de_passe'], '$2y$')) {
     $mdpOk = password_verify($mdp, $user['mot_de_passe']);
@@ -40,7 +39,6 @@ if ($user['statut'] === 'suspendu') {
     exit;
 }
 
-// Mettre à jour la dernière connexion
 $data = lireJSON(JSON_USERS);
 foreach ($data['utilisateurs'] as &$u) {
     if ($u['login'] === $login) {
@@ -50,11 +48,9 @@ foreach ($data['utilisateurs'] as &$u) {
 }
 ecrireJSON(JSON_USERS, $data);
 
-// Créer la session
 unset($user['mot_de_passe']);
 $_SESSION['user'] = $user;
 
-// Rediriger selon le rôle
 switch ($user['role']) {
     case 'admin':
         header('Location: ../php/admin.php');

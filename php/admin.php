@@ -7,13 +7,11 @@ requireRole('admin');
 $data = lireJSON(JSON_USERS);
 $utilisateurs = $data['utilisateurs'] ?? [];
 
-// Filtre par rôle (PHP)
 $filtre = $_GET['role'] ?? 'all';
 if ($filtre !== 'all') {
     $utilisateurs = array_filter($utilisateurs, fn($u) => $u['role'] === $filtre);
 }
 
-// Recherche (PHP)
 $recherche = strtolower($_GET['q'] ?? '');
 if ($recherche) {
     $utilisateurs = array_filter($utilisateurs, function($u) use ($recherche) {
@@ -25,7 +23,6 @@ if ($recherche) {
 
 $utilisateurs = array_values($utilisateurs);
 
-// Stats
 $dataAll = lireJSON(JSON_USERS)['utilisateurs'] ?? [];
 $nbClients   = count(array_filter($dataAll, fn($u) => $u['role'] === 'client'));
 $nbLivreurs  = count(array_filter($dataAll, fn($u) => $u['role'] === 'livreur'));

@@ -4,14 +4,11 @@ require_once '../includes/fonctions.php';
 
 requireConnexion();
 
-// --- LOGIQUE DE SÉLECTION DE L'UTILISATEUR ---
 $currentUser = $_SESSION['user'];
 $userIdToDisplay = $_GET['id'] ?? null;
 
-// Par défaut, on affiche l'utilisateur connecté
 $user = $currentUser;
 
-// Si un ID est passé et que l'utilisateur est admin, on cherche cet utilisateur dans le JSON
 if ($userIdToDisplay && ($currentUser['role'] === 'admin')) {
     $dataUsers = lireJSON(JSON_USERS);
     $utilisateurs = $dataUsers['utilisateurs'] ?? [];
@@ -24,7 +21,6 @@ if ($userIdToDisplay && ($currentUser['role'] === 'admin')) {
     }
 }
 
-// Récupération des commandes de l'utilisateur affiché
 $dataCommandes = lireJSON(JSON_COMMANDES);
 $mesCommandes = array_filter(
     $dataCommandes['commandes'] ?? [],

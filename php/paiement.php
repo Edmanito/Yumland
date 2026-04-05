@@ -3,7 +3,6 @@ require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 require_once '../includes/getapikey.php';
 
-// 1. Calcul du montant total
 $total = 0;
 if (isset($_SESSION['panier'])) {
     $plats_data = lireJSON(JSON_PLATS);
@@ -22,19 +21,17 @@ if (isset($_SESSION['panier'])) {
     }
 }
 
-// 2. Paramètres CYBank 
 $vendeur = "MI-1_A"; 
 $transaction = "T" . time() . rand(100, 999); 
 $montant = number_format($total, 2, '.', ''); 
 
 
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
-$host = $_SERVER['HTTP_HOST']; // Récupère le domaine 
+$host = $_SERVER['HTTP_HOST']; 
 
 $url_retour = $protocol . "://" . $host . "/php/retour_paiement.php";
 
 
-// 3. Calcul de la sécurité (Control)
 $key = getAPIKey($vendeur);
 $sep = "#";
 

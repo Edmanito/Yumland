@@ -4,7 +4,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ── RECHERCHE ──
     const searchInput = document.getElementById('menuSearch');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -18,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── NAVIGATION CATÉGORIES ──
     const catBtns = document.querySelectorAll('.cat-nav-btn');
     catBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -32,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── ACTIVE STATE NAV AU SCROLL ──
     const sections = document.querySelectorAll('.cat-section, .menus-section');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -47,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(s => observer.observe(s));
 
-    // ── MODAL IMAGE ──
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImg');
     const modalCaption = document.getElementById('modalCaption');
@@ -78,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-    // ── ANIMATION D'ENTRÉE ──
     const animObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

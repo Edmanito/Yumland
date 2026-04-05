@@ -12,8 +12,8 @@ if ($id_cmd && $id_livreur) {
     
     foreach ($data['commandes'] as &$cmd) {
         if ($cmd['id'] === $id_cmd) {
-            $cmd['id_livreur'] = $id_livreur; // On attribue le livreur
-            $cmd['statut'] = 'en_livraison';  // On change le statut
+            $cmd['id_livreur'] = $id_livreur; 
+            $cmd['statut'] = 'en_livraison';  
             $cmd['dates']['expedition'] = date('Y-m-d\TH:i:s');
             break;
         }

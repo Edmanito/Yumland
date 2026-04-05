@@ -441,7 +441,6 @@ body.open-nav::after {
 
 
 
-/* --- ÉTAT QUAND LE PANEL EST OUVERT --- */
 
 /* On cache le bouton de réservation (Connexion) */
 body.reservation-open .btn-reservation {
@@ -458,7 +457,6 @@ body.reservation-open .profile-trigger {
     transition: all 0.4s ease;
 }
 
-/* On s'assure que la croix du panel est bien visible au-dessus de tout */
 .close-reservation {
     z-index: 5100; /* Plus haut que le header qui est à 5000 */
 }

@@ -3,9 +3,7 @@
 // KAISEKI SHUNEI — FONCTIONS.PHP
 // =========================================
 
-/**
- * Lit un fichier JSON et retourne son contenu sous forme de tableau
- */
+
 function lireJSON($fichier) {
     if (!file_exists($fichier)) return [];
     $contenu = file_get_contents($fichier);
@@ -14,9 +12,7 @@ function lireJSON($fichier) {
     return $data ?? [];
 }
 
-/**
- * Écrit des données dans un fichier JSON (Alias de sauvegarderJSON pour compatibilité)
- */
+
 function ecrireJSON($fichier, $data) {
     return file_put_contents(
         $fichier,
@@ -24,9 +20,7 @@ function ecrireJSON($fichier, $data) {
     );
 }
 
-/**
- * Sauvegarde des données dans un fichier JSON (Utilisée dans retour_paiement.php)
- */
+
 function sauvegarderJSON($fichier, $data) {
     return ecrireJSON($fichier, $data);
 }
@@ -65,16 +59,12 @@ function ajouterUtilisateur($nouvelUser) {
     return ecrireJSON(JSON_USERS, $data);
 }
 
-// --- SYSTÈME DE CONNEXION ET RÔLES ---
 
 function estConnecte() {
     return isset($_SESSION['user']);
 }
 
-/**
- * Vérifie si l'utilisateur a un rôle précis. 
- * L'admin a accès à tout par défaut.
- */
+
 function aLeRole($role) {
     if (!estConnecte()) return false;
     $userRole = $_SESSION['user']['role'];
@@ -90,9 +80,7 @@ function requireConnexion() {
     }
 }
 
-/**
- * Restreint l'accès à un rôle spécifique
- */
+
 function requireRole($role) {
     if (!estConnecte() || !aLeRole($role)) {
         $profondeur = substr_count($_SERVER['PHP_SELF'], '/');

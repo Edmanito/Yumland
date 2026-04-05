@@ -3,7 +3,6 @@
    Logique du dashboard Kanban cuisine
    ========================================= */
 
-/* ── HORLOGE ── */
 function updateClock() {
     const now = new Date();
     const h = now.getHours().toString().padStart(2, '0');
@@ -13,20 +12,17 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-/* ── CHANGER STATUT D'UNE COMMANDE ── */
 function changerStatut(btn, nouveauStatut) {
     const card = btn.closest('.order-card');
     const colonne = colonnes[nouveauStatut];
 
     if (!colonne) return;
 
-    // Animation de sortie
     card.style.opacity = '0';
     card.style.transform = 'scale(0.95)';
     card.style.transition = 'all 0.25s ease';
 
     setTimeout(() => {
-        // Mettre à jour le bouton selon la nouvelle colonne
         const nouvBtn = card.querySelector('.btn-action');
         nouvBtn.className = 'btn-action ' + colonne.btnClass;
         nouvBtn.textContent = colonne.btnLabel;
@@ -39,15 +35,12 @@ function changerStatut(btn, nouveauStatut) {
             nouvBtn.setAttribute('onclick', `changerStatut(this, '${colonne.next}')`);
         }
 
-        // Déplacer la carte dans la bonne colonne
         colonne.liste.appendChild(card);
 
-        // Retirer le tag urgent si la carte avance
         const urgentTag = card.querySelector('.urgent-tag');
         if (urgentTag && nouveauStatut !== 'cuisine') urgentTag.remove();
         if (nouveauStatut !== 'cuisine') card.classList.remove('urgent');
 
-        // Animation d'entrée
         card.style.opacity = '0';
         card.style.transform = 'translateY(8px)';
         requestAnimationFrame(() => {
@@ -56,15 +49,13 @@ function changerStatut(btn, nouveauStatut) {
             card.style.transform = 'translateY(0)';
         });
 
-        // Mettre à jour les compteurs
         updateCompteurs();
     }, 250);
 }
 
-/* ── CONFIG DES COLONNES ── */
 const colonnes = {
     cuisine: {
-        liste: null, // initialisé au DOMContentLoaded
+        liste: null, 
         btnClass: 'success',
         btnLabel: 'Marquer prêt',
         next: 'pret'
@@ -84,7 +75,6 @@ const colonnes = {
     }
 };
 
-/* ── MISE À JOUR DES COMPTEURS ── */
 function updateCompteurs() {
     const cols = document.querySelectorAll('.kanban-col');
 
@@ -94,7 +84,6 @@ function updateCompteurs() {
         if (compteur) compteur.textContent = cards;
     });
 
-    // Stats row en haut
     const statPills = document.querySelectorAll('.stat-pill .stat-num');
     const allCols = document.querySelectorAll('.kanban-col .cards-list');
 
@@ -106,7 +95,6 @@ function updateCompteurs() {
     }
 }
 
-/* ── INIT ── */
 document.addEventListener('DOMContentLoaded', () => {
     const listes = document.querySelectorAll('.cards-list');
 

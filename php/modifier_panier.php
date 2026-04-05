@@ -1,7 +1,7 @@
 <?php
 require_once '../includes/config.php';
 
-$cle = $_GET['id'] ?? null; // Ici $id reçoit la clé du panier
+$cle = $_GET['id'] ?? null; 
 $action = $_GET['action'] ?? null;
 
 if ($cle && isset($_SESSION['panier'][$cle])) {

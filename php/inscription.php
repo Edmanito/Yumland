@@ -30,7 +30,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
 
     <div class="inscription-wrapper">
 
-        <!-- ── IMAGE GAUCHE ── -->
         <div class="inscription-image">
             <div class="image-brand-overlay">
                 <h2>Kaiseki <em>Shunei</em></h2>
@@ -38,7 +37,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
             </div>
         </div>
 
-        <!-- ── FORMULAIRE DROITE ── -->
         <div class="inscription-form-side">
             <div class="form-inner">
 
@@ -54,7 +52,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
 
                 <form action="../actions/register.php" method="POST" novalidate>
 
-                    <!-- IDENTITÉ -->
                     <div class="form-section">
                         <div class="section-label">Identité</div>
                         <div class="grid-2">
@@ -73,7 +70,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
                         </div>
                     </div>
 
-                    <!-- CONNEXION -->
                     <div class="form-section">
                         <div class="section-label">Connexion</div>
                         <div class="input-group">
@@ -90,7 +86,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
                         </div>
                     </div>
 
-                    <!-- ADRESSE -->
                     <div class="form-section">
                         <div class="section-label">Adresse de livraison</div>
                         <div class="input-group">
@@ -130,7 +125,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
                         </div>
                     </div>
 
-                    <!-- SUBMIT -->
                     <div class="btn-submit-wrap">
                         <button type="submit" class="btn-submit">
                             <span>CRÉER MON COMPTE</span>

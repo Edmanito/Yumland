@@ -5,7 +5,6 @@ require_once '../includes/fonctions.php';
 requireRole('livreur');
 $livreur = $_SESSION['user'];
 
-// ── RÉCUPÉRATION DES MISSIONS ──
 $dataCommandes = lireJSON(JSON_COMMANDES);
 $mesLivraisons = array_values(array_filter(
     $dataCommandes['commandes'] ?? [],
@@ -41,7 +40,6 @@ $mesLivraisons = array_values(array_filter(
         <?php endif; ?>
 
         <?php foreach ($mesLivraisons as $cmd):
-            // Récupérer les infos du client pour l'adresse et le nom
             $dataUsers = lireJSON(JSON_USERS);
             $client = null;
             foreach ($dataUsers['utilisateurs'] as $u) {
@@ -51,12 +49,10 @@ $mesLivraisons = array_values(array_filter(
                 }
             }
 
-            // --- CORRECTION : Sécurité si les champs du JSON sont vides ---
             $adresse = !empty($cmd['adresse_livraison']) ? $cmd['adresse_livraison'] : ($client['infos']['adresse'] ?? 'Adresse non renseignée');
             $etage = !empty($cmd['etage']) ? $cmd['etage'] : ($client['infos']['etage'] ?? '');
             $interphone = !empty($cmd['interphone']) ? $cmd['interphone'] : ($client['infos']['interphone'] ?? '');
             
-            // Formatage propre pour Google Maps
             $adresseEncode = urlencode($adresse);
         ?>
         <article class="delivery-card ready" id="cmd-<?= $cmd['id'] ?>">

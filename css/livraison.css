@@ -73,7 +73,7 @@ body.page-delivery {
 /* --- Container --- */
 .delivery-container { 
     padding: 25px 20px;
-    max-width: 500px; /* Un peu plus serré pour un look plus "App" */
+    max-width: 500px; 
     margin: 0 auto;
 }
 

@@ -6,7 +6,6 @@ date_default_timezone_set('Europe/Paris');
 
 requireRole('restaurateur');
 
-// ── FONCTIONS DATE ──
 function dateLocale($dateStr) {
     if (empty($dateStr)) return null;
     try {
@@ -26,7 +25,6 @@ function formatDate($dateStr) {
     return $dt ? $dt->format('d/m/Y') : '--/--';
 }
 
-// ── BLOC TEMPS : affiche planification si existe, sinon commande ──
 function afficherTemps($cmd) {
     $plan = $cmd['dates']['planification'] ?? null;
     if (!empty($plan)) {

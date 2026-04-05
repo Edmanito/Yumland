@@ -18,7 +18,6 @@ $data = lireJSON(JSON_COMMANDES);
 foreach ($data['commandes'] as &$cmd) {
     if ($cmd['id'] === $id) {
         $cmd['statut'] = $statut;
-        // Mettre à jour les dates selon le statut
         if ($statut === 'en_preparation') {
             $cmd['dates']['preparation'] = date('Y-m-d\TH:i:s');
         } elseif ($statut === 'livree') {

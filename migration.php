@@ -1,11 +1,5 @@
 <?php
-// =========================================
-// KAISEKI SHUNEI — MIGRATION.PHP
-// Script à exécuter UNE SEULE FOIS
-// pour hasher les mots de passe du JSON
-// Accès : http://localhost/YumlandTest/migration.php
-// SUPPRIMER CE FICHIER APRÈS UTILISATION !
-// =========================================
+
 
 require_once 'includes/config.php';
 require_once 'includes/fonctions.php';

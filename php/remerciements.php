@@ -2,7 +2,6 @@
 require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 
-// Optionnel : on peut vérifier si l'utilisateur est connecté pour personnaliser le message
 $prenom = isset($_SESSION['user']['infos']['prenom']) ? htmlspecialchars($_SESSION['user']['infos']['prenom']) : "";
 ?>
 <!DOCTYPE html>
@@ -33,7 +32,6 @@ $prenom = isset($_SESSION['user']['infos']['prenom']) ? htmlspecialchars($_SESSI
             overflow: hidden; 
         }
 
-        /* Le Kanji en fond pour le style Japonais */
         .kanji-background { 
             font-size: 15rem; 
             position: absolute; 
@@ -102,7 +100,6 @@ $prenom = isset($_SESSION['user']['infos']['prenom']) ? htmlspecialchars($_SESSI
             transform: translateY(-2px);
         }
 
-        /* Animation d'apparition */
         .thank-you-card {
             animation: fadeIn 1.2s ease-out;
         }

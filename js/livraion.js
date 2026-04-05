@@ -1,7 +1,6 @@
 function validerLivraison(id) {
     const card = document.getElementById(id);
     
-    // Animation de confirmation luxueuse
     if(confirm("Confirmer la remise en main propre ?")) {
         card.style.transform = "translateX(100px)";
         card.style.opacity = "0";

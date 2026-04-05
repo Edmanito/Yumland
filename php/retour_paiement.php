@@ -11,14 +11,12 @@ if (!function_exists('sauvegarderJSON')) {
     }
 }
 
-// 1. Récupération des paramètres
 $transaction  = $_GET['transaction'] ?? '';
 $montant      = $_GET['montant']     ?? '';
 $vendeur      = $_GET['vendeur']     ?? '';
 $statut       = $_GET['status']      ?? '';
 $control_recu = $_GET['control']     ?? '';
 
-// 2. Vérification sécurité
 $api_key         = getAPIKey($vendeur);
 $hash_string     = $api_key . "#" . $transaction . "#" . $montant . "#" . $vendeur . "#" . $statut . "#";
 $control_calcule = md5($hash_string);
@@ -28,10 +26,8 @@ $vider_panier    = false;
 $message         = "Erreur de validation des données.";
 $newId           = "";
 
-// 3. Validation et enregistrement
 if ($control_recu === $control_calcule) {
 
-    // Enrichir le panier avec noms et prix
     if (!empty($_SESSION['panier'])) {
         $plats_data = lireJSON(JSON_PLATS);
         $menus_data = lireJSON(JSON_MENUS);
@@ -52,25 +48,20 @@ if ($control_recu === $control_calcule) {
         $vider_panier    = true;
         $message         = "Paiement réussi ! Votre commande est en préparation.";
 
-        // ── RÉCUPÉRER LA PLANIFICATION DEPUIS LA SESSION ──
         $planification = $_SESSION['planification'] ?? null;
 
-        // Type de commande
         $type_commande = 'livraison';
         if ($planification) {
             $type_commande = $planification['type'] ?? 'livraison';
         }
 
-        // Heure planifiée (format ISO)
         $date_planification = null;
         if ($planification && !empty($planification['date']) && !empty($planification['heure'])) {
             $date_planification = $planification['date'] . 'T' . $planification['heure'] . ':00';
         }
 
-        // Date/heure actuelle en heure locale
         $maintenant = date('Y-m-d\TH:i:s');
 
-        // Articles formatés
         $articles_formates = [];
         foreach ($_SESSION['panier'] as $item) {
             $articles_formates[] = [
@@ -82,10 +73,9 @@ if ($control_recu === $control_calcule) {
             ];
         }
 
-        // Adresse
+        
         $adresse = $_SESSION['user']['infos']['adresse'] ?? '';
 
-        // Construction de la commande
         $commandesData = lireJSON(JSON_COMMANDES);
         if (!$commandesData) { $commandesData = ['commandes' => []]; }
 
@@ -106,14 +96,13 @@ if ($control_recu === $control_calcule) {
             ],
             'dates'             => [
                 'commande'      => $maintenant,
-                'planification' => $date_planification  // null si pas planifié
+                'planification' => $date_planification  
             ]
         ];
 
         $commandesData['commandes'][] = $nouvelle_commande;
         sauvegarderJSON(JSON_COMMANDES, $commandesData);
 
-        // Vider la planification de session
         unset($_SESSION['planification']);
 
     } else {

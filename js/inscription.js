@@ -8,12 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
     if (!form) return;
 
-    // ── RÉFÉRENCES ──
     const inputs = form.querySelectorAll('input, select');
     const btnSubmit = form.querySelector('.btn-submit');
     const mdpInput = form.querySelector('input[name="mdp"]');
 
-    // ── 1. INDICATEUR DE FORCE DU MOT DE PASSE ──
     if (mdpInput) {
         const strengthBar  = document.querySelector('.password-strength-bar');
         const strengthText = document.querySelector('.strength-text');
@@ -47,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return Math.min(4, Math.ceil(score / 1.25));
     }
 
-    // ── 2. VALIDATION EN TEMPS RÉEL ──
     const rules = {
         prenom:        { min: 2,   msg: 'Au moins 2 caractères.' },
         nom:           { min: 2,   msg: 'Au moins 2 caractères.' },
@@ -95,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         errEl.classList.toggle('visible', !!msg);
     }
 
-    // ── 3. VALIDATION AU SUBMIT ──
     form.addEventListener('submit', (e) => {
         let allValid = true;
 
@@ -105,24 +101,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!allValid) {
             e.preventDefault();
-            // Scroll vers la première erreur
             const firstError = form.querySelector('input.error');
             if (firstError) {
                 firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 firstError.focus();
             }
-            // Shake le bouton
             btnSubmit.classList.add('shake');
             setTimeout(() => btnSubmit.classList.remove('shake'), 500);
             return;
         }
 
-        // Loading state
         btnSubmit.classList.add('loading');
         btnSubmit.querySelector('span').textContent = 'CRÉATION EN COURS';
     });
 
-    // ── 4. FORMAT AUTOMATIQUE TÉLÉPHONE ──
     const telInput = form.querySelector('input[name="telephone"]');
     if (telInput) {
         telInput.addEventListener('input', () => {
@@ -134,14 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── 5. FORMAT CODE POSTAL ──
     const cpInput = form.querySelector('input[name="adresse_cp"]');
     if (cpInput) {
         cpInput.addEventListener('input', () => {
             cpInput.value = cpInput.value.replace(/\D/g, '').substring(0, 5);
         });
 
-        // Auto-détection arrondissement depuis le code postal
         cpInput.addEventListener('blur', () => {
             const cp = cpInput.value;
             const arrSelect = form.querySelector('select[name="arrondissement"]');
@@ -154,16 +144,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── 6. ANIMATION FOCUS LABELS ──
     inputs.forEach(input => {
-        // Highlight de la section parente
         input.addEventListener('focus', () => {
             const section = input.closest('.form-section');
             if (section) section.style.opacity = '1';
         });
     });
 
-    // ── 7. ANIMATION D'ENTRÉE STAGGERÉE DES SECTIONS ──
     const sections = document.querySelectorAll('.form-section');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -179,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // ── 8. SHAKE ANIMATION CSS (ajout dynamique) ──
     const style = document.createElement('style');
     style.textContent = `
         .btn-submit.shake {
@@ -194,14 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 
-    // ── 9. CONFIRMATION VISUELLE AU FOCUS ──
     inputs.forEach(input => {
         input.addEventListener('focus', () => {
             input.parentElement.style.transition = 'all 0.3s ease';
         });
     });
 
-    // ── 10. PRÉVISUALISATION NOM COMPLET ──
     const prenomInput = form.querySelector('input[name="prenom"]');
     const nomInput    = form.querySelector('input[name="nom"]');
     const brandOverlay = document.querySelector('.image-brand-overlay h2');

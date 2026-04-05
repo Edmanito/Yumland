@@ -34,7 +34,6 @@ $categories = [
 </head>
 <body class="page-menu">
 
-    <!-- ── NAVIGATION ── -->
     <nav class="nav-top">
         <a href="../index.php" class="nav-back">
             <span class="arrow"></span>
@@ -51,7 +50,6 @@ $categories = [
         </div>
     </nav>
 
-    <!-- ── HERO ── -->
     <section class="carte-hero">
         <div class="hero-bg"></div>
         <div class="hero-kanji">春栄製</div>
@@ -68,7 +66,6 @@ $categories = [
         </div>
     </section>
 
-    <!-- ── NAVIGATION CATÉGORIES ── -->
     <nav class="cat-nav">
         <button class="cat-nav-btn active" data-target="section-menus">MENUS</button>
         <?php foreach ($categories as $code => $info): ?>
@@ -78,10 +75,8 @@ $categories = [
         <?php endforeach; ?>
     </nav>
 
-    <!-- ── CONTENU PRINCIPAL ── -->
     <main class="carte-main">
 
-        <!-- MENUS CONFIGURÉS -->
         <?php if (!empty($menus)): ?>
         <section class="menus-section cat-section" id="section-menus">
             <div class="cat-header">
@@ -109,7 +104,6 @@ $categories = [
         </section>
         <?php endif; ?>
 
-        <!-- CATÉGORIES DE PLATS -->
         <?php foreach ($categories as $code => $info):
             $platsFiltres = array_filter($plats, fn($p) => ($p['categorie'] ?? '') === $code && ($p['disponible'] ?? true));
             if (empty($platsFiltres)) continue;
@@ -127,7 +121,6 @@ $categories = [
             </div>
 
             <?php if ($code === 'boisson'): ?>
-            <!-- BOISSONS -->
             <div class="dishes-grid <?= $info['layout'] ?>">
                 <?php foreach ($platsFiltres as $p):
                     $icon = '🍶';
@@ -151,7 +144,6 @@ $categories = [
             </div>
 
             <?php else: ?>
-            <!-- PLATS -->
             <div class="dishes-grid <?= $info['layout'] ?>">
                 <?php foreach ($platsFiltres as $p):
                     $src = !empty($p['image']) ? '../' . $p['image'] : null;
@@ -202,13 +194,11 @@ $categories = [
 
     </main>
 
-    <!-- ── PIED DE PAGE ── -->
     <footer class="carte-footer">
         <p>© 2026 KAISEKI SHUNEI — TOUS DROITS RÉSERVÉS</p>
         <p>PRIX EN EUROS, SERVICE INCLUS — LISTE DES ALLERGÈNES DISPONIBLE SUR DEMANDE</p>
     </footer>
 
-    <!-- ── FENÊTRE ZOOM IMAGE ── -->
     <div class="image-modal" id="imageModal">
         <button class="modal-close">✕ FERMER</button>
         <img class="modal-img" id="modalImg" src="" alt="">

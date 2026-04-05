@@ -21,7 +21,6 @@ $totalCommande = 0;
 
 <?php if (!estConnecte()): ?>
 
-    <!-- ── NON CONNECTÉ ── -->
     <div class="panier-auth">
         <div class="auth-box-panier">
             <span class="kanji">買物籠</span>
@@ -37,7 +36,6 @@ $totalCommande = 0;
 
 <?php else: ?>
 
-    <!-- ── CONNECTÉ : PANIER ── -->
     <div class="panier-container">
         <header class="panier-header">
             <a href="carte.php" class="back-link">← CONTINUER VOS ACHATS</a>
@@ -122,7 +120,6 @@ $totalCommande = 0;
     </div>
 </div>
 
-<!-- PLANIFICATION -->
 <div class="planification-box">
     <div class="plan-header">
         <span class="plan-icon">🕐</span>
@@ -174,7 +171,6 @@ $totalCommande = 0;
 
 
 <script>
-        // ── PLANIFICATION ──
         function selectType(btn, type) {
             document.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
@@ -208,10 +204,8 @@ $totalCommande = 0;
                 return;
             }
 
-            // Sauvegarde JS
             sessionStorage.setItem('planification', JSON.stringify({ type, date, heure }));
 
-            // ── TRANSMISSION À PHP via les inputs cachés du formulaire ──
             const it = document.getElementById('input-plan-type');
             const id = document.getElementById('input-plan-date');
             const ih = document.getElementById('input-plan-heure');

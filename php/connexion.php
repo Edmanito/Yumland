@@ -1,9 +1,7 @@
 <?php
-// On remonte d'un cran pour atteindre les includes
 require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 
-// On démarre la session si ce n'est pas déjà fait par config.php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -15,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userFound = trouverUtilisateur($email);
 
     if ($userFound) {
-        // Vérification hybride : Hash (production) OU Texte brut (pour Kenji/tests)
         $match = password_verify($password, $userFound['mot_de_passe']) || ($password === $userFound['mot_de_passe']);
 
         if ($match) {
@@ -26,12 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $_SESSION['user'] = $userFound;
 
-            // --- NAVIGATION SELON LE RÔLE ---
             if ($userFound['role'] === 'admin') {
                 header('Location: admin.php');
             } 
             elseif ($userFound['role'] === 'restaurateur') {
-                // Direction le fichier commande.php dans le dossier php/
                 header('Location: commande.php'); 
             } 
             elseif ($userFound['role'] === 'livreur') {
@@ -44,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Si on arrive ici, c'est que les identifiants sont faux
     header('Location: ../index.php?erreur=identifiants_incorrects');
     exit;
 }

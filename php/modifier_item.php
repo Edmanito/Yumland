@@ -21,7 +21,6 @@ foreach ($tous as $p) {
     }
 }
 
-// Extraction des ingrédients depuis la description
 $ingredients = explode(',', str_replace('.', '', $produit['description']));
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -29,8 +29,7 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
     .auth-subtitle { color: #888; font-size: 0.85rem; margin-bottom: 20px; display: block; }
     .switch-auth { margin-top: 15px; font-size: 0.8rem; color: #666; }
 
-    /* --- DISPARITION FORCEE --- */
-    /* On utilise 'display: none' pour être certain qu'il disparaisse totalement du champ de vision */
+   
     body.reservation-open #btn-connexion-main, 
     body.reservation-open .profile-trigger {
         display: none !important; 
@@ -38,7 +37,7 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         pointer-events: none !important;
     }
 
-    /* On s'assure que la croix du panel est cliquable */
+    
     .close-reservation {
         z-index: 9999 !important;
         cursor: pointer !important;
@@ -48,7 +47,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
 </head>
 <body class="page-accueil">
 
-    <!-- ── MENU LATÉRAL BLEU ── -->
     <div id="side-menu" class="side-panel">
         <div class="menu-content-wrapper">
             <div class="menu-links">
@@ -70,7 +68,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
             <a href="javascript:void(0)" class="admin-link" onclick="accesSecurise()">ADMINISTRATION</a>
             <div class="menu-footer-line"></div>
 
-            <!-- RÉSEAUX SOCIAUX -->
             <div class="social-links">
                 <a href="https://www.instagram.com/kaisekishunei_off" target="_blank" title="Instagram">
                     <img src="img/instagram-icon.png" alt="Instagram">
@@ -86,7 +83,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
                 </a>
             </div>
 
-            <!-- BOUTON LANGUE -->
             <div class="lang-wrapper">
                 <button class="lang-btn" onclick="toggleLang(event)">
                     <span style="font-size:1.1rem;">🌐</span>
@@ -113,7 +109,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         </div>
     </div>
 
-    <!-- ── HEADER ── -->
     <header class="main-header">
         <div class="header-left">
             <div class="logo-and-menu">
@@ -154,7 +149,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         </div>
     </header>
 
-    <!-- ── HERO ── -->
     <section class="hero-section">
         <div class="hero-bg-image"></div>
         <div class="hero-content">
@@ -165,7 +159,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         </div>
     </section>
 
-    <!-- ── PANEL CONNEXION POURPRE ── -->
     <div id="reservation-panel" class="side-panel-right">
         <div class="close-reservation" onclick="toggleReservation()">✕</div>
         <div class="auth-container">
@@ -188,7 +181,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         </div>
     </div>
 
-    <!-- ── RESTAURANT ── -->
     <section id="restaurant" class="scroll-section restaurant-view">
         <div class="restaurant-bg"></div>
         <div class="blue-overlay"></div>
@@ -213,7 +205,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         </div>
     </section>
 
-    <!-- ── CHEFS ── -->
     <section id="chefs" class="scroll-section chefs-view">
         <div class="chefs-container">
             <div class="chef-card" onclick="ouvrirHistoire('kenji')">
@@ -249,7 +240,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         </div>
     </section>
 
-    <!-- ── EXPÉRIENCE ── -->
     <section id="experience" class="scroll-section experience-view">
         <div class="experience-content">
             <span class="section-subtitle">NOTRE ODYSSÉE</span>
@@ -291,7 +281,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         </div>
     </section>
 
-    <!-- ── MENU ── -->
     <section id="menu" class="scroll-section menu-view-minimal">
         <div class="menu-bg-overlay"></div>
         <a href="php/carte.php" class="menu-compact-box">
@@ -302,7 +291,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         </a>
     </section>
 
-    <!-- ── INFORMATIONS ── -->
     <section id="informations" class="scroll-section info-view">
         <div class="info-wrapper">
             <div class="info-block">
@@ -321,12 +309,10 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         </div>
     </section>
 
-    <!-- ── SCRIPTS ── -->
-    <!-- langue.js EN PREMIER pour que applyLang soit disponible -->
+   
     <script src="js/langue.js"></script>
     <script src="js/index.js"></script>
     <script>
-        // ── MENU ──
         function toggleMenu() {
             const menu = document.getElementById("side-menu");
             menu.classList.toggle("open");
@@ -344,20 +330,16 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
             setTimeout(toggleReservation, 500);
         }
 
-        // ── ACCÈS SÉCURISÉ ──
-        // ── ACCÈS SÉCURISÉ AMÉLIORÉ ──
+        
         function accesSecurise() {
-            // 1. On récupère le rôle de l'utilisateur via PHP (injecté en JS)
             const estClient = <?php echo (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'client') ? 'true' : 'false'; ?>;
             const estConnecte = <?php echo estConnecte() ? 'true' : 'false'; ?>;
 
-            // 2. Si c'est un client connecté, on bloque direct avec un message élégant
             if (estConnecte && estClient) {
                 alert("Accès Restreint : Vous n'avez pas les autorisations nécessaires pour accéder à l'administration.");
-                return; // On arrête la fonction ici
+                return; 
             }
 
-            // 3. Si c'est un admin ou quelqu'un de non-connecté, on demande le code
             const code = prompt("Veuillez entrer votre code d'accès :");
             if (code === null) return;
 
@@ -371,7 +353,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
             }
         }
 
-        // ── LANGUE ──
         function toggleLang(e) {
             if (e) { e.stopPropagation(); e.preventDefault(); }
             const dd = document.getElementById('lang-dropdown');
@@ -409,7 +390,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
             }
         });
 
-        // ── INIT LANGUE ──
         (function() {
             const saved = localStorage.getItem('kaiseki_lang') || 'FR';
             const el = document.getElementById('lang-current');

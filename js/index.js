@@ -4,7 +4,6 @@
 
 let currentImg = 1;
 
-/* ── GALERIE RESTAURANT ── */
 function changeImage(direction) {
     const photo = document.getElementById("main-photo");
     currentImg += direction;
@@ -29,7 +28,6 @@ function closeGallery() {
     document.querySelector("header").style.opacity = "1";
 }
 
-/* ── HISTOIRES CHEFS ── */
 const histoires = {
     kenji: {
         titre: "Maître Kenji",
