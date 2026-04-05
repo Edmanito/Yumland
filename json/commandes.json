@@ -72,7 +72,6 @@
                 "livraison": "2026-01-05T20:10:00"
             }
         },
-    
         {
             "id": "CMD004",
             "id_client": "U004",
@@ -146,7 +145,7 @@
             "id": "CMD006",
             "id_client": "U001",
             "type": "livraison",
-            "statut": "pret",
+            "statut": "en_livraison",
             "adresse_livraison": "",
             "etage": "",
             "interphone": "",
@@ -165,19 +164,20 @@
                 "methode": "cybank",
                 "date_transaction": "2026-04-04T16:05:33"
             },
-            "id_livreur": null,
+            "id_livreur": "L001",
             "note_client": null,
             "dates": {
                 "commande": "2026-04-04T16:05:33",
                 "preparation": "2026-04-04T17:12:31",
-                "livraison": null
+                "livraison": null,
+                "expedition": "2026-04-05T11:48:19"
             }
         },
         {
             "id": "CMD007",
             "id_client": "U001",
             "type": "livraison",
-            "statut": "pret",
+            "statut": "en_livraison",
             "adresse_livraison": "",
             "etage": "",
             "interphone": "",
@@ -196,19 +196,20 @@
                 "methode": "cybank",
                 "date_transaction": "2026-04-04T16:05:55"
             },
-            "id_livreur": null,
+            "id_livreur": "L002",
             "note_client": null,
             "dates": {
                 "commande": "2026-04-04T16:05:55",
                 "preparation": "2026-04-04T17:12:46",
-                "livraison": null
+                "livraison": null,
+                "expedition": "2026-04-05T11:48:25"
             }
         },
         {
             "id": "CMD008",
             "id_client": "U001",
             "type": "livraison",
-            "statut": "en_preparation",
+            "statut": "pret",
             "adresse_livraison": "",
             "etage": "",
             "interphone": "",
@@ -364,7 +365,7 @@
             "id": "CMD012",
             "id_client": "U003",
             "type": "sur_place",
-            "statut": "en_preparation",
+            "statut": "pret",
             "adresse_livraison": "",
             "etage": "",
             "interphone": "",
