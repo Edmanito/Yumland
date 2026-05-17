@@ -11,8 +11,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputs = form.querySelectorAll('input, select');
     const btnSubmit = form.querySelector('.btn-submit');
     const mdpInput = form.querySelector('input[name="mdp"]');
+    const loginInput = form.querySelector('input[name="login"]');
 
+    const togglePassword = document.querySelector('#togglePassword');
+    if (togglePassword && mdpInput) {
+        togglePassword.addEventListener('click', () => {
+            const type = mdpInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            mdpInput.setAttribute('type', type);
+            togglePassword.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+    }
+
+    const counterLogin = document.querySelector('#counter-login');
+    const counterMdp = document.querySelector('#counter-mdp');
+
+    function updateCounter(inputElement, counterElement) {
+        if (!inputElement || !counterElement) return;
+        const currentLength = inputElement.value.length;
+        const maxLength = inputElement.getAttribute('maxlength');
+        counterElement.textContent = `${currentLength} / ${maxLength}`;
+        
+        if (currentLength >= maxLength) {
+            counterElement.style.color = '#ff4444';
+        } else {
+            counterElement.style.color = '#666';
+        }
+    }
+
+    if (loginInput) {
+        loginInput.addEventListener('input', () => updateCounter(loginInput, counterLogin));
+    }
+    
     if (mdpInput) {
+        mdpInput.addEventListener('input', () => updateCounter(mdpInput, counterMdp));
+
         const strengthBar  = document.querySelector('.password-strength-bar');
         const strengthText = document.querySelector('.strength-text');
 
@@ -22,10 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const levels = [
                 { pct: '0%',   color: 'transparent', label: '' },
-                { pct: '25%',  color: '#ff4444',      label: 'FAIBLE' },
-                { pct: '50%',  color: '#ff9944',      label: 'MOYEN' },
-                { pct: '75%',  color: '#ffcc44',      label: 'BON' },
-                { pct: '100%', color: '#44cc88',      label: 'EXCELLENT' },
+                { pct: '25%',  color: '#ff4444',     label: 'FAIBLE' },
+                { pct: '50%',  color: '#ff9944',     label: 'MOYEN' },
+                { pct: '75%',  color: '#ffcc44',     label: 'BON' },
+                { pct: '100%', color: '#44cc88',     label: 'EXCELLENT' },
             ];
 
             const lvl = levels[score];

@@ -2,31 +2,34 @@
 require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 
-requireRole('restaurateur');
+header('Content-Type: application/json');
 
-$id     = $_GET['id']     ?? '';
-$statut = $_GET['statut'] ?? '';
-
-$statutsValides = ['en_attente', 'en_preparation', 'pret', 'en_livraison', 'livree'];
-
-if (!$id || !in_array($statut, $statutsValides)) {
-    header('Location: ../php/commande.php');
+if (!estConnecte() || !aLeRole('restaurateur')) {
+    echo json_encode(['success' => false, 'message' => 'Accès refusé']);
     exit;
 }
 
-$data = lireJSON(JSON_COMMANDES);
-foreach ($data['commandes'] as &$cmd) {
-    if ($cmd['id'] === $id) {
-        $cmd['statut'] = $statut;
-        if ($statut === 'en_preparation') {
-            $cmd['dates']['preparation'] = date('Y-m-d\TH:i:s');
-        } elseif ($statut === 'livree') {
-            $cmd['dates']['livraison'] = date('Y-m-d\TH:i:s');
+$id_cmd = $_GET['id'] ?? '';
+$nouveau_statut = $_GET['statut'] ?? '';
+
+if ($id_cmd && $nouveau_statut) {
+    $data = lireJSON(JSON_COMMANDES);
+    $trouve = false;
+    
+    foreach ($data['commandes'] as &$cmd) {
+        if ($cmd['id'] === $id_cmd) {
+            $cmd['statut'] = $nouveau_statut;
+            $trouve = true;
+            break;
         }
-        break;
+    }
+    
+    if ($trouve) {
+        sauvegarderJSON(JSON_COMMANDES, $data);
+        echo json_encode(['success' => true]);
+        exit;
     }
 }
 
-ecrireJSON(JSON_COMMANDES, $data);
-header('Location: ../php/commande.php');
+echo json_encode(['success' => false, 'message' => 'Action impossible']);
 exit;

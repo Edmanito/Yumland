@@ -32,6 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script>
+        // Appliquer le thème AVANT le rendu pour éviter le flash
+        (function(){
+            const m = document.cookie.match(/(?:^|; )kaiseki_theme=([^;]*)/);
+         const t = m ? decodeURIComponent(m[1]) : 'sombre';
+            if (t === 'clair') {
+             const l = document.createElement('link');
+             l.rel = 'stylesheet'; l.id = 'theme-stylesheet';
+             l.href = '../css/theme-clair.css';
+                document.head.appendChild(l);
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <title>Personnaliser | <?= SITE_NOM ?></title>
     <link rel="stylesheet" href="../css/panier.css">
@@ -62,5 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="panier.php" style="display:block; margin-top:15px; color:#666; text-decoration:none; font-size:0.8em;">ANNULER</a>
         </form>
     </div>
+<script src="../js/theme.js"></script>
 </body>
 </html>

@@ -299,6 +299,37 @@
                 "inscription": "2026-04-05",
                 "derniere_connexion": "2026-04-05"
             }
+        },
+        {
+            "id": "U1AC74B",
+            "login": "shanksfigarlandmariegeoise@gmail.com",
+            "mot_de_passe": "$2y$10$X.T\/19jukp6D4HSlkpjsyulGQsvXgS0HgrkG3RR7b2KGnjuIV2\/T6",
+            "role": "client",
+            "statut": "actif",
+            "premium": false,
+            "remise": 0,
+            "infos": {
+                "nom": "Figarland",
+                "prenom": "Shanks",
+                "telephone": "07 65 45 45 39",
+                "adresse": "43 rue des louis",
+                "etage": "",
+                "interphone": ""
+            },
+            "fidelite": {
+                "points": 0,
+                "badge": "BRONZE"
+            },
+            "dates": {
+                "inscription": "2026-04-24",
+                "derniere_connexion": "2026-04-24"
+            },
+            "tickets_reduction": [
+                {
+                    "montant": 16,
+                    "origine": "Remboursement CMD CMD014"
+                }
+            ]
         }
     ]
 }

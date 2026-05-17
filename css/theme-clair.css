@@ -1,0 +1,836 @@
+/* =====================================================
+   KAISEKI SHUNEI — THEME-CLAIR.CSS
+   Override complet du thème sombre
+   Chargé dynamiquement via theme.js + cookie
+   ===================================================== */
+ 
+ 
+/* ─────────────────────────────────────────────────────
+   1. VARIABLES GLOBALES
+───────────────────────────────────────────────────── */
+:root {
+    --gold:        #8B6914;
+    --dark-bg:     #F2EDE4;
+    --navy:        #DDD5C0;
+    --burgundy:    #C8B49A;
+    --white:       #1A1A1A;
+    --gray-border: rgba(100, 70, 0, 0.2);
+}
+ 
+ 
+/* ─────────────────────────────────────────────────────
+   2. BASE — html / body
+───────────────────────────────────────────────────── */
+html, body {
+    background-color: #F2EDE4 !important;
+    color: #1A1A1A !important;
+}
+ 
+ 
+/* ─────────────────────────────────────────────────────
+   3. HEADER COMMUN (header.css)
+───────────────────────────────────────────────────── */
+.main-header {
+    background: transparent !important;
+}
+ 
+.logo-and-menu {
+    background: rgba(220, 210, 195, 0.92) !important;
+    border-right-color: rgba(100, 70, 0, 0.2) !important;
+}
+ 
+.logo-kanji {
+    color: #1A1A1A !important;
+}
+ 
+.hamburger-icon span {
+    background: #1A1A1A !important;
+}
+ 
+.menu-text,
+.brand-name {
+    color: #1A1A1A !important;
+}
+ 
+.btn-reservation {
+    border-color: var(--gold) !important;
+    color: var(--gold) !important;
+}
+ 
+.btn-reservation:hover {
+    background: var(--gold) !important;
+    color: #F2EDE4 !important;
+}
+ 
+.btn-deconnexion {
+    color: var(--gold) !important;
+    border-bottom-color: var(--gold) !important;
+}
+ 
+.profile-icon-nav {
+    filter: invert(0) !important;
+}
+ 
+.profile-trigger:hover .profile-icon-nav {
+    filter: drop-shadow(0 0 12px var(--gold)) !important;
+}
+ 
+body.open-nav::after {
+    background: rgba(0, 0, 0, 0.3) !important;
+}
+ 
+ 
+/* ─────────────────────────────────────────────────────
+   4. SIDE MENU GAUCHE (header.css)
+───────────────────────────────────────────────────── */
+.side-panel {
+    background-color: #DDD5C0 !important;
+}
+ 
+.menu-links a {
+    color: #1A1A1A !important;
+}
+ 
+.menu-links a:hover {
+    color: var(--gold) !important;
+}
+ 
+.admin-link {
+    color: var(--gold) !important;
+    border-color: rgba(100, 70, 0, 0.35) !important;
+}
+ 
+.menu-footer-line {
+    background: rgba(0, 0, 0, 0.1) !important;
+}
+ 
+.social-links a {
+    color: #1A1A1A !important;
+}
+ 
+.social-links img {
+    filter: invert(0) !important;
+}
+ 
+.lang-btn {
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+ 
+.lang-btn:hover {
+    color: #1A1A1A !important;
+}
+ 
+.lang-dropdown {
+    background: #C8B89A !important;
+    border-color: rgba(100, 70, 0, 0.3) !important;
+}
+ 
+.lang-dropdown a {
+    color: #1A1A1A !important;
+    border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+}
+ 
+.lang-dropdown a:hover {
+    background: rgba(100, 70, 0, 0.1) !important;
+    color: var(--gold) !important;
+}
+ 
+ 
+/* ─────────────────────────────────────────────────────
+   5. PANEL CONNEXION DROITE (header.css)
+───────────────────────────────────────────────────── */
+.side-panel-right,
+#reservation-panel {
+    background-color: #C8B49A !important;
+}
+ 
+.auth-box h3 {
+    color: #1A1A1A !important;
+}
+ 
+.auth-subtitle {
+    color: #2A1A0A !important;
+}
+ 
+.input-auth {
+    background: transparent !important;
+    border-bottom-color: rgba(0, 0, 0, 0.25) !important;
+    color: #1A1A1A !important;
+}
+ 
+.input-auth::placeholder {
+    color: rgba(0, 0, 0, 0.35) !important;
+}
+ 
+.btn-submit {
+    border-color: #1A1A1A !important;
+    color: #1A1A1A !important;
+    background: transparent !important;
+}
+ 
+.btn-submit:hover {
+    background: #1A1A1A !important;
+    color: #F2EDE4 !important;
+}
+ 
+.close-reservation {
+    color: #1A1A1A !important;
+}
+ 
+.char-counter {
+    color: rgba(0, 0, 0, 0.4) !important;
+}
+ 
+.switch-auth {
+    color: #2A1A0A !important;
+}
+ 
+.auth-error {
+    background: rgba(180, 50, 50, 0.1) !important;
+    border-color: rgba(180, 50, 50, 0.3) !important;
+    color: #8B2020 !important;
+}
+ 
+ 
+/* ─────────────────────────────────────────────────────
+   6. PAGE ACCUEIL — index.php (index.css)
+───────────────────────────────────────────────────── */
+.hero-content h2 {
+    color: #FFFFFF !important;
+}
+ 
+.input-search {
+    border-bottom-color: rgba(255, 255, 255, 0.7) !important;
+    color: #FFFFFF !important;
+}
+ 
+.input-search::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+ 
+.scroll-section {
+    color: #1A1A1A !important;
+}
+ 
+.section-subtitle {
+    color: var(--gold) !important;
+}
+ 
+.chefs-view {
+    background: #F2EDE4 !important;
+}
+ 
+.chef-info h3,
+.chef-role {
+    color: #1A1A1A !important;
+}
+ 
+.timeline-content {
+    background: rgba(200, 185, 165, 0.4) !important;
+    border-color: rgba(100, 70, 0, 0.2) !important;
+}
+ 
+.timeline-content p {
+    color: #2A1A0A !important;
+}
+ 
+.exp-quote-large {
+    color: #1A1A1A !important;
+}
+ 
+.story-box {
+    background: rgba(240, 230, 215, 0.85) !important;
+    border-color: var(--gold) !important;
+}
+ 
+.story-box p {
+    color: #1A1A1A !important;
+}
+ 
+ 
+/* ─────────────────────────────────────────────────────
+   7. FOOTER COMMUN (footer.css)
+───────────────────────────────────────────────────── */
+.info-view {
+    background: #F2EDE4 !important;
+    color: #1A1A1A !important;
+}
+ 
+.site-footer {
+    color: #1A1A1A !important;
+}
+ 
+ 
+/* ─────────────────────────────────────────────────────
+   8. PAGE CARTE — php/carte.php (carte.css)
+───────────────────────────────────────────────────── */
+body.page-menu {
+    background: #F2EDE4 !important;
+    color: #1A1A1A !important;
+}
+ 
+.nav-top {
+    background: linear-gradient(to bottom, rgba(242, 237, 228, 0.97), transparent) !important;
+}
+ 
+.nav-back,
+.nav-brand {
+    color: #1A1A1A !important;
+}
+ 
+.btn-cart {
+    background: transparent !important;
+    border: 1px solid #8B6914 !important;
+    color: #8B6914 !important;
+}
+ 
+.btn-cart:hover {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+}
+ 
+.cat-nav {
+    background: #E8E0D0 !important;
+    border-bottom-color: rgba(100, 70, 0, 0.15) !important;
+}
+ 
+.cat-nav-btn {
+    color: #2A1A0A !important;
+}
+ 
+.cat-nav-btn.active {
+    color: #8B6914 !important;
+    border-bottom-color: #8B6914 !important;
+}
+ 
+.cat-header h2,
+.cat-num,
+.cat-kanji {
+    color: #1A1A1A !important;
+}
+ 
+.cat-header p {
+    color: #3A2A1A !important;
+}
+ 
+.dish-card,
+.menu-card,
+.drink-card {
+    background: #E8E0D0 !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+}
+ 
+.dish-name,
+.menu-card h3,
+.drink-name {
+    color: #1A1A1A !important;
+}
+ 
+.dish-desc,
+.menu-card p,
+.drink-desc {
+    color: #2A1A0A !important;
+}
+ 
+.dish-price,
+.price,
+.drink-price {
+    color: #8B6914 !important;
+}
+ 
+.btn-ajouter,
+.btn-menu,
+.drink-btn {
+    background: transparent !important;
+    border-color: #8B6914 !important;
+    color: #8B6914 !important;
+}
+ 
+.btn-ajouter:hover,
+.btn-menu:hover,
+.drink-btn:hover {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+}
+ 
+.filter-panel {
+    background: rgba(232, 224, 208, 0.95) !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+}
+ 
+.filter-group label {
+    color: #3A2A1A !important;
+}
+ 
+.filter-group select {
+    background: #E8E0D0 !important;
+    color: #1A1A1A !important;
+    border-color: rgba(100, 70, 0, 0.2) !important;
+}
+ 
+.allergen-tag {
+    background: rgba(100, 70, 0, 0.08) !important;
+    color: #3A2A1A !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+}
+ 
+.carte-footer {
+    background: #E0D8C8 !important;
+    color: #2A1A0A !important;
+}
+ 
+ 
+/* ─────────────────────────────────────────────────────
+   9. PAGE INSCRIPTION — php/inscription.php (inscription.css)
+───────────────────────────────────────────────────── */
+body.page-inscription {
+    background: #F2EDE4 !important;
+    color: #1A1A1A !important;
+}
+ 
+body.page-inscription .inscription-form-side {
+    background: #E8E0D0 !important;
+    border-left-color: rgba(100, 70, 0, 0.2) !important;
+}
+ 
+body.page-inscription .form-inner h1 {
+    color: #1A1A1A !important;
+}
+ 
+body.page-inscription .form-intro {
+    color: #2A1A0A !important;
+}
+ 
+body.page-inscription .btn-back,
+body.page-inscription .pre-title {
+    color: #8B6914 !important;
+}
+ 
+body.page-inscription .section-label {
+    color: #8B6914 !important;
+    border-bottom-color: rgba(100, 70, 0, 0.25) !important;
+}
+ 
+body.page-inscription .input-group label {
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+ 
+body.page-inscription .input-group input,
+body.page-inscription .input-group select {
+    background: transparent !important;
+    border-bottom-color: rgba(0, 0, 0, 0.15) !important;
+    color: #1A1A1A !important;
+}
+ 
+body.page-inscription .input-group input::placeholder {
+    color: rgba(0, 0, 0, 0.25) !important;
+}
+ 
+body.page-inscription .input-group input:focus,
+body.page-inscription .input-group select:focus {
+    border-bottom-color: #8B6914 !important;
+}
+ 
+body.page-inscription .input-group select option {
+    background: #E8E0D0 !important;
+    color: #1A1A1A !important;
+}
+ 
+body.page-inscription .char-counter {
+    color: rgba(0, 0, 0, 0.4) !important;
+}
+ 
+body.page-inscription .required {
+    color: #8B6914 !important;
+}
+ 
+body.page-inscription .switch-link {
+    color: #2A1A0A !important;
+}
+ 
+body.page-inscription .switch-link a {
+    color: #8B6914 !important;
+}
+ 
+body.page-inscription .btn-submit {
+    border-color: #8B6914 !important;
+    color: #8B6914 !important;
+    background: transparent !important;
+}
+ 
+body.page-inscription .btn-submit:hover {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+}
+ 
+body.page-inscription .alert-error {
+    background: rgba(180, 50, 50, 0.08) !important;
+    border-color: rgba(180, 50, 50, 0.3) !important;
+    color: #8B2020 !important;
+}
+ 
+body.page-inscription .password-strength {
+    background: rgba(0, 0, 0, 0.08) !important;
+}
+ 
+body.page-inscription .strength-text {
+    color: #3A2A1A !important;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   10. PAGE PANIER — php/panier.php (panier.css)
+───────────────────────────────────────────────────── */
+body.page-panier {
+    background: #F2EDE4 !important;
+    color: #1A1A1A !important;
+}
+
+body.page-panier .panier-header h1 {
+    color: #1A1A1A !important;
+}
+
+body.page-panier .back-link {
+    color: #8B6914 !important;
+}
+
+body.page-panier .gold-line {
+    background: #8B6914 !important;
+}
+
+body.page-panier .panier-table {
+    color: #1A1A1A !important;
+}
+
+body.page-panier .panier-table thead {
+    background: #DDD5C0 !important;
+    color: #1A1A1A !important;
+}
+
+body.page-panier .panier-table th,
+body.page-panier .panier-table td {
+    color: #1A1A1A !important;
+    border-color: rgba(100, 70, 0, 0.12) !important;
+}
+
+body.page-panier .prod-name {
+    color: #1A1A1A !important;
+    font-weight: 600 !important;
+}
+
+body.page-panier .btn-edit-custom {
+    color: #8B6914 !important;
+    border-color: #8B6914 !important;
+}
+
+body.page-panier .btn-qte {
+    background: #DDD5C0 !important;
+    color: #1A1A1A !important;
+    border-color: rgba(100, 70, 0, 0.2) !important;
+}
+
+body.page-panier .btn-delete { color: #8B2020 !important; }
+
+body.page-panier .total-label { color: #3A2A1A !important; }
+body.page-panier .total-amount { color: #1A1A1A !important; }
+
+body.page-panier .btn-outline {
+    background: transparent !important;
+    border-color: #8B6914 !important;
+    color: #8B6914 !important;
+}
+
+body.page-panier .btn-gold {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+    border-color: #8B6914 !important;
+}
+
+body.page-panier .btn-jeux {
+    background: #E8E0D0 !important;
+    color: #1A1A1A !important;
+    border-color: rgba(100, 70, 0, 0.2) !important;
+}
+
+body.page-panier .planification-box {
+    background: #E8E0D0 !important;
+    border-color: rgba(100, 70, 0, 0.2) !important;
+    color: #1A1A1A !important;
+}
+
+body.page-panier .plan-titre { color: #1A1A1A !important; font-weight: 600 !important; }
+body.page-panier .plan-sous  { color: #3A2A1A !important; }
+body.page-panier .plan-group label { color: #3A2A1A !important; }
+
+body.page-panier .plan-btn {
+    background: #DDD5C0 !important;
+    color: #1A1A1A !important;
+    border-color: rgba(100, 70, 0, 0.2) !important;
+}
+
+body.page-panier .plan-btn.active {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+}
+
+body.page-panier #plan-date,
+body.page-panier #plan-heure {
+    background: #DDD5C0 !important;
+    color: #1A1A1A !important;
+    border-color: rgba(100, 70, 0, 0.2) !important;
+}
+
+body.page-panier #plan-resume { color: #3A2A1A !important; }
+
+
+/* ─────────────────────────────────────────────────────
+   11. PAGE COMMANDE ADMIN — php/commande.php (commande.css)
+───────────────────────────────────────────────────── */
+body.page-commande-admin {
+    background: #F2EDE4 !important;
+    color: #1A1A1A !important;
+    --bg:          #F2EDE4;
+    --surface:     #E8E0D0;
+    --surface2:    #DDD5C0;
+    --gold:        #8B6914;
+    --gold-dim:    rgba(139, 105, 20, 0.12);
+    --gold-glow:   rgba(139, 105, 20, 0.25);
+    --border:      rgba(100, 70, 0, 0.12);
+    --border-gold: rgba(139, 105, 20, 0.3);
+    --text:        #1A1A1A;
+    --text-dim:    #3A2A1A;
+    --text-muted:  #4A3A2A;
+}
+
+body.page-commande-admin .topbar {
+    background: #E0D8C8 !important;
+    border-bottom-color: rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-commande-admin .brand-name { color: #3A2A1A !important; }
+body.page-commande-admin .clock      { color: #8B6914 !important; }
+body.page-commande-admin .btn-back   { color: #8B6914 !important; }
+
+body.page-commande-admin .page-header {
+    background: #E8E0D0 !important;
+    border-bottom-color: rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-commande-admin .stat-pill {
+    background: #DDD5C0 !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-commande-admin .stat-txt { color: #3A2A1A !important; }
+
+body.page-commande-admin .kanban-col {
+    border-right-color: rgba(100, 70, 0, 0.12) !important;
+}
+
+body.page-commande-admin .col-header {
+    background: #E0D8C8 !important;
+    border-bottom-color: rgba(100, 70, 0, 0.12) !important;
+}
+
+body.page-commande-admin .col-header h2 { color: #3A2A1A !important; }
+
+body.page-commande-admin .col-count {
+    background: #DDD5C0 !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+    color: #3A2A1A !important;
+}
+
+body.page-commande-admin .order-card {
+    background: #E8E0D0 !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-commande-admin .order-card:hover {
+    border-color: #8B6914 !important;
+    box-shadow: 0 4px 20px rgba(100, 70, 0, 0.1) !important;
+}
+
+body.page-commande-admin .order-id   { color: #8B6914 !important; }
+body.page-commande-admin .order-time { color: #3A2A1A !important; }
+
+body.page-commande-admin .card-items {
+    background: rgba(100, 70, 0, 0.05) !important;
+}
+
+body.page-commande-admin .item-qty  { color: #8B6914 !important; }
+body.page-commande-admin .item-name { color: #1A1A1A !important; }
+
+body.page-commande-admin .card-footer-info {
+    border-top-color: rgba(100, 70, 0, 0.12) !important;
+}
+
+body.page-commande-admin .total-line { color: #8B6914 !important; }
+
+body.page-commande-admin .livreur-info {
+    background: rgba(100, 70, 0, 0.05) !important;
+    color: #1A1A1A !important;
+}
+
+body.page-commande-admin .btn-action.primary {
+    background: rgba(139, 105, 20, 0.1) !important;
+    color: #8B6914 !important;
+    border-color: rgba(139, 105, 20, 0.3) !important;
+}
+
+body.page-commande-admin .btn-action.gold {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   12. PAGE ADMIN — php/admin.php (admin.css)
+───────────────────────────────────────────────────── */
+body.page-admin {
+    background: #F2EDE4 !important;
+    color: #1A1A1A !important;
+    --bg:           #F2EDE4;
+    --surface:      #E8E0D0;
+    --surface-light:#DDD5C0;
+    --gold:         #8B6914;
+    --gold-glow:    rgba(139, 105, 20, 0.12);
+    --text:         #1A1A1A;
+    --text-dim:     #3A2A1A;
+    --border:       rgba(100, 70, 0, 0.12);
+}
+
+body.page-admin .admin-container { color: #1A1A1A !important; }
+body.page-admin h1               { color: #1A1A1A !important; }
+body.page-admin .btn-back        { color: #8B6914 !important; }
+
+body.page-admin .stat-card {
+    background: #E8E0D0 !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-admin .stat-label { color: #3A2A1A !important; }
+
+body.page-admin input,
+body.page-admin select {
+    background: #E8E0D0 !important;
+    border-color: rgba(100, 70, 0, 0.2) !important;
+    color: #1A1A1A !important;
+}
+
+body.page-admin input:focus {
+    border-color: #8B6914 !important;
+    background: #DDD5C0 !important;
+}
+
+body.page-admin .table-wrapper {
+    background: #E8E0D0 !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-admin .user-table th {
+    color: #8B6914 !important;
+    border-bottom-color: rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-admin .user-table td {
+    color: #1A1A1A !important;
+    border-bottom-color: rgba(100, 70, 0, 0.06) !important;
+}
+
+body.page-admin .user-name { color: #1A1A1A !important; }
+body.page-admin .user-id   { color: #3A2A1A !important; }
+
+body.page-admin .avatar {
+    background: #DDD5C0 !important;
+    border-color: #8B6914 !important;
+    color: #8B6914 !important;
+}
+
+body.page-admin .btn-icon {
+    background: #DDD5C0 !important;
+    border-color: rgba(100, 70, 0, 0.2) !important;
+    color: #1A1A1A !important;
+}
+
+body.page-admin .btn-icon:hover {
+    border-color: #8B6914 !important;
+    color: #8B6914 !important;
+}
+
+/* ─────────────────────────────────────────────────────
+   13. PAGE LIVRAISON — php/livraison.php (livraison.css)
+───────────────────────────────────────────────────── */
+body.page-delivery {
+    background-color: #F2EDE4 !important;
+    color: #1A1A1A !important;
+    --bg-black:      #F2EDE4;
+    --surface:       #E8E0D0;
+    --surface-light: #DDD5C0;
+    --gold:          #8B6914;
+    --gold-dark:     #6B5010;
+    --gold-gradient: linear-gradient(135deg, #8B6914 0%, #6B5010 100%);
+    --white:         #1A1A1A;
+}
+
+body.page-delivery .delivery-nav {
+    background: rgba(220, 210, 195, 0.97) !important;
+    border-bottom-color: rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-delivery .status-indicator h1 {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.page-delivery .btn-exit {
+    color: #8B2020 !important;
+    border-color: rgba(139, 32, 32, 0.3) !important;
+}
+
+body.page-delivery .delivery-card {
+    background: #E8E0D0 !important;
+    border-color: rgba(100, 70, 0, 0.12) !important;
+    box-shadow: 0 10px 30px rgba(100, 70, 0, 0.08) !important;
+}
+
+body.page-delivery .order-number {
+    color: rgba(0, 0, 0, 0.4) !important;
+}
+
+body.page-delivery .client-name {
+    color: #1A1A1A !important;
+}
+
+body.page-delivery .client-address {
+    color: #3A2A1A !important;
+}
+
+body.page-delivery .delivery-instructions {
+    background: rgba(139, 105, 20, 0.06) !important;
+    border-color: rgba(139, 105, 20, 0.15) !important;
+}
+
+body.page-delivery .order-details {
+    background: rgba(100, 70, 0, 0.04) !important;
+}
+
+body.page-delivery .items-title {
+    color: rgba(0, 0, 0, 0.4) !important;
+}
+
+body.page-delivery .items p {
+    color: #2A1A0A !important;
+}
+
+body.page-delivery .payment-status {
+    border-top-color: rgba(100, 70, 0, 0.1) !important;
+    color: #1A1A1A !important;
+}
+
+body.page-delivery .btn-secondary {
+    background: #DDD5C0 !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+    color: #1A1A1A !important;
+}

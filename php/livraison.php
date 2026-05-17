@@ -6,14 +6,29 @@ requireRole('livreur');
 $livreur = $_SESSION['user'];
 
 $dataCommandes = lireJSON(JSON_COMMANDES);
+
+// CORRECTION ICI : On utilise ?? null pour éviter le plantage si id_livreur n'existe pas encore
 $mesLivraisons = array_values(array_filter(
     $dataCommandes['commandes'] ?? [],
-    fn($c) => $c['id_livreur'] === $livreur['id'] && $c['statut'] === 'en_livraison'
+    fn($c) => ($c['id_livreur'] ?? null) === $livreur['id'] && ($c['statut'] ?? '') === 'en_livraison'
 ));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script>
+        // Appliquer le thème AVANT le rendu pour éviter le flash
+        (function(){
+            const m = document.cookie.match(/(?:^|; )kaiseki_theme=([^;]*)/);
+         const t = m ? decodeURIComponent(m[1]) : 'sombre';
+            if (t === 'clair') {
+             const l = document.createElement('link');
+             l.rel = 'stylesheet'; l.id = 'theme-stylesheet';
+             l.href = '../css/theme-clair.css';
+                document.head.appendChild(l);
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Livreur | Kaiseki Shunei</title>
@@ -27,7 +42,7 @@ $mesLivraisons = array_values(array_filter(
             <span class="pulse"></span>
             <h1>MISSION EN COURS</h1>
         </div>
-        <a href="../actions/logout.php" class="btn-exit">QUITTER</a>
+        <a href="../index.php" class="btn-exit">ACCUEIL</a>
     </header>
 
     <main class="delivery-container">
@@ -107,5 +122,6 @@ $mesLivraisons = array_values(array_filter(
     </main>
 
     <script src="../js/livraison.js"></script>
+   <script src="../js/theme.js"></script>
 </body>
 </html>

@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    $_SESSION['tentative_email'] = $email;
     header('Location: ../index.php?erreur=identifiants_incorrects');
     exit;
 }

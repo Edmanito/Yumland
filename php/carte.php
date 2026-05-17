@@ -26,6 +26,19 @@ $categories = [
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script>
+        // Appliquer le thème AVANT le rendu pour éviter le flash
+        (function(){
+            const m = document.cookie.match(/(?:^|; )kaiseki_theme=([^;]*)/);
+         const t = m ? decodeURIComponent(m[1]) : 'sombre';
+            if (t === 'clair') {
+             const l = document.createElement('link');
+             l.rel = 'stylesheet'; l.id = 'theme-stylesheet';
+             l.href = '../css/theme-clair.css';
+                document.head.appendChild(l);
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Carte | Kaiseki Shunei</title>
@@ -64,6 +77,36 @@ $categories = [
                 <span class="search-icon">✦</span>
             </div>
         </div>
+        <div class="filter-panel">
+            <div class="filter-group">
+                <label>Régime :</label>
+                <select id="filter-regime">
+                    <option value="tous">Tous les régimes</option>
+                    <option value="vegetarien">Végétarien</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="halal">Halal</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Saveur :</label>
+                <select id="filter-saveur">
+                    <option value="tous">Toutes</option>
+                    <option value="epice">Épicé</option>
+                    <option value="sucre">Sucré</option>
+                    <option value="sale">Salé</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Trier par :</label>
+                <select id="sort-price">
+                    <option value="default">Par défaut</option>
+                    <option value="asc">Prix croissant</option>
+                    <option value="desc">Prix décroissant</option>
+                </select>
+            </div>
+        </div>
     </section>
 
     <nav class="cat-nav">
@@ -97,7 +140,7 @@ $categories = [
                         <span class="price"><?= $m['prix_total'] ?>€</span>
                     </div>
                     <p><?= htmlspecialchars($m['description']) ?></p>
-                    <a href="ajouter_panier.php?id=<?= $m['id'] ?>" class="btn-menu">RÉSERVER CE MENU</a>
+                    <a href="../actions/ajouter_panier.php?id=<?= $m['id'] ?>" class="btn-menu">RÉSERVER CE MENU</a>
                 </article>
                 <?php endforeach; ?>
             </div>
@@ -137,7 +180,7 @@ $categories = [
                     <div class="drink-desc"><?= htmlspecialchars($p['description']) ?></div>
                     <div class="drink-footer">
                         <span class="drink-price"><?= $p['prix'] ?>€</span>
-                        <a href="ajouter_panier.php?id=<?= $p['id'] ?>" class="drink-btn">COMMANDER</a>
+                        <a href="../actions/ajouter_panier.php?id=<?= $p['id'] ?>" class="drink-btn">COMMANDER</a>
                     </div>
                 </article>
                 <?php endforeach; ?>
@@ -181,8 +224,8 @@ $categories = [
                             <?php endforeach; ?>
                         </div>
                         <?php endif; ?>
-
-                        <a href="ajouter_panier.php?id=<?= $p['id'] ?>" class="btn-ajouter">AJOUTER AU PANIER</a>
+                        
+                        <a href="../actions/ajouter_panier.php?id=<?= $p['id'] ?>" class="btn-ajouter">AJOUTER AU PANIER</a>
                     </div>
                 </article>
                 <?php endforeach; ?>
@@ -206,5 +249,6 @@ $categories = [
     </div>
 
     <script src="../js/carte.js"></script>
+    <script src="../js/theme.js"></script>
 </body>
 </html>

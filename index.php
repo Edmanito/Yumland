@@ -12,10 +12,28 @@ $erreurs = [
     'compte_suspendu'         => 'Votre compte a été suspendu. Contactez l\'administration.'
 ];
 $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
+
+// --- NOUVEAU : Récupération de l'email via la session ---
+$emailSaisi = $_SESSION['tentative_email'] ?? '';
+unset($_SESSION['tentative_email']); // On efface la mémoire juste après
+// --------------------------------------------------------
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script>
+        // Appliquer le thème AVANT le rendu pour éviter le flash
+        (function(){
+            const m = document.cookie.match(/(?:^|; )kaiseki_theme=([^;]*)/);
+         const t = m ? decodeURIComponent(m[1]) : 'sombre';
+            if (t === 'clair') {
+             const l = document.createElement('link');
+             l.rel = 'stylesheet'; l.id = 'theme-stylesheet';
+             l.href = 'css/theme-clair.css';
+                document.head.appendChild(l);
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaiseki Shunei | Accueil</title>
@@ -25,31 +43,42 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/index.css">
     <style>
-    .auth-error { background: rgba(255,70,70,0.1); border: 1px solid rgba(255,70,70,0.3); color: #ff6b6b; padding: 12px 16px; margin-bottom: 20px; font-size: 0.85rem; text-align: center; }
-    .auth-subtitle { color: #888; font-size: 0.85rem; margin-bottom: 20px; display: block; }
-    .switch-auth { margin-top: 15px; font-size: 0.8rem; color: #666; }
+        .auth-error { background: rgba(255,70,70,0.1); border: 1px solid rgba(255,70,70,0.3); color: #ff6b6b; padding: 12px 16px; margin-bottom: 20px; font-size: 0.85rem; text-align: center; }
+        .auth-subtitle { color: #888; font-size: 0.85rem; margin-bottom: 20px; display: block; }
+        .switch-auth { margin-top: 15px; font-size: 0.8rem; color: #666; }
 
-   
-    body.reservation-open #btn-connexion-main, 
-    body.reservation-open .profile-trigger {
-        display: none !important; 
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
+        body.reservation-open #btn-connexion-main, 
+        body.reservation-open .profile-trigger {
+            display: none !important; 
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
 
-    
-    .close-reservation {
-        z-index: 9999 !important;
-        cursor: pointer !important;
-        position: absolute !important;
-    }
-</style>
+        .close-reservation {
+            z-index: 9999 !important;
+            cursor: pointer !important;
+            position: absolute !important;
+        }
+    </style>
 </head>
 <body class="page-accueil">
 
     <div id="side-menu" class="side-panel">
         <div class="menu-content-wrapper">
             <div class="menu-links">
+                <button id="btn-theme-toggle" onclick="toggleTheme()" style="
+                    background: none;
+                    border: 1px solid rgba(197,160,89,0.4);
+                    color: var(--gold);
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 0.75rem;
+                    letter-spacing: 3px;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    margin-top: 20px;
+                    width: 100%;
+                    text-align: left;
+                ">☀️ MODE CLAIR</button>
                 <?php if (estConnecte()): ?>
                     <a href="php/carte.php">RÉSERVER</a>
                 <?php else: ?>
@@ -145,13 +174,35 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
                 <div class="profile-trigger" onclick="toggleReservation()">
                     <img src="img/profil-vide.png" alt="Profil" class="profile-icon-nav">
                 </div>
-<a href="javascript:void(0)" class="btn-reservation" id="btn-connexion-main" onclick="toggleReservation()">CONNEXION</a>            <?php endif; ?>
+                <a href="javascript:void(0)" class="btn-reservation" id="btn-connexion-main" onclick="toggleReservation()">CONNEXION</a>            
+            <?php endif; ?>
         </div>
     </header>
 
     <section class="hero-section">
         <div class="hero-bg-image"></div>
         <div class="hero-content">
+            
+            <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'livreur'): ?>
+                <div style="margin-bottom: 30px; width: 100%; max-width: 400px;">
+                    <a href="php/livraison.php" style="
+                        display: block;
+                        background-color: #bc9c64;
+                        color: #111;
+                        padding: 20px;
+                        font-size: 1.3rem;
+                        font-weight: bold;
+                        text-decoration: none;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 15px rgba(188, 156, 100, 0.5);
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        border: 2px solid #fff;
+                    ">
+                        🚚 RETOUR À MA TOURNÉE
+                    </a>
+                </div>
+            <?php endif; ?>
             <h2 class="fade-in">L'Art de la Perfection</h2>
             <div class="search-box">
                 <input type="text" placeholder="Rechercher une saveur..." class="input-search">
@@ -168,9 +219,20 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
                 <?php if ($erreur): ?>
                     <div class="auth-error"><?= htmlspecialchars($erreur) ?></div>
                 <?php endif; ?>
-                <form action="php/connexion.php" method="POST">
-                    <input type="email" name="email" placeholder="Email" class="input-auth" required>
-                    <input type="password" name="password" placeholder="Mot de passe" class="input-auth" required>
+                <form action="php/connexion.php" method="POST" id="form-connexion" novalidate>
+                    <div style="margin-bottom: 10px;">
+                        <input type="email" name="email" placeholder="Email" class="input-auth" required maxlength="50" value="<?= htmlspecialchars($emailSaisi) ?>">
+                        <div class="char-counter" id="counter-login-email" style="font-size: 0.75rem; text-align: right; color: #888; margin-top: 2px;">0 / 50</div>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <div style="position: relative;">
+                            <input type="password" name="password" placeholder="Mot de passe" class="input-auth" required maxlength="30" style="padding-right: 40px;">
+                            <button type="button" id="toggleLoginPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 1.2em;">👁️</button>
+                        </div>
+                        <div class="char-counter" id="counter-login-mdp" style="font-size: 0.75rem; text-align: right; color: #888; margin-top: 2px;">0 / 30</div>
+                    </div>
+                    
                     <button type="submit" class="btn-submit">SE CONNECTER</button>
                 </form>
                 <p class="switch-auth">
@@ -309,7 +371,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
         </div>
     </section>
 
-   
     <script src="js/langue.js"></script>
     <script src="js/index.js"></script>
     <script>
@@ -330,7 +391,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
             setTimeout(toggleReservation, 500);
         }
 
-        
         function accesSecurise() {
             const estClient = <?php echo (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'client') ? 'true' : 'false'; ?>;
             const estConnecte = <?php echo estConnecte() ? 'true' : 'false'; ?>;
@@ -397,5 +457,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
             if (saved !== 'FR' && typeof applyLang === 'function') applyLang(saved);
         })();
     </script>
+    <script src="js/theme.js"></script>
 </body>
 </html>

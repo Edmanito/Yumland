@@ -7,6 +7,8 @@
       "prix": 18,
       "categorie": "entree",
       "allergenes": ["soja"],
+      "regimes": ["vegetarien", "vegan", "sans-gluten", "halal"],
+      "saveurs": ["sale"],
       "image": "img/menu/edamame.png",
       "disponible": true
     },
@@ -17,6 +19,8 @@
       "prix": 32,
       "categorie": "entree",
       "allergenes": ["gluten", "crustacés", "oeufs"],
+      "regimes": ["halal"],
+      "saveurs": ["sale"],
       "image": "img/menu/gyoza.png",
       "disponible": true
     },
@@ -27,6 +31,8 @@
       "prix": 48,
       "categorie": "entree",
       "allergenes": ["soja"],
+      "regimes": ["sans-gluten"],
+      "saveurs": ["sale"],
       "image": "img/menu/tataki.png",
       "disponible": true
     },
@@ -37,6 +43,8 @@
       "prix": 56,
       "categorie": "entree",
       "allergenes": ["oeufs", "poisson"],
+      "regimes": ["halal", "sans-gluten"],
+      "saveurs": ["sale"],
       "image": "img/menu/chawanmushi.png",
       "disponible": true
     },
@@ -47,6 +55,8 @@
       "prix": 38,
       "categorie": "entree",
       "allergenes": ["gluten", "crustacés", "oeufs"],
+      "regimes": ["halal"],
+      "saveurs": ["sale"],
       "image": "img/menu/tempura.png",
       "disponible": true
     },
@@ -57,6 +67,8 @@
       "prix": 16,
       "categorie": "entree",
       "allergenes": ["soja", "poisson"],
+      "regimes": ["halal", "sans-gluten"],
+      "saveurs": ["sale"],
       "image": "img/menu/miso.png",
       "disponible": true
     },
@@ -67,6 +79,8 @@
       "prix": 68,
       "categorie": "sushi",
       "allergenes": ["poisson", "gluten"],
+      "regimes": ["halal"],
+      "saveurs": ["sale"],
       "image": "img/menu/otoro.png",
       "disponible": true
     },
@@ -77,6 +91,8 @@
       "prix": 42,
       "categorie": "sushi",
       "allergenes": ["poisson", "sésame"],
+      "regimes": ["halal", "sans-gluten"],
+      "saveurs": ["sale"],
       "image": "img/menu/hamachi.png",
       "disponible": true
     },
@@ -87,6 +103,8 @@
       "prix": 44,
       "categorie": "sushi",
       "allergenes": ["poisson", "gluten"],
+      "regimes": ["halal"],
+      "saveurs": ["sale"],
       "image": "img/menu/saumon.png",
       "disponible": true
     },
@@ -97,6 +115,8 @@
       "prix": 72,
       "categorie": "sushi",
       "allergenes": ["poisson", "gluten"],
+      "regimes": ["halal"],
+      "saveurs": ["sale"],
       "image": "img/menu/ikura.png",
       "disponible": true
     },
@@ -107,6 +127,8 @@
       "prix": 58,
       "categorie": "sushi",
       "allergenes": ["poisson", "gluten"],
+      "regimes": ["halal"],
+      "saveurs": ["sale"],
       "image": "img/menu/uni.png",
       "disponible": true
     },
@@ -117,6 +139,8 @@
       "prix": 145,
       "categorie": "sushi",
       "allergenes": ["poisson", "gluten", "sésame"],
+      "regimes": ["halal"],
+      "saveurs": ["sale"],
       "image": "img/menu/plateau.png",
       "disponible": true
     },
@@ -127,6 +151,8 @@
       "prix": 185,
       "categorie": "plat",
       "allergenes": ["soja", "gluten"],
+      "regimes": [],
+      "saveurs": ["sale"],
       "image": "img/menu/wagyu.png",
       "disponible": true
     },
@@ -137,6 +163,8 @@
       "prix": 135,
       "categorie": "plat",
       "allergenes": ["crustacés", "soja", "lait"],
+      "regimes": ["halal", "sans-gluten"],
+      "saveurs": ["sale"],
       "image": "img/menu/homard.png",
       "disponible": true
     },
@@ -147,6 +175,8 @@
       "prix": 78,
       "categorie": "plat",
       "allergenes": ["soja", "gluten"],
+      "regimes": [],
+      "saveurs": ["sale", "epice"],
       "image": "img/menu/canard.png",
       "disponible": true
     },
@@ -157,6 +187,8 @@
       "prix": 96,
       "categorie": "plat",
       "allergenes": ["poisson", "lait", "mollusques"],
+      "regimes": ["sans-gluten"],
+      "saveurs": ["sale"],
       "image": "img/menu/turbot.png",
       "disponible": true
     },
@@ -167,6 +199,8 @@
       "prix": 68,
       "categorie": "plat",
       "allergenes": ["lait", "soja"],
+      "regimes": ["vegetarien", "sans-gluten"],
+      "saveurs": ["sale"],
       "image": "img/menu/risotto.png",
       "disponible": true
     },
@@ -177,6 +211,8 @@
       "prix": 88,
       "categorie": "plat",
       "allergenes": ["sésame", "lait"],
+      "regimes": ["sans-gluten"],
+      "saveurs": ["sale"],
       "image": "img/menu/agneau.png",
       "disponible": true
     },
@@ -187,6 +223,8 @@
       "prix": 22,
       "categorie": "dessert",
       "allergenes": ["gluten", "lait"],
+      "regimes": ["vegetarien", "halal"],
+      "saveurs": ["sucre"],
       "image": "img/menu/mochi.png",
       "disponible": true
     },
@@ -197,6 +235,8 @@
       "prix": 28,
       "categorie": "dessert",
       "allergenes": ["gluten", "oeufs", "lait", "sésame"],
+      "regimes": ["vegetarien", "halal"],
+      "saveurs": ["sucre"],
       "image": "img/menu/souffle.png",
       "disponible": true
     },
@@ -207,6 +247,8 @@
       "prix": 24,
       "categorie": "dessert",
       "allergenes": ["gluten", "oeufs", "lait", "sésame"],
+      "regimes": ["vegetarien"],
+      "saveurs": ["sucre"],
       "image": "img/menu/tiramisu.png",
       "disponible": true
     },
@@ -217,6 +259,8 @@
       "prix": 20,
       "categorie": "dessert",
       "allergenes": ["lait"],
+      "regimes": ["vegetarien", "sans-gluten", "halal"],
+      "saveurs": ["sucre"],
       "image": "img/menu/pannacotta.png",
       "disponible": true
     },
@@ -227,6 +271,8 @@
       "prix": 26,
       "categorie": "dessert",
       "allergenes": ["gluten", "oeufs", "lait", "fruits à coque"],
+      "regimes": ["vegetarien", "halal"],
+      "saveurs": ["sucre"],
       "image": "img/menu/tarte.png",
       "disponible": true
     },
@@ -237,6 +283,8 @@
       "prix": 18,
       "categorie": "dessert",
       "allergenes": ["lait", "sésame", "oeufs"],
+      "regimes": ["vegetarien", "sans-gluten", "halal"],
+      "saveurs": ["sucre"],
       "image": "img/menu/glace.png",
       "disponible": true
     },
@@ -247,6 +295,8 @@
       "prix": 24,
       "categorie": "boisson",
       "allergenes": [],
+      "regimes": ["vegetarien", "vegan", "sans-gluten"],
+      "saveurs": [],
       "image": "img/menu/sake.png",
       "disponible": true
     },
@@ -257,6 +307,8 @@
       "prix": 38,
       "categorie": "boisson",
       "allergenes": [],
+      "regimes": ["vegetarien", "vegan", "sans-gluten"],
+      "saveurs": [],
       "image": "img/menu/whisky.png",
       "disponible": true
     },
@@ -267,6 +319,8 @@
       "prix": 16,
       "categorie": "boisson",
       "allergenes": [],
+      "regimes": ["vegetarien", "vegan", "sans-gluten", "halal"],
+      "saveurs": ["amer"],
       "image": "img/menu/the.png",
       "disponible": true
     },
@@ -277,6 +331,8 @@
       "prix": 8,
       "categorie": "boisson",
       "allergenes": [],
+      "regimes": ["vegetarien", "vegan", "sans-gluten", "halal"],
+      "saveurs": [],
       "image": "img/menu/eau.png",
       "disponible": true
     },
@@ -287,6 +343,8 @@
       "prix": 32,
       "categorie": "boisson",
       "allergenes": ["sulfites"],
+      "regimes": ["vegetarien", "vegan", "sans-gluten"],
+      "saveurs": ["sucre"],
       "image": "img/menu/champagne.png",
       "disponible": true
     },
@@ -297,6 +355,8 @@
       "prix": 18,
       "categorie": "boisson",
       "allergenes": [],
+      "regimes": ["vegetarien", "vegan", "sans-gluten"],
+      "saveurs": ["acide"],
       "image": "img/menu/highball.png",
       "disponible": true
     }

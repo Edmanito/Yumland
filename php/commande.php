@@ -57,12 +57,25 @@ $cuisine   = array_values(array_filter($toutes, fn($c) => $c['statut'] === 'en_p
 $pret      = array_values(array_filter($toutes, fn($c) => $c['statut'] === 'pret'));
 $livraison = array_values(array_filter($toutes, fn($c) => $c['statut'] === 'en_livraison'));
 
-// 3. LIVREURS
+// 3. USERS (LIVREURS ET MAPPING DES NOMS)
 $dataUsers      = lireJSON(JSON_USERS);
 $livreursActifs = array_filter($dataUsers['utilisateurs'] ?? [], fn($u) => $u['role'] === 'livreur' && $u['statut'] === 'actif');
 
+$usersMap = [];
+foreach ($dataUsers['utilisateurs'] ?? [] as $u) {
+    $nomComplet = trim(($u['infos']['prenom'] ?? '') . ' ' . ($u['infos']['nom'] ?? ''));
+    $usersMap[$u['id']] = !empty($nomComplet) ? strtoupper($nomComplet) : $u['id'];
+}
+
+// Préparation propre des livreurs pour le JS via un attribut HTML
+$livreursPourJS = array_values(array_map(fn($l) => [
+    'id' => $l['id'],
+    'nom' => strtoupper($l['infos']['prenom'] ?? $l['id'])
+], $livreursActifs));
+$jsonLivreurs = htmlspecialchars(json_encode($livreursPourJS), ENT_QUOTES, 'UTF-8');
+
 // 4. AFFICHAGE DES CARTES
-function afficherCartes($commandes, $btnLabel, $btnClass, $nextStatut, $livreurs = [], $platsMap = []) {
+function afficherCartes($commandes, $btnLabel, $btnClass, $nextStatut, $livreurs = [], $platsMap = [], $usersMap = []) {
     foreach ($commandes as $cmd): ?>
     <article class="order-card">
 
@@ -74,7 +87,9 @@ function afficherCartes($commandes, $btnLabel, $btnClass, $nextStatut, $livreurs
         </div>
 
         <div class="card-client" style="display:flex; justify-content:space-between; align-items:center; margin:10px 0;">
-            <span class="client-name" style="font-weight:700;"><?= htmlspecialchars($cmd['id_client']) ?></span>
+            <span class="client-name" style="font-weight:700; color: #bc9c64;">
+                👤 <?= htmlspecialchars($usersMap[$cmd['id_client']] ?? $cmd['id_client']) ?>
+            </span>
             <span class="order-type <?= $cmd['type'] ?>">
                 <?= $cmd['type'] === 'livraison' ? '🏠 LIVRAISON' : '🍽️ SUR PLACE' ?>
             </span>
@@ -98,12 +113,12 @@ function afficherCartes($commandes, $btnLabel, $btnClass, $nextStatut, $livreurs
 
         <div class="card-actions" style="margin-top:15px;">
             <?php if ($cmd['statut'] === 'pret' && $cmd['type'] === 'livraison'): ?>
-                <form action="../actions/assigner_livreur.php" method="POST" style="width:100%;">
+                <form action="../actions/assigner_livreur.php" method="POST" class="form-assign-livreur" style="width:100%;">
                     <input type="hidden" name="id_commande" value="<?= $cmd['id'] ?>">
                     <select name="id_livreur" required style="width:100%; margin-bottom:8px; padding:8px; background:#111; color:#fff; border:1px solid #333; border-radius:4px;">
                         <option value="">-- Choisir Livreur --</option>
                         <?php foreach ($livreurs as $l): ?>
-                            <option value="<?= $l['id'] ?>"><?= htmlspecialchars($l['infos']['prenom'] ?? $l['id']) ?></option>
+                            <option value="<?= $l['id'] ?>"><?= htmlspecialchars(strtoupper($l['infos']['prenom'] ?? $l['id'])) ?></option>
                         <?php endforeach; ?>
                     </select>
                     <button type="submit" class="btn-action <?= $btnClass ?>" style="width:100%; border:none; cursor:pointer;">
@@ -112,7 +127,7 @@ function afficherCartes($commandes, $btnLabel, $btnClass, $nextStatut, $livreurs
                 </form>
             <?php else: ?>
                 <a href="../actions/statut_commande.php?id=<?= $cmd['id'] ?>&statut=<?= $nextStatut ?>"
-                   class="btn-action <?= $btnClass ?>"
+                   class="btn-action btn-change-statut <?= $btnClass ?>"
                    style="display:block; text-align:center; text-decoration:none;">
                     <?= $btnLabel ?>
                 </a>
@@ -126,6 +141,19 @@ function afficherCartes($commandes, $btnLabel, $btnClass, $nextStatut, $livreurs
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script>
+        // Appliquer le thème AVANT le rendu pour éviter le flash
+        (function(){
+            const m = document.cookie.match(/(?:^|; )kaiseki_theme=([^;]*)/);
+         const t = m ? decodeURIComponent(m[1]) : 'sombre';
+            if (t === 'clair') {
+             const l = document.createElement('link');
+             l.rel = 'stylesheet'; l.id = 'theme-stylesheet';
+             l.href = '../css/theme-clair.css';
+                document.head.appendChild(l);
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuisine | Kaiseki Shunei</title>
@@ -160,21 +188,21 @@ function afficherCartes($commandes, $btnLabel, $btnClass, $nextStatut, $livreurs
         </div>
     </div>
 
-    <main class="kanban">
+    <main class="kanban" id="kanban-board" data-livreurs="<?= $jsonLivreurs ?>">
 
         <div class="kanban-col">
             <div class="col-header waiting"><h2>En attente</h2><span class="col-count"><?= count($attente) ?></span></div>
-            <div class="cards-list"><?php afficherCartes($attente, 'Prendre en charge', 'primary', 'en_preparation', [], $platsMap); ?></div>
+            <div class="cards-list"><?php afficherCartes($attente, 'Prendre en charge', 'primary', 'en_preparation', [], $platsMap, $usersMap); ?></div>
         </div>
 
         <div class="kanban-col">
             <div class="col-header cooking"><h2>En cuisine</h2><span class="col-count"><?= count($cuisine) ?></span></div>
-            <div class="cards-list"><?php afficherCartes($cuisine, 'Marquer prêt', 'success', 'pret', [], $platsMap); ?></div>
+            <div class="cards-list"><?php afficherCartes($cuisine, 'Marquer prêt', 'success', 'pret', [], $platsMap, $usersMap); ?></div>
         </div>
 
         <div class="kanban-col">
             <div class="col-header ready"><h2>Prêtes</h2><span class="col-count"><?= count($pret) ?></span></div>
-            <div class="cards-list"><?php afficherCartes($pret, 'Confier & Livrer', 'gold', 'en_livraison', $livreursActifs, $platsMap); ?></div>
+            <div class="cards-list"><?php afficherCartes($pret, 'Confier & Livrer', 'gold', 'en_livraison', $livreursActifs, $platsMap, $usersMap); ?></div>
         </div>
 
         <div class="kanban-col">
@@ -189,13 +217,13 @@ function afficherCartes($commandes, $btnLabel, $btnClass, $nextStatut, $livreurs
                         </div>
                     </div>
                     <div class="card-client">
-                        <span class="client-name"><?= htmlspecialchars($cmd['id_client']) ?></span>
+                        <span class="client-name" style="font-weight:bold; color:#bc9c64;">👤 <?= htmlspecialchars($usersMap[$cmd['id_client']] ?? $cmd['id_client']) ?></span>
                         <span class="order-type livraison">🏠 LIVRAISON</span>
                     </div>
                     <div class="card-items">
-                        <div class="livreur-info">
+                        <div class="livreur-info" style="font-size: 0.9rem; margin-top:10px;">
                             <span>🛵</span>
-                            <span><?= htmlspecialchars($cmd['id_livreur'] ?? 'Non assigné') ?></span>
+                            <span><?= htmlspecialchars($usersMap[$cmd['id_livreur']] ?? $cmd['id_livreur'] ?? 'Non assigné') ?></span>
                         </div>
                         <div class="payment-tag <?= $cmd['paiement']['statut'] ?>" style="margin-top:10px; display:inline-block;">
                             <?= $cmd['paiement']['statut'] === 'paye' ? 'PAYÉ' : 'À ENCAISSER' ?>
@@ -211,15 +239,7 @@ function afficherCartes($commandes, $btnLabel, $btnClass, $nextStatut, $livreurs
 
     </main>
 
-    <script>
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('clock').textContent =
-                now.getHours().toString().padStart(2,'0') + ':' +
-                now.getMinutes().toString().padStart(2,'0');
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
+    <script src="../js/commande.js"></script>
+    <script src="../js/theme.js"></script>
 </body>
 </html>

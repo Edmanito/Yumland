@@ -19,6 +19,19 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script>
+        // Appliquer le thème AVANT le rendu pour éviter le flash
+        (function(){
+            const m = document.cookie.match(/(?:^|; )kaiseki_theme=([^;]*)/);
+         const t = m ? decodeURIComponent(m[1]) : 'sombre';
+            if (t === 'clair') {
+             const l = document.createElement('link');
+             l.rel = 'stylesheet'; l.id = 'theme-stylesheet';
+             l.href = '../css/theme-clair.css';
+                document.head.appendChild(l);
+            }
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription | Kaiseki Shunei</title>
@@ -72,13 +85,20 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
 
                     <div class="form-section">
                         <div class="section-label">Connexion</div>
+                        
                         <div class="input-group">
                             <label>Adresse email <span class="required">*</span></label>
-                            <input type="email" name="login" placeholder="jean.dupont@email.com" required autocomplete="email">
+                            <input type="email" name="login" placeholder="jean.dupont@email.com" required maxlength="50" autocomplete="email">
+                            <div class="char-counter" id="counter-login" style="font-size: 0.8em; text-align: right; color: #666;">0 / 50</div>
                         </div>
+                        
                         <div class="input-group">
                             <label>Mot de passe <span class="required">*</span></label>
-                            <input type="password" name="mdp" placeholder="••••••••" required minlength="8" autocomplete="new-password">
+                            <div class="password-wrapper" style="position: relative;">
+                                <input type="password" name="mdp" placeholder="••••••••" required minlength="8" maxlength="30" autocomplete="new-password" style="width: 100%; padding-right: 40px;">
+                                <button type="button" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; font-size: 1.2em;">👁️</button>
+                            </div>
+                            <div class="char-counter" id="counter-mdp" style="font-size: 0.8em; text-align: right; color: #666;">0 / 30</div>
                             <div class="password-strength">
                                 <div class="password-strength-bar"></div>
                             </div>
@@ -141,6 +161,6 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
     </div>
 
     <script src="../js/inscription.js"></script>
-
+<script src="../js/theme.js"></script>
 </body>
 </html>
