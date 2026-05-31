@@ -17,6 +17,39 @@ $erreur = isset($_GET['erreur']) ? ($erreurs[$_GET['erreur']] ?? '') : '';
 $emailSaisi = $_SESSION['tentative_email'] ?? '';
 unset($_SESSION['tentative_email']); // On efface la mémoire juste après
 // --------------------------------------------------------
+
+// --- NOUVEAU : Récupération des 3 derniers avis clients ---
+$dataCmdsIndex = lireJSON(JSON_COMMANDES);
+$dataUsersIndex = lireJSON(JSON_USERS);
+$avisClients = [];
+
+if (isset($dataCmdsIndex['commandes'])) {
+    foreach ($dataCmdsIndex['commandes'] as $c) {
+        // On ne garde que les commandes notées AVEC un commentaire texte
+        if (!empty($c['note_client']) && !empty($c['note_client']['commentaire'])) {
+            $prenomClient = "Un gastronome";
+            if (isset($dataUsersIndex['utilisateurs'])) {
+                foreach ($dataUsersIndex['utilisateurs'] as $u) {
+                    if ($u['id'] === $c['id_client']) {
+                        // On affiche "Prénom N." pour l'anonymat
+                        $prenomClient = htmlspecialchars($u['infos']['prenom'] . ' ' . substr($u['infos']['nom'] ?? '', 0, 1) . '.');
+                        break;
+                    }
+                }
+            }
+            $avisClients[] = [
+                'prenom'      => $prenomClient,
+                'note'        => (int)$c['note_client']['produits'],
+                // --- CORRECTION : On décode proprement les entités HTML (apostrophes, accents) ---
+                'commentaire' => htmlspecialchars(html_entity_decode($c['note_client']['commentaire'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8'),
+                'date'        => htmlspecialchars($c['note_client']['date_note'])
+            ];
+        }
+    }
+}
+// On inverse pour avoir les plus récents en premier, et on en garde 3 maximum
+$avisClients = array_slice(array_reverse($avisClients), 0, 3);
+// --------------------------------------------------------
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -65,7 +98,7 @@ unset($_SESSION['tentative_email']); // On efface la mémoire juste après
 
     <div id="side-menu" class="side-panel">
         <div class="menu-content-wrapper">
-           <div class="menu-links">
+            <div class="menu-links">
                 <button id="btn-theme-toggle" onclick="toggleTheme()" style="
                     background: none;
                     border: 1px solid rgba(197,160,89,0.4);
@@ -358,6 +391,32 @@ unset($_SESSION['tentative_email']); // On efface la mémoire juste après
             </div>
         </div>
     </section>
+
+    <!-- ====== SECTION : LIVRE D'OR ====== -->
+    <?php if (!empty($avisClients)): ?>
+    <section id="avis" class="scroll-section reviews-section">
+        <span class="section-subtitle">LIVRE D'OR</span>
+        <h2 class="section-title-gold">Paroles de Gastronomes</h2>
+
+        <div class="reviews-grid">
+            <?php foreach ($avisClients as $avis): ?>
+                <div class="review-card">
+                    <div class="stars-rating">
+                        <?= str_repeat('★', $avis['note']) ?><span style="color: #444;"><?= str_repeat('★', 5 - $avis['note']) ?></span>
+                    </div>
+                    <p class="review-comment">
+                        "<?= $avis['commentaire'] ?>"
+                    </p>
+                    <div class="review-footer">
+                        <span class="reviewer-name"><?= $avis['prenom'] ?></span>
+                        <span class="review-date"><?= $avis['date'] ?></span>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <?php endif; ?>
+    <!-- =========================================== -->
 
     <section id="menu" class="scroll-section menu-view-minimal">
         <div class="menu-bg-overlay"></div>

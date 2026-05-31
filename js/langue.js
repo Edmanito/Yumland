@@ -59,6 +59,8 @@ const translations = {
         contact_horaires: "HORAIRES",
         contact_resa:     "RÉSERVATIONS",
         contact_val_h:    "Mardi — Samedi : 19:00 - 22:30",
+        reviews_subtitle: "LIVRE D'OR",
+        reviews_title:    "Paroles de Gastronomes",
         footer_copy:      "© 2026 KAISEKI SHUNEI — TOUS DROITS RÉSERVÉS",
     },
     EN: {
@@ -107,6 +109,8 @@ const translations = {
         contact_horaires: "HOURS",
         contact_resa:     "RESERVATIONS",
         contact_val_h:    "Tuesday — Saturday: 7:00 PM - 10:30 PM",
+        reviews_subtitle: "GUESTBOOK",
+        reviews_title:    "Words from Gastronomes",
         footer_copy:      "© 2026 KAISEKI SHUNEI — ALL RIGHTS RESERVED",
     },
     ES: {
@@ -155,6 +159,8 @@ const translations = {
         contact_horaires: "HORARIOS",
         contact_resa:     "RESERVAS",
         contact_val_h:    "Martes — Sábado: 19:00 - 22:30",
+        reviews_subtitle: "LIBRO DE ORO",
+        reviews_title:    "Palabras de Gastrónomos",
         footer_copy:      "© 2026 KAISEKI SHUNEI — TODOS LOS DERECHOS RESERVADOS",
     },
     DE: {
@@ -203,6 +209,8 @@ const translations = {
         contact_horaires: "ÖFFNUNGSZEITEN",
         contact_resa:     "RESERVIERUNGEN",
         contact_val_h:    "Dienstag — Samstag: 19:00 - 22:30",
+        reviews_subtitle: "GÄSTEBUCH",
+        reviews_title:    "Worte von Feinschmeckern",
         footer_copy:      "© 2026 KAISEKI SHUNEI — ALLE RECHTE VORBEHALTEN",
     },
     JA: {
@@ -251,6 +259,8 @@ const translations = {
         contact_horaires: "営業時間",
         contact_resa:     "予約",
         contact_val_h:    "火曜〜土曜: 19:00 - 22:30",
+        reviews_subtitle: "ゲストブック",
+        reviews_title:    "美食家たちの言葉",
         footer_copy:      "© 2026 KAISEKI SHUNEI — 全著作権所有",
     },
     RU: {
@@ -299,6 +309,8 @@ const translations = {
         contact_horaires: "ЧАСЫ РАБОТЫ",
         contact_resa:     "БРОНИРОВАНИЕ",
         contact_val_h:    "Вторник — Суббота: 19:00 - 22:30",
+        reviews_subtitle: "ГОСТЕВАЯ КНИГА",
+        reviews_title:    "Слова гастрономов",
         footer_copy:      "© 2026 KAISEKI SHUNEI — ВСЕ ПРАВА ЗАЩИЩЕНЫ",
     },
     AR: {
@@ -347,6 +359,8 @@ const translations = {
         contact_horaires: "ساعات العمل",
         contact_resa:     "الحجوزات",
         contact_val_h:    "الثلاثاء — السبت: 19:00 - 22:30",
+        reviews_subtitle: "كتاب الزوار",
+        reviews_title:    "كلمات خبراء الطعام",
         footer_copy:      "© 2026 KAISEKI SHUNEI — جميع الحقوق محفوظة",
     },
     KO: {
@@ -395,6 +409,8 @@ const translations = {
         contact_horaires: "영업시간",
         contact_resa:     "예약",
         contact_val_h:    "화요일 — 토요일: 19:00 - 22:30",
+        reviews_subtitle: "방명록",
+        reviews_title:    "미식가들의 말씀",
         footer_copy:      "© 2026 KAISEKI SHUNEI — 모든 권리 보유",
     },
     ZH: {
@@ -443,6 +459,8 @@ const translations = {
         contact_horaires: "营业时间",
         contact_resa:     "预订",
         contact_val_h:    "周二 — 周六: 19:00 - 22:30",
+        reviews_subtitle: "留言簿",
+        reviews_title:    "美食家的感言",
         footer_copy:      "© 2026 KAISEKI SHUNEI — 版权所有",
     },
     IT: {
@@ -491,6 +509,8 @@ const translations = {
         contact_horaires: "ORARI",
         contact_resa:     "PRENOTAZIONI",
         contact_val_h:    "Martedì — Sabato: 19:00 - 22:30",
+        reviews_subtitle: "LIBRO D'ORO",
+        reviews_title:    "Parole di Gastronomi",
         footer_copy:      "© 2026 KAISEKI SHUNEI — TUTTI I DIRITTI RISERVATI",
     },
     PT: {
@@ -539,6 +559,8 @@ const translations = {
         contact_horaires: "HORÁRIOS",
         contact_resa:     "RESERVAS",
         contact_val_h:    "Terça — Sábado: 19:00 - 22:30",
+        reviews_subtitle: "LIVRO DE OURO",
+        reviews_title:    "Palavras de Gastrónomos",
         footer_copy:      "© 2026 KAISEKI SHUNEI — TODOS OS DIREITOS RESERVADOS",
     },
     NL: {
@@ -587,6 +609,8 @@ const translations = {
         contact_horaires: "OPENINGSTIJDEN",
         contact_resa:     "RESERVERINGEN",
         contact_val_h:    "Dinsdag — Zaterdag: 19:00 - 22:30",
+        reviews_subtitle: "GASTENBOEK",
+        reviews_title:    "Woorden van Gastronomen",
         footer_copy:      "© 2026 KAISEKI SHUNEI — ALLE RECHTEN VOORBEHOUDEN",
     },
     HI: {
@@ -635,6 +659,8 @@ const translations = {
         contact_horaires: "समय",
         contact_resa:     "आरक्षण",
         contact_val_h:    "मंगलवार — शनिवार: 19:00 - 22:30",
+        reviews_subtitle: "अतिथि पुस्तिका",
+        reviews_title:    "पेटू प्रेमियों के शब्द",
         footer_copy:      "© 2026 KAISEKI SHUNEI — सर्वाधिकार सुरक्षित",
     },
     TR: {
@@ -683,6 +709,8 @@ const translations = {
         contact_horaires: "ÇALIŞMA SAATLERİ",
         contact_resa:     "REZERVASYONLAR",
         contact_val_h:    "Salı — Cumartesi: 19:00 - 22:30",
+        reviews_subtitle: "ŞEREF DEFTERİ",
+        reviews_title:    "Gurmelerin Sözleri",
         footer_copy:      "© 2026 KAISEKI SHUNEI — TÜM HAKLAR SAKLIDIR",
     },
     PL: {
@@ -731,6 +759,8 @@ const translations = {
         contact_horaires: "GODZINY",
         contact_resa:     "REZERWACJE",
         contact_val_h:    "Wtorek — Sobota: 19:00 - 22:30",
+        reviews_subtitle: "KSIĘGA GOŚCI",
+        reviews_title:    "Słowa Gastronomów",
         footer_copy:      "© 2026 KAISEKI SHUNEI — WSZELKIE PRAWA ZASTRZEŻONE",
     }
 };
@@ -766,6 +796,10 @@ function applyLang(code) {
     // Boutons header
     apply('.btn-reservation',  'btn_commander');
     apply('.btn-deconnexion',  'btn_deconnexion');
+
+    // Avis
+    apply('#avis .section-subtitle', 'reviews_subtitle');
+    apply('#avis .section-title-gold', 'reviews_title');
 
     // Hero
     apply('.hero-content h2',  'hero_title');
