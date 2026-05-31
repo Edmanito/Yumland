@@ -2,7 +2,7 @@
 require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 
-// TRÈS IMPORTANT : On dit au navigateur qu'on envoie du JSON (évite la page blanche)
+// Définition de l'en-tête pour une réponse au format JSON
 header('Content-Type: application/json');
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -21,7 +21,7 @@ if ($id_produit) {
     
     $produit_trouve = null;
     
-    // 1. On cherche si c'est un menu
+    // 1. Recherche dans les menus
     if (!empty($dataMenus['menus'])) {
         foreach ($dataMenus['menus'] as $menu) {
             if ($menu['id'] == $id_produit) {
@@ -31,7 +31,7 @@ if ($id_produit) {
         }
     }
     
-    // 2. Si pas trouvé, on cherche dans les plats
+    // 2. Recherche dans les plats si non trouvé précédemment
     if (!$produit_trouve && !empty($dataPlats['plats'])) {
         foreach ($dataPlats['plats'] as $plat) {
             if ($plat['id'] == $id_produit) {
@@ -50,13 +50,13 @@ if ($id_produit) {
             $_SESSION['panier'][$cle_ligne] = $produit_trouve;
         }
 
-        // 3. On calcule le total pour mettre à jour la pastille rouge
+        // 3. Calcul du total pour mise à jour de l'indicateur visuel
         $totalCount = 0;
         foreach ($_SESSION['panier'] as $item) {
             $totalCount += $item['qte'];
         }
 
-        // On renvoie la réponse au JavaScript
+        // Retour de la réponse au script JavaScript
         echo json_encode(['success' => true, 'total_items' => $totalCount]);
         exit;
     }

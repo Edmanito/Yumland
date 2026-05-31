@@ -11,7 +11,7 @@ $regime = $_GET['regime'] ?? 'tous';
 $saveur = $_GET['saveur'] ?? 'tous';
 $recherche = trim($_GET['recherche'] ?? '');
 
-// Lecture des plats depuis ton config.php (qui est parfait)
+// Lecture des plats depuis le fichier de configuration JSON
 $dataPlats = lireJSON(JSON_PLATS);
 $plats = $dataPlats['plats'] ?? [];
 

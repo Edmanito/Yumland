@@ -2,7 +2,7 @@
 require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 
-// Très important : on prévient le navigateur qu'on parle en JSON
+// En-tête HTTP pour réponse au format JSON
 header('Content-Type: application/json');
 
 // Vérification du statut de l'utilisateur en session

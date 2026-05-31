@@ -78,10 +78,10 @@ foreach ($commandes as &$cmd) {
             $cmd['paiement']['statut'] = 'partiel'; 
         } 
         else if ($nouveau_total < $ancien_total) {
-            // La commande est moins chère : on génère un ticket de réduction !
+            // Cas d'un nouveau total inférieur : génération d'un ticket de réduction
             $difference = $ancien_total - $nouveau_total;
             
-            // On ajoute le ticket de réduction à l'utilisateur
+            // Ajout du ticket de réduction au compte utilisateur
             $dataUsers = lireJSON(JSON_USERS);
             foreach ($dataUsers['utilisateurs'] as &$u) {
                 if ($u['id'] === $_SESSION['user']['id']) {
