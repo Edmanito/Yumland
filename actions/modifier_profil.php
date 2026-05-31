@@ -66,7 +66,7 @@ if ($userIndex !== null) {
     $dataUsers['utilisateurs'][$userIndex]['infos']['interphone'] = $interphone;
     
     if (!empty($mdp)) {
-        // On ne modifie le mot de passe que si le champ n'est pas vide
+        // Modification du mot de passe uniquement si le champ n'est pas vide
         $dataUsers['utilisateurs'][$userIndex]['mdp'] = password_hash($mdp, PASSWORD_DEFAULT);
     }
 

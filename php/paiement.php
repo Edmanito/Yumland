@@ -35,9 +35,9 @@ if ($id_commande_modif && $montant_supplement) {
     // CAS A : PAIEMENT D'UN SUPPLÉMENT
     // ==========================================
     $totalFinal = (float)$montant_supplement;
-    // On génère un ID court valide pour CYBank (Ex: S1714659578123)
+    // Génération d'un ID court valide pour CYBank (Ex: S1714659578123)
     $idTransaction = "S" . time() . rand(100, 999); 
-    // On mémorise l'ID de la commande dans la session du serveur (plus sûr)
+    // Mémorisation de l'ID de la commande dans la session serveur
     $_SESSION['cmd_supplement_id'] = $id_commande_modif;
 } 
 else {
@@ -73,10 +73,10 @@ else {
     }
 
     $totalFinal = max(0, $totalPanier - $totalTickets);
-    // On génère un ID court classique pour une nouvelle commande (Ex: T1714659578123)
+    // Génération d'un ID court classique pour une nouvelle commande (Ex: T1714659578123)
     $idTransaction = "T" . time() . rand(100, 999);
 
-    // On sauvegarde les infos de planification en session
+    // Sauvegarde des informations de planification en session
     $_SESSION['commande_planification'] = [
         'plan_type'  => $_POST['plan_type'] ?? 'livraison',
         'plan_date'  => $_POST['plan_date'] ?? '',

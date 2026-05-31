@@ -27,7 +27,7 @@ $tousLesProduits = array_merge($plats, $menus);
 $totalCommande = 0;
 $totalTickets = 0;
 
-// On calcule la somme des tickets de réduction disponibles pour cet utilisateur
+// Calcul de la somme des tickets de réduction disponibles pour l'utilisateur
 if (estConnecte() && !empty($_SESSION['user']['tickets_reduction'])) {
     foreach ($_SESSION['user']['tickets_reduction'] as $ticket) {
         $totalTickets += $ticket['montant'];
