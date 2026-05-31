@@ -58,7 +58,7 @@ foreach ($data['commandes'] as &$cmd) {
 }
 
 if ($trouve) {
-    // On utilise TA bonne fonction d'écriture (comme dans le Fichier 1)
+    // On utilise la bonne fonction d'écriture 
     ecrireJSON(JSON_COMMANDES, $data);
     header('Location: ../php/profil.php?success=note_envoyee');
 } else {
