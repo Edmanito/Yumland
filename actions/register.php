@@ -15,12 +15,19 @@ $prenom     = nettoyer($_POST['prenom']     ?? '');
 $nom        = nettoyer($_POST['nom']        ?? '');
 $login      = nettoyer($_POST['login']      ?? '');
 $telephone  = nettoyer($_POST['telephone']  ?? '');
-$adresse    = nettoyer($_POST['adresse']    ?? '');
+
+// Concaténation de l'adresse complexe en une seule chaîne pour la variable 'adresse'
+$rue        = nettoyer($_POST['adresse_rue']   ?? '');
+$ville      = nettoyer($_POST['adresse_ville'] ?? '');
+$cp         = nettoyer($_POST['adresse_cp']    ?? '');
+$arr        = nettoyer($_POST['arrondissement'] ?? '');
+$adresse    = trim("$rue, $cp $ville" . ($arr ? " ($arr" . ($arr == 1 ? "er" : "e") . ")" : ""));
+
 $etage      = nettoyer($_POST['etage']      ?? '');
 $interphone = nettoyer($_POST['interphone'] ?? '');
 $mdp        = $_POST['mdp'] ?? '';
 
-if (empty($prenom) || empty($nom) || empty($login) || empty($mdp)) {
+if (empty($prenom) || empty($nom) || empty($login) || empty($mdp) || empty($rue)) {
     header('Location: ../php/inscription.php?erreur=champs_vides');
     exit;
 }

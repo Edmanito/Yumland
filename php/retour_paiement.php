@@ -114,6 +114,8 @@ if ($control_recu === $control_calcule || $bank_status === "SUCCESS_TICKETS") {
             }
 
             $adresse = $_SESSION['user']['infos']['adresse'] ?? '';
+            $etage = $_SESSION['user']['infos']['etage'] ?? '';
+            $interphone = $_SESSION['user']['infos']['interphone'] ?? '';
             $commandesData = lireJSON(JSON_COMMANDES);
             if (!$commandesData) { $commandesData = ['commandes' => []]; }
 
@@ -125,6 +127,8 @@ if ($control_recu === $control_calcule || $bank_status === "SUCCESS_TICKETS") {
                 'type'              => $type_commande,
                 'statut'            => 'en_attente',
                 'adresse_livraison' => $adresse,
+                'etage'             => $etage,
+                'interphone'        => $interphone,
                 'articles'          => $articles_formates,
                 'prix_total'        => (float)$montant,
                 'paiement'          => [
