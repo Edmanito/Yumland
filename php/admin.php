@@ -16,9 +16,10 @@ if ($filtre !== 'all') {
 $recherche = strtolower($_GET['q'] ?? '');
 if ($recherche) {
     $utilisateurs = array_filter($utilisateurs, function($u) use ($recherche) {
-        return str_contains(strtolower($u['login']), $recherche)
-            || str_contains(strtolower($u['infos']['nom']), $recherche)
-            || str_contains(strtolower($u['infos']['prenom']), $recherche);
+        // str_contains est PHP 8.0+, on utilise strpos !== false pour PHP 7.4
+        return (strpos(strtolower($u['login']), $recherche) !== false)
+            || (strpos(strtolower($u['infos']['nom'] ?? ''), $recherche) !== false)
+            || (strpos(strtolower($u['infos']['prenom'] ?? ''), $recherche) !== false);
     });
 }
 

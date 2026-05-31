@@ -168,11 +168,12 @@ $categories = [
                 <?php foreach ($platsFiltres as $p):
                     $icon = '🍶';
                     $nom_lower = strtolower($p['nom']);
-                    if (str_contains($nom_lower, 'whisky'))     $icon = '🥃';
-                    elseif (str_contains($nom_lower, 'thé'))    $icon = '🍵';
-                    elseif (str_contains($nom_lower, 'eau'))    $icon = '💧';
-                    elseif (str_contains($nom_lower, 'champagne')) $icon = '🥂';
-                    elseif (str_contains($nom_lower, 'highball'))  $icon = '🍹';
+                    // str_contains est PHP 8.0+, on utilise strpos !== false pour PHP 7.4
+                    if (strpos($nom_lower, 'whisky') !== false)     $icon = '🥃';
+                    elseif (strpos($nom_lower, 'thé') !== false)    $icon = '🍵';
+                    elseif (strpos($nom_lower, 'eau') !== false)    $icon = '💧';
+                    elseif (strpos($nom_lower, 'champagne') !== false) $icon = '🥂';
+                    elseif (strpos($nom_lower, 'highball') !== false)  $icon = '🍹';
                 ?>
                 <article class="drink-card">
                     <div class="drink-icon"><?= $icon ?></div>

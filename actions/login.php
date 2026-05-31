@@ -23,7 +23,8 @@ if (!$user) {
 }
 
 $mdpOk = false;
-if (str_starts_with($user['mot_de_passe'], '$2y$')) {
+// str_starts_with est PHP 8.0+, on utilise strncmp pour la compatibilité 7.4
+if (strncmp($user['mot_de_passe'], '$2y$', 4) === 0) {
     $mdpOk = password_verify($mdp, $user['mot_de_passe']);
 } else {
     $mdpOk = ($mdp === $user['mot_de_passe']);
