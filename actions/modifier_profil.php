@@ -2,7 +2,7 @@
 require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 
-// On indique qu'on répond en format JSON (très important pour l'AJAX)
+// En-tête HTTP pour réponse au format JSON (utilisé pour les appels AJAX)
 header('Content-Type: application/json');
 
 // Vérification du statut de l'utilisateur en session
@@ -21,7 +21,7 @@ if (isset($_SESSION['user'])) {
         echo json_encode(['success' => false, 'message' => 'Votre compte a été suspendu.']);
         exit;
     }
-    $_SESSION['user'] = $currentUserFromDB; // Rafraîchir la session avec les dernières données
+    $_SESSION['user'] = $currentUserFromDB; // Rafraîchissement des données de session
 }
 if (!estConnecte()) {
     echo json_encode(['success' => false, 'message' => 'Non autorisé.']);
@@ -73,10 +73,10 @@ if ($userIndex !== null) {
     // 5. Sauvegarde dans le fichier JSON
     ecrireJSON(JSON_USERS, $dataUsers);
     
-    // 6. Mise à jour de la session pour que l'affichage reste à jour
+    // 6. Mise à jour de la session utilisateur
     $_SESSION['user'] = $dataUsers['utilisateurs'][$userIndex];
 
-    // 7. On renvoie un succès au JavaScript
+    // 7. Retour de succès pour traitement JavaScript
     echo json_encode([
         'success' => true, 
         'message' => 'Profil mis à jour'

@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             passwordInput.style.outline = '1px solid #ff4444';
         }
 
-        // Si erreur, on bloque le rechargement de la page
+        // Blocage de la soumission du formulaire en cas d'invalidité
         if (!isValid) {
             e.preventDefault();
             

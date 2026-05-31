@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
    3. LOGIQUE DE BLOCAGE VIA AJAX (VERSION EMOJIS)
    ========================================= */
 document.addEventListener('click', async (e) => {
-    // On cible le bouton qui a la classe btn-toggle-status
+    // Identification du bouton de changement de statut
     const btn = e.target.closest('.btn-toggle-status');
     if (!btn) return;
 

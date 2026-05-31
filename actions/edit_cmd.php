@@ -20,7 +20,7 @@ if (isset($_SESSION['user'])) {
         echo json_encode(['success' => false, 'message' => 'Votre compte a été suspendu.']);
         exit;
     }
-    $_SESSION['user'] = $currentUserFromDB; // Rafraîchir la session avec les dernières données
+    $_SESSION['user'] = $currentUserFromDB; // Rafraîchissement des données de session
 }
 // Vérifier que l'utilisateur est bien connecté
 if (!isset($_SESSION['user'])) {
@@ -73,8 +73,8 @@ foreach ($commandes as &$cmd) {
 
         // Gestion de la différence de prix (le cahier des charges)
         if ($nouveau_total > $ancien_total) {
-            // La commande est plus chère : elle repasse en statut "A payer" (différence)
-            // Dans ce script simplifié, on change le statut de paiement
+            // Cas d'un nouveau total supérieur : passage en paiement partiel
+            // Mise à jour du statut de paiement
             $cmd['paiement']['statut'] = 'partiel'; 
         } 
         else if ($nouveau_total < $ancien_total) {

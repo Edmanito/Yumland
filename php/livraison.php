@@ -18,14 +18,14 @@ if (isset($_SESSION['user'])) {
         header('Location: ../index.php?erreur=compte_suspendu');
         exit;
     }
-    $_SESSION['user'] = $currentUserFromDB; // Rafraîchir la session avec les dernières données
+    $_SESSION['user'] = $currentUserFromDB; // Rafraîchissement des données de session
 }
 requireRole('livreur');
 $livreur = $_SESSION['user'];
 
 $dataCommandes = lireJSON(JSON_COMMANDES);
 
-// CORRECTION ICI : On utilise ?? null pour éviter le plantage si id_livreur n'existe pas encore
+// Prévention d'erreur via l'opérateur de coalescence nulle si id_livreur n'est pas défini
 $mesLivraisons = array_values(array_filter(
     $dataCommandes['commandes'] ?? [],
     fn($c) => ($c['id_livreur'] ?? null) === $livreur['id'] && ($c['statut'] ?? '') === 'en_livraison'

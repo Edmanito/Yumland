@@ -19,7 +19,7 @@ if (isset($_SESSION['user'])) {
         header('Location: ../index.php?erreur=compte_suspendu');
         exit;
     }
-    $_SESSION['user'] = $currentUserFromDB; // Rafraîchir la session avec les dernières données
+    $_SESSION['user'] = $currentUserFromDB; // Rafraîchissement des données de session
 }
 if (!estConnecte() || $_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ../index.php');
@@ -32,7 +32,7 @@ $noteProduits  = (int)($_POST['note_produits'] ?? 0);
 $noteLivraison = (int)($_POST['note_livraison'] ?? 0);
 $commentaire   = nettoyer($_POST['commentaire'] ?? '');
 
-// 🛡️ SÉCURITÉ : On vérifie que les notes sont bien entre 1 et 5
+// Vérification de la validité des notes (intervalle de 1 à 5)
 if (empty($idCmd) || $noteProduits < 1 || $noteProduits > 5 || $noteLivraison < 1 || $noteLivraison > 5) {
     header('Location: ../php/profil.php?erreur=note_invalide');
     exit;
@@ -45,7 +45,7 @@ foreach ($data['commandes'] as &$cmd) {
     // Vérification stricte : bonne commande + bon client + statut OBLIGATOIREMENT "livree"
     if ($cmd['id'] === $idCmd && $cmd['id_client'] === $_SESSION['user']['id'] && $cmd['statut'] === 'livree') {
         
-        // 🔑 LES BONNES CLÉS pour que ton "oeil" javascript génère bien les étoiles
+        // Structuration des données de notation pour le rendu JavaScript
         $cmd['note_client'] = [
             'produits'    => $noteProduits,
             'livraison'   => $noteLivraison,
@@ -58,7 +58,7 @@ foreach ($data['commandes'] as &$cmd) {
 }
 
 if ($trouve) {
-    // On utilise TA bonne fonction d'écriture (comme dans le Fichier 1)
+    // Sauvegarde des modifications via la fonction ecrireJSON
     ecrireJSON(JSON_COMMANDES, $data);
     header('Location: ../php/profil.php?success=note_envoyee');
 } else {
