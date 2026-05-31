@@ -3,7 +3,7 @@
 // KAISEKI SHUNEI — CONFIG.PHP
 // =========================================
 
-define('JSON_DIR', __DIR__ . '/../../json_kaiseki/');
+define('JSON_DIR', __DIR__ . '/../json/');
 define('JSON_USERS',     JSON_DIR . 'utilisateurs.json');
 define('JSON_PLATS',     JSON_DIR . 'plats.json');
 define('JSON_MENUS',     JSON_DIR . 'menus.json');
