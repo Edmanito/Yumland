@@ -23,6 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $_SESSION['user'] = $userFound;
 
+            // Restaurer le thème du compte
+            $themeCompte = $userFound['preferences']['theme'] ?? 'sombre';
+            setcookie('kaiseki_theme', $themeCompte, time() + 365*24*3600, '/', '', false, false);
+
             if ($userFound['role'] === 'admin') {
                 header('Location: admin.php');
             } 

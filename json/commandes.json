@@ -131,7 +131,7 @@
             "id": "CMD005",
             "id_client": "U1AC74B",
             "type": "livraison",
-            "statut": "pret",
+            "statut": "en_livraison",
             "adresse_livraison": "",
             "articles": [
                 {
@@ -157,8 +157,10 @@
             },
             "dates": {
                 "commande": "2026-05-02T16:17:50",
-                "planification": null
-            }
+                "planification": null,
+                "expedition": "2026-05-31T14:04:40"
+            },
+            "id_livreur": "L001"
         },
         {
             "id": "CMD006",
@@ -327,7 +329,7 @@
             "id": "CMD010",
             "id_client": "U1AC74B",
             "type": "livraison",
-            "statut": "en_attente",
+            "statut": "en_preparation",
             "adresse_livraison": "",
             "articles": [
                 {
@@ -367,7 +369,7 @@
             "id": "CMD011",
             "id_client": "U1AC74B",
             "type": "livraison",
-            "statut": "en_attente",
+            "statut": "en_preparation",
             "adresse_livraison": "",
             "articles": [
                 {
@@ -562,7 +564,7 @@
             "id": "CMD015",
             "id_client": "U001",
             "type": "livraison",
-            "statut": "en_attente",
+            "statut": "livree",
             "adresse_livraison": "12 Rue du Sushi, 75001 Paris",
             "articles": [
                 {
@@ -588,8 +590,11 @@
             },
             "dates": {
                 "commande": "2026-05-17T14:06:47",
-                "planification": null
-            }
+                "planification": null,
+                "expedition": "2026-05-31T14:04:45",
+                "livraison": "2026-05-31T14:05:50"
+            },
+            "id_livreur": "L001"
         },
         {
             "id": "CMD016",
@@ -623,6 +628,86 @@
                 "commande": "2026-05-17T22:21:14",
                 "planification": null
             }
+        },
+        {
+            "id": "CMD017",
+            "id_client": "U005",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "22 Boulevard Haussmann, 75009 Paris",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "p08",
+                    "nom": "Hamachi & Yuzu",
+                    "quantite": 1,
+                    "prix_unitaire": 42
+                }
+            ],
+            "prix_total": 42,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-05-31T15:37:56"
+            },
+            "dates": {
+                "commande": "2026-05-31T15:37:56",
+                "planification": null
+            }
+        },
+        {
+            "id": "CMD018",
+            "id_client": "U005",
+            "type": "livraison",
+            "statut": "en_attente",
+            "adresse_livraison": "22 Boulevard Haussmann, 75009 Paris",
+            "articles": [],
+            "prix_total": 42,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-05-31T15:40:16"
+            },
+            "dates": {
+                "commande": "2026-05-31T15:40:16",
+                "planification": null
+            }
+        },
+        {
+            "id": "CMD019",
+            "id_client": "U001",
+            "type": "livraison",
+            "statut": "livree",
+            "adresse_livraison": "12 Rue du Sushi, 75001 Paris",
+            "articles": [
+                {
+                    "type": "plat",
+                    "id": "p02",
+                    "nom": "Gyoza au Homard Breton",
+                    "quantite": 1,
+                    "prix_unitaire": 32
+                },
+                {
+                    "type": "plat",
+                    "id": "p26",
+                    "nom": "Whisky Yamazaki 12 ans",
+                    "quantite": 1,
+                    "prix_unitaire": 38
+                }
+            ],
+            "prix_total": 70,
+            "paiement": {
+                "statut": "paye",
+                "methode": "cybank",
+                "date_transaction": "2026-05-31T16:04:03"
+            },
+            "dates": {
+                "commande": "2026-05-31T16:04:03",
+                "planification": null,
+                "expedition": "2026-05-31T14:04:48",
+                "livraison": "2026-05-31T14:05:54"
+            },
+            "id_livreur": "L001"
         }
     ]
 }

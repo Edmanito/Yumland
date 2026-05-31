@@ -3,7 +3,7 @@
         {
             "id": "U001",
             "login": "jean.dupont@email.com",
-            "mot_de_passe": "caca",
+            "mot_de_passe": "1234",
             "role": "client",
             "statut": "actif",
             "premium": false,
@@ -23,6 +23,9 @@
             "dates": {
                 "inscription": "2026-01-01",
                 "derniere_connexion": "2026-03-10"
+            },
+            "preferences": {
+                "theme": "clair"
             }
         },
         {
@@ -123,6 +126,9 @@
             "dates": {
                 "inscription": "2026-02-10",
                 "derniere_connexion": "2026-03-18"
+            },
+            "preferences": {
+                "theme": "clair"
             }
         },
         {
@@ -203,7 +209,7 @@
         {
             "id": "R001",
             "login": "kenji@kaiseki.com",
-            "mot_de_passe": "caca",
+            "mot_de_passe": "1234",
             "role": "restaurateur",
             "statut": "actif",
             "premium": false,
@@ -223,6 +229,9 @@
             "dates": {
                 "inscription": "2025-01-01",
                 "derniere_connexion": "2026-03-20"
+            },
+            "preferences": {
+                "theme": "sombre"
             }
         },
         {
@@ -248,12 +257,15 @@
             "dates": {
                 "inscription": "2025-06-01",
                 "derniere_connexion": "2026-03-20"
+            },
+            "preferences": {
+                "theme": "clair"
             }
         },
         {
             "id": "L002",
             "login": "a.martin@kaiseki.com",
-            "mot_de_passe": "caca",
+            "mot_de_passe": "1234",
             "role": "livreur",
             "statut": "actif",
             "premium": false,

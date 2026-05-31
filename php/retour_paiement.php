@@ -180,19 +180,69 @@ if ($control_recu === $control_calcule || $bank_status === "SUCCESS_TICKETS") {
     <meta charset="UTF-8">
     <title>Kaiseki Shunei — Résultat du paiement</title>
     <style>
-        body { background: #050505; color: #bc9c64; font-family: sans-serif; text-align: center; padding-top: 50px; }
-        .box { border: 1px solid #bc9c64; display: inline-block; padding: 40px; background: #0f0f0f; max-width: 480px; width: 90%; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-        h2 { letter-spacing: 3px; margin-bottom: 20px; text-transform: uppercase; }
-        .success { color: #4BB543; }
-        .error   { color: #ff4d4d; }
-        .plan-info { background: rgba(188,156,100,0.08); border: 1px solid rgba(188,156,100,0.2); padding: 12px 16px; margin: 16px 0; font-size: 0.82rem; letter-spacing: 1px; }
-        .recap { margin: 24px 0; border-top: 1px solid #333; padding-top: 20px; text-align: left; }
-        .recap-title { font-size: 0.75rem; letter-spacing: 2px; text-align: center; margin-bottom: 15px; color: #888; }
-        .ligne { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.88rem; }
-        .total { border-top: 1px solid #bc9c64; margin-top: 10px; padding-top: 10px; font-weight: bold; font-size: 1.1rem; }
-        .btn { border: 1px solid #bc9c64; color: #bc9c64; text-decoration: none; padding: 12px 28px; display: inline-block; margin-top: 24px; font-size: 0.75rem; letter-spacing: 2px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #bc9c64; color: #000; }
-    </style>
+    body {
+        background: #050505;
+        color: #bc9c64;
+        font-family: sans-serif;
+        text-align: center;
+        padding-top: 50px;
+    }
+    .box {
+        border: 1px solid #bc9c64;
+        display: inline-block;
+        padding: 40px;
+        background: #0f0f0f;
+        max-width: 480px;
+        width: 90%;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+    h2 { letter-spacing: 3px; margin-bottom: 20px; text-transform: uppercase; }
+    .success { color: #4BB543; }
+    .error   { color: #ff4d4d; }
+    .plan-info {
+        background: rgba(188,156,100,0.08);
+        border: 1px solid rgba(188,156,100,0.2);
+        padding: 12px 16px;
+        margin: 16px 0;
+        font-size: 0.82rem;
+        letter-spacing: 1px;
+    }
+    .recap {
+        margin: 24px 0;
+        border-top: 1px solid #333;
+        padding-top: 20px;
+        text-align: left;
+    }
+    .recap-title {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        text-align: center;
+        margin-bottom: 15px;
+        color: #888;
+    }
+    .ligne { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.88rem; }
+    .total { border-top: 1px solid #bc9c64; margin-top: 10px; padding-top: 10px; font-weight: bold; font-size: 1.1rem; }
+    .btn {
+        border: 1px solid #bc9c64;
+        color: #bc9c64;
+        text-decoration: none;
+        padding: 12px 28px;
+        display: inline-block;
+        margin-top: 24px;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .btn:hover { background: #bc9c64; color: #000; }
+
+    /* ── THÈME CLAIR ── */
+    [data-theme="clair"] body,
+    body[data-theme="clair"] {
+        background: #F2EDE4 !important;
+        color: #8B6914 !important;
+    }
+</style>
 </head>
 <body>
 <div class="box">

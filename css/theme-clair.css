@@ -195,8 +195,25 @@ body.open-nav::after {
 /* ─────────────────────────────────────────────────────
    6. PAGE ACCUEIL — index.php (index.css)
 ───────────────────────────────────────────────────── */
-.hero-content h2 {
-    color: #FFFFFF !important;
+/* Fond hero en mode clair */
+.hero-section {
+    background: none !important;
+}
+
+.hero-bg-image {
+    background: linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,0.25)),
+                url('/img/MainMenuWhite.jpg') center/cover no-repeat !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+}
+
+.hero-content {
+    position: relative !important;
+    z-index: 10 !important;
 }
  
 .input-search {
@@ -247,7 +264,91 @@ body.open-nav::after {
     color: #1A1A1A !important;
 }
  
- 
+/* Partie Equilibre Absolue*/ 
+
+.experience-view {
+    background: linear-gradient(rgba(242, 237, 228, 0.75), rgba(242, 237, 228, 0.75)),
+                url('/img/fondExperience.png') center/cover no-repeat fixed !important;
+}
+
+.section-title-gold {
+    color: #8B6914 !important;
+    text-shadow: none !important;
+}
+
+.timeline-date {
+    color: #8B6914 !important;
+}
+
+.timeline-dot {
+    background: #8B6914 !important;
+    box-shadow: 0 0 15px rgba(139, 105, 20, 0.4) !important;
+}
+
+.timeline-container::before {
+    background: linear-gradient(to bottom, transparent, #8B6914, #8B6914, transparent) !important;
+    opacity: 0.3 !important;
+}
+
+.timeline-content {
+    background: rgba(242, 237, 228, 0.85) !important;
+    border-color: rgba(139, 105, 20, 0.25) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.timeline-content h3 {
+    color: #8B6914 !important;
+}
+
+.timeline-content p {
+    color: #2A1A0A !important;
+}
+
+.kanji-bg {
+    color: rgba(139, 105, 20, 0.08) !important;
+}
+
+.exp-quote-wrapper .quote-line {
+    background: rgba(139, 105, 20, 0.3) !important;
+}
+
+.exp-quote-large {
+    color: #1A1A1A !important;
+    text-shadow: none !important;
+}
+
+/* Section menu / LA CARTE */
+.menu-view-minimal {
+    background: url('/img/menu.png') center/cover no-repeat !important;
+}
+
+.menu-bg-overlay {
+    background: radial-gradient(circle, rgba(242,237,228,0.5) 0%, rgba(242,237,228,0.75) 100%) !important;
+}
+
+.menu-compact-box {
+    background: rgba(242, 237, 228, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    border-color: rgba(139, 105, 20, 0.3) !important;
+}
+
+.menu-title-small {
+    color: #1A1A1A !important;
+}
+
+.menu-compact-box .section-subtitle {
+    color: #8B6914 !important;
+}
+
+.click-info {
+    color: #8B6914 !important;
+}
+
+.line-gold {
+    background: #8B6914 !important;
+}
+
+
 /* ─────────────────────────────────────────────────────
    7. FOOTER COMMUN (footer.css)
 ───────────────────────────────────────────────────── */
@@ -268,113 +369,158 @@ body.page-menu {
     background: #F2EDE4 !important;
     color: #1A1A1A !important;
 }
- 
-.nav-top {
-    background: linear-gradient(to bottom, rgba(242, 237, 228, 0.97), transparent) !important;
+
+/* ── Hero ── */
+body.page-menu .carte-hero .hero-bg {
+    background: linear-gradient(rgba(242,237,228,0.3), rgba(242,237,228,0.5)),
+                url('/img/CarteWhite.jpg') center/cover no-repeat !important;
 }
- 
-.nav-back,
-.nav-brand {
+
+body.page-menu .hero-title {
+    color: #1A1A1A !important;
+    text-shadow: 0 2px 10px rgba(255,255,255,0.5) !important;
+}
+
+body.page-menu .hero-eyebrow span {
+    color: #2A1A0A !important;
+}
+
+body.page-menu .hero-line {
+    background: #8B6914 !important;
+}
+
+body.page-menu #menuSearch {
+    color: #1A1A1A !important;
+    border-bottom-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+body.page-menu #menuSearch::placeholder {
+    color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ── Nav ── */
+body.page-menu .nav-top {
+    background: linear-gradient(to bottom, rgba(242,237,228,0.97), transparent) !important;
+}
+
+body.page-menu .nav-back,
+body.page-menu .nav-brand {
     color: #1A1A1A !important;
 }
- 
-.btn-cart {
-    background: transparent !important;
-    border: 1px solid #8B6914 !important;
-    color: #8B6914 !important;
-}
- 
-.btn-cart:hover {
+
+/* ── Bouton panier ── */
+body.page-menu .btn-cart {
     background: #8B6914 !important;
+    border: 2px solid #8B6914 !important;
+    color: #F2EDE4 !important;
+    font-weight: 700 !important;
+    padding: 10px 24px !important;
+}
+
+body.page-menu .btn-cart:hover {
+    background: #6B5010 !important;
+    border-color: #6B5010 !important;
     color: #F2EDE4 !important;
 }
- 
-.cat-nav {
+
+body.page-menu .cart-count {
+    background: #F2EDE4 !important;
+    color: #8B6914 !important;
+}
+
+/* ── Navigation catégories ── */
+body.page-menu .cat-nav {
     background: #E8E0D0 !important;
     border-bottom-color: rgba(100, 70, 0, 0.15) !important;
 }
- 
-.cat-nav-btn {
+
+body.page-menu .cat-nav-btn {
     color: #2A1A0A !important;
 }
- 
-.cat-nav-btn.active {
+
+body.page-menu .cat-nav-btn.active {
     color: #8B6914 !important;
     border-bottom-color: #8B6914 !important;
 }
- 
-.cat-header h2,
-.cat-num,
-.cat-kanji {
+
+/* ── En-têtes catégories ── */
+body.page-menu .cat-header h2,
+body.page-menu .cat-num,
+body.page-menu .cat-kanji {
     color: #1A1A1A !important;
 }
- 
-.cat-header p {
+
+body.page-menu .cat-header p {
     color: #3A2A1A !important;
 }
- 
-.dish-card,
-.menu-card,
-.drink-card {
+
+/* ── Cartes plats / menus / boissons ── */
+body.page-menu .dish-card,
+body.page-menu .menu-card,
+body.page-menu .drink-card {
     background: #E8E0D0 !important;
     border-color: rgba(100, 70, 0, 0.15) !important;
 }
- 
-.dish-name,
-.menu-card h3,
-.drink-name {
+
+body.page-menu .dish-name,
+body.page-menu .menu-card h3,
+body.page-menu .drink-name {
     color: #1A1A1A !important;
 }
- 
-.dish-desc,
-.menu-card p,
-.drink-desc {
+
+body.page-menu .dish-desc,
+body.page-menu .menu-card p,
+body.page-menu .drink-desc {
     color: #2A1A0A !important;
 }
- 
-.dish-price,
-.price,
-.drink-price {
+
+body.page-menu .dish-price,
+body.page-menu .price,
+body.page-menu .drink-price {
     color: #8B6914 !important;
 }
- 
-.btn-ajouter,
-.btn-menu,
-.drink-btn {
+
+/* ── Boutons d'action ── */
+body.page-menu .btn-ajouter,
+body.page-menu .btn-menu,
+body.page-menu .drink-btn {
     background: transparent !important;
     border-color: #8B6914 !important;
     color: #8B6914 !important;
 }
- 
-.btn-ajouter:hover,
-.btn-menu:hover,
-.drink-btn:hover {
+
+body.page-menu .btn-ajouter:hover,
+body.page-menu .btn-menu:hover,
+body.page-menu .drink-btn:hover {
     background: #8B6914 !important;
     color: #F2EDE4 !important;
 }
- 
-.filter-panel {
+
+/* ── Filtres ── */
+body.page-menu .filter-panel {
     background: rgba(232, 224, 208, 0.95) !important;
     border-color: rgba(100, 70, 0, 0.15) !important;
 }
- 
-.filter-group label {
+
+body.page-menu .filter-group label {
     color: #3A2A1A !important;
 }
- 
-.filter-group select {
+
+body.page-menu .filter-group select {
     background: #E8E0D0 !important;
     color: #1A1A1A !important;
     border-color: rgba(100, 70, 0, 0.2) !important;
 }
- 
-.allergen-tag {
+
+/* ── Allergènes ── */
+body.page-menu .allergen-tag {
     background: rgba(100, 70, 0, 0.08) !important;
     color: #3A2A1A !important;
     border-color: rgba(100, 70, 0, 0.15) !important;
 }
- 
-.carte-footer {
+
+/* ── Footer ── */
+body.page-menu .carte-footer {
     background: #E0D8C8 !important;
     color: #2A1A0A !important;
 }
@@ -484,9 +630,14 @@ body.page-inscription .strength-text {
 body.page-panier {
     background: #F2EDE4 !important;
     color: #1A1A1A !important;
+    --gold:         #8B6914;
+    --dark-pure:    #F2EDE4;
+    --dark-surface: #E8E0D0;
+    --border:       rgba(100, 70, 0, 0.15);
 }
 
-body.page-panier .panier-header h1 {
+/* ── Header ── */
+body.page-panier h1 {
     color: #1A1A1A !important;
 }
 
@@ -498,24 +649,27 @@ body.page-panier .gold-line {
     background: #8B6914 !important;
 }
 
+/* ── Tableau ── */
 body.page-panier .panier-table {
-    color: #1A1A1A !important;
+    background: #E8E0D0 !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
 }
 
-body.page-panier .panier-table thead {
-    background: #DDD5C0 !important;
-    color: #1A1A1A !important;
+body.page-panier .panier-table th {
+    color: #8B6914 !important;
+    border-bottom-color: rgba(100, 70, 0, 0.15) !important;
 }
 
-body.page-panier .panier-table th,
 body.page-panier .panier-table td {
-    color: #1A1A1A !important;
-    border-color: rgba(100, 70, 0, 0.12) !important;
+    border-bottom-color: rgba(100, 70, 0, 0.08) !important;
 }
 
 body.page-panier .prod-name {
     color: #1A1A1A !important;
-    font-weight: 600 !important;
+}
+
+body.page-panier .prod-custom {
+    color: #8B2020 !important;
 }
 
 body.page-panier .btn-edit-custom {
@@ -523,27 +677,55 @@ body.page-panier .btn-edit-custom {
     border-color: #8B6914 !important;
 }
 
-body.page-panier .btn-qte {
+body.page-panier .btn-edit-custom:hover {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+}
+
+/* ── Quantité ── */
+body.page-panier .qte-picker {
     background: #DDD5C0 !important;
-    color: #1A1A1A !important;
     border-color: rgba(100, 70, 0, 0.2) !important;
 }
 
-body.page-panier .btn-delete { color: #8B2020 !important; }
-
-body.page-panier .total-label { color: #3A2A1A !important; }
-body.page-panier .total-amount { color: #1A1A1A !important; }
-
-body.page-panier .btn-outline {
-    background: transparent !important;
-    border-color: #8B6914 !important;
+body.page-panier .btn-qte {
     color: #8B6914 !important;
+}
+
+body.page-panier .btn-qte:hover {
+    color: #1A1A1A !important;
+}
+
+body.page-panier .btn-delete {
+    color: #8B2020 !important;
+}
+
+/* ── Footer panier ── */
+body.page-panier .total-label {
+    color: #8B6914 !important;
+}
+
+body.page-panier .total-amount {
+    color: #1A1A1A !important;
 }
 
 body.page-panier .btn-gold {
     background: #8B6914 !important;
     color: #F2EDE4 !important;
+}
+
+body.page-panier .btn-gold:hover {
+    box-shadow: 0 10px 20px rgba(139, 105, 20, 0.2) !important;
+}
+
+body.page-panier .btn-outline {
+    border-color: rgba(100, 70, 0, 0.3) !important;
+    color: #1A1A1A !important;
+}
+
+body.page-panier .btn-outline:hover {
     border-color: #8B6914 !important;
+    color: #8B6914 !important;
 }
 
 body.page-panier .btn-jeux {
@@ -552,20 +734,67 @@ body.page-panier .btn-jeux {
     border-color: rgba(100, 70, 0, 0.2) !important;
 }
 
-body.page-panier .planification-box {
+/* ── Panier vide ── */
+body.page-panier .panier-vide p {
+    color: #3A2A1A !important;
+}
+
+/* ── Non connecté ── */
+body.page-panier .auth-box-panier {
     background: #E8E0D0 !important;
-    border-color: rgba(100, 70, 0, 0.2) !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-panier .auth-box-panier h2 {
     color: #1A1A1A !important;
 }
 
-body.page-panier .plan-titre { color: #1A1A1A !important; font-weight: 600 !important; }
-body.page-panier .plan-sous  { color: #3A2A1A !important; }
-body.page-panier .plan-group label { color: #3A2A1A !important; }
+body.page-panier .auth-box-panier > p {
+    color: #3A2A1A !important;
+}
+
+body.page-panier .auth-note {
+    color: #6A5A4A !important;
+}
+
+body.page-panier .btn-auth-connexion {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+}
+
+body.page-panier .btn-auth-inscription {
+    border-color: rgba(139, 105, 20, 0.35) !important;
+    color: #8B6914 !important;
+}
+
+/* ── Planification ── */
+body.page-panier .planification-box {
+    background: #E8E0D0 !important;
+    border-color: rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-panier .plan-header {
+    border-bottom-color: rgba(100, 70, 0, 0.12) !important;
+}
+
+body.page-panier .plan-titre {
+    color: #1A1A1A !important;
+}
+
+body.page-panier .plan-sous {
+    color: #3A2A1A !important;
+}
+
+body.page-panier .plan-group label {
+    color: #8B6914 !important;
+}
+
+body.page-panier .plan-toggle {
+    border-color: rgba(100, 70, 0, 0.2) !important;
+}
 
 body.page-panier .plan-btn {
-    background: #DDD5C0 !important;
-    color: #1A1A1A !important;
-    border-color: rgba(100, 70, 0, 0.2) !important;
+    color: #3A2A1A !important;
 }
 
 body.page-panier .plan-btn.active {
@@ -573,14 +802,25 @@ body.page-panier .plan-btn.active {
     color: #F2EDE4 !important;
 }
 
-body.page-panier #plan-date,
-body.page-panier #plan-heure {
+body.page-panier .plan-group input[type="date"],
+body.page-panier .plan-group select {
     background: #DDD5C0 !important;
-    color: #1A1A1A !important;
     border-color: rgba(100, 70, 0, 0.2) !important;
+    color: #1A1A1A !important;
 }
 
-body.page-panier #plan-resume { color: #3A2A1A !important; }
+body.page-panier .plan-group select option {
+    background: #E8E0D0 !important;
+    color: #1A1A1A !important;
+}
+
+body.page-panier .plan-confirm {
+    border-top-color: rgba(100, 70, 0, 0.12) !important;
+}
+
+body.page-panier #plan-resume {
+    color: #8B6914 !important;
+}
 
 
 /* ─────────────────────────────────────────────────────
@@ -833,4 +1073,273 @@ body.page-delivery .btn-secondary {
     background: #DDD5C0 !important;
     border-color: rgba(100, 70, 0, 0.15) !important;
     color: #1A1A1A !important;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   14. PAGE RETOUR PAIEMENT — php/retour_paiement.php
+───────────────────────────────────────────────────── */
+body.page-retour-paiement,
+body:has(.box) {
+    background: #F2EDE4 !important;
+    color: #1A1A1A !important;
+}
+
+.box {
+    background: #E8E0D0 !important;
+    border-color: rgba(139, 105, 20, 0.4) !important;
+    box-shadow: 0 0 30px rgba(100, 70, 0, 0.1) !important;
+    color: #1A1A1A !important;
+}
+
+.box p,
+.box .ligne,
+.box .recap-title {
+    color: #1A1A1A !important;
+}
+
+.box .recap {
+    border-top-color: rgba(100, 70, 0, 0.2) !important;
+}
+
+.box .total {
+    border-top-color: #8B6914 !important;
+    color: #8B6914 !important;
+}
+
+.box .plan-info {
+    background: rgba(139, 105, 20, 0.06) !important;
+    border-color: rgba(139, 105, 20, 0.2) !important;
+    color: #1A1A1A !important;
+}
+
+.box .btn {
+    border-color: #8B6914 !important;
+    color: #8B6914 !important;
+}
+
+.box .btn:hover {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   15. PAGE PROFIL — php/profil.php (profil.css)
+───────────────────────────────────────────────────── */
+body.page-profil {
+    background-color: #F2EDE4 !important;
+    color: #1A1A1A !important;
+}
+
+body.page-profil .profil-nav {
+    background: transparent !important;
+}
+
+body.page-profil .back-link {
+    color: #8B6914 !important;
+}
+
+body.page-profil .logo-kanji-small span {
+    color: #1A1A1A !important;
+}
+
+body.page-profil .profil-nav a {
+    color: #8B6914 !important;
+}
+
+/* Header */
+body.page-profil .header-main h1 {
+    color: #1A1A1A !important;
+}
+
+body.page-profil .member-since {
+    color: #3A2A1A !important;
+}
+
+/* Carte fidélité */
+body.page-profil .loyalty-card {
+    border-color: rgba(139, 105, 20, 0.4) !important;
+    background: #E8E0D0 !important;
+    color: #1A1A1A !important;
+}
+
+body.page-profil .loyalty-badge {
+    color: #8B6914 !important;
+}
+
+body.page-profil .points-count {
+    color: #1A1A1A !important;
+}
+
+body.page-profil .progress-bar {
+    background: rgba(0, 0, 0, 0.1) !important;
+}
+
+body.page-profil .progress-fill {
+    background: #8B6914 !important;
+}
+
+/* Sections */
+body.page-profil .profil-section {
+    background: #E8E0D0 !important;
+    border-color: rgba(100, 70, 0, 0.2) !important;
+}
+
+body.page-profil .section-title {
+    color: #1A1A1A !important;
+}
+
+body.page-profil .section-title h2 {
+    color: #1A1A1A !important;
+}
+
+body.page-profil .edit-icon {
+    color: #8B6914 !important;
+}
+
+/* Infos utilisateur */
+body.page-profil .info-group label {
+    color: #8B6914 !important;
+}
+
+body.page-profil .info-group p {
+    color: #1A1A1A !important;
+}
+
+body.page-profil .sub-info {
+    color: #3A2A1A !important;
+}
+
+/* Tableau commandes */
+body.page-profil .order-table th {
+    color: #8B6914 !important;
+    border-bottom-color: rgba(100, 70, 0, 0.2) !important;
+}
+
+body.page-profil .order-table td {
+    color: #1A1A1A !important;
+    border-bottom-color: rgba(100, 70, 0, 0.1) !important;
+}
+
+body.page-profil .dish-name {
+    color: #1A1A1A !important;
+}
+
+/* Statut pills */
+body.page-profil .status-pill {
+    color: #F2EDE4 !important;
+}
+
+body.page-profil .status-pill.deliverd {
+    background: #2E7D32 !important;
+}
+
+/* Bouton modifier */
+body.page-profil .btn-modifier,
+body.page-profil [class*="btn-"] {
+    border-color: #8B6914 !important;
+    color: #8B6914 !important;
+    background: transparent !important;
+}
+
+body.page-profil .btn-modifier:hover,
+body.page-profil [class*="btn-"]:hover {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+}
+
+
+/* ─────────────────────────────────────────────────────
+   16. PAGE NOTATION — php/notation.php (notation.css)
+───────────────────────────────────────────────────── */
+body.page-notation {
+    background: linear-gradient(rgba(242,237,228,0.6), rgba(242,237,228,0.75)),
+                url('/img/NotationWhite.jpg') center/cover no-repeat fixed !important;
+    color: #1A1A1A !important;
+    --gold: #8B6914;
+    --gold-bright: #6B5010;
+    --bg-card: rgba(242, 237, 228, 0.96);
+    --border: rgba(139, 105, 20, 0.25);
+}
+
+body.page-notation .btn-retour {
+    color: #8B6914 !important;
+    border-color: rgba(139, 105, 20, 0.3) !important;
+}
+
+body.page-notation .btn-retour:hover {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
+    border-color: #8B6914 !important;
+}
+
+body.page-notation .notation-card {
+    background: rgba(242, 237, 228, 0.96) !important;
+    border-color: rgba(139, 105, 20, 0.25) !important;
+    box-shadow: 0 40px 100px rgba(100, 70, 0, 0.15) !important;
+}
+
+body.page-notation .notation-card::before {
+    background: linear-gradient(to bottom, #8B6914, transparent) !important;
+}
+
+body.page-notation .pre-title {
+    color: #8B6914 !important;
+}
+
+body.page-notation .notation-header h1 {
+    background: linear-gradient(to right, #1A1A1A, #8B6914, #1A1A1A) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+body.page-notation .notation-header p {
+    color: #3A2A1A !important;
+}
+
+body.page-notation .label-stars {
+    color: #3A2A1A !important;
+}
+
+body.page-notation .stars label {
+    color: rgba(0, 0, 0, 0.15) !important;
+}
+
+body.page-notation .stars label:hover,
+body.page-notation .stars label:hover ~ label,
+body.page-notation .stars input:checked ~ label {
+    color: #8B6914 !important;
+    text-shadow: 0 0 20px rgba(139, 105, 20, 0.4) !important;
+}
+
+body.page-notation .comment-box label {
+    color: #8B6914 !important;
+}
+
+body.page-notation .comment-box textarea {
+    background: rgba(100, 70, 0, 0.04) !important;
+    border-color: rgba(139, 105, 20, 0.2) !important;
+    color: #1A1A1A !important;
+}
+
+body.page-notation .comment-box textarea::placeholder {
+    color: rgba(0, 0, 0, 0.3) !important;
+}
+
+body.page-notation .comment-box textarea:focus {
+    border-color: #8B6914 !important;
+    background: rgba(100, 70, 0, 0.07) !important;
+}
+
+body.page-notation .btn-send {
+    border-color: #8B6914 !important;
+    color: #8B6914 !important;
+    background: transparent !important;
+}
+
+body.page-notation .btn-send:hover {
+    background: #8B6914 !important;
+    color: #F2EDE4 !important;
 }

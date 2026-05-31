@@ -65,7 +65,7 @@ unset($_SESSION['tentative_email']); // On efface la mémoire juste après
 
     <div id="side-menu" class="side-panel">
         <div class="menu-content-wrapper">
-            <div class="menu-links">
+           <div class="menu-links">
                 <button id="btn-theme-toggle" onclick="toggleTheme()" style="
                     background: none;
                     border: 1px solid rgba(197,160,89,0.4);
@@ -79,11 +79,27 @@ unset($_SESSION['tentative_email']); // On efface la mémoire juste après
                     width: 100%;
                     text-align: left;
                 ">☀️ MODE CLAIR</button>
+
+                <?php
+                $role = $_SESSION['user']['role'] ?? '';
+                $btnStyle = "display:block; border:1px solid var(--gold); color:var(--gold); padding:10px 20px; font-size:0.75rem; letter-spacing:3px; text-decoration:none; text-align:left; transition:0.3s;";
+                ?>
+
+                <?php if ($role === 'admin'): ?>
+                    <a href="php/admin.php" style="<?= $btnStyle ?>">⚙️ ADMINISTRATION</a>
+                    <a href="php/commande.php" style="<?= $btnStyle ?>">🍽️ CUISINE EN DIRECT</a>
+                <?php elseif ($role === 'restaurateur'): ?>
+                    <a href="php/commande.php" style="<?= $btnStyle ?>">🍽️ CUISINE EN DIRECT</a>
+                <?php elseif ($role === 'livreur'): ?>
+                    <a href="php/livraison.php" style="<?= $btnStyle ?>">🚚 MA TOURNÉE</a>
+                <?php endif; ?>
+
                 <?php if (estConnecte()): ?>
                     <a href="php/carte.php">RÉSERVER</a>
                 <?php else: ?>
                     <a href="javascript:void(0)" onclick="openReservationFromMenu()">RÉSERVER</a>
                 <?php endif; ?>
+
                 <a href="#restaurant" onclick="toggleMenu()">LE RESTAURANT</a>
                 <a href="#chefs" onclick="toggleMenu()">LES CHEFS</a>
                 <a href="#experience" onclick="toggleMenu()">L'EXPÉRIENCE</a>

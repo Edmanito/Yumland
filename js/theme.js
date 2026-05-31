@@ -47,15 +47,22 @@
     }
 
     function toggleTheme() {
-        const current = getCookie(COOKIE_NAME) || DEFAULT;
-        applyTheme(current === 'sombre' ? 'clair' : 'sombre');
-    }
+    const current = getCookie(COOKIE_NAME) || DEFAULT;
+    const newTheme = current === 'sombre' ? 'clair' : 'sombre';
+    applyTheme(newTheme);
 
-    // Applique dès que le DOM est prêt
-    document.addEventListener('DOMContentLoaded', function () {
-        const saved = getCookie(COOKIE_NAME);
-        applyTheme(saved || DEFAULT);
+    // Sauvegarde côté serveur si connecté
+    const isInPhpFolder = window.location.pathname.includes('/php/');
+    const actionPath = isInPhpFolder
+        ? '../actions/sauvegarder_theme.php'
+        : 'actions/sauvegarder_theme.php';
+
+    fetch(actionPath, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'theme=' + newTheme
     });
+}
 
     window.toggleTheme = toggleTheme;
 })();
