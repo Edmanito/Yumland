@@ -45,7 +45,7 @@ foreach ($data['commandes'] as &$cmd) {
     // Vérification stricte : bonne commande + bon client + statut OBLIGATOIREMENT "livree"
     if ($cmd['id'] === $idCmd && $cmd['id_client'] === $_SESSION['user']['id'] && $cmd['statut'] === 'livree') {
         
-        // 🔑 LES BONNES CLÉS pour que ton "oeil" javascript génère bien les étoiles
+        // LES BONNES CLÉS pour que l' "oeil" javascript génère bien les étoiles
         $cmd['note_client'] = [
             'produits'    => $noteProduits,
             'livraison'   => $noteLivraison,
