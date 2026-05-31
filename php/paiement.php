@@ -3,6 +3,24 @@ require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 require_once '../includes/getapikey.php';
 
+// Vérification du statut de l'utilisateur en session
+if (isset($_SESSION['user'])) {
+    $allUsersData = lireJSON(JSON_USERS);
+    $currentUserFromDB = null;
+    foreach ($allUsersData['utilisateurs'] as $u) {
+        if ($u['id'] === $_SESSION['user']['id']) {
+            $currentUserFromDB = $u;
+            break;
+        }
+    }
+
+    if ($currentUserFromDB && $currentUserFromDB['statut'] === 'suspendu') {
+        session_destroy();
+        header('Location: ../index.php?erreur=compte_suspendu');
+        exit;
+    }
+    $_SESSION['user'] = $currentUserFromDB; // Rafraîchir la session avec les dernières données
+}
 requireConnexion();
 
 // 1. DÉTECTION DU CONTEXTE (Nouveau ou Supplément)

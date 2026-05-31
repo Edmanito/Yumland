@@ -5,6 +5,24 @@ require_once '../includes/fonctions.php';
 // On indique qu'on répond en format JSON (très important pour l'AJAX)
 header('Content-Type: application/json');
 
+// Vérification du statut de l'utilisateur en session
+if (isset($_SESSION['user'])) {
+    $allUsersData = lireJSON(JSON_USERS);
+    $currentUserFromDB = null;
+    foreach ($allUsersData['utilisateurs'] as $u) {
+        if ($u['id'] === $_SESSION['user']['id']) {
+            $currentUserFromDB = $u;
+            break;
+        }
+    }
+
+    if ($currentUserFromDB && $currentUserFromDB['statut'] === 'suspendu') {
+        session_destroy();
+        echo json_encode(['success' => false, 'message' => 'Votre compte a été suspendu.']);
+        exit;
+    }
+    $_SESSION['user'] = $currentUserFromDB; // Rafraîchir la session avec les dernières données
+}
 if (!estConnecte()) {
     echo json_encode(['success' => false, 'message' => 'Non autorisé.']);
     exit;
