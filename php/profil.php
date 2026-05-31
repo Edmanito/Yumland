@@ -1,47 +1,45 @@
 <?php
+// =========================================
+// KAISEKI SHUNEI — PROFIL.PHP
+// =========================================
+
 header('Content-Type: text/html; charset=utf-8');
 
 require_once '../includes/config.php';
 require_once '../includes/fonctions.php';
 
-// Vérification du statut de l'utilisateur en session
-if (isset($_SESSION['user'])) {
-    $allUsersData = lireJSON(JSON_USERS);
-    $currentUserFromDB = null;
-    foreach ($allUsersData['utilisateurs'] as $u) {
-        if ($u['id'] === $_SESSION['user']['id']) {
-            $currentUserFromDB = $u;
-            break;
-        }
-    }
-
-    if ($currentUserFromDB && $currentUserFromDB['statut'] === 'suspendu') {
-        session_destroy();
-        header('Location: ../index.php?erreur=compte_suspendu');
-        exit;
-    }
-    $_SESSION['user'] = $currentUserFromDB; // Rafraîchir la session avec les dernières données
-}
-
+// SÉCURITÉ : redirige vers l'accueil si non connecté
 requireConnexion();
 
+// Utilisateur actuellement connecté (depuis la session)
 $currentUser = $_SESSION['user'];
+
+// Si un ?id= est passé dans l'URL ET que l'utilisateur est admin,
+// on affiche le profil d'un autre utilisateur (vue admin)
 $userIdToDisplay = $_GET['id'] ?? null;
-$user = $currentUser;
+$user = $currentUser; // Par défaut : on affiche son propre profil
 
 if ($userIdToDisplay && ($currentUser['role'] === 'admin')) {
+    // L'admin consulte le profil d'un autre utilisateur
     $dataUsers = lireJSON(JSON_USERS);
     foreach ($dataUsers['utilisateurs'] ?? [] as $u) {
         if ($u['id'] === $userIdToDisplay) { $user = $u; break; }
     }
 }
 
+// -----------------------------------------
+// CHARGEMENT DES COMMANDES
+// C'est ici que la sécurité "chaque client voit
+// uniquement ses commandes" est assurée :
+
+// -----------------------------------------
 $dataCommandes = lireJSON(JSON_COMMANDES);
 $mesCommandes = array_reverse(array_values(array_filter(
     $dataCommandes['commandes'] ?? [],
-    fn($c) => $c['id_client'] === $user['id']
+    fn($c) => $c['id_client'] === $user['id'] // FILTRE DE SÉCURITÉ
 )));
 
+// Correspondance entre les codes statut (JSON) et les libellés affichés
 $labelStatuts = [
     'en_attente'     => 'En attente',
     'en_preparation' => 'En préparation',
@@ -51,6 +49,7 @@ $labelStatuts = [
     'annulee'        => 'Annulée'
 ];
 
+// Correspondance entre les codes statut et les classes CSS (couleurs)
 $classStatuts = [
     'en_attente'     => 'waiting',
     'en_preparation' => 'cooking',
@@ -60,11 +59,18 @@ $classStatuts = [
     'annulee'        => 'canceled'
 ];
 
+// Calcul du pourcentage de progression vers 1000 points (barre fidélité)
 $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <?php
+    // ANTI-FLASH : applique le thème AVANT le rendu de la page
+    // pour éviter un flash blanc/noir au chargement.
+    // Ce script lit le cookie kaiseki_theme et injecte
+    // theme-clair.css immédiatement si nécessaire.
+    ?>
     <script>
     (function(){
         var m = document.cookie.match(/(?:^|; )kaiseki_theme=([^;]*)/);
@@ -83,7 +89,7 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/profil.css">
     <style>
-        /* ── Tableau commandes ── */
+        /* ── Tableau commandes : largeurs fixes pour éviter les décalages ── */
         .order-table { table-layout: fixed; width: 100%; }
         .order-table th:nth-child(1),
         .order-table td:nth-child(1) { width: 110px; vertical-align: top; padding-top: 16px; }
@@ -94,7 +100,7 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
         .order-table th:nth-child(4),
         .order-table td:nth-child(4) { width: 150px; vertical-align: top; padding-top: 16px; }
 
-        /* ── Statuts ── */
+        /* ── Couleurs des statuts de commande ── */
         .status-pill.done      { background: #1a3a1a; color: #4caf50; }
         .status-pill.waiting   { background: #3a2a00; color: #f59e0b; }
         .status-pill.cooking   { background: #001a3a; color: #3b82f6; }
@@ -102,16 +108,17 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
         .status-pill.delivering{ background: #2a1a3a; color: #a855f7; }
         .status-pill.canceled  { background: #3a1a1a; color: #ef4444; }
 
-        /* ── Divers ── */
+        /* ── Styles divers ── */
         .btn-logout    { color: #bc9c64; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; border-bottom: 1px solid #bc9c64; }
         .back-link     { color: white; text-decoration: none; }
         .remise        { color: #4caf50; font-weight: bold; }
         .no-orders     { color: #666; font-style: italic; padding: 20px 0; }
         .progress-fill { background: #bc9c64; border-radius: 3px; }
+        /* Badge affiché quand un admin consulte le profil d'un autre user */
         .admin-view-tag{ background: #bc9c64; color: black; padding: 2px 8px; font-size: 0.7rem; border-radius: 10px; margin-left: 10px; vertical-align: middle; }
         .char-counter  { font-size: 0.75rem; text-align: right; color: #888; margin-top: 2px; }
 
-        /* ── Modales ── */
+        /* ── Modales (overlay semi-transparent + boîte centrée) ── */
         .modal-overlay  { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-content  { background: #111; border: 1px solid #bc9c64; padding: 30px; border-radius: 5px; width: 90%; max-width: 500px; position: relative; color: white; }
@@ -124,6 +131,7 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
 </head>
 <body class="page-profil">
 
+    <!-- Navigation : retour à l'accueil ou à l'admin selon le contexte -->
     <nav class="profil-nav">
         <a href="<?= ($user['id'] !== $currentUser['id']) ? 'admin.php' : '../index.php' ?>" class="back-link">
             ← <?= ($user['id'] !== $currentUser['id']) ? 'RETOUR À L\'ADMIN' : 'RETOUR AU RESTAURANT' ?>
@@ -134,22 +142,27 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
 
     <div class="profil-container">
 
+        <!-- En-tête : nom, date d'inscription, carte de fidélité -->
         <header class="profil-header">
             <div class="header-main">
                 <h1>
                     <?= ($user['id'] === $currentUser['id']) ? 'BIENVENUE, ' : 'PROFIL DE ' ?>
                     <?= strtoupper(htmlspecialchars($user['infos']['prenom'])) ?>
                     <?php if ($user['id'] !== $currentUser['id']): ?>
+                        <!-- Badge visible uniquement pour l'admin -->
                         <span class="admin-view-tag">ADMIN VIEW</span>
                     <?php endif; ?>
                 </h1>
                 <p class="member-since">Membre depuis <?= date('d/m/Y', strtotime($user['dates']['inscription'] ?? 'today')) ?></p>
             </div>
+
+            <!-- Carte de fidélité : badge + points + barre de progression -->
             <div class="loyalty-card">
                 <span class="label">STATUT PRIVILÈGE</span>
                 <div class="loyalty-badge"><?= htmlspecialchars($user['fidelite']['badge']) ?></div>
                 <div class="points-count"><?= $user['fidelite']['points'] ?> <span>points</span></div>
                 <div class="progress-bar">
+                    <!-- Largeur calculée en PHP : points / 1000 * 100 (max 100%) -->
                     <div class="progress-fill" style="width:<?= $pct ?>%; height:100%;"></div>
                 </div>
             </div>
@@ -157,17 +170,24 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
 
         <main class="profil-grid">
 
-            <!-- ── COORDONNÉES ── -->
+            <!-- ══════════════════════════════════
+                 SECTION COORDONNÉES
+                 Infos personnelles de l'utilisateur.
+                 Le bouton d'édition n'apparaît que
+                 si l'utilisateur consulte son propre profil.
+                 ══════════════════════════════════ -->
             <section class="profil-section info-section">
                 <div class="section-title">
                     <h3>COORDONNÉES</h3>
                     <?php if ($user['id'] === $currentUser['id']): ?>
+                        <!-- Bouton qui ouvre la modale d'édition du profil -->
                         <span class="edit-icon" id="btn-edit-profile" style="cursor:pointer;" title="Modifier mes informations">✎</span>
                     <?php endif; ?>
                 </div>
                 <div class="info-card">
                     <div class="info-group">
                         <label>NOM COMPLET</label>
+                        <!-- htmlspecialchars() protège contre les injections XSS -->
                         <p><?= htmlspecialchars($user['infos']['prenom'] . ' ' . $user['infos']['nom']) ?></p>
                     </div>
                     <div class="info-group">
@@ -191,6 +211,7 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
                     </div>
 
                     <?php if (($user['remise'] ?? 0) > 0): ?>
+                    <!-- Remise fidélité : uniquement si > 0% -->
                     <div class="info-group">
                         <label>REMISE FIDÉLITÉ</label>
                         <p class="remise"><?= $user['remise'] ?>% sur toutes vos commandes</p>
@@ -198,6 +219,7 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
                     <?php endif; ?>
 
                     <?php if (!empty($user['tickets_reduction'])): ?>
+                    <!-- Tickets de réduction gagnés (mini-jeux, remboursements...) -->
                     <div class="info-group">
                         <label>TICKETS DE RÉDUCTION DISPONIBLES</label>
                         <?php foreach ($user['tickets_reduction'] as $ticket): ?>
@@ -211,7 +233,13 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
                 </div>
             </section>
 
-            <!-- ── COMMANDES ── -->
+            <!-- ══════════════════════════════════
+                 SECTION COMMANDES
+                 Historique des commandes filtré par
+                 utilisateur (sécurité assurée en PHP).
+                 Chaque commande affiche le détail des
+                 articles commandés avec quantité et prix.
+                 ══════════════════════════════════ -->
             <section class="profil-section orders-section">
                 <h3><?= ($user['id'] === $currentUser['id']) ? 'MES COMMANDES' : 'HISTORIQUE DU CLIENT' ?></h3>
                 <div class="table-wrapper">
@@ -230,8 +258,10 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
                         <tbody>
                         <?php foreach ($mesCommandes as $cmd): ?>
                             <tr>
+                                <!-- Date de la commande formatée en français -->
                                 <td><?= date('d/m/Y', strtotime($cmd['dates']['commande'])) ?></td>
 
+                                <!-- Détail des articles : nom, quantité, prix -->
                                 <td class="dish-name">
                                     <?php if (!empty($cmd['articles'])): ?>
                                         <ul style="list-style:none; margin:0; padding:0;">
@@ -239,6 +269,7 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
                                                 <li style="margin-bottom:5px; line-height:1.4;">
                                                     <span style="color:#bc9c64; font-weight:700; margin-right:6px;"><?= $art['quantite'] ?>×</span>
                                                     <?= htmlspecialchars($art['nom'] ?? $art['id']) ?>
+                                                    <!-- Sous-total de l'article (quantité × prix unitaire) -->
                                                     <span style="opacity:0.45; font-size:0.82rem; margin-left:6px;"><?= $art['prix_unitaire'] * $art['quantite'] ?>€</span>
                                                 </li>
                                             <?php endforeach; ?>
@@ -248,6 +279,7 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
                                     <?php endif; ?>
                                 </td>
 
+                                <!-- Statut avec couleur correspondante -->
                                 <td>
                                     <span class="status-pill <?= $classStatuts[$cmd['statut']] ?? '' ?>">
                                         <?= $labelStatuts[$cmd['statut']] ?? $cmd['statut'] ?>
@@ -260,10 +292,13 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
                                     <?php if ($cmd['statut'] === 'livree'): ?>
                                         <?php if (empty($cmd['note_client'])): ?>
                                             <?php if ($user['id'] === $currentUser['id']): ?>
+                                                <!-- Bouton de notation : visible uniquement si pas encore noté
+                                                     et seulement sur son propre profil -->
                                                 <a href="notation.php?cmd=<?= $cmd['id'] ?>" class="btn-note" title="Noter"
                                                    style="display:block; margin-top:6px; color:#bc9c64; text-decoration:none; font-size:1.1rem;">★ Noter</a>
                                             <?php endif; ?>
                                         <?php else: ?>
+                                            <!-- Bouton pour voir l'avis déjà donné -->
                                             <button class="btn-view-avis"
                                                     data-avis="<?= htmlspecialchars(json_encode($cmd['note_client'], JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8') ?>"
                                                     style="display:block; margin-top:6px; background:none; border:none; cursor:pointer; font-size:1rem; color:#bc9c64;"
@@ -272,6 +307,8 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
                                     <?php endif; ?>
 
                                     <?php if ($user['id'] === $currentUser['id'] && $cmd['statut'] === 'en_attente'): ?>
+                                        <!-- Bouton de modification : uniquement sur ses propres commandes
+                                             et seulement si la commande est encore en attente -->
                                         <button class="btn-modifier-cmd"
                                                 data-id="<?= $cmd['id'] ?>"
                                                 data-prix="<?= $cmd['prix_total'] ?>"
@@ -293,7 +330,12 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
         </main>
     </div>
 
-    <!-- ── MODALE ÉDITION PROFIL ── -->
+    <!-- ══════════════════════════════════
+         MODALE — ÉDITION DU PROFIL
+         Formulaire de modification des infos
+         personnelles (email, mdp, adresse...).
+         Soumis via AJAX dans profil.js.
+         ══════════════════════════════════ -->
     <div id="edit-profile-modal" class="modal-overlay">
         <div class="modal-content" style="max-height:90vh; overflow-y:auto;">
             <span class="close-modal" id="close-edit-modal">✕</span>
@@ -335,33 +377,47 @@ $pct = min(100, round(($user['fidelite']['points'] / 1000) * 100));
         </div>
     </div>
 
-    <!-- ── MODALE MODIFICATION COMMANDE ── -->
+    <!-- ══════════════════════════════════
+         MODALE — MODIFICATION DE COMMANDE
+         Permet de modifier les quantités
+         d'une commande encore en attente.
+         Géré par profil.js.
+         ══════════════════════════════════ -->
     <div id="edit-cmd-modal" class="modal-overlay">
         <div class="modal-content" style="max-width:600px;">
             <span class="close-modal" id="close-cmd-modal">✕</span>
             <h2 style="font-family:'Playfair Display'; color:#bc9c64; margin-bottom:5px;">Modifier ma commande</h2>
             <p style="font-size:0.8rem; color:#888; margin-bottom:20px;">Commande <span id="modal-cmd-id"></span></p>
+            <!-- Liste des articles injectée dynamiquement par profil.js -->
             <div id="modal-cmd-items" style="max-height:300px; overflow-y:auto; margin-bottom:20px; border-top:1px solid #333; border-bottom:1px solid #333; padding:10px 0;"></div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
                 <span style="color:#888; font-size:0.9rem;">Ancien total : <span id="modal-old-price"></span>€</span>
                 <span style="color:#bc9c64; font-size:1.2rem; font-weight:bold;">Nouveau total : <span id="modal-new-price"></span>€</span>
             </div>
+            <!-- Message affiché si le nouveau total diffère (supplément ou remboursement) -->
             <div id="modal-diff-msg" style="font-size:0.85rem; margin-bottom:15px; padding:10px; border-radius:4px; display:none;"></div>
             <button id="btn-save-cmd" class="btn-submit">VALIDER LES MODIFICATIONS</button>
         </div>
     </div>
 
-    <!-- ── MODALE AVIS ── -->
+    <!-- ══════════════════════════════════
+         MODALE — CONSULTATION D'UN AVIS
+         Affiche l'avis déjà donné sur une
+         commande livrée (note + commentaire).
+         ══════════════════════════════════ -->
     <div id="modal-view-avis" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:10000;">
         <div class="modal-content" style="background:#111; border:1px solid #bc9c64; padding:30px; border-radius:5px; width:90%; max-width:400px; position:relative; color:white; text-align:center;">
             <span class="close-modal" id="close-avis-modal" style="position:absolute; top:10px; right:15px; cursor:pointer; color:#bc9c64; font-size:1.5rem;">✕</span>
             <h2 style="font-family:'Playfair Display'; color:#bc9c64; margin-bottom:20px;">VOTRE AVIS</h2>
+            <!-- Contenu injecté dynamiquement par profil.js -->
             <div id="content-avis-popup"></div>
             <button id="btn-close-avis-popup" style="width:100%; padding:12px; background:#bc9c64; border:none; margin-top:20px; cursor:pointer; font-weight:bold; color:black;">FERMER</button>
         </div>
     </div>
 
+    <!-- profil.js : gère les modales, la soumission AJAX, les compteurs -->
     <script src="../js/profil.js"></script>
+    <!-- theme.js : relit le cookie et met à jour le bouton de thème -->
     <script src="../js/theme.js"></script>
 </body>
 </html>
